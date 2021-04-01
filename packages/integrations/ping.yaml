@@ -1,0 +1,11 @@
+binary_sensor:
+  - platform: ping
+    host: 192.168.0.61
+    name: "Harmony Hub"
+    count: 5
+    scan_interval: 300
+  - platform: ping
+    host: 192.168.0.65
+    name: "star114-raspberrypi"
+    count: 5
+    scan_interval: 300

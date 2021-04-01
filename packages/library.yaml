@@ -1,0 +1,60 @@
+# library
+input_boolean:
+  library_light_triggered_by_motion:
+    name: Library Light triggered by motion
+    initial: false
+
+automation:
+  - alias: "library light off with no motion"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.smartthings_library_motion_occupancy
+        to: "off"
+        for:
+          minutes: 2
+    condition:
+      - condition: state
+        entity_id: input_boolean.library_light_triggered_by_motion
+        state: "on"
+    action:
+      - service: light.turn_off
+        entity_id: light.hej_3gang_library_light_top
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.library_light_triggered_by_motion
+
+  - alias: "library light on with motion"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.smartthings_library_motion_occupancy
+        to: "on"
+    condition:
+      - condition: state
+        entity_id: light.hej_3gang_library_light_top
+        state: "off"
+    action:
+      - service: light.turn_on
+        entity_id: light.hej_3gang_library_light_top
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.library_light_triggered_by_motion
+
+  - alias: "away scene - switch on"
+    trigger:
+      platform: state
+      entity_id: switch.hej_3gang_library_light_bottom
+      from: "off"
+      to: "on"
+    action:
+      service: scene.turn_on
+      target:
+        entity_id: scene.away
+
+  - alias: "home scene - switch off"
+    trigger:
+      platform: state
+      entity_id: switch.hej_3gang_library_light_bottom
+      from: "on"
+      to: "off"
+    action:
+      service: scene.turn_on
+      target:
+        entity_id: scene.home

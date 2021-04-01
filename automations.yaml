@@ -1,0 +1,9 @@
+- id: "1617007136486"
+  alias: Dressroom window, air purifier plug
+  description: ""
+  use_blueprint:
+    path: custom/contact_switch.yaml
+    input:
+      window_entity: binary_sensor.smartthings_dressroom_contact_contact
+      switch_target: switch.dawon_dressroom_plug
+      minimum_open_time: 12

@@ -1,0 +1,17 @@
+.storage/*
+blueprints/automation/homeassistant/*
+custom_components/*
+themes/*
+tts/*
+www/*
+zigbee2mqtt/*
+*.log
+secrets.yaml
+service_account.json
+*.backup
+*.bk
+*_backup.json
+home-assistant_v2.db*
+known_devices.yaml
+harmony_*.conf
+.HA_VERSION

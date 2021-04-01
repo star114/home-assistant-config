@@ -1,0 +1,737 @@
+title: Maison Seonyu
+views:
+  - title: Home
+    icon: "mdi:information-outline"
+    path: home
+    theme: ios-dark-mode
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: alarm-panel
+            states:
+              - arm_home
+              - arm_away
+              - arm_night
+              - arm_custom_bypass
+            entity: alarm_control_panel.home_monitoring
+            name: 홈 모니터링
+          - type: entities
+            entities:
+              - entity: device_tracker.heesikiphone
+                name: Heesik
+                icon: "mdi:apple"
+              - entity: device_tracker.seojiniphone
+                name: Seo Jin
+                icon: "mdi:apple"
+            title: IP 재실
+      - type: vertical-stack
+        cards:
+          - type: "custom:weather-card"
+            entity: weather.naverweather
+            icons: /local/community/weather-card/icons/animated/
+          - type: horizontal-stack
+            cards:
+              - type: entity
+                entity: sensor.korea_south_coronavirus_current
+                name: 치료중
+                unit: 명
+              - type: entity
+                entity: sensor.korea_south_coronavirus_confirmed
+                name: 누적 확진
+                unit: 명
+              - type: entity
+                entity: sensor.korea_south_coronavirus_deaths
+                unit: 명
+                name: 사망
+  - theme: ios-dark-mode
+    title: Home Info
+    panel: false
+    path: home_info
+    icon: "mdi:home-heart"
+    badges: []
+    cards:
+      - type: "custom:vertical-stack-in-card"
+        title: 안방
+        cards:
+          - type: glance
+            entities:
+              - entity: binary_sensor.hue_bedroom_motion_occupancy
+                name: 모션
+              - entity: binary_sensor.smartthings_bedroom_contact_contact
+                name: 창문
+                icon: mdi:window-open-variant
+              - entity: sensor.hej_bedroom_thsensor_temperature
+                name: 온도
+              - entity: sensor.hej_bedroom_thsensor_humidity
+                name: 습도
+              - entity: sensor.hue_bedroom_motion_illuminance_lux
+                name: 조도
+            show_name: false
+          - type: glance
+            entities:
+              - entity: sensor.anbang_gonggiceongjeonggi_air_quality
+                name: 공기질
+              - entity: sensor.anbang_gonggiceongjeonggi_odor_sensor
+                name: 생활가스
+              - entity: sensor.anbang_gonggiceongjeonggi_dust_level
+                name: 미세먼지
+              - entity: sensor.anbang_gonggiceongjeonggi_fine_dust_level
+                name: 초미세먼지
+            show_icon: false
+          - type: glance
+            entities:
+              - entity: light.hej_3gang_bedroom_bed_light_top
+                tap_action:
+                  action: toggle
+                name: 침대
+              - entity: light.hej_3gang_bedroom_light_top
+                tap_action:
+                  action: toggle
+                name: 티비앞
+              - entity: light.hej_3gang_bedroom_light_center
+                tap_action:
+                  action: toggle
+                name: 창가
+              - entity: light.hej_3gang_bedroom_light_bottom
+                tap_action:
+                  action: toggle
+                name: 보름달
+              - entity: switch.anbang_gonggiceongjeonggi
+                icon: mdi:air-purifier
+                name: 공기청정기
+                tap_action:
+                  action: toggle
+              - entity: climate.bed_room_air_conditioner
+                icon: mdi:air-conditioner
+                name: 에어컨
+            show_state: false
+            columns: 6
+          - type: history-graph
+            entities:
+              - entity: sensor.hej_bedroom_thsensor_temperature
+                name: 침대
+              - entity: sensor.smartthings_bedroom_contact_temperature
+                name: 창문
+              - entity: sensor.hue_bedroom_motion_temperature
+                name: 창가
+              - entity: sensor.hej_bedroom_thsensor_humidity
+                name: 침대
+            hours_to_show: 12
+            refresh_interval: 0
+      - type: "custom:vertical-stack-in-card"
+        title: 주방
+        cards:
+          - type: glance
+            entities:
+              - entity: binary_sensor.smartthings_kitchen_motion_occupancy
+                name: 모션
+              - entity: sensor.samseong_eeomoniteo_temperature_measurement
+                name: 온도
+              - entity: sensor.samseong_eeomoniteo_relative_humidity_measurement
+                name: 습도
+              - entity: binary_sensor.blitzwolf_kitchen_sink_waterleak_water_leak
+                name: 수전 누수
+              - entity: binary_sensor.blitzwolf_kitchen_waterleak_water_leak
+                name: 분배기 누수
+            show_name: false
+          - type: glance
+            entities:
+              - entity: sensor.samseong_eeomoniteo_air_quality
+                name: 공기질
+              - entity: sensor.samseong_eeomoniteo_odor_sensor
+                name: 생활가스
+              - entity: sensor.samseong_eeomoniteo_dust_level
+                name: 미세먼지
+              - entity: sensor.samseong_eeomoniteo_fine_dust_level
+                name: 초미세먼지
+              - entity: sensor.samseong_eeomoniteo_carbon_dioxide_measurement
+                name: 이산화탄소
+            show_icon: false
+          - type: glance
+            entities:
+              - entity: light.hej_3gang_kitchen_light_left_top
+                tap_action:
+                  action: toggle
+                name: 식탁
+              - entity: light.hej_3gang_kitchen_light_left_center
+                tap_action:
+                  action: toggle
+                name: 간접
+              - entity: light.hej_3gang_kitchen_light_right_top
+                tap_action:
+                  action: toggle
+                name: 팬트리
+              - entity: light.hej_3gang_kitchen_light_right_center
+                tap_action:
+                  action: toggle
+                name: 조리대
+              - entity: switch.jubang_eeokeon
+                tap_action:
+                  action: toggle
+                name: 에어컨
+                icon: mdi:air-conditioner
+              - entity: switch.dawon_kitchen_fan_plug
+                tap_action:
+                  action: toggle
+                name: 환풍기
+                icon: mdi:fan
+            show_state: false
+            columns: 6
+          - type: history-graph
+            entities:
+              - entity: sensor.samseong_eeomoniteo_temperature_measurement
+                name: 에어모니터
+              - entity: sensor.samseong_eeomoniteo_relative_humidity_measurement
+                name: 에어모니터
+              - entity: sensor.samseong_eeomoniteo_carbon_dioxide_measurement
+                name: 에어모니터
+              - entity: sensor.smartthings_kitchen_motion_temperature
+                name: 주방
+            hours_to_show: 12
+            refresh_interval: 0
+      - type: "custom:vertical-stack-in-card"
+        title: 화장실
+        cards:
+          - type: glance
+            entities:
+              - entity: binary_sensor.smartthings_bathroom_motion_occupancy
+                name: 모션
+              - entity: binary_sensor.smartthings_bathroom_contact_contact
+                name: 문
+              - entity: sensor.hej_bathroom_thsensor_temperature
+                name: 온도
+              - entity: sensor.hej_bathroom_thsensor_humidity
+                name: 습도
+              - entity: binary_sensor.blitzwolf_bathroom_sink_waterleak_water_leak
+                name: 세면대 누수
+              - entity: binary_sensor.blitzwolf_bathroom_ceiling_waterleak_water_leak
+                name: 천장 누수
+            show_name: false
+            columns: 6
+          - type: glance
+            entities:
+              - entity: light.hej_3gang_bathroom_light_center
+                tap_action:
+                  action: toggle
+                name: 간접
+              - entity: light.hej_3gang_bathroom_light_bottom
+                tap_action:
+                  action: toggle
+                name: 벽
+              - entity: switch.hej_3gang_bathroom_light_top
+                tap_action:
+                  action: toggle
+                name: 환풍기
+                icon: mdi:fan
+              - entity: input_boolean.bathroom_in_use
+                tap_action:
+                  action: toggle
+                name: 사용중
+            show_state: false
+          - type: history-graph
+            entities:
+              - entity: sensor.hej_bathroom_thsensor_temperature
+                name: 화장실
+              - entity: sensor.hej_bathroom_thsensor_humidity
+                name: 화장실
+            hours_to_show: 12
+            refresh_interval: 0
+      - type: "custom:vertical-stack-in-card"
+        title: 드레스룸
+        cards:
+          - type: glance
+            entities:
+              - entity: binary_sensor.smartthings_dressroom_motion_occupancy
+                name: 모션
+              - entity: binary_sensor.smartthings_dressroom_contact_contact
+                name: 창문
+                icon: mdi:window-open-variant
+              - entity: sensor.smartthings_dressroom_motion_temperature
+                name: 온도
+            show_name: false
+          - type: glance
+            entities:
+              - entity: switch.dawon_dressroom_plug
+                tap_action:
+                  action: toggle
+                name: 공기청정기
+                icon: mdi:air-purifier
+              - entity: light.hej_1gang_dressroom_light
+                tap_action:
+                  action: toggle
+                name: 조명
+              - entity: input_boolean.dressroom_light_triggered_by_motion
+                tap_action:
+                  action: toggle
+                name: 모션조명
+            show_state: false
+          - type: history-graph
+            entities:
+              - entity: sensor.smartthings_dressroom_contact_temperature
+                name: 창문
+              - entity: sensor.smartthings_dressroom_motion_temperature
+                name: 방안
+            hours_to_show: 12
+            refresh_interval: 0
+      - type: "custom:vertical-stack-in-card"
+        title: 라이브러리
+        cards:
+          - type: glance
+            entities:
+              - entity: binary_sensor.smartthings_library_motion_occupancy
+                name: 모션
+              - entity: binary_sensor.smartthings_library_contact_contact
+                name: 창문
+                icon: mdi:window-open-variant
+              - entity: sensor.smartthings_library_motion_temperature
+                name: 온도
+              - entity: binary_sensor.blitzwolf_library_waterleak_water_leak
+                name: 누수
+              - entity: binary_sensor.smartthings_door_contact_contact
+                name: 현관문
+            show_name: false
+          - type: glance
+            entities:
+              - entity: light.hej_3gang_library_light_top
+                tap_action:
+                  action: toggle
+                name: 조명
+              - entity: light.hej_3gang_library_light_center
+                tap_action:
+                  action: toggle
+                name: 복도 조명
+              - entity: light.lellki_library_multi_outlets_l1
+                tap_action:
+                  action: toggle
+                name: 별 조명
+              - entity: switch.lellki_library_multi_outlets_l2
+                tap_action:
+                  action: toggle
+                name: 워머
+                icon: mdi:candle
+              - entity: switch.lellki_library_multi_outlets_l3
+                tap_action:
+                  action: toggle
+                name: 턴테이블
+                icon: mdi:album
+              - entity: switch.lellki_library_multi_outlets_l4
+                tap_action:
+                  action: toggle
+                name: 블루투스 스피커
+                icon: mdi:speaker-bluetooth
+              - entity: vacuum.roborock_vacuum_s5e
+                name: 뽀봇
+              - entity: input_boolean.library_light_triggered_by_motion
+                tap_action:
+                  action: toggle
+                name: 모션조명
+            show_state: false
+            columns: 5
+          - type: history-graph
+            entities:
+              - entity: sensor.smartthings_door_contact_temperature
+                name: 현관문
+              - entity: sensor.smartthings_library_contact_temperature
+                name: 창문
+              - entity: sensor.smartthings_library_motion_temperature
+                name: 방안
+            hours_to_show: 12
+            refresh_interval: 0
+      - type: "custom:vertical-stack-in-card"
+        title: 베란다
+        cards:
+          - type: glance
+            entities:
+              - entity: binary_sensor.smartthings_laundryroom_motion_occupancy
+                name: 모션
+              - entity: binary_sensor.smartthings_laundryroom_contact_contact
+                name: 창문
+                icon: mdi:window-open-variant
+              - entity: sensor.hej_laundryroom_thsensor_temperature
+                name: 온도
+              - entity: sensor.hej_laundryroom_thsensor_humidity
+                name: 습도
+              - entity: binary_sensor.blitzwolf_laundryroom_waterleak_water_leak
+                name: 누수
+            show_name: false
+          - type: glance
+            entities:
+              - entity: switch.geonjogi
+                name: 건조기
+                icon: mdi:tumble-dryer
+              - entity: light.hej_3gang_laundryroom_light_top
+                tap_action:
+                  action: toggle
+                name: 조명
+            show_state: false
+          - type: history-graph
+            entities:
+              - entity: sensor.smartthings_laundryroom_motion_temperature
+                name: 세탁기
+              - entity: sensor.hej_laundryroom_thsensor_temperature
+                name: 수전
+              - entity: sensor.hej_laundryroom_thsensor_humidity
+                name: 수전
+            hours_to_show: 12
+            refresh_interval: 0
+  - title: Lights
+    path: lights
+    icon: "mdi:lightbulb-on"
+    theme: ios-dark-mode
+    badges: []
+    cards:
+      - type: "custom:vacuum-card"
+        name: 뽀봇
+        entity: vacuum.roborock_vacuum_s5e
+        stats:
+          default:
+            - attribute: filter_left
+              unit: hours
+              subtitle: Filter
+            - attribute: side_brush_left
+              unit: hours
+              subtitle: Side brush
+            - attribute: main_brush_left
+              unit: hours
+              subtitle: Main brush
+            - attribute: sensor_dirty_left
+              unit: hours
+              subtitle: Sensors
+          cleaning:
+            - attribute: cleaned_area
+              unit: m2
+              subtitle: Cleaning area
+            - attribute: cleaning_time
+              unit: minutes
+              subtitle: Cleaning time
+      - type: "custom:xiaomi-vacuum-map-card"
+        entity: vacuum.roborock_vacuum_s5e
+        map_camera: camera.xiaomi_cloud_map_extractor
+        camera_calibration: true
+      - type: thermostat
+        entity: climate.bed_room_air_conditioner
+        name: 안방 에어컨
+      - type: "custom:vertical-stack-in-card"
+        cards:
+          - type: grid
+            cards:
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: light.hej_3gang_bedroom_bed_light_top
+                name: 침대
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: light.hej_3gang_bedroom_light_top
+                name: 티비앞
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: light.hej_3gang_bedroom_light_center
+                name: 창가
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: light.hej_3gang_bedroom_light_bottom
+                name: 보름달
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: light.hej_3gang_kitchen_light_left_top
+                name: 식탁
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: light.hej_3gang_kitchen_light_left_center
+                name: 주방 간접
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: light.hej_3gang_kitchen_light_right_top
+                name: 팬트리
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: light.hej_3gang_kitchen_light_right_center
+                name: 조리대
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: light.hej_3gang_bathroom_light_center
+                name: 화장실 간접
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: light.hej_3gang_bathroom_light_bottom
+                name: 화장실 벽
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: light.hej_3gang_library_light_top
+                name: 라이브러리
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: light.hej_3gang_library_light_center
+                name: 복도
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: light.hej_1gang_dressroom_light
+                name: 드레스룸
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: light.hej_3gang_laundryroom_light_top
+                name: 베란다
+            columns: 4
+  - title: Media
+    icon: "mdi:play-network"
+    path: media
+    theme: ios-dark-mode
+    badges: []
+    cards:
+      - type: entity
+        entity: sensor.plex_star114_plex_server
+        name: Plex server
+      - type: custom:transmission-card
+        hide_type: false
+      - type: "custom:harmony-card"
+        entity: remote.harmony_hub
+        scale: 1.5
+        activities:
+          - name: TV
+            device: LG TV
+            volume_device: LG TV
+          - name: Netflix
+            device: LG TV
+            volume_device: LG TV
+        buttons:
+          xbox:
+            command: "Xbox"
+            hide: true
+          back:
+            command: "Back"
+            icon: "mdi:undo-variant"
+            hide: false
+          a:
+            command: "ChannelUp"
+            icon: "mdi:arrow-up-bold"
+            hide: false
+          b:
+            command: "ChannelDown"
+            icon: "mdi:arrow-down-bold"
+            hide: false
+          x:
+            command: "X"
+            icon: "mdi:alpha-x-circle"
+            hide: true
+            color: "#003bbd"
+          y:
+            command: "Y"
+            icon: "mdi:alpha-y-circle"
+            hide: true
+            color: "#f1c70f"
+      - type: vertical-stack
+        cards:
+          - type: media-control
+            entity: media_player.geurubseupikeo
+          - type: horizontal-stack
+            cards:
+              - type: media-control
+                entity: media_player.anbang_seupikeo
+              - type: media-control
+                entity: media_player.jubang_seupikeo
+              - type: media-control
+                entity: media_player.raibeureori_seupikeo
+          - type: media-control
+            entity: media_player.spotify_heesik_shin
+            name: Heesik's Spotify
+          - type: media-control
+            entity: media_player.spotify_seojin12
+            name: Seo Jin's Spotify
+  - title: Info
+    path: info
+    icon: "mdi:lan"
+    theme: ios-dark-mode
+    badges: []
+    cards:
+      - type: "custom:vertical-stack-in-card"
+        title: Intel NUC
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.processor_use_percent
+                min: 0
+                max: 100
+                severity:
+                  green: 0
+                  yellow: 50
+                  red: 80
+              - type: gauge
+                entity: sensor.disk_use_percent
+                min: 0
+                max: 100
+                severity:
+                  green: 0
+                  yellow: 50
+                  red: 80
+              - type: gauge
+                entity: sensor.memory_use_percent
+                min: 0
+                max: 100
+                severity:
+                  green: 0
+                  yellow: 50
+                  red: 80
+          - type: glance
+            entities:
+              - entity: sensor.last_boot
+              - entity: sensor.processor_temperature
+              - entity: sensor.memory_free
+              - entity: sensor.disk_free
+            show_name: false
+            columns: 4
+          - type: entity
+            entity: sensor.local_ip
+            name: IPv4 address
+          - type: entity
+            entity: sensor.ipv6_address_eno1
+            name: IPv6 address
+          - type: history-graph
+            entities:
+              - entity: sensor.processor_use_percent
+              - entity: sensor.load_1m
+              - entity: sensor.load_5m
+              - entity: sensor.load_15m
+              - entity: sensor.processor_temperature
+              - entity: sensor.memory_use
+              - entity: sensor.swap_use
+              - entity: sensor.disk_use
+              - entity: sensor.network_throughput_in_eno1
+              - entity: sensor.network_throughput_out_eno1
+            hours_to_show: 12
+            refresh_interval: 0
+      - type: "custom:vertical-stack-in-card"
+        title: Network
+        cards:
+          - type: glance
+            entities:
+              - entity: sensor.speedtest_ping
+              - entity: sensor.speedtest_download
+              - entity: sensor.speedtest_upload
+          - type: history-graph
+            entities:
+              - entity: sensor.speedtest_ping
+              - entity: sensor.speedtest_download
+              - entity: sensor.speedtest_upload
+            hours_to_show: 12
+            refresh_interval: 0
+      - type: "custom:vertical-stack-in-card"
+        title: Servers
+        cards:
+          - type: glance
+            entities:
+              - entity: binary_sensor.star114_raspberrypi
+                name: Raspberry-Pi 3B+
+              - entity: binary_sensor.harmony_hub
+                name: Logitech Harmony Hub
+      - type: "custom:vertical-stack-in-card"
+        title: HA Management
+        cards:
+          - type: entity
+            entity: sensor.cert_expiry_timestamp_ha_star114_duckdns_org
+            name: 인증서 만료일
+          - type: entities
+            entities:
+              - entity: sensor.auto_backup
+              - entity: sensor.hacs
+                name: HACS
+          - type: entities
+            entities:
+              - entity: automation.notify_snapshot_failure
+              - entity: automation.perform_auto_backup
+              - entity: automation.perform_daily_backup
+              - entity: automation.perform_weekly_backup
+            state_color: true
+      - title: Zigbee2MQTT
+        type: "custom:vertical-stack-in-card"
+        cards:
+          - type: entities
+            title: Status
+            show_header_toggle: false
+            entities:
+              - entity: sensor.zigbee2mqtt_bridge_state
+              - entity: sensor.zigbee2mqtt_version
+              - entity: sensor.coordinator_version
+              - entity: input_select.zigbee2mqtt_log_level
+          - type: entities
+            title: Join
+            show_header_toggle: false
+            entities:
+              - entity: switch.zigbee2mqtt_main_join
+              - entity: input_number.zigbee2mqtt_join_minutes
+              - entity: timer.zigbee_permit_join
+          - type: entities
+            title: Rename
+            show_header_toggle: false
+            entities:
+              - entity: input_text.zigbee2mqtt_old_name
+              - entity: input_text.zigbee2mqtt_new_name
+              - entity: script.zigbee2mqtt_rename
+          - type: entities
+            title: Remove
+            show_header_toogle: false
+            entities:
+              - entity: input_text.zigbee2mqtt_remove
+              - entity: input_boolean.zigbee2mqtt_force_remove
+              - entity: script.zigbee2mqtt_remove
+  - title: Zigbee Network
+    icon: "mdi:zigbee"
+    path: zigbee-network
+    theme: light-soft-ui
+    panel: true # this renders the first card on full width, other cards in this view will not be rendered
+    cards:
+      - type: custom:zigbee2mqtt-networkmap
+        entity: sensor.zigbee2mqtt_networkmap
+  - title: Dev
+    icon: "mdi:castle"
+    path: dev
+    theme: ios-dark-mode
+    badges: []
+    cards:
+      - type: glance
+        entities:
+          - entity: device_tracker.heesiks_iphone
+          - entity: sensor.heesiks_iphone_ssid
+          - entity: sensor.heesiks_iphone_battery_level
+          - entity: sensor.heesiks_iphone_battery_state
+        show_name: false
+        title: Heesik’s iPhone
+      - type: glance
+        entities:
+          - entity: device_tracker.heesiks_iphone_11_pro_max
+          - entity: sensor.heesiks_iphone_11_pro_max_ssid
+          - entity: sensor.heesiks_iphone_11_pro_max_battery_level
+          - entity: sensor.heesiks_iphone_11_pro_max_battery_state
+        show_name: false
+        title: Heesik’s iPhone 11 Pro Max
+      - type: glance
+        entities:
+          - entity: device_tracker.heesiks_ipad
+          - entity: sensor.heesiks_ipad_ssid
+          - entity: sensor.heesiks_ipad_battery_level
+          - entity: sensor.heesiks_ipad_battery_state
+        show_name: false
+        title: Heesik’s iPad Pro
+      - type: glance
+        entities:
+          - entity: device_tracker.seo_jin
+          - entity: sensor.seo_jin_ssid
+          - entity: sensor.seo_jin_battery_level
+          - entity: sensor.seo_jin_battery_state
+        show_name: false
+        title: Seo Jin's iPhone

@@ -1,0 +1,121 @@
+- name: Romantic
+  icon: "mdi:flower-tulip"
+  entities:
+    light.hej_3gang_bedroom_bed_light_top:
+      state: "on"
+    light.hej_3gang_bedroom_light_bottom:
+      state: "on"
+    light.hej_3gang_bedroom_light_top:
+      state: "off"
+    light.hej_3gang_bedroom_light_center:
+      state: "off"
+    light.lellki_library_multi_outlets_l1:
+      state: "off"
+    light.hej_3gang_library_light_top:
+      state: "off"
+    light.hej_3gang_library_light_center:
+      state: "off"
+    light.hej_1gang_dressroom_light:
+      state: "off"
+    light.hej_3gang_bathroom_light_center:
+      state: "off"
+    light.hej_3gang_bathroom_light_bottom:
+      state: "off"
+    light.hej_3gang_laundryroom_light_top:
+      state: "off"
+    light.hej_3gang_kitchen_light_left_center:
+      state: "off"
+    light.hej_3gang_kitchen_light_left_top:
+      state: "off"
+    light.hej_3gang_kitchen_light_right_center:
+      state: "off"
+    light.hej_3gang_kitchen_light_right_top:
+      state: "off"
+- name: Night
+  icon: "mdi:weather-night"
+  entities:
+    light.hej_3gang_bedroom_bed_light_top:
+      state: "off"
+    light.hej_3gang_bedroom_light_bottom:
+      state: "on"
+    light.hej_3gang_bedroom_light_top:
+      state: "off"
+    light.hej_3gang_bedroom_light_center:
+      state: "off"
+    light.lellki_library_multi_outlets_l1:
+      state: "off"
+    light.hej_3gang_library_light_top:
+      state: "off"
+    light.hej_3gang_library_light_center:
+      state: "off"
+    light.hej_1gang_dressroom_light:
+      state: "off"
+    light.hej_3gang_bathroom_light_center:
+      state: "off"
+    light.hej_3gang_bathroom_light_bottom:
+      state: "off"
+    light.hej_3gang_laundryroom_light_top:
+      state: "off"
+    light.hej_3gang_kitchen_light_left_center:
+      state: "off"
+    light.hej_3gang_kitchen_light_left_top:
+      state: "off"
+    light.hej_3gang_kitchen_light_right_center:
+      state: "off"
+    light.hej_3gang_kitchen_light_right_top:
+      state: "off"
+- name: Morning
+  icon: "mdi:weather-sunny"
+  entities:
+    light.hej_3gang_bedroom_light_bottom:
+      state: "on"
+    light.hej_3gang_library_light_center:
+      state: "on"
+    light.hej_3gang_kitchen_light_left_center:
+      state: "on"
+- name: Away
+  icon: "mdi:home-export-outline"
+  entities:
+    light.hej_3gang_bedroom_bed_light_top:
+      state: "off"
+    light.hej_3gang_bedroom_light_bottom:
+      state: "off"
+    light.hej_3gang_bedroom_light_top:
+      state: "off"
+    light.hej_3gang_bedroom_light_center:
+      state: "off"
+    light.lellki_library_multi_outlets_l1:
+      state: "off"
+    light.hej_3gang_library_light_top:
+      state: "off"
+    light.hej_3gang_library_light_center:
+      state: "off"
+    light.hej_1gang_dressroom_light:
+      state: "off"
+    light.hej_3gang_bathroom_light_center:
+      state: "off"
+    light.hej_3gang_bathroom_light_bottom:
+      state: "off"
+    light.hej_3gang_laundryroom_light_top:
+      state: "off"
+    light.hej_3gang_kitchen_light_left_center:
+      state: "off"
+    light.hej_3gang_kitchen_light_left_top:
+      state: "off"
+    light.hej_3gang_kitchen_light_right_center:
+      state: "off"
+    light.hej_3gang_kitchen_light_right_top:
+      state: "off"
+    switch.lellki_library_multi_outlets_l2:
+      state: "off"
+    switch.lellki_library_multi_outlets_l3:
+      state: "off"
+- name: Home
+  icon: "mdi:home-account"
+  entities:
+    light.hej_3gang_library_light_top:
+      state: "on"
+    light.hej_3gang_library_light_center:
+      state: "on"
+    light.hej_3gang_kitchen_light_left_center:
+      state: "on"

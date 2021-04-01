@@ -1,0 +1,10 @@
+device_tracker:
+  - platform: iphonedetect
+    consider_home: 60
+    new_device_defaults:
+      track_new_devices: true
+    hosts:
+      HeesikiPhone: !secret HeesikiPhone_ip
+      HeesikiPhone11ProMax: !secret HeesikiPhone11ProMax_ip
+      HeesikiPadPro: !secret HeesikiPadPro_ip
+      SeoJiniPhone: !secret SeoJiniPhone_ip

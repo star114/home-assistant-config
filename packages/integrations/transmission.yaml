@@ -1,0 +1,14 @@
+automation:
+  - alias: "Notify and remove completed torrent"
+    trigger:
+      platform: event
+      event_type: transmission_downloaded_torrent
+    action:
+      - service: notify.notify
+        data:
+          title: "Torrent download completed!"
+          message: "{{trigger.event.data.name}}"
+      - service: transmission.remove_torrent
+        data:
+          name: "Transmission"
+          id: "{{trigger.event.data.id}}"

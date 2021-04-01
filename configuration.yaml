@@ -1,0 +1,80 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+homeassistant:
+  name: !secret ha_name
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: !secret elevation
+  unit_system: !secret unit_system
+  time_zone: !secret time_zone
+  external_url: !secret external_url
+  internal_url: !secret internal_url
+  media_dirs:
+    media: /media
+  legacy_templates: false
+  packages:
+    bathroom: !include packages/bathroom.yaml
+    bedroom: !include packages/bedroom.yaml
+    dressroom: !include packages/dressroom.yaml
+    library: !include packages/library.yaml
+
+    # custom_components
+    auto_backup: !include packages/custom_components/auto_backup.yaml
+    city_waste: !include packages/custom_components/city_waste.yaml
+    harmony_ac: !include packages/custom_components/harmony_ac.yaml
+    iphonedetect: !include packages/custom_components/iphonedetect.yaml
+    korean_workday: !include packages/custom_components/korean_workday.yaml
+    naver_weather: !include packages/custom_components/naver_weather.yaml
+    xiaomi_cloud_map_extractor: !include packages/custom_components/xiaomi_cloud_map_extractor.yaml
+    # integrations
+    alarm: !include packages/integrations/alarm.yaml
+    spotify: !include packages/integrations/spotify.yaml
+    google_assistant: !include packages/integrations/google_assistant.yaml
+    ping: !include packages/integrations/ping.yaml
+    transmission: !include packages/integrations/transmission.yaml
+    systemmonitor: !include packages/integrations/systemmonitor.yaml
+    # addons
+    zigbee2mqtt: !include packages/addons/zigbee2mqtt.yaml
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+# themes
+frontend:
+  # themes: ios-dark-mode, light-soft-ui
+  themes: !include_dir_merge_named themes
+history: !include history.yaml
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+# manual home alarm: https://www.home-assistant.io/integrations/manual
+alarm_control_panel:
+  - platform: manual
+    name: home_monitoring
+
+# yaml lovelace dashboard
+lovelace:
+  mode: yaml
+  resources:
+    - url: /local/community/vertical-stack-in-card/vertical-stack-in-card.js
+      type: module
+    - url: /local/community/lovelace-card-mod/card-mod.js
+      type: module
+    - url: /local/community/button-card/button-card.js
+      type: module
+    - url: /local/community/zigbee2mqtt-networkmap/zigbee2mqtt-networkmap.js
+      type: module
+    - url: /local/community/vacuum-card/vacuum-card.js
+      type: module
+    - url: /local/community/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js
+      type: module
+    - url: /local/community/transmission-card/transmission-card.js
+      type: module
+    - url: /local/community/harmony-card/harmony-card.js
+      type: module
+    - url: /local/community/weather-card/weather-card.js
+      type: module

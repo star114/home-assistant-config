@@ -1,0 +1,4 @@
+binary_sensor:
+  - platform: korean_workday
+    add_holidays:
+      - "20210501"
