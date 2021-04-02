@@ -28,23 +28,6 @@ automation:
         title: "Snapshot Failed."
         message: "Name: {{ trigger.event.data.name }}\nError: {{ trigger.event.data.error }}"
 
-  - alias: "Perform Auto Backup"
-    trigger:
-      platform: time_pattern # Perform backup every 3 hours.
-      hours: "/3"
-    action:
-      service: auto_backup.snapshot_partial # Only perform a partial snapshot to save storage.
-      data:
-        name: "AutoBackup: {{ now().strftime('%a, %-I:%M %p (%d/%m/%Y)') }}"
-        addons:
-          - core_mariadb # It doesn't matter if you use the addon slug or name. Name is easier.
-          - core_mosquitto
-        folders:
-          - homeassistant
-          - share
-          - ssl
-        keep_days: 2
-
   - alias: "Perform Weekly Backup"
     trigger:
       platform: time
