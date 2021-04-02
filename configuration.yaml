@@ -35,6 +35,7 @@ homeassistant:
     systemmonitor: !include packages/integrations/systemmonitor.yaml
     telegram: !include packages/integrations/telegram.yaml
     transmission: !include packages/integrations/transmission.yaml
+    updater: !include packages/integrations/updater.yaml
     # addons
     zigbee2mqtt: !include packages/addons/zigbee2mqtt.yaml
 

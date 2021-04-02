@@ -1,0 +1,14 @@
+# Send notification if new Home Assistant release
+# https://www.home-assistant.io/cookbook/notify_if__new_ha_release/
+automation:
+  - alias: "HA Update notification"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.updater
+        from: "off"
+        to: "on"
+    action:
+      - service: notify.notify_telegram
+        data:
+          title: "New Home Assistant Release"
+          message: "Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version') }} is now available."
