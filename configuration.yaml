@@ -30,6 +30,7 @@ homeassistant:
     # integrations
     alarm: !include packages/integrations/alarm.yaml
     google_assistant: !include packages/integrations/google_assistant.yaml
+    google_cast: !include packages/integrations/google_cast.yaml
     ping: !include packages/integrations/ping.yaml
     spotify: !include packages/integrations/spotify.yaml
     systemmonitor: !include packages/integrations/systemmonitor.yaml
@@ -48,10 +49,6 @@ frontend:
   # themes: ios-dark-mode, light-soft-ui
   themes: !include_dir_merge_named themes
 history: !include history.yaml
-
-# Text to speech
-tts:
-  - platform: google_translate
 
 # manual home alarm: https://www.home-assistant.io/integrations/manual
 alarm_control_panel:

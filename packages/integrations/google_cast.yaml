@@ -1,0 +1,24 @@
+# google cast using google home
+
+# Text to speech: https://www.home-assistant.io/integrations/notify.tts/
+tts:
+  - platform: google_translate
+    language: "ko" # default language
+
+notify:
+  - platform: tts
+    name: in_the_kitchen
+    tts_service: tts.google_translate_say
+    media_player: media_player.jubang_seupikeo
+  - platform: tts
+    name: in_the_bedroom
+    tts_service: tts.google_translate_say
+    media_player: media_player.anbang_seupikeo
+  - platform: tts
+    name: in_the_library
+    tts_service: tts.google_translate_say
+    media_player: media_player.raibeureori_seupikeo
+  - platform: tts
+    name: in_the_house
+    tts_service: tts.google_translate_say
+    media_player: media_player.geurubseupikeo
