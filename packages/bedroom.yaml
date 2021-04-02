@@ -8,9 +8,10 @@ automation:
       from: "on"
       to: "off"
     action:
-      service: scene.turn_on
-      target:
+      - service: scene.turn_on
         entity_id: scene.morning
+      - service: alarm_control_panel.alarm_disarm
+        entity_id: alarm_control_panel.home_monitoring
 
   - alias: "night scene - switch on"
     trigger:
@@ -19,6 +20,7 @@ automation:
       from: "off"
       to: "on"
     action:
-      service: scene.turn_on
-      target:
+      - service: scene.turn_on
         entity_id: scene.night
+      - service: alarm_control_panel.alarm_arm_night
+        entity_id: alarm_control_panel.home_monitoring

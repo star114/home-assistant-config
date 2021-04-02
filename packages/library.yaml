@@ -44,9 +44,10 @@ automation:
       from: "off"
       to: "on"
     action:
-      service: scene.turn_on
-      target:
+      - service: scene.turn_on
         entity_id: scene.away
+      - service: alarm_control_panel.alarm_arm_away
+        entity_id: alarm_control_panel.home_monitoring
 
   - alias: "home scene - switch off"
     trigger:
@@ -55,6 +56,7 @@ automation:
       from: "on"
       to: "off"
     action:
-      service: scene.turn_on
-      target:
+      - service: scene.turn_on
         entity_id: scene.home
+      - service: alarm_control_panel.alarm_disarm
+        entity_id: alarm_control_panel.home_monitoring
