@@ -29,11 +29,12 @@ homeassistant:
     xiaomi_cloud_map_extractor: !include packages/custom_components/xiaomi_cloud_map_extractor.yaml
     # integrations
     alarm: !include packages/integrations/alarm.yaml
-    spotify: !include packages/integrations/spotify.yaml
     google_assistant: !include packages/integrations/google_assistant.yaml
     ping: !include packages/integrations/ping.yaml
-    transmission: !include packages/integrations/transmission.yaml
+    spotify: !include packages/integrations/spotify.yaml
     systemmonitor: !include packages/integrations/systemmonitor.yaml
+    telegram: !include packages/integrations/telegram.yaml
+    transmission: !include packages/integrations/transmission.yaml
     # addons
     zigbee2mqtt: !include packages/addons/zigbee2mqtt.yaml
 
