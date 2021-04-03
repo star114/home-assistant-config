@@ -43,7 +43,7 @@ automation:
   - alias: "Notify seo's absence"
     trigger:
       platform: state
-      entity_id: device_tracker.heesikiphone
+      entity_id: device_tracker.seojiniphone
       from: "home"
       to: "not_home"
     action:
