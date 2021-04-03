@@ -8,3 +8,45 @@ device_tracker:
       HeesikiPhone11ProMax: !secret HeesikiPhone11ProMax_ip
       HeesikiPadPro: !secret HeesikiPadPro_ip
       SeoJiniPhone: !secret SeoJiniPhone_ip
+
+automation:
+  - alias: "Notify my presence"
+    trigger:
+      platform: state
+      entity_id: device_tracker.heesikiphone
+      from: "not_home"
+      to: "home"
+    action:
+      service: notify.notify_telegram
+      data:
+        message: "Heesik is now home"
+  - alias: "Notify my absence"
+    trigger:
+      platform: state
+      entity_id: device_tracker.heesikiphone
+      from: "home"
+      to: "not_home"
+    action:
+      service: notify.notify_telegram
+      data:
+        message: "Heesik is now not home"
+  - alias: "Notify seo's presence"
+    trigger:
+      platform: state
+      entity_id: device_tracker.seojiniphone
+      from: "not_home"
+      to: "home"
+    action:
+      service: notify.notify_telegram
+      data:
+        message: "Seo is now home"
+  - alias: "Notify seo's absence"
+    trigger:
+      platform: state
+      entity_id: device_tracker.heesikiphone
+      from: "home"
+      to: "not_home"
+    action:
+      service: notify.notify_telegram
+      data:
+        message: "Seo is now not home"
