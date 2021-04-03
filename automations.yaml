@@ -42,3 +42,21 @@
       - service: notify.notify_telegram
         data:
           message: Dish washer has finished.
+- id: '1617444167235'
+  alias: Food waste processor has finished
+  description: ''
+  use_blueprint:
+    path: sbyx/notify-or-do-something-when-an-appliance-like-a-dishwasher-or-washing-machine-finishes.yaml
+    input:
+      power_sensor: sensor.dawon_kitchen_foodwaste_plug_power
+      starting_threshold: 30
+      starting_hysteresis: 1
+      finishing_threshold: 10
+      finishing_hysteresis: 0.25
+      actions:
+      - service: notify.notify
+        data:
+          message: Food waste processor has finished.
+      - service: notify.notify_telegram
+        data:
+          message: Food waste processor has finished.
