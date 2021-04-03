@@ -647,15 +647,11 @@ views:
             name: 인증서 만료일
           - type: entities
             entities:
-              - entity: sensor.auto_backup
+              - entity: sensor.snapshot_backup
+                name: Google drive Snapshot Backup
+                icon: mdi:google-drive
               - entity: sensor.hacs
                 name: HACS
-          - type: entities
-            entities:
-              - entity: automation.notify_snapshot_failure
-              - entity: automation.perform_auto_backup
-              - entity: automation.perform_daily_backup
-              - entity: automation.perform_weekly_backup
             state_color: true
       - title: Zigbee2MQTT
         type: "custom:vertical-stack-in-card"
