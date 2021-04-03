@@ -24,3 +24,21 @@
     input:
       window_entity: binary_sensor.smartthings_bedroom_contact_contact
       switch_target: switch.dawon_bedroom_humidifier_plug
+- id: '1617443911976'
+  alias: Dish washer has finished
+  description: ''
+  use_blueprint:
+    path: sbyx/notify-or-do-something-when-an-appliance-like-a-dishwasher-or-washing-machine-finishes.yaml
+    input:
+      power_sensor: sensor.dawon_kitchen_dishwasher_plug_power
+      starting_threshold: 1
+      starting_hysteresis: 0.25
+      finishing_threshold: 2
+      finishing_hysteresis: 20
+      actions:
+      - service: notify.notify
+        data:
+          message: Dish washer has finished.
+      - service: notify.notify_telegram
+        data:
+          message: Dish washer has finished.
