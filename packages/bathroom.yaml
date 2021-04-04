@@ -67,7 +67,7 @@ automation:
       - platform: state
         entity_id: binary_sensor.smartthings_bathroom_motion_occupancy
         to: "off"
-        for: 00:01:00
+        for: 00:02:00
     action:
       - service: timer.start
         entity_id:
