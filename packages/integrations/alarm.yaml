@@ -5,7 +5,7 @@ automation:
         entity_id: alarm_control_panel.home_monitoring
         to: "armed_away"
     action:
-      - service: notify.notify
+      - service: notify.notify_telegram
         data:
           message: "Home monitoring is armed in Away mode"
   - alias: "Send notification when alarm is Armed in Home mode"
@@ -14,7 +14,7 @@ automation:
         entity_id: alarm_control_panel.home_monitoring
         to: "armed_home"
     action:
-      - service: notify.notify
+      - service: notify.notify_telegram
         data:
           message: "Home monitoring is armed in Home mode"
   - alias: "Send notification when alarm is Armed in Night mode"
@@ -23,7 +23,7 @@ automation:
         entity_id: alarm_control_panel.home_monitoring
         to: "armed_night"
     action:
-      - service: notify.notify
+      - service: notify.notify_telegram
         data:
           message: "Home monitoring is armed in Night mode"
   - alias: "Send notification when alarm is Disarmed"
@@ -32,7 +32,7 @@ automation:
         entity_id: alarm_control_panel.home_monitoring
         to: "disarmed"
     action:
-      - service: notify.notify
+      - service: notify.notify_telegram
         data:
           message: "Home monitoring is disarmed"
   - alias: "Send notification when alarm is in pending status"
@@ -41,7 +41,7 @@ automation:
         entity_id: alarm_control_panel.home_monitoring
         to: "pending"
     action:
-      - service: notify.notify
+      - service: notify.notify_telegram
         data:
           message: "Home monitoring is in pending status"
   - alias: "Send notification when alarm triggered"
@@ -51,6 +51,9 @@ automation:
         to: "triggered"
     action:
       - service: notify.notify
+        data:
+          message: "Home monitoring has been triggered"
+      - service: notify.notify_telegram
         data:
           message: "Home monitoring has been triggered"
   - alias: "Trigger alarm while armed away"

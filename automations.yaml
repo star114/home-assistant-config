@@ -1,32 +1,32 @@
-- id: '1617007136486'
+- id: "1617007136486"
   alias: Dressroom window, air purifier plug
-  description: ''
+  description: ""
   use_blueprint:
     path: custom/contact_switch.yaml
     input:
       window_entity: binary_sensor.smartthings_dressroom_contact_contact
       switch_target: switch.dawon_dressroom_plug
       minimum_open_time: 12
-- id: '1617276803759'
+- id: "1617276803759"
   alias: Bedroom window, air purifier
-  description: ''
+  description: ""
   use_blueprint:
     path: custom/contact_switch.yaml
     input:
       window_entity: binary_sensor.smartthings_bedroom_contact_contact
       minimum_open_time: 12
       switch_target: switch.anbang_gonggiceongjeonggi
-- id: '1617276883183'
+- id: "1617276883183"
   alias: Bedroom window, humidifier
-  description: ''
+  description: ""
   use_blueprint:
     path: custom/contact_switch.yaml
     input:
       window_entity: binary_sensor.smartthings_bedroom_contact_contact
       switch_target: switch.dawon_bedroom_humidifier_plug
-- id: '1617443911976'
+- id: "1617443911976"
   alias: Dish washer has finished
-  description: ''
+  description: ""
   use_blueprint:
     path: sbyx/notify-or-do-something-when-an-appliance-like-a-dishwasher-or-washing-machine-finishes.yaml
     input:
@@ -36,15 +36,12 @@
       finishing_threshold: 2
       finishing_hysteresis: 20
       actions:
-      - service: notify.notify
-        data:
-          message: Dish washer has finished.
-      - service: notify.notify_telegram
-        data:
-          message: Dish washer has finished.
-- id: '1617444167235'
+        - service: notify.notify_telegram
+          data:
+            message: Dish washer has finished.
+- id: "1617444167235"
   alias: Food waste processor has finished
-  description: ''
+  description: ""
   use_blueprint:
     path: sbyx/notify-or-do-something-when-an-appliance-like-a-dishwasher-or-washing-machine-finishes.yaml
     input:
@@ -54,9 +51,6 @@
       finishing_threshold: 10
       finishing_hysteresis: 0.25
       actions:
-      - service: notify.notify
-        data:
-          message: Food waste processor has finished.
-      - service: notify.notify_telegram
-        data:
-          message: Food waste processor has finished.
+        - service: notify.notify_telegram
+          data:
+            message: Food waste processor has finished.

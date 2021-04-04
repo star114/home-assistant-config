@@ -13,7 +13,7 @@ input_boolean:
 
 timer:
   bathroom_lights_off_in: # shorter usages
-    duration: "00:02:00"
+    duration: "00:01:00"
   bathroom_in_use_off_in: # longer usages
     duration: "00:10:00"
   bathroom_fan_off_in: # fan timer
@@ -50,27 +50,24 @@ automation:
       - service: input_boolean.turn_off
         entity_id: input_boolean.bathroom_in_use
 
-  - alias: "Turn on bathroom light when door is opened"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.smartthings_bathroom_contact_contact
-        from: "off"
-        to: "on"
-    condition:
-      - condition: state
-        entity_id: input_boolean.bathroom_in_use
-        state: "off"
-    action:
-      - service: light.turn_on
-        entity_id: light.bathroom_lights
-      - service: timer.start
-        entity_id: timer.bathroom_lights_off_in
-
-  - alias: "Reset timers and turn on lights when motion"
+  - alias: "Turn on lights when motion"
     trigger:
       - platform: state
         entity_id: binary_sensor.smartthings_bathroom_motion_occupancy
         to: "on"
+    action:
+      - condition: state
+        entity_id: light.bathroom_lights
+        state: "off"
+      - service: light.turn_on
+        entity_id: light.bathroom_lights
+
+  - alias: "Trigger lights off timer when motion is off for x minutes"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.smartthings_bathroom_motion_occupancy
+        to: "off"
+        for: 00:01:00
     action:
       - service: timer.start
         entity_id:
