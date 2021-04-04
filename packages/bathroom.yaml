@@ -12,10 +12,6 @@ input_boolean:
     icon: mdi:paper-roll
 
 timer:
-  bathroom_lights_off_in: # shorter usages
-    duration: "00:01:00"
-  bathroom_in_use_off_in: # longer usages
-    duration: "00:10:00"
   bathroom_fan_off_in: # fan timer
     duration: "00:20:00"
 
@@ -33,22 +29,7 @@ automation:
         entity_id: switch.hej_3gang_bathroom_light_top # turn on the fan
       - service: timer.start
         entity_id:
-          - timer.bathroom_in_use_off_in
           - timer.bathroom_fan_off_in
-
-  - alias: "Turn off bathroom in use when bathroom door is opened after bathroom usage"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.smartthings_bathroom_contact_contact
-        from: "off"
-        to: "on"
-    condition:
-      - condition: state
-        entity_id: input_boolean.bathroom_in_use
-        state: "on"
-    action:
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.bathroom_in_use
 
   - alias: "Turn on lights when motion"
     trigger:
@@ -67,23 +48,7 @@ automation:
       - platform: state
         entity_id: binary_sensor.smartthings_bathroom_motion_occupancy
         to: "off"
-        for: 00:02:00
-    action:
-      - service: timer.start
-        entity_id:
-          - timer.bathroom_lights_off_in
-      - condition: state
-        entity_id: light.bathroom_lights
-        state: "off"
-      - service: light.turn_on
-        entity_id: light.bathroom_lights
-
-  - alias: "Turn off bathroom lights after x minutes"
-    trigger:
-      - platform: event
-        event_type: timer.finished
-        event_data:
-          entity_id: timer.bathroom_lights_off_in
+        for: 00:03:00
     condition:
       - condition: state
         entity_id: input_boolean.bathroom_in_use
@@ -95,10 +60,10 @@ automation:
 
   - alias: "Turn off bathroom in use after x minutes"
     trigger:
-      - platform: event
-        event_type: timer.finished
-        event_data:
-          entity_id: timer.bathroom_in_use_off_in
+      - platform: state
+        entity_id: binary_sensor.smartthings_bathroom_motion_occupancy
+        to: "off"
+        for: 00:10:00
     action:
       - service: input_boolean.turn_off
         entity_id:
@@ -109,20 +74,10 @@ automation:
       - platform: state
         entity_id: input_boolean.bathroom_in_use
         to: "off"
-    condition:
-      - condition: state
-        entity_id: timer.bathroom_lights_off_in
-        state: "idle"
     action:
-      - service: timer.start
+      - service: light.turn_off
         entity_id:
-          - timer.bathroom_lights_off_in
-      - condition: state
-        entity_id: timer.bathroom_in_use_off_in
-        state: "active"
-      - service: timer.cancel
-        entity_id:
-          - timer.bathroom_in_use_off_in
+          - light.bathroom_lights
 
   - alias: "Turn off fan after x minutes"
     trigger:
