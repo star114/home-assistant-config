@@ -29,7 +29,7 @@ views:
       - type: "custom:vertical-stack-in-card"
         title: COVID-19 South Korea
         cards:
-          - type: entities
+          - type: glance
             entities:
               - entity: sensor.korea_south_coronavirus_current
                 name: Current
@@ -37,6 +37,17 @@ views:
                 name: Confirmed
               - entity: sensor.korea_south_coronavirus_deaths
                 name: Deaths
+      - type: "custom:vertical-stack-in-card"
+        title: City waste
+        cards:
+          - type: glance
+            entities:
+              - entity: sensor.citywaste_total_count
+                name: Total count
+              - entity: sensor.citywaste_total_kg
+                name: Total kg
+              - entity: sensor.citywaste_last_kg
+                name: Last kg
   - theme: ios-dark-mode
     title: Home Info
     panel: false
