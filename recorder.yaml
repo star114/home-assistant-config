@@ -4,10 +4,11 @@ exclude:
     - automation
     - updater
     - weather
+  entity_globs:
+    - sensor.nw_* # naver weather
   entities:
     - sun.sun
     - sensor.naver_weather # naver weather
-    - sensor.nw_* # naver weather
     - sensor.last_boot
     - sensor.time
     - sensor.date
