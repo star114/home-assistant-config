@@ -175,8 +175,14 @@ views:
                   action: toggle
                 name: Fan
                 icon: mdi:fan
+              - entity: input_boolean.food_waste_machine_state
+                name: Food waste machine
+                icon: mdi:food-variant
+              - entity: input_boolean.dish_washer_state
+                name: Dish washer
+                icon: mdi:dishwasher
             show_state: false
-            columns: 6
+            columns: 4
           - type: history-graph
             entities:
               - entity: sensor.samseong_eeomoniteo_temperature_measurement

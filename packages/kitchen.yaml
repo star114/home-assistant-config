@@ -1,0 +1,9 @@
+# kitchen
+
+input_boolean:
+  food_waste_machine_state:
+    name: Food waste machine state
+    initial: false
+  dish_washer_state:
+    name: Dish washer state
+    initial: false

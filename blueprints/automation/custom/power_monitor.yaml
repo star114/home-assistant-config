@@ -1,7 +1,7 @@
 blueprint:
-  name: Appliance has finished
+  name: Power Monitor
   description: Do something when an appliance (like a washing machine or dishwasher)
-    has finished as detected by a power sensor.
+    has started or finished as detected by a power sensor.
   domain: automation
   input:
     power_sensor:
@@ -56,12 +56,16 @@ blueprint:
           unit_of_measurement: min
           mode: slider
           step: 0.25
-    actions:
-      name: Actions
-      description: Actions (e.g. pushing a notification, TTS announcement, ...)
+    starting_actions:
+      name: Starting Actions
+      description: Starting Actions (e.g. pushing a notification, TTS announcement, ...)
       selector:
         action: {}
-  source_url: https://gist.github.com/sbyx/6d8344d3575c9865657ac51915684696/
+    ending_actions:
+      name: Ending Actions
+      description: Ending Actions (e.g. pushing a notification, TTS announcement, ...)
+      selector:
+        action: {}
 trigger:
 - platform: numeric_state
   entity_id: !input 'power_sensor'
@@ -70,6 +74,8 @@ trigger:
   above: !input 'starting_threshold'
 condition: []
 action:
+- choose: []
+  default: !input 'starting_actions'
 - wait_for_trigger:
   - platform: numeric_state
     entity_id: !input 'power_sensor'
@@ -77,6 +83,6 @@ action:
     for:
       minutes: !input 'finishing_hysteresis'
 - choose: []
-  default: !input 'actions'
+  default: !input 'ending_actions'
 mode: single
 max_exceeded: silent

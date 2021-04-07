@@ -17,6 +17,7 @@ homeassistant:
     bathroom: !include packages/bathroom.yaml
     bedroom: !include packages/bedroom.yaml
     dressroom: !include packages/dressroom.yaml
+    kitchen: !include packages/kitchen.yaml
     laundryroom: !include packages/laundryroom.yaml
     library: !include packages/library.yaml
 
