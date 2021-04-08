@@ -7,3 +7,39 @@ input_boolean:
   dish_washer_state:
     name: Dish washer state
     initial: false
+
+automation:
+  - alias: "Notify ventilation to reduce CO2"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.samseong_eeomoniteo_carbon_dioxide_measurement
+        for: "00:10:00"
+        above: 1400
+    action:
+      - service: notify.notify_telegram
+        data:
+          title: Too dense CO2
+          message: Please ventilate the house with opening the windows.
+      - condition: state
+        entity_id: alarm_control_panel.home_monitoring
+        state: "disarmed"
+      - service: notify.in_the_kitchen
+        data:
+          message: "이산화탄소 수치가 높습니다. 창문을 열어 환기해 주세요."
+  - alias: "Notify CO2 back to normal"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.samseong_eeomoniteo_carbon_dioxide_measurement
+        for: "00:03:00"
+        above: 1000
+    action:
+      - service: notify.notify_telegram
+        data:
+          title: CO2 density back to normal
+          message: CO2 density came back to normal.
+      - condition: state
+        entity_id: alarm_control_panel.home_monitoring
+        state: "disarmed"
+      - service: notify.in_the_kitchen
+        data:
+          message: "이산화탄소 수치가 정상으로 돌아왔습니다."
