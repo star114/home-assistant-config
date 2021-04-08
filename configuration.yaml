@@ -20,6 +20,7 @@ homeassistant:
     kitchen: !include packages/kitchen.yaml
     laundryroom: !include packages/laundryroom.yaml
     library: !include packages/library.yaml
+    first_morning_motion: !include packages/first_morning_motion.yaml
 
     # custom_components
     city_waste: !include packages/custom_components/city_waste.yaml
