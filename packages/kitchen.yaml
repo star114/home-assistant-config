@@ -7,6 +7,9 @@ input_boolean:
   dish_washer_state:
     name: Dish washer state
     initial: false
+  co2_unhealthy_state:
+    name: CO2 unhealthy state
+    initial: false
 
 automation:
   - alias: "CO2 level has reached unhealty state"
@@ -16,6 +19,8 @@ automation:
         for: "00:10:00"
         above: 1400
     action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.co2_unhealthy_state
       - service: notify.notify_telegram
         data:
           title: Unhealthy CO2 level
@@ -32,7 +37,13 @@ automation:
         entity_id: sensor.samseong_eeomoniteo_carbon_dioxide_measurement
         for: "00:03:00"
         below: 1000
+    condition:
+      - condition: state
+        entity_id: input_boolean.co2_unhealthy_state
+        state: "on"
     action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.co2_unhealthy_state
       - service: notify.notify_telegram
         data:
           title: Normal CO2 level
