@@ -1,6 +1,5 @@
 exclude:
   domains:
-    - automation
     - updater
     - weather
   entity_globs:

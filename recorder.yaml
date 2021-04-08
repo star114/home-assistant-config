@@ -1,7 +1,6 @@
 db_url: !secret recorder_db_url
 exclude:
   domains:
-    - automation
     - updater
     - weather
   entity_globs:
