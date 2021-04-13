@@ -7,16 +7,7 @@ views:
     badges: []
     cards:
       - type: "custom:vertical-stack-in-card"
-        title: Home
         cards:
-          - type: alarm-panel
-            states:
-              - arm_home
-              - arm_away
-              - arm_night
-              - arm_custom_bypass
-            entity: alarm_control_panel.home_monitoring
-            name: Monitoring
           - type: glance
             entities:
               - type: entity
@@ -29,6 +20,34 @@ views:
               - entity: device_tracker.seojiniphone
                 name: Seo Jin
                 icon: mdi:apple
+      - type: "custom:vertical-stack-in-card"
+        cards:
+          - type: grid
+            cards:
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: switch.hej_3gang_library_light_bottom
+                name: Away
+                icon: mdi:home-export-outline
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: switch.hej_3gang_bedroom_bed_light_bottom
+                name: Night
+                icon: mdi:weather-night
+              - type: button
+                entity: scene.romantic
+      - type: "custom:vertical-stack-in-card"
+        cards:
+          - type: alarm-panel
+            states:
+              - arm_home
+              - arm_away
+              - arm_night
+              - arm_custom_bypass
+            entity: alarm_control_panel.home_monitoring
+            name: Home Monitoring
       - type: "custom:vertical-stack-in-card"
         cards:
           - type: "custom:weather-card"
@@ -759,6 +778,14 @@ views:
           - entity: sensor.heesiks_ipad_battery_state
         show_name: false
         title: Heesik’s iPad Pro
+      - type: glance
+        entities:
+          - entity: device_tracker.heesiks_ipad_mini
+          - entity: sensor.heesiks_ipad_mini_ssid
+          - entity: sensor.heesiks_ipad_mini_battery_level
+          - entity: sensor.heesiks_ipad_mini_battery_state
+        show_name: false
+        title: Heesik’s iPad Mini
       - type: glance
         entities:
           - entity: device_tracker.seo_jin
