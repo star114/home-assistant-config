@@ -1,11 +1,91 @@
 binary_sensor:
   - platform: ping
-    host: 192.168.0.61
+    host: !secret ipTimeA3008_ip 
+    name: "ipTime A3008-MU Library"
+    count: 5
+    scan_interval: 300
+  - platform: ping
+    host: !secret ipTimeA3004_1_ip 
+    name: "ipTime A3004NS-M Kitchen"
+    count: 5
+    scan_interval: 300
+  - platform: ping
+    host: !secret ipTimeA3004_2_ip 
+    name: "ipTime A3004NS-M Bedroom"
+    count: 5
+    scan_interval: 300
+  - platform: ping
+    host: !secret HarmonyHub_ip 
     name: "Harmony Hub"
     count: 5
     scan_interval: 300
   - platform: ping
-    host: 192.168.0.65
+    host: !secret Raspberrypi_ip
     name: "star114-raspberrypi"
+    count: 5
+    scan_interval: 300
+  - platform: ping
+    host: !secret IntelNUC_ip
+    name: "Intel NUC"
+    count: 5
+    scan_interval: 300
+  - platform: ping
+    host: !secret WaterPurifier_ip
+    name: "Water purifier"
+    count: 5
+    scan_interval: 300
+  - platform: ping
+    host: !secret LGWebOSTV_ip 
+    name: "LG WebOS TV"
+    count: 5
+    scan_interval: 300
+  - platform: ping
+    host: !secret  Dryer_ip 
+    name: "Dryer"
+    count: 5
+    scan_interval: 300
+  - platform: ping
+    host: !secret AirPurifier_ip 
+    name: "Air purifier"
+    count: 5
+    scan_interval: 300
+  - platform: ping
+    host: !secret Doorlock_ip 
+    name: "Door lock"
+    count: 5
+    scan_interval: 300
+  - platform: ping
+    host: !secret GoogleHomeMini1_ip
+    name: "Google Home Mini - Library"
+    count: 5
+    scan_interval: 300
+  - platform: ping
+    host: !secret GoogleHomeMini2_ip
+    name: "Google Home Mini - Bedroom"
+    count: 5
+    scan_interval: 300
+  - platform: ping
+    host: !secret GoogleHomeMini3_ip
+    name: "Google Home Mini - Kitchen"
+    count: 5
+    scan_interval: 300
+  - platform: ping
+    host: !secret GalaxyHomeMini_ip 
+    name: "Galaxy Home Mini"
+    count: 5
+    scan_interval: 300
+  - platform: ping
+    host: !secret xiaomi_vacuum_host
+    name: "Roborock S5 MAX"
+    count: 5
+    scan_interval: 300
+  - platform: ping
+    host: !secret SolarPowerPlug_ip 
+    name: "Solar Power Plug"
+    count: 5
+    scan_interval: 300
+  - platform: ping
+    host: !secret AirMonitor_ip 
+    name: "Air Monitor"
     count: 5
     scan_interval: 300

@@ -1,6 +1,9 @@
+.cloud/*
 .storage/*
+.vscode/
 blueprints/automation/homeassistant/*
 custom_components/*
+deps/*
 themes/*
 tts/*
 www/*

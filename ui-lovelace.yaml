@@ -313,8 +313,8 @@ views:
               - entity: switch.lellki_library_multi_outlets_l4
                 tap_action:
                   action: toggle
-                name: Speaker
-                icon: mdi:speaker-bluetooth
+                name: iPad mini 4
+                icon: mdi:apple
               - entity: vacuum.roborock_vacuum_s5e
                 name: Vacuum
               - entity: input_boolean.library_light_triggered_by_motion
@@ -621,10 +621,64 @@ views:
             hours_to_show: 12
             refresh_interval: 0
       - type: "custom:vertical-stack-in-card"
+        title: Routers 
+        cards:
+          - type: glance
+            entities:
+              - entity: binary_sensor.iptime_a3008_mu_library
+                name: Main
+                icon: mdi:router-network
+              - entity: binary_sensor.iptime_a3004ns_m_bedroom
+                name: Bedroom
+                icon: mdi:router-wireless
+              - entity: binary_sensor.iptime_a3004ns_m_kitchen
+                name: Kitchen
+                icon: mdi:router-wireless
+      - type: "custom:vertical-stack-in-card"
+        title: Speakers 
+        cards:
+          - type: glance
+            entities:
+              - entity: binary_sensor.google_home_mini_library
+                name: Google Library
+                icon: mdi:google-home
+              - entity: binary_sensor.google_home_mini_bedroom
+                name: Google Bedroom
+                icon: mdi:google-home
+              - entity: binary_sensor.google_home_mini_kitchen
+                name: Google Kitchen
+                icon: mdi:google-home
+              - entity: binary_sensor.galaxy_home_mini
+                name: Galaxy
+                icon: mdi:cast-audio
+      - type: "custom:vertical-stack-in-card"
+        title: Devices 
+        cards:
+          - type: glance
+            entities:
+              - entity: binary_sensor.air_monitor
+                name: Air Monitor
+              - entity: binary_sensor.air_purifier
+                name: Air Purifier
+              - entity: binary_sensor.water_purifier
+                name: Water Purifier
+              - entity: binary_sensor.dryer
+                name: Dryer
+              - entity: binary_sensor.door_lock
+                name: Doorlock
+              - entity: binary_sensor.lg_webos_tv
+                name: LG TV
+              - entity: binary_sensor.roborock_s5_max
+                name: Roborock
+              - entity: binary_sensor.solar_power_plug
+                name: Solar Power
+      - type: "custom:vertical-stack-in-card"
         title: Servers
         cards:
           - type: glance
             entities:
+              - entity: binary_sensor.intel_nuc
+                name: Intel NUC
               - entity: binary_sensor.star114_raspberrypi
                 name: Raspberry-Pi 3B+
               - entity: binary_sensor.harmony_hub
