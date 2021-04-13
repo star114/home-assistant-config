@@ -621,9 +621,10 @@ views:
             hours_to_show: 12
             refresh_interval: 0
       - type: "custom:vertical-stack-in-card"
-        title: Routers 
+        title: Network Devices
         cards:
           - type: glance
+            title: Routers
             entities:
               - entity: binary_sensor.iptime_a3008_mu_library
                 name: Main
@@ -634,10 +635,17 @@ views:
               - entity: binary_sensor.iptime_a3004ns_m_kitchen
                 name: Kitchen
                 icon: mdi:router-wireless
-      - type: "custom:vertical-stack-in-card"
-        title: Speakers 
-        cards:
           - type: glance
+            title: Servers
+            entities:
+              - entity: binary_sensor.intel_nuc
+                name: Intel NUC
+              - entity: binary_sensor.star114_raspberrypi
+                name: Raspberry-Pi 3B+
+              - entity: binary_sensor.harmony_hub
+                name: Logitech Harmony Hub
+          - type: glance
+            title: Speakers
             entities:
               - entity: binary_sensor.google_home_mini_library
                 name: Google Library
@@ -651,10 +659,8 @@ views:
               - entity: binary_sensor.galaxy_home_mini
                 name: Galaxy
                 icon: mdi:cast-audio
-      - type: "custom:vertical-stack-in-card"
-        title: Devices 
-        cards:
           - type: glance
+            title: Devices
             entities:
               - entity: binary_sensor.air_monitor
                 name: Air Monitor
@@ -672,17 +678,6 @@ views:
                 name: Roborock
               - entity: binary_sensor.solar_power_plug
                 name: Solar Power
-      - type: "custom:vertical-stack-in-card"
-        title: Servers
-        cards:
-          - type: glance
-            entities:
-              - entity: binary_sensor.intel_nuc
-                name: Intel NUC
-              - entity: binary_sensor.star114_raspberrypi
-                name: Raspberry-Pi 3B+
-              - entity: binary_sensor.harmony_hub
-                name: Logitech Harmony Hub
       - type: "custom:vertical-stack-in-card"
         title: HA Management
         cards:
