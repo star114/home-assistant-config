@@ -6,53 +6,80 @@ views:
     theme: ios-dark-mode
     badges: []
     cards:
-      - type: "custom:vertical-stack-in-card"
+      - type: vertical-stack
         cards:
+          - type: "custom:vertical-stack-in-card"
+            cards:
+              - type: alarm-panel
+                states:
+                  - arm_home
+                  - arm_away
+                  - arm_night
+                  - arm_custom_bypass
+                entity: alarm_control_panel.home_monitoring
+                name: Home Monitoring
+          - type: "custom:vertical-stack-in-card"
+            cards:
+              - type: glance
+                entities:
+                  - type: entity
+                    entity: binary_sensor.korean_workday
+                    name: Workday
+                    icon: mdi:desktop-mac
+                  - entity: device_tracker.heesikiphone
+                    name: Heesik
+                    icon: mdi:apple
+                  - entity: device_tracker.seojiniphone
+                    name: Seo Jin
+                    icon: mdi:apple
+          - type: "custom:vertical-stack-in-card"
+            cards:
+              - type: grid
+                cards:
+                  - type: button
+                    tap_action:
+                      action: toggle
+                    entity: switch.hej_3gang_library_light_bottom
+                    name: Away
+                    icon: mdi:home-export-outline
+                  - type: button
+                    tap_action:
+                      action: toggle
+                    entity: switch.hej_3gang_bedroom_bed_light_bottom
+                    name: Night
+                    icon: mdi:weather-night
+                  - type: button
+                    entity: scene.romantic
+      - type: "custom:vertical-stack-in-card"
+        title: Weather
+        cards:
+          - type: entity
+            entity: sensor.naver_weather_weathercast_1
+          - type: weather-forecast
+            entity: weather.naver_weather_1
+            show_forecast: true
           - type: glance
             entities:
-              - type: entity
-                entity: binary_sensor.korean_workday
-                name: Workday
-                icon: mdi:desktop-mac
-              - entity: device_tracker.heesikiphone
-                name: Heesik
-                icon: mdi:apple
-              - entity: device_tracker.seojiniphone
-                name: Seo Jin
-                icon: mdi:apple
+              - sensor.naver_weather_todayfeeltemp_1
+              - sensor.naver_weather_rainfall_1
+              - sensor.naver_weather_rainystarttmr_1
+              - sensor.naver_weather_rainystart_1
+          - type: glance
+            entities:
+              - sensor.naver_weather_finedust_1
+              - sensor.naver_weather_finedustgrade_1
+              - sensor.naver_weather_ultrafinedust_1
+              - sensor.naver_weather_ultrafinedustgrade_1
+          - type: glance
+            entities:
+              - sensor.naver_weather_ozon_1
+              - sensor.naver_weather_ozongrade_1
+              - sensor.naver_weather_todayuv_1
+              - sensor.naver_weather_windspeed_1
+              - sensor.naver_weather_windbearing_1
       - type: "custom:vertical-stack-in-card"
+        title: City Waste
         cards:
-          - type: grid
-            cards:
-              - type: button
-                tap_action:
-                  action: toggle
-                entity: switch.hej_3gang_library_light_bottom
-                name: Away
-                icon: mdi:home-export-outline
-              - type: button
-                tap_action:
-                  action: toggle
-                entity: switch.hej_3gang_bedroom_bed_light_bottom
-                name: Night
-                icon: mdi:weather-night
-              - type: button
-                entity: scene.romantic
-      - type: "custom:vertical-stack-in-card"
-        cards:
-          - type: alarm-panel
-            states:
-              - arm_home
-              - arm_away
-              - arm_night
-              - arm_custom_bypass
-            entity: alarm_control_panel.home_monitoring
-            name: Home Monitoring
-      - type: "custom:vertical-stack-in-card"
-        cards:
-          - type: "custom:weather-card"
-            entity: weather.naverweather
-            icons: /local/community/weather-card/icons/animated/
           - type: glance
             entities:
               - entity: sensor.citywaste_total_count
@@ -62,9 +89,9 @@ views:
               - entity: sensor.citywaste_last_kg
                 name: Last kg
       - type: "custom:vertical-stack-in-card"
+        title: COVID-19 South Korea
         cards:
           - type: glance
-            title: COVID-19 South Korea
             entities:
               - entity: sensor.korea_south_coronavirus_current
                 name: Current
@@ -151,7 +178,7 @@ views:
               - entity: sensor.samseong_eeomoniteo_temperature_measurement
               - entity: sensor.samseong_eeomoniteo_relative_humidity_measurement
               - entity: binary_sensor.blitzwolf_kitchen_sink_waterleak_water_leak
-              - entity: binary_sensor.blitzwolf_kitchen_waterleak_water_leak
+              - entity: binary_sensor.blitzwolf_kitchen_boiler_waterleak_water_leak
             show_name: false
           - type: glance
             entities:
@@ -302,7 +329,6 @@ views:
               - entity: binary_sensor.smartthings_library_contact_contact
                 icon: mdi:window-open-variant
               - entity: sensor.smartthings_library_motion_temperature
-              - entity: binary_sensor.blitzwolf_library_waterleak_water_leak
               - entity: binary_sensor.smartthings_door_contact_contact
             show_name: false
           - type: glance

@@ -27,7 +27,6 @@ homeassistant:
     harmony_ac: !include packages/custom_components/harmony_ac.yaml
     iphonedetect: !include packages/custom_components/iphonedetect.yaml
     korean_workday: !include packages/custom_components/korean_workday.yaml
-    naver_weather: !include packages/custom_components/naver_weather.yaml
     xiaomi_cloud_map_extractor: !include packages/custom_components/xiaomi_cloud_map_extractor.yaml
     # integrations
     alarm: !include packages/integrations/alarm.yaml
