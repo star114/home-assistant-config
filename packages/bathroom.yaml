@@ -1,10 +1,3 @@
-light:
-  - platform: group
-    name: Bathroom Lights
-    entities:
-      - light.hej_3gang_bathroom_light_center
-      - light.hej_3gang_bathroom_light_bottom
-
 input_boolean:
   bathroom_in_use:
     name: Bathroom In Use
@@ -38,10 +31,12 @@ automation:
         to: "on"
     action:
       - condition: state
-        entity_id: light.bathroom_lights
+        entity_id: light.hej_3gang_bathroom_light_center
         state: "off"
       - service: light.turn_on
-        entity_id: light.bathroom_lights
+        entity_id: light.hej_3gang_bathroom_light_center
+      - service: light.turn_on
+        entity_id: light.hej_3gang_bathroom_light_bottom
 
   - alias: "Trigger lights off timer when motion is off for x minutes"
     trigger:
@@ -55,8 +50,9 @@ automation:
         state: "off"
     action:
       - service: light.turn_off
-        entity_id:
-          - light.bathroom_lights
+        entity_id: light.hej_3gang_bathroom_light_center
+      - service: light.turn_off
+        entity_id: light.hej_3gang_bathroom_light_bottom
 
   - alias: "Turn off bathroom in use after x minutes"
     trigger:
@@ -76,8 +72,9 @@ automation:
         to: "off"
     action:
       - service: light.turn_off
-        entity_id:
-          - light.bathroom_lights
+        entity_id: light.hej_3gang_bathroom_light_center
+      - service: light.turn_off
+        entity_id: light.hej_3gang_bathroom_light_bottom
 
   - alias: "Turn off fan after x minutes"
     trigger:

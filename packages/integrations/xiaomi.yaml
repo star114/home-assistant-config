@@ -1,0 +1,54 @@
+automation:
+  - alias: "Roborock S5 MAX - Cleaning"
+    trigger:
+      - platform: state
+        entity_id: vacuum.roborock_vacuum_s5e
+        to: "cleaning"
+    action:
+      - service: notify.notify_telegram
+        data:
+          title: "Bbo bot has started"
+          message: "Roborock is cleaning our house."
+  - alias: "Roborock S5 MAX - Returning to dock"
+    trigger:
+      - platform: state
+        entity_id: vacuum.roborock_vacuum_s5e
+        to: "returning"
+    action:
+      - service: notify.notify_telegram
+        data:
+          title: "Bbo bot has finished"
+          message: "Roborock is going back to dock."
+  - alias: "Roborock S5 MAX - Docked"
+    trigger:
+      - platform: state
+        entity_id: vacuum.roborock_vacuum_s5e
+        to: "docked"
+    action:
+      - service: notify.notify_telegram
+        data:
+          title: "Bbo bot has docked"
+          message: "Roborock is docked."
+  - alias: "Roborock S5 MAX - Paused"
+    trigger:
+      - platform: state
+        entity_id: vacuum.roborock_vacuum_s5e
+        to: "paused"
+    action:
+      - service: notify.notify_telegram
+        data:
+          title: "Bbo bot has paused"
+          message: "Roborock is paused."
+  - alias: "Roborock S5 MAX - Idle"
+    trigger:
+      - platform: state
+        entity_id: vacuum.roborock_vacuum_s5e
+        to: "idle"
+    action:
+      - service: notify.notify_telegram
+        data:
+          title: "Bbo bot has stopped"
+          message: "Roborock is stopped."
+# sensor cleaning left
+# sensor cleaning reset
+# cleaning bin notification

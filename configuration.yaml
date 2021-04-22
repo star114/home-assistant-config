@@ -40,6 +40,7 @@ homeassistant:
     time_date: !include packages/integrations/time_date.yaml
     transmission: !include packages/integrations/transmission.yaml
     updater: !include packages/integrations/updater.yaml
+    xiaomi: !include packages/integrations/xiaomi.yaml
     # addons
     google_drive_backup: !include packages/addons/google_drive_backup.yaml
     zigbee2mqtt: !include packages/addons/zigbee2mqtt.yaml
