@@ -165,7 +165,19 @@ automation:
             Vendor: {{trigger.payload_json.data.definition.vendor}},
             Model: {{trigger.payload_json.data.definition.model}},
             Description: {{trigger.payload_json.data.definition.description}}"
+  # alert callback: https://www.home-assistant.io/integrations/alert/
+  - alias: "Telegram callback to stop alerts for door"
+    trigger:
+      - platform: event
+        event_type: telegram_callback
+        event_data:
+          data: "/door_acknowledge"
+    action:
+      - service: alert.turn_off
+        target:
+          entity_id: alert.smartthings_door_contact_contact
 
+# binary sensors for alert integration
 binary_sensor:
   - platform: template
     sensors:
@@ -184,124 +196,237 @@ binary_sensor:
       hej_laundryroom_thsensor_battery_low:
         value_template: "{{ state_attr('sensor.hej_laundryroom_thsensor_battery', 'battery') < 15 }}"
 
+# alert: https://www.home-assistant.io/integrations/alert/
 alert:
+  # battery is low
   smartthings_door_contact_battery_low:
     name: Door Contact Battery is Low
+    message: Door Contact Battery is low
+    done_message: Door Contact Battery is fine
     entity_id: binary_sensor.smartthings_door_contact_battery_low
     repeat: 360
     notifiers:
       - notify_telegram
   smartthings_library_contact_battery_low:
     name: Library Contact Battery is Low
+    message: Library Contact Battery is low
+    done_message: Library Contact Battery is fine
     entity_id: binary_sensor.smartthings_library_contact_battery_low
     repeat: 360
     notifiers:
       - notify_telegram
   smartthings_dressroom_contact_battery_low:
     name: Dressroom Contact Battery is Low
+    message: Dressroom Contact Battery is low
+    done_message: Dressroom Contact Battery is fine
     entity_id: binary_sensor.smartthings_dressroom_contact_battery_low
     repeat: 360
     notifiers:
       - notify_telegram
   smartthings_bedroom_contact_battery_low:
     name: Bedroom Contact Battery is Low
+    message: Bedroom Contact Battery is low
+    done_message: Bedroom Contact Battery is fine
     entity_id: binary_sensor.smartthings_bedroom_contact_battery_low
     repeat: 360
     notifiers:
       - notify_telegram
   smartthings_laundryroom_contact_battery_low:
     name: Laundryroom Contact Battery is Low
+    message: Laundryroom Contact Battery is low
+    done_message: Laundryroom Contact Battery is fine
     entity_id: binary_sensor.smartthings_laundryroom_contact_battery_low
     repeat: 360
     notifiers:
       - notify_telegram
   smartthings_bathroom_contact_battery_low:
     name: Bathroom Contact Battery is Low
+    message: Bathroom Contact Battery is low
+    done_message: Bathroom Contact Battery is fine
     entity_id: binary_sensor.smartthings_bathroom_contact_battery_low
     repeat: 360
     notifiers:
       - notify_telegram
   smartthings_library_motion_battery_low:
     name: Library Motion Battery is Low
+    message: Library Motion Battery is low
+    done_message: Library Motion Battery is fine
     entity_id: binary_sensor.smartthings_library_motion_battery_low
     repeat: 360
     notifiers:
       - notify_telegram
   smartthings_dressroom_motion_battery_low:
     name: Dressroom Motion Battery is Low
+    message: Dressroom Motion Battery is low
+    done_message: Dressroom Motion Battery is fine
     entity_id: binary_sensor.smartthings_dressroom_motion_battery_low
     repeat: 360
     notifiers:
       - notify_telegram
   smartthings_kitchen_motion_battery_low:
     name: Kitchen Motion Battery is Low
+    message: Kitchen Motion Battery is low
+    done_message: Kitchen Motion Battery is fine
     entity_id: binary_sensor.smartthings_kitchen_motion_battery_low
     repeat: 360
     notifiers:
       - notify_telegram
   smartthings_bathroom_motion_battery_low:
     name: Bathroom Motion Battery is Low
+    message: Bathroom Motion Battery is low
+    done_message: Bathroom Motion Battery is fine
     entity_id: binary_sensor.smartthings_bathroom_motion_battery_low
     repeat: 360
     notifiers:
       - notify_telegram
   smartthings_laundryroom_motion_battery_low:
     name: Laundryroom Motion Battery is Low
+    message: Laundryroom Motion Battery is low
+    done_message: Laundryroom Motion Battery is fine
     entity_id: binary_sensor.smartthings_laundryroom_motion_battery_low
     repeat: 360
     notifiers:
       - notify_telegram
   hue_bedroom_motion_battery_low:
     name: Bedroom Motion Battery is Low
+    message: Bedroom Motion Battery is low
+    done_message: Bedroom Motion Battery is fine
     entity_id: binary_sensor.hue_bedroom_motion_battery_low
     repeat: 360
     notifiers:
       - notify_telegram
   blitzwolf_bathroom_ceiling_waterleak_battery_low:
     name: Bathroom Ceiling Waterleak Battery is Low
+    message: Bathroom Ceilng Waterleak Battery is low
+    done_message: Bathroom Ceilng Waterleak Battery is fine
     entity_id: binary_sensor.blitzwolf_bathroom_ceiling_waterleak_battery_low
     repeat: 360
     notifiers:
       - notify_telegram
   blitzwolf_bathroom_sink_waterleak_battery_low:
     name: Bathroom Sink Waterleak Battery is Low
+    message: Bathroom Sink Waterleak Battery is low
+    done_message: Bathroom Sink Waterleak Battery is fine
     entity_id: binary_sensor.blitzwolf_bathroom_sink_waterleak_battery_low
     repeat: 360
     notifiers:
       - notify_telegram
   blitzwolf_kitchen_boiler_waterleak_battery_low:
     name: Kitchen Boiler Waterleak Battery is Low
+    message: Kitchen Boiler Waterleak Battery is low
+    done_message: Kitchen Boiler Waterleak Battery is fine
     entity_id: binary_sensor.blitzwolf_kitchen_boiler_waterleak_battery_low
     repeat: 360
     notifiers:
       - notify_telegram
   blitzwolf_kitchen_sink_waterleak_battery_low:
     name: Kitchen Sink Waterleak Battery is Low
+    message: Kitchen Sink Waterleak Battery is low
+    done_message: Kitchen Sink Waterleak Battery is fine
     entity_id: binary_sensor.blitzwolf_kitchen_sink_waterleak_battery_low
     repeat: 360
     notifiers:
       - notify_telegram
   blitzwolf_laundryroom_waterleak_battery_low:
     name: Laundryroom Waterleak Battery is Low
+    message: Laundryroom Waterleak Battery is low
+    done_message: Laundryroom Waterleak Battery is fine
     entity_id: binary_sensor.blitzwolf_laundryroom_waterleak_battery_low
     repeat: 360
     notifiers:
       - notify_telegram
   hej_bathroom_thsensor_battery_low:
     name: Bathroom Temperature Humidity Sensor Battery is Low
+    message: Bathroom Temperature Humidity Sensor Battery is low
+    done_message: Bathroom Temperature Humidity Sensor  Battery is fine
     entity_id: binary_sensor.hej_bathroom_thsensor_battery_low
     repeat: 360
     notifiers:
       - notify_telegram
   hej_bedroom_thsensor_battery_low:
     name: Bedroom Temperature Humidity Sensor Battery is Low
+    message: Bedroom Temperature Humidity Sensor Battery is low
+    done_message: Bedroom Temperature Humidity Sensor  Battery is fine
     entity_id: binary_sensor.hej_bedroom_thsensor_battery_low
     repeat: 360
     notifiers:
       - notify_telegram
   hej_laundryroom_thsensor_battery_low:
     name: Laundryroom Temperature Humidity Sensor Battery is Low
+    message: Laundryroom Temperature Humidity Sensor Battery is low
+    done_message: Laundryroom Temperature Humidity Sensor  Battery is fine
     entity_id: binary_sensor.hej_laundryroom_thsensor_battery_low
     repeat: 360
+    notifiers:
+      - notify_telegram
+  # water leaked
+  blitzwolf_bathroom_ceiling_waterleak_water_leak:
+    name: Bathroom Ceiling Waterleak Leaked
+    message: Water is leaking from bathroom ceiling
+    done_message: Water leak is stopped
+    entity_id: binary_sensor.blitzwolf_bathroom_ceiling_waterleak_water_leak
+    repeat:
+      - 1
+      - 3
+      - 15
+    notifiers:
+      - notify_telegram
+  blitzwolf_bathroom_sink_waterleak_water_leak:
+    name: Bathroom Sink Waterleak Leaked
+    message: Water is leaking from bathroom sink
+    done_message: Water leak is stopped
+    entity_id: binary_sensor.blitzwolf_bathroom_sink_waterleak_water_leak
+    repeat:
+      - 1
+      - 3
+      - 15
+    notifiers:
+      - notify_telegram
+  blitzwolf_kitchen_boiler_waterleak_water_leak:
+    name: Kitchen Boiler Waterleak Leaked
+    message: Water is leaking from kitchen boiler
+    done_message: Water leak is stopped
+    entity_id: binary_sensor.blitzwolf_kitchen_boiler_waterleak_water_leak
+    repeat:
+      - 1
+      - 3
+      - 15
+    notifiers:
+      - notify_telegram
+  blitzwolf_kitchen_sink_waterleak_water_leak:
+    name: Kitchen Sink Waterleak Leaked
+    message: Water is leaking from kitchen sink
+    done_message: Water leak is stopped
+    entity_id: binary_sensor.blitzwolf_kitchen_sink_waterleak_water_leak
+    repeat:
+      - 1
+      - 3
+      - 15
+    notifiers:
+      - notify_telegram
+  blitzwolf_laundryroom_waterleak_water_leak:
+    name: Laundryroom Waterleak Leaked
+    message: Water is leaking from laundryroom
+    done_message: Water leak is stopped
+    entity_id: binary_sensor.blitzwolf_laundryroom_waterleak_water_leak
+    repeat:
+      - 1
+      - 3
+      - 15
+    notifiers:
+      - notify_telegram
+  # door open
+  smartthings_door_contact_contact:
+    name: Door is open
+    message: Door is still open
+    done_message: Door is closed
+    entity_id: binary_sensor.smartthings_door_contact_contact
+    repeat:
+      - 1
+      - 3
+      - 15
+    data:
+      inline_keyboard:
+        - "Acknowledge:/door_acknowledge"
     notifiers:
       - notify_telegram
