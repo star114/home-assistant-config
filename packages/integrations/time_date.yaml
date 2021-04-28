@@ -9,3 +9,10 @@ sensor:
       - "time_date"
       - "time_utc"
       - "beat"
+  - platform: template
+    sensors:
+      love_dday:
+        friendly_name: "Love D-day"
+        value_template: >
+          {{ ((as_timestamp(now()) - as_timestamp(strptime("2010-03-02 00:00:00" , "%Y-%m-%dT%H:%M:%S"))) / 86400 + 1) | int }}
+        unit_of_measurement: "days"
