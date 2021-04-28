@@ -20,7 +20,7 @@ automation:
     trigger:
       - platform: sun
         event: sunrise
-        offset: "01:00:00"
+        offset: "02:00:00"
     action:
       service: input_boolean.turn_off
       target:
@@ -30,7 +30,7 @@ automation:
   - alias: "First Morning Motion"
     trigger:
       platform: state
-      entity_id: binary_sensor.smartthings_bathroom_motion_occupancy
+      entity_id: binary_sensor.smartthings_kitchen_motion_occupancy
       to: "on"
     # only complete the automation if we're still waiting for the first motion
     condition:

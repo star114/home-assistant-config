@@ -35,9 +35,9 @@
   icon: "mdi:weather-night"
   entities:
     light.hej_3gang_bedroom_bed_light_top:
-      state: "off"
-    light.hej_3gang_bedroom_light_bottom:
       state: "on"
+    light.hej_3gang_bedroom_light_bottom:
+      state: "off"
     light.hej_3gang_bedroom_light_top:
       state: "off"
     light.hej_3gang_bedroom_light_center:
@@ -67,8 +67,6 @@
 - name: Morning
   icon: "mdi:weather-sunny"
   entities:
-    light.hej_3gang_bedroom_light_bottom:
-      state: "on"
     light.hej_3gang_library_light_center:
       state: "on"
     light.hej_3gang_kitchen_light_left_center:
