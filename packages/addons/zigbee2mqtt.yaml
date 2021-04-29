@@ -172,6 +172,10 @@ automation:
         event_type: telegram_callback
         event_data:
           data: "/door_acknowledge"
+    condition:
+      - condition: state
+        entity_id: alert.smartthings_door_contact_contact
+        state: "on"
     action:
       - service: alert.turn_off
         target:
@@ -421,6 +425,7 @@ alert:
     message: Door is still open
     done_message: Door is closed
     entity_id: binary_sensor.smartthings_door_contact_contact
+    skip_first: true
     repeat:
       - 1
       - 3
