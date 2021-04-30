@@ -1,3 +1,41 @@
+script:
+  reset_main_brush_left:
+    alias: "Reset hours for main brush replacement"
+    sequence:
+      - service: vacuum.send_command
+        target:
+          entity_id: vacuum.roborock_vacuum_s5e
+        data:
+          command: reset_consumable
+          params: ["main_brush_work_time"]
+  reset_side_brush_left:
+    alias: "Reset hours for side brush replacement"
+    sequence:
+      - service: vacuum.send_command
+        target:
+          entity_id: vacuum.roborock_vacuum_s5e
+        data:
+          command: reset_consumable
+          params: ["side_brush_work_time"]
+  reset_filter_left:
+    alias: "Reset hours for filter replacement"
+    sequence:
+      - service: vacuum.send_command
+        target:
+          entity_id: vacuum.roborock_vacuum_s5e
+        data:
+          command: reset_consumable
+          params: ["filter_work_time"]
+  reset_sensor_dirty_left:
+    alias: "Reset hours for sensor cleaning time"
+    sequence:
+      - service: vacuum.send_command
+        target:
+          entity_id: vacuum.roborock_vacuum_s5e
+        data:
+          command: reset_consumable
+          params: ["sensor_dirty_time"]
+
 automation:
   - alias: "Roborock S5 MAX - Cleaning"
     trigger:
@@ -7,28 +45,17 @@ automation:
     action:
       - service: notify.notify_telegram
         data:
-          title: "Bbo bot has started"
-          message: "Roborock is cleaning our house."
-  - alias: "Roborock S5 MAX - Returning to dock"
-    trigger:
-      - platform: state
-        entity_id: vacuum.roborock_vacuum_s5e
-        to: "returning"
-    action:
-      - service: notify.notify_telegram
-        data:
-          title: "Bbo bot has finished"
-          message: "Roborock is going back to dock."
+          message: "🧹 Bbo bot is cleaning our house."
   - alias: "Roborock S5 MAX - Docked"
     trigger:
       - platform: state
         entity_id: vacuum.roborock_vacuum_s5e
+        from: "returning"
         to: "docked"
     action:
       - service: notify.notify_telegram
         data:
-          title: "Bbo bot has docked"
-          message: "Roborock is docked."
+          message: "🪑 Bbo bot is docked."
   - alias: "Roborock S5 MAX - Paused"
     trigger:
       - platform: state
@@ -37,8 +64,7 @@ automation:
     action:
       - service: notify.notify_telegram
         data:
-          title: "Bbo bot has paused"
-          message: "Roborock is paused."
+          message: "⏸ Bbo bot is paused"
   - alias: "Roborock S5 MAX - Idle"
     trigger:
       - platform: state
@@ -47,8 +73,81 @@ automation:
     action:
       - service: notify.notify_telegram
         data:
-          title: "Bbo bot has stopped"
-          message: "Roborock is stopped."
-# sensor cleaning left
-# sensor cleaning reset
+          message: "⏹ Bbo bot is stopped."
+  - alias: "Roborock S5 MAX - Returning to dock"
+    trigger:
+      - platform: state
+        entity_id: vacuum.roborock_vacuum_s5e
+        to: "returning"
+    action:
+      - service: notify.notify_telegram
+        data:
+          title: "Bbo bot is going back to dock"
+          message: |
+            📈 Cleaning report
+              Time: {{ state_attr('vacuum.roborock_vacuum_s5e', 'cleaning_time') }} minutes
+              Area: {{ state_attr('vacuum.roborock_vacuum_s5e', 'cleaned_area') }} m^2
+      - condition: template
+        value_template: |
+          {% if (state_attr('vacuum.roborock_vacuum_s5e', 'main_brush_left') | int < 2) 
+            or (state_attr('vacuum.roborock_vacuum_s5e', 'side_brush_left') | int < 2)
+            or (state_attr('vacuum.roborock_vacuum_s5e', 'filter_left') | int < 2)
+            or (state_attr('vacuum.roborock_vacuum_s5e', 'sensor_dirty_left') | int < 2)
+          %}
+            true
+          {% else %}
+            false
+          {% endif %}
+      - service: notify.notify_telegram
+        data:
+          title: 🚧 Maintainance 🚧
+          message: >
+            {% if state_attr('vacuum.roborock_vacuum_s5e', 'main_brush_left') | int < 2 %}
+              Please replace main brush within a hour.
+            {% endif %}
+            {% if state_attr('vacuum.roborock_vacuum_s5e', 'side_brush_left') | int < 2 %}
+              Please replace side brush within a hour.
+            {% endif %}
+            {% if state_attr('vacuum.roborock_vacuum_s5e', 'filter_left') | int < 2 %}
+              Please replace filter within a hour.
+            {% endif %}
+            {% if state_attr('vacuum.roborock_vacuum_s5e', 'sensor_dirty_left') | int < 2 %}
+              Please clean up sensor within a hour.
+            {% endif %}
+          data:
+            inline_keyboard:
+              - "Reset main brush:/reset_main_brush_left, Reset side brush:/reset_side_brush_left"
+              - "Reset filter:/reset_filter_left, Reset sensor:/reset_sensor_dirty_left"
+  - alias: "Telegram callback to reset main brush left"
+    trigger:
+      - platform: event
+        event_type: telegram_callback
+        event_data:
+          data: "/reset_main_brush_left"
+    action:
+      - service: script.reset_main_brush_left
+  - alias: "Telegram callback to reset side brush left"
+    trigger:
+      - platform: event
+        event_type: telegram_callback
+        event_data:
+          data: "/reset_side_brush_left"
+    action:
+      - service: script.reset_side_brush_left
+  - alias: "Telegram callback to reset filter left"
+    trigger:
+      - platform: event
+        event_type: telegram_callback
+        event_data:
+          data: "/reset_filter_left"
+    action:
+      - service: script.reset_filter_left
+  - alias: "Telegram callback to reset sensor dirty left"
+    trigger:
+      - platform: event
+        event_type: telegram_callback
+        event_data:
+          data: "/reset_sensor_dirty_left"
+    action:
+      - service: script.reset_sensor_dirty_left
 # cleaning bin notification
