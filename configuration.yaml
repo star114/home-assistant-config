@@ -43,6 +43,7 @@ homeassistant:
     xiaomi: !include packages/integrations/xiaomi.yaml
     # addons
     google_drive_backup: !include packages/addons/google_drive_backup.yaml
+    influxdb: !include packages/addons/influxdb.yaml
     zigbee2mqtt: !include packages/addons/zigbee2mqtt.yaml
 
 group: !include groups.yaml
