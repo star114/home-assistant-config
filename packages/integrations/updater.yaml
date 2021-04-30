@@ -12,3 +12,13 @@ automation:
         data:
           title: "🆕 New Home Assistant Release"
           message: "Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version') }} is now available."
+  - alias: "HACS Update notification"
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.hacs
+        above: 0
+    action:
+      - service: notify.notify_telegram
+        data:
+          title: "🆕 New HACS Release"
+          message: "HACS has {{ states('sensor.hacs') | int }} pending updates."

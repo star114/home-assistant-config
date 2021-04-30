@@ -707,7 +707,7 @@ views:
               - entity: sensor.hej_laundryroom_thsensor_humidity
                 name: Laundry room
             hours_to_show: 12
-            refresh_interval: 0
+            refresh_interval: 60
   - title: Lights
     path: lights
     icon: "mdi:lightbulb-on"
@@ -926,7 +926,7 @@ views:
     badges: []
     cards:
       - type: "custom:vertical-stack-in-card"
-        title: Intel NUC
+        title: Home Assistant Server
         cards:
           - type: horizontal-stack
             cards:
@@ -965,38 +965,11 @@ views:
           - type: entity
             entity: sensor.local_ip
             name: IPv4 address
-          - type: entity
-            entity: sensor.ipv6_address_eno1
-            name: IPv6 address
-          - type: history-graph
-            entities:
-              - entity: sensor.processor_use_percent
-              - entity: sensor.load_1m
-              - entity: sensor.load_5m
-              - entity: sensor.load_15m
-              - entity: sensor.processor_temperature
-              - entity: sensor.memory_use
-              - entity: sensor.swap_use
-              - entity: sensor.disk_use
-              - entity: sensor.network_throughput_in_eno1
-              - entity: sensor.network_throughput_out_eno1
-            hours_to_show: 12
-            refresh_interval: 0
-      - type: "custom:vertical-stack-in-card"
-        title: Network
-        cards:
           - type: glance
             entities:
               - entity: sensor.speedtest_ping
               - entity: sensor.speedtest_download
               - entity: sensor.speedtest_upload
-          - type: history-graph
-            entities:
-              - entity: sensor.speedtest_ping
-              - entity: sensor.speedtest_download
-              - entity: sensor.speedtest_upload
-            hours_to_show: 12
-            refresh_interval: 0
       - type: "custom:vertical-stack-in-card"
         title: Network Devices
         cards:
@@ -1055,17 +1028,21 @@ views:
                 name: Roborock
               - entity: binary_sensor.solar_power_plug
                 name: Solar Power
-      - type: "custom:vertical-stack-in-card"
-        title: HA Management
+      - type: vertical-stack
         cards:
-          - type: entities
+          - type: history-graph
             entities:
-              - entity: sensor.snapshot_backup
-                name: Google drive Snapshot Backup
-                icon: mdi:google-drive
-              - entity: sensor.hacs
-                name: HACS
-            state_color: true
+              - entity: sensor.processor_use_percent
+              - entity: sensor.processor_temperature
+              - entity: sensor.memory_use
+              - entity: sensor.swap_use
+              - entity: sensor.disk_use
+              - entity: sensor.network_throughput_in_eno1
+              - entity: sensor.network_throughput_out_eno1
+              - entity: sensor.speedtest_download
+              - entity: sensor.speedtest_upload
+            hours_to_show: 12
+            refresh_interval: 60
   - title: Zigbee Network
     icon: "mdi:zigbee"
     path: zigbee-network
