@@ -6,7 +6,7 @@ automation:
     action:
       - service: notify.notify_telegram
         data:
-          title: "Torrent download completed!"
+          title: "🚦 Torrent download completed"
           message: "{{trigger.event.data.name}}"
       - service: transmission.remove_torrent
         data:

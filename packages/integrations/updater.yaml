@@ -10,5 +10,5 @@ automation:
     action:
       - service: notify.notify_telegram
         data:
-          title: "New Home Assistant Release"
+          title: "🆕 New Home Assistant Release"
           message: "Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version') }} is now available."

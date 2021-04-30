@@ -22,7 +22,7 @@ automation:
     action:
       - service: notify.notify_telegram
         data:
-          title: Certificate is expiring
+          title: ⚠️ Certificate is expiring ⚠️
           message: Please visit the 'Nginx Proxy Manager' web page and renew the certificates.
   - alias: "Warning certificate expiry"
     trigger:
@@ -32,5 +32,5 @@ automation:
     action:
       - service: notify.notify_telegram
         data:
-          title: WARN!!!! Certificate is almost expiring
-          message: WARN!!!! Please visit the 'Nginx Proxy Manager' web page and renew the certificates.!!!!
+          title: ⛔️ Certificate is almost expiring ⛔️
+          message: Please visit the 'Nginx Proxy Manager' web page and renew the certificates.!!!!

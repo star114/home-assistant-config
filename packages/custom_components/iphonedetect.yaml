@@ -19,7 +19,7 @@ automation:
     action:
       service: notify.notify_telegram
       data:
-        message: "Heesik is now home"
+        message: "🏡 Heesik is now home"
   - alias: "Notify my absence"
     trigger:
       platform: state
@@ -29,7 +29,7 @@ automation:
     action:
       service: notify.notify_telegram
       data:
-        message: "Heesik is now not home"
+        message: "🏡 Heesik is now not home"
   - alias: "Notify seo's presence"
     trigger:
       platform: state
@@ -39,7 +39,7 @@ automation:
     action:
       service: notify.notify_telegram
       data:
-        message: "Seo is now home"
+        message: "🏡 Seo is now home"
   - alias: "Notify seo's absence"
     trigger:
       platform: state
@@ -49,4 +49,4 @@ automation:
     action:
       service: notify.notify_telegram
       data:
-        message: "Seo is now not home"
+        message: "🏡 Seo is now not home"

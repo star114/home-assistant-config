@@ -9,5 +9,5 @@ automation:
     action:
       - service: notify.notify_telegram
         data:
-          title: Snapshots are Stale
+          title: 🚧 Snapshots are Stale
           message: Please visit the 'Home Assistant Google Drive Backup ' add-on status page for details.

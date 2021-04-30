@@ -7,7 +7,7 @@ automation:
     action:
       - service: notify.notify_telegram
         data:
-          message: "Home monitoring is armed in Away mode"
+          message: "👻 Home monitoring is armed in Away mode"
       - condition: or
         conditions:
           - condition: state
@@ -24,7 +24,7 @@ automation:
             state: "on"
       - service: notify.notify_telegram
         data:
-          message: "Some windows are open in Away mode"
+          message: "❗️Some windows are open in Away mode"
   - alias: "Send notification when alarm is Armed in Home mode"
     trigger:
       - platform: state
@@ -33,7 +33,7 @@ automation:
     action:
       - service: notify.notify_telegram
         data:
-          message: "Home monitoring is armed in Home mode"
+          message: "👻 Home monitoring is armed in Home mode"
       - condition: or
         conditions:
           - condition: state
@@ -50,7 +50,7 @@ automation:
             state: "on"
       - service: notify.notify_telegram
         data:
-          message: "Some windows are open in Home mode"
+          message: "❗️Some windows are open in Home mode"
   - alias: "Send notification when alarm is Armed in Night mode"
     trigger:
       - platform: state
@@ -59,7 +59,7 @@ automation:
     action:
       - service: notify.notify_telegram
         data:
-          message: "Home monitoring is armed in Night mode"
+          message: "👻 Home monitoring is armed in Night mode"
       - condition: or
         conditions:
           - condition: state
@@ -76,7 +76,7 @@ automation:
             state: "on"
       - service: notify.notify_telegram
         data:
-          message: "Some windows are open in Night mode"
+          message: "❗️Some windows are open in Night mode"
   - alias: "Send notification when alarm is Disarmed"
     trigger:
       - platform: state
@@ -85,7 +85,7 @@ automation:
     action:
       - service: notify.notify_telegram
         data:
-          message: "Home monitoring is disarmed"
+          message: "👻 Home monitoring is disarmed"
   - alias: "Send notification when alarm is in pending status"
     trigger:
       - platform: state
@@ -94,19 +94,16 @@ automation:
     action:
       - service: notify.notify_telegram
         data:
-          message: "Home monitoring is in pending status"
+          message: "⛔️ Home monitoring is in pending status"
   - alias: "Send notification when alarm triggered"
     trigger:
       - platform: state
         entity_id: alarm_control_panel.home_monitoring
         to: "triggered"
     action:
-      - service: notify.notify
-        data:
-          message: "Home monitoring has been triggered"
       - service: notify.notify_telegram
         data:
-          message: "Home monitoring has been triggered"
+          message: "‼️ Home monitoring has been triggered"
   - alias: "Trigger alarm while armed away"
     trigger:
       - platform: state

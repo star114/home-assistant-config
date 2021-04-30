@@ -23,14 +23,8 @@ automation:
         entity_id: input_boolean.co2_unhealthy_state
       - service: notify.notify_telegram
         data:
-          title: Unhealthy CO2 level
+          title: ⚠️ Unhealthy CO2 level
           message: Please open the windows.
-      #- condition: state
-      #  entity_id: alarm_control_panel.home_monitoring
-      #  state: "disarmed"
-      #- service: notify.in_the_kitchen
-      #  data:
-      #    message: "이산화탄소 수치가 높습니다. 창문을 열어 환기해 주세요."
   - alias: "CO2 level has come back to normal"
     trigger:
       - platform: numeric_state
@@ -46,11 +40,5 @@ automation:
         entity_id: input_boolean.co2_unhealthy_state
       - service: notify.notify_telegram
         data:
-          title: Normal CO2 level
+          title: ✅ Normal CO2 level
           message: Please close the windows.
-      #- condition: state
-      #  entity_id: alarm_control_panel.home_monitoring
-      #  state: "disarmed"
-      #- service: notify.in_the_kitchen
-      #  data:
-      #    message: "이산화탄소 수치가 정상으로 돌아왔습니다."
