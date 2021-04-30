@@ -186,19 +186,19 @@ binary_sensor:
   - platform: template
     sensors:
       hue_bedroom_motion_battery_low:
-        value_template: "{{ state_attr('sensor.hue_bedroom_motion_battery', 'battery') < 15 }}"
+        value_template: "{{ state_attr('sensor.hue_bedroom_motion_battery', 'battery') | int < 15 }}"
   - platform: template
     sensors:
       hej_bathroom_thsensor_battery_low:
-        value_template: "{{ state_attr('sensor.hej_bathroom_thsensor_battery', 'battery') < 15 }}"
+        value_template: "{{ state_attr('sensor.hej_bathroom_thsensor_battery', 'battery') | int < 15 }}"
   - platform: template
     sensors:
       hej_bedroom_thsensor_battery_low:
-        value_template: "{{ state_attr('sensor.hej_bedroom_thsensor_battery', 'battery') < 15 }}"
+        value_template: "{{ state_attr('sensor.hej_bedroom_thsensor_battery', 'battery') | int < 15 }}"
   - platform: template
     sensors:
       hej_laundryroom_thsensor_battery_low:
-        value_template: "{{ state_attr('sensor.hej_laundryroom_thsensor_battery', 'battery') < 15 }}"
+        value_template: "{{ state_attr('sensor.hej_laundryroom_thsensor_battery', 'battery') | int < 15 }}"
 
 # alert: https://www.home-assistant.io/integrations/alert/
 alert:
