@@ -460,20 +460,6 @@ views:
                 name: Home Monitoring
           - type: "custom:vertical-stack-in-card"
             cards:
-              - type: glance
-                entities:
-                  - type: entity
-                    entity: binary_sensor.korean_workday
-                    name: Workday
-                    icon: mdi:desktop-mac
-                  - entity: device_tracker.heesikiphone
-                    name: Heesik
-                    icon: mdi:apple
-                  - entity: device_tracker.seojiniphone
-                    name: Seo Jin
-                    icon: mdi:apple
-          - type: "custom:vertical-stack-in-card"
-            cards:
               - type: grid
                 cards:
                   - type: button
