@@ -26,7 +26,6 @@ homeassistant:
     city_waste: !include packages/custom_components/city_waste.yaml
     harmony_ac: !include packages/custom_components/harmony_ac.yaml
     iphonedetect: !include packages/custom_components/iphonedetect.yaml
-    korean_workday: !include packages/custom_components/korean_workday.yaml
     xiaomi_cloud_map_extractor: !include packages/custom_components/xiaomi_cloud_map_extractor.yaml
     # integrations
     alarm: !include packages/integrations/alarm.yaml
