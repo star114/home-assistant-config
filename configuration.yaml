@@ -82,5 +82,3 @@ lovelace:
       type: module
     - url: /local/community/harmony-card/harmony-card.js
       type: module
-    - url: /local/community/weather-card/weather-card.js
-      type: module

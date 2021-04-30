@@ -948,14 +948,21 @@ views:
               - entity: sensor.disk_free
             show_name: false
             columns: 4
-          - type: entity
-            entity: sensor.local_ip
-            name: IPv4 address
           - type: glance
             entities:
               - entity: sensor.speedtest_ping
               - entity: sensor.speedtest_download
               - entity: sensor.speedtest_upload
+          - type: history-graph
+            entities:
+              - entity: sensor.processor_use_percent
+              - entity: sensor.processor_temperature
+              - entity: sensor.memory_use
+              - entity: sensor.swap_use
+              - entity: sensor.network_throughput_in_eno1
+              - entity: sensor.network_throughput_out_eno1
+            hours_to_show: 12
+            refresh_interval: 60
       - type: "custom:vertical-stack-in-card"
         title: Network Devices
         cards:
@@ -1014,21 +1021,6 @@ views:
                 name: Roborock
               - entity: binary_sensor.solar_power_plug
                 name: Solar Power
-      - type: vertical-stack
-        cards:
-          - type: history-graph
-            entities:
-              - entity: sensor.processor_use_percent
-              - entity: sensor.processor_temperature
-              - entity: sensor.memory_use
-              - entity: sensor.swap_use
-              - entity: sensor.disk_use
-              - entity: sensor.network_throughput_in_eno1
-              - entity: sensor.network_throughput_out_eno1
-              - entity: sensor.speedtest_download
-              - entity: sensor.speedtest_upload
-            hours_to_show: 12
-            refresh_interval: 60
   - title: Zigbee Network
     icon: "mdi:zigbee"
     path: zigbee-network
