@@ -33,3 +33,34 @@ automation:
     action:
       - service: light.turn_on
         entity_id: light.hej_3gang_laundryroom_light_top
+
+  # dryer
+  - alias: "Dryer turned on"
+    trigger:
+      - platform: state
+        entity_id: switch.geonjogi
+        to: "on"
+    action:
+      - service: notify.notify_telegram
+        data:
+          message: |
+            🧽 Dryer has started.
+  - alias: "Dryer turned off"
+    trigger:
+      - platform: state
+        entity_id: switch.geonjogi
+        to: "off"
+    action:
+      - service: notify.notify_telegram
+        data:
+          message: 🏁 Dryer has finished.
+  - alias: "Dryer job state changes"
+    trigger:
+      - platform: state
+        entity_id: sensor.geonjogi_dryer_job_state
+        to: "drying"
+    action:
+      - service: notify.notify_telegram
+        data:
+          message: |
+            ⏱ Dryer will finish in about {{ ((as_timestamp(states('sensor.geonjogi_dryer_completion_time')) - as_timestamp(now())) / 60) | int }} minutes.
