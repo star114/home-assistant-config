@@ -82,3 +82,5 @@ lovelace:
       type: module
     - url: /local/community/harmony-card/harmony-card.js
       type: module
+    - url: /local/community/flex-table-card/flex-table-card.js
+      type: module

@@ -15,14 +15,14 @@ sensor:
       #- type: load_1m
       #- type: load_5m
       #- type: load_15m
-      - type: network_in
-        arg: eno1
-      - type: network_out
-        arg: eno1
-      #- type: throughput_network_in
+      #- type: network_in
       #  arg: eno1
-      #- type: throughput_network_out
+      #- type: network_out
       #  arg: eno1
+      - type: throughput_network_in
+        arg: eno1
+      - type: throughput_network_out
+        arg: eno1
       #- type: packets_in
       #  arg: eno1
       #- type: packets_out

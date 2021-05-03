@@ -458,22 +458,6 @@ views:
                   - arm_custom_bypass
                 entity: alarm_control_panel.home_monitoring
                 name: Home Monitoring
-          - type: "custom:vertical-stack-in-card"
-            cards:
-              - type: grid
-                cards:
-                  - type: button
-                    tap_action:
-                      action: toggle
-                    entity: switch.hej_3gang_library_light_bottom
-                    name: Away
-                    icon: mdi:home-export-outline
-                  - type: button
-                    tap_action:
-                      action: toggle
-                    entity: switch.hej_3gang_bedroom_bed_light_bottom
-                    name: Night
-                    icon: mdi:weather-night
       - type: "custom:vertical-stack-in-card"
         cards:
           - type: entity
@@ -705,6 +689,18 @@ views:
               - type: button
                 tap_action:
                   action: toggle
+                entity: switch.hej_3gang_library_light_bottom
+                name: Away
+                icon: mdi:home-export-outline
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: switch.hej_3gang_bedroom_bed_light_bottom
+                name: Night
+                icon: mdi:weather-night
+              - type: button
+                tap_action:
+                  action: toggle
                 entity: light.hej_3gang_bedroom_bed_light_top
                 name: Bed
               - type: button
@@ -906,13 +902,12 @@ views:
         name: Plex server
       - type: custom:transmission-card
         hide_type: false
-  - title: Info
-    path: info
-    icon: "mdi:lan"
+  - title: HA server
+    path: HA server
+    icon: "mdi:home-assistant"
     badges: []
     cards:
       - type: "custom:vertical-stack-in-card"
-        title: Home Assistant Server
         cards:
           - type: horizontal-stack
             cards:
@@ -948,6 +943,14 @@ views:
               - entity: sensor.disk_free
             show_name: false
             columns: 4
+          - type: history-graph
+            entities:
+              - entity: sensor.processor_use_percent
+              - entity: sensor.processor_temperature
+              - entity: sensor.memory_use
+              - entity: sensor.swap_use
+      - type: "custom:vertical-stack-in-card"
+        cards:
           - type: glance
             entities:
               - entity: sensor.speedtest_ping
@@ -955,16 +958,91 @@ views:
               - entity: sensor.speedtest_upload
           - type: history-graph
             entities:
-              - entity: sensor.processor_use_percent
-              - entity: sensor.processor_temperature
-              - entity: sensor.memory_use
-              - entity: sensor.swap_use
+              - entity: sensor.speedtest_download
+              - entity: sensor.speedtest_upload
               - entity: sensor.network_throughput_in_eno1
               - entity: sensor.network_throughput_out_eno1
             hours_to_show: 12
             refresh_interval: 60
+  - title: ESXi
+    path: ESXi
+    icon: "mdi:vpn"
+    panel: true
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: custom:flex-table-card
+            title: ESXi Hosts
+            clickable: true
+            entities:
+              include: sensor.esxi_vmhost*
+            columns:
+              - name: Name
+                data: name
+              - name: Version
+                data: version
+              - name: Uptime (H)
+                data: uptime_hours
+              - name: CPU Use (GHz)
+                data: cpuusage_ghz
+              - name: Mem Use (GB)
+                data: memusage_gb
+              - name: VMs
+                data: vms
+          - type: custom:flex-table-card
+            title: ESXi Virtual Machines
+            clickable: true
+            entities:
+              include: sensor.esxi_vm_*
+            columns:
+              - name: Name
+                data: name
+              - name: Status
+                data: status
+              - name: State
+                data: state
+              - name: Uptime (H)
+                data: uptime_hours
+              - name: CPU Usage (%)
+                data: cpu_use_pct
+              - name: CPUs
+                data: cpu_count
+              - name: Mem Use (MB)
+                data: memory_used_mb
+              - name: Mem Total (MB)
+                data: memory_allocated_mb
+              - name: Storage Used (GB)
+                data: used_space_gb
+              - name: VM Tools
+                data: tools_status
+              - name: Snapshots
+                data: snapshots
+          - type: custom:flex-table-card
+            title: ESXi Datastores
+            clickable: true
+            entities:
+              include: sensor.esxi_datastore*
+            columns:
+              - name: Name
+                data: name
+              - name: Free Space (GB)
+                data: free_space_gb
+              - name: Capacity (GB)
+                data: total_space_gb
+              - name: Hosts
+                data: connected_hosts
+              - name: VMs
+                data: virtual_machines
+              - name: Type
+                data: type
+  - title: Network Devices
+    path: network
+    icon: "mdi:lan"
+    panel: true
+    badges: []
+    cards:
       - type: "custom:vertical-stack-in-card"
-        title: Network Devices
         cards:
           - type: glance
             title: Routers
@@ -993,6 +1071,7 @@ views:
                 name: Raspberry-Pi 3B+
               - entity: binary_sensor.harmony_hub
                 name: Logitech Harmony Hub
+            columns: 6
           - type: glance
             title: Speakers
             entities:
@@ -1027,11 +1106,13 @@ views:
                 name: Roborock
               - entity: binary_sensor.solar_power_plug
                 name: Solar Power
+            columns: 8
   - title: Zigbee Network
     icon: "mdi:zigbee"
     path: zigbee-network
+    panel: true
     cards:
-      - type: "custom:vertical-stack-in-card"
+      - type: vertical-stack
         cards:
           - type: entities
             title: Status
@@ -1040,8 +1121,8 @@ views:
               - entity: sensor.zigbee2mqtt_bridge_state
               - entity: sensor.zigbee2mqtt_version
               - entity: sensor.coordinator_version
-      - type: custom:zigbee2mqtt-networkmap
-        entity: sensor.zigbee2mqtt_networkmap
+          - type: custom:zigbee2mqtt-networkmap
+            entity: sensor.zigbee2mqtt_networkmap
   - title: Dev
     icon: "mdi:castle"
     path: dev
