@@ -12,6 +12,53 @@ input_boolean:
     initial: false
 
 automation:
+  - alias: "kitchen light off with no motion"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.smartthings_kitchen_motion_occupancy
+        to: "off"
+        for:
+          minutes: 2
+    condition:
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: alarm_control_panel.home_monitoring
+            state: "armed_night"
+          - condition: state
+            entity_id: light.hej_3gang_kitchen_light_left_center
+            state: "on"
+    action:
+      - service: light.turn_off
+        entity_id: light.hej_3gang_kitchen_light_left_center
+
+  - alias: "kitchen light on with motion when sun is below_horizon"
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.smartthings_kitchen_motion_occupancy
+        to: "on"
+    condition:
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: sun.sun
+            state: "below_horizon"
+          - condition: state
+            entity_id: light.hej_3gang_kitchen_light_left_center
+            state: "off"
+          - condition: state
+            entity_id: light.hej_3gang_kitchen_light_left_top
+            state: "off"
+          - condition: state
+            entity_id: light.hej_3gang_kitchen_light_right_center
+            state: "off"
+          - condition: state
+            entity_id: light.hej_3gang_kitchen_light_right_top
+            state: "off"
+    action:
+      - service: light.turn_on
+        entity_id: light.hej_3gang_kitchen_light_left_center
+
   - alias: "CO2 level has reached unhealty state"
     trigger:
       - platform: numeric_state
