@@ -1,58 +1,59 @@
 # first motion: https://www.home-assistant.io/cookbook/automation_first_light/
-input_boolean:
-  trigger_first_morning:
-    name: Waiting for first morning motion
-    icon: mdi:kettle
+first_morning_motion_package:
+  input_boolean:
+    trigger_first_morning:
+      name: Waiting for first morning motion
+      icon: mdi:kettle
 
-automation:
-  #turns it on at 5am
-  - alias: "Enable First Morning Trigger"
-    trigger:
-      - platform: time
-        at: "05:50:00"
-    action:
-      service: input_boolean.turn_on
-      target:
-        entity_id: input_boolean.trigger_first_morning
-
-  # turns it off an hour after sunrise
-  - alias: "Disable First Morning Trigger"
-    trigger:
-      - platform: sun
-        event: sunrise
-        offset: "02:00:00"
-    action:
-      service: input_boolean.turn_off
-      target:
-        entity_id: input_boolean.trigger_first_morning
-
-  # This is the main automation. It triggers when my motion sensor is triggered
-  - alias: "First Morning Motion"
-    trigger:
-      platform: state
-      entity_id: binary_sensor.smartthings_kitchen_motion_occupancy
-      to: "on"
-    # only complete the automation if we're still waiting for the first motion
-    condition:
-      condition: state
-      entity_id: input_boolean.trigger_first_morning
-      state: "on"
-
-    action:
-      # turn off the "waiting" boolean regardless of whether lights will turn on
-      # so that this happens only once
-      - service: input_boolean.turn_off
+  automation:
+    #turns it on at 5am
+    - alias: "Enable First Morning Trigger"
+      trigger:
+        - platform: time
+          at: "05:50:00"
+      action:
+        service: input_boolean.turn_on
         target:
           entity_id: input_boolean.trigger_first_morning
 
-      # But only turn on lights if the night mode switch is on
-      # If a condition tests false, the automation will end
-      - condition: state
-        entity_id: switch.hej_3gang_bedroom_bed_light_bottom # night mode
+    # turns it off an hour after sunrise
+    - alias: "Disable First Morning Trigger"
+      trigger:
+        - platform: sun
+          event: sunrise
+          offset: "02:00:00"
+      action:
+        service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.trigger_first_morning
+
+    # This is the main automation. It triggers when my motion sensor is triggered
+    - alias: "First Morning Motion"
+      trigger:
+        platform: state
+        entity_id: binary_sensor.smartthings_kitchen_motion_occupancy
+        to: "on"
+      # only complete the automation if we're still waiting for the first motion
+      condition:
+        condition: state
+        entity_id: input_boolean.trigger_first_morning
         state: "on"
 
-      # Trigger a scene
-      # You could add as many services or scenes as you'd like
-      - service: switch.turn_off
-        target:
-          entity_id: switch.hej_3gang_bedroom_bed_light_bottom
+      action:
+        # turn off the "waiting" boolean regardless of whether lights will turn on
+        # so that this happens only once
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.trigger_first_morning
+
+        # But only turn on lights if the night mode switch is on
+        # If a condition tests false, the automation will end
+        - condition: state
+          entity_id: switch.hej_3gang_bedroom_bed_light_bottom # night mode
+          state: "on"
+
+        # Trigger a scene
+        # You could add as many services or scenes as you'd like
+        - service: switch.turn_off
+          target:
+            entity_id: switch.hej_3gang_bedroom_bed_light_bottom

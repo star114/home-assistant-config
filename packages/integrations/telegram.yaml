@@ -4,14 +4,16 @@
 # - webhooks: https://www.home-assistant.io/integrations/telegram_webhooks
 # - polling
 # webhooks is preferred but personal ha instance should be exposed to public network
-telegram_bot:
-  - platform: webhooks
-    api_key: !secret telegram_bot_api_key
-    allowed_chat_ids:
-      - !secret telegram_chat_id1
 
-# notifier
-notify:
-  - platform: telegram
-    name: notify_telegram
-    chat_id: !secret telegram_chat_id1
+telegram_package:
+  telegram_bot:
+    - platform: webhooks
+      api_key: !secret telegram_bot_api_key
+      allowed_chat_ids:
+        - !secret telegram_chat_id1
+
+  # notifier
+  notify:
+    - platform: telegram
+      name: notify_telegram
+      chat_id: !secret telegram_chat_id1

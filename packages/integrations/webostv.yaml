@@ -1,18 +1,17 @@
-wake_on_lan: # enables `wake_on_lan` domain
+webostv_package:
+  webostv:
+    host: !secret LGWebOSTV_ip
+    #other settings
+    turn_on_action:
+      service: remote.send_command
+      target:
+        entity_id: remote.harmony_hub
+      data:
+        command:
+          - PowerOn
+        device: LG TV
+        delay_secs: 0.6
 
-webostv:
-  host: !secret LGWebOSTV_ip
-  #other settings
-  turn_on_action:
-    service: remote.send_command
-    target:
-      entity_id: remote.harmony_hub
-    data:
-      command:
-        - PowerOn
-      device: LG TV
-      delay_secs: 0.6
+  media_player:
 
-media_player:
-
-notify:
+  notify:

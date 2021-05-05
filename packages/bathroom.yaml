@@ -1,109 +1,110 @@
-input_boolean:
-  bathroom_in_use:
-    name: Bathroom In Use
-    initial: false
-    icon: mdi:paper-roll
+bathroom_package:
+  input_boolean:
+    bathroom_in_use:
+      name: Bathroom In Use
+      initial: false
+      icon: mdi:paper-roll
 
-timer:
-  bathroom_fan_off_in: # fan timer
-    duration: "00:20:00"
+  timer:
+    bathroom_fan_off_in: # fan timer
+      duration: "00:20:00"
 
-automation:
-  - alias: "Turn on bathroom in use for x minutes when bathroom door is closed"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.smartthings_bathroom_contact_contact
-        from: "on"
-        to: "off"
-    action:
-      - service: input_boolean.turn_on
-        entity_id: input_boolean.bathroom_in_use
-      - service: switch.turn_on
-        entity_id: switch.hej_3gang_bathroom_light_top # turn on the fan
-      - service: timer.start
-        entity_id:
-          - timer.bathroom_fan_off_in
+  automation:
+    - alias: "Turn on bathroom in use for x minutes when bathroom door is closed"
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.smartthings_bathroom_contact_contact
+          from: "on"
+          to: "off"
+      action:
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.bathroom_in_use
+        - service: switch.turn_on
+          entity_id: switch.hej_3gang_bathroom_light_top # turn on the fan
+        - service: timer.start
+          entity_id:
+            - timer.bathroom_fan_off_in
 
-  - alias: "Turn on lights when motion"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.smartthings_bathroom_motion_occupancy
-        to: "on"
-    action:
-      - condition: state
-        entity_id: light.hej_3gang_bathroom_light_bottom
-        state: "off"
-      - service: light.turn_on
-        entity_id: light.hej_3gang_bathroom_light_bottom
-      - condition: and
-        conditions:
-          - condition: state
-            entity_id: sun.sun
-            state: "above_horizon"
-          - condition: state
-            entity_id: light.hej_3gang_bathroom_light_center
-            state: "off"
-      - service: light.turn_on
-        entity_id: light.hej_3gang_bathroom_light_center
+    - alias: "Turn on lights when motion"
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.smartthings_bathroom_motion_occupancy
+          to: "on"
+      action:
+        - condition: state
+          entity_id: light.hej_3gang_bathroom_light_bottom
+          state: "off"
+        - service: light.turn_on
+          entity_id: light.hej_3gang_bathroom_light_bottom
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: sun.sun
+              state: "above_horizon"
+            - condition: state
+              entity_id: light.hej_3gang_bathroom_light_center
+              state: "off"
+        - service: light.turn_on
+          entity_id: light.hej_3gang_bathroom_light_center
 
-  - alias: "Trigger lights off timer when motion is off for x minutes"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.smartthings_bathroom_motion_occupancy
-        to: "off"
-        for: 00:03:00
-    condition:
-      - condition: state
-        entity_id: input_boolean.bathroom_in_use
-        state: "off"
-    action:
-      - service: light.turn_off
-        entity_id: light.hej_3gang_bathroom_light_center
-      - service: light.turn_off
-        entity_id: light.hej_3gang_bathroom_light_bottom
+    - alias: "Trigger lights off timer when motion is off for x minutes"
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.smartthings_bathroom_motion_occupancy
+          to: "off"
+          for: 00:03:00
+      condition:
+        - condition: state
+          entity_id: input_boolean.bathroom_in_use
+          state: "off"
+      action:
+        - service: light.turn_off
+          entity_id: light.hej_3gang_bathroom_light_center
+        - service: light.turn_off
+          entity_id: light.hej_3gang_bathroom_light_bottom
 
-  - alias: "Turn off bathroom in use after x minutes"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.smartthings_bathroom_motion_occupancy
-        to: "off"
-        for: 00:10:00
-    action:
-      - service: input_boolean.turn_off
-        entity_id:
-          - input_boolean.bathroom_in_use
+    - alias: "Turn off bathroom in use after x minutes"
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.smartthings_bathroom_motion_occupancy
+          to: "off"
+          for: 00:10:00
+      action:
+        - service: input_boolean.turn_off
+          entity_id:
+            - input_boolean.bathroom_in_use
 
-  - alias: "Turn off bathroom lights when in use switch turned off"
-    trigger:
-      - platform: state
-        entity_id: input_boolean.bathroom_in_use
-        to: "off"
-    action:
-      - service: light.turn_off
-        entity_id: light.hej_3gang_bathroom_light_center
-      - service: light.turn_off
-        entity_id: light.hej_3gang_bathroom_light_bottom
+    - alias: "Turn off bathroom lights when in use switch turned off"
+      trigger:
+        - platform: state
+          entity_id: input_boolean.bathroom_in_use
+          to: "off"
+      action:
+        - service: light.turn_off
+          entity_id: light.hej_3gang_bathroom_light_center
+        - service: light.turn_off
+          entity_id: light.hej_3gang_bathroom_light_bottom
 
-  - alias: "Turn off fan after x minutes"
-    trigger:
-      - platform: event
-        event_type: timer.finished
-        event_data:
-          entity_id: timer.bathroom_fan_off_in
-    action:
-      - service: switch.turn_off
-        entity_id:
-          - switch.hej_3gang_bathroom_light_top # turn off the fan
+    - alias: "Turn off fan after x minutes"
+      trigger:
+        - platform: event
+          event_type: timer.finished
+          event_data:
+            entity_id: timer.bathroom_fan_off_in
+      action:
+        - service: switch.turn_off
+          entity_id:
+            - switch.hej_3gang_bathroom_light_top # turn off the fan
 
-  - alias: "Turn on fan when humidity is high"
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.hej_bathroom_thsensor_humidity
-        above: 70
-    action:
-      - service: switch.turn_on
-        entity_id:
-          - switch.hej_3gang_bathroom_light_top # turn on the fan
-      - service: timer.start
-        entity_id:
-          - timer.bathroom_fan_off_in
+    - alias: "Turn on fan when humidity is high"
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.hej_bathroom_thsensor_humidity
+          above: 70
+      action:
+        - service: switch.turn_on
+          entity_id:
+            - switch.hej_3gang_bathroom_light_top # turn on the fan
+        - service: timer.start
+          entity_id:
+            - timer.bathroom_fan_off_in

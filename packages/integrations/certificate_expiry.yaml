@@ -1,36 +1,37 @@
-sensor:
-  - platform: template
-    sensors:
-      s_cert_exiry_d:
-        friendly_name: "Duck DNS SSL Cert Expiry"
-        value_template: >
-          {{ ((as_timestamp(states('sensor.cert_expiry_timestamp_ha_star114_duckdns_org')) - as_timestamp(states.sensor.date.last_updated)) / 86400) | int }}
-        icon_template: >-
-          {% if states('sensor.cert_expiry_timestamp_ha_star114_duckdns_org') | int > 0 %}
-            mdi:certificate
-          {% else %}
-            mdi:certificate-outline
-          {% endif %}
-        unit_of_measurement: "days"
+certificate_expiry_package:
+  sensor:
+    - platform: template
+      sensors:
+        s_cert_exiry_d:
+          friendly_name: "Duck DNS SSL Cert Expiry"
+          value_template: >
+            {{ ((as_timestamp(states('sensor.cert_expiry_timestamp_ha_star114_duckdns_org')) - as_timestamp(states.sensor.date.last_updated)) / 86400) | int }}
+          icon_template: >-
+            {% if states('sensor.cert_expiry_timestamp_ha_star114_duckdns_org') | int > 0 %}
+              mdi:certificate
+            {% else %}
+              mdi:certificate-outline
+            {% endif %}
+          unit_of_measurement: "days"
 
-automation:
-  - alias: "Notify the remaining days of certificate expiry"
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.s_cert_exiry_d
-        below: 7
-    action:
-      - service: notify.notify_telegram
-        data:
-          title: ⚠️ Certificate is expiring ⚠️
-          message: Please visit the 'Nginx Proxy Manager' web page and renew the certificates.
-  - alias: "Warning certificate expiry"
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.s_cert_exiry_d
-        below: 2
-    action:
-      - service: notify.notify_telegram
-        data:
-          title: ⛔️ Certificate is almost expiring ⛔️
-          message: Please visit the 'Nginx Proxy Manager' web page and renew the certificates.!!!!
+  automation:
+    - alias: "Notify the remaining days of certificate expiry"
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.s_cert_exiry_d
+          below: 7
+      action:
+        - service: notify.notify_telegram
+          data:
+            title: ⚠️ Certificate is expiring ⚠️
+            message: Please visit the 'Nginx Proxy Manager' web page and renew the certificates.
+    - alias: "Warning certificate expiry"
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.s_cert_exiry_d
+          below: 2
+      action:
+        - service: notify.notify_telegram
+          data:
+            title: ⛔️ Certificate is almost expiring ⛔️
+            message: Please visit the 'Nginx Proxy Manager' web page and renew the certificates.!!!!

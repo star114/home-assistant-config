@@ -1,14 +1,15 @@
-automation:
-  - alias: "Notify and remove completed torrent"
-    trigger:
-      platform: event
-      event_type: transmission_downloaded_torrent
-    action:
-      - service: notify.notify_telegram
-        data:
-          title: "🚦 Torrent download completed"
-          message: "{{trigger.event.data.name}}"
-      - service: transmission.remove_torrent
-        data:
-          name: "Transmission"
-          id: "{{trigger.event.data.id}}"
+transmission_package:
+  automation:
+    - alias: "Notify and remove completed torrent"
+      trigger:
+        platform: event
+        event_type: transmission_downloaded_torrent
+      action:
+        - service: notify.notify_telegram
+          data:
+            title: "🚦 Torrent download completed"
+            message: "{{trigger.event.data.name}}"
+        - service: transmission.remove_torrent
+          data:
+            name: "Transmission"
+            id: "{{trigger.event.data.id}}"

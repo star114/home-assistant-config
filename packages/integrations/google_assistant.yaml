@@ -1,5 +1,6 @@
 # Google Assistant
-google_assistant:
-  project_id: !secret ga_project_id
-  service_account: !include service_account.json
-  report_state: true
+google_assistant_package:
+  google_assistant:
+    project_id: !secret ga_project_id
+    service_account: !include service_account.json
+    report_state: true

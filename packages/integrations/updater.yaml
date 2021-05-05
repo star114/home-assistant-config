@@ -1,24 +1,25 @@
 # Send notification if new Home Assistant release
 # https://www.home-assistant.io/cookbook/notify_if__new_ha_release/
-automation:
-  - alias: "HA Update notification"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.updater
-        from: "off"
-        to: "on"
-    action:
-      - service: notify.notify_telegram
-        data:
-          title: "🆕 New Home Assistant Release"
-          message: "Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version') }} is now available."
-  - alias: "HACS Update notification"
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.hacs
-        above: 0
-    action:
-      - service: notify.notify_telegram
-        data:
-          title: "🆕 New HACS Release"
-          message: "HACS has {{ states('sensor.hacs') | int }} pending updates."
+updater_package:
+  automation:
+    - alias: "HA Update notification"
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.updater
+          from: "off"
+          to: "on"
+      action:
+        - service: notify.notify_telegram
+          data:
+            title: "🆕 New Home Assistant Release"
+            message: "Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version') }} is now available."
+    - alias: "HACS Update notification"
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.hacs
+          above: 0
+      action:
+        - service: notify.notify_telegram
+          data:
+            title: "🆕 New HACS Release"
+            message: "HACS has {{ states('sensor.hacs') | int }} pending updates."

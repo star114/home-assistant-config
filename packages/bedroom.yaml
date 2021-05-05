@@ -1,26 +1,32 @@
 # bedroom
+bedroom_package:
+  automation:
+    - alias: "morning scene - switch off"
+      trigger:
+        platform: state
+        entity_id: switch.hej_3gang_bedroom_bed_light_bottom
+        from: "on"
+        to: "off"
+      action:
+        - service: scene.turn_on
+          entity_id: scene.morning
+        - service: alarm_control_panel.alarm_disarm
+          entity_id: alarm_control_panel.home_monitoring
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "좋은 아침입니다."
 
-automation:
-  - alias: "morning scene - switch off"
-    trigger:
-      platform: state
-      entity_id: switch.hej_3gang_bedroom_bed_light_bottom
-      from: "on"
-      to: "off"
-    action:
-      - service: scene.turn_on
-        entity_id: scene.morning
-      - service: alarm_control_panel.alarm_disarm
-        entity_id: alarm_control_panel.home_monitoring
-
-  - alias: "night scene - switch on"
-    trigger:
-      platform: state
-      entity_id: switch.hej_3gang_bedroom_bed_light_bottom
-      from: "off"
-      to: "on"
-    action:
-      - service: scene.turn_on
-        entity_id: scene.night
-      - service: alarm_control_panel.alarm_arm_night
-        entity_id: alarm_control_panel.home_monitoring
+    - alias: "night scene - switch on"
+      trigger:
+        platform: state
+        entity_id: switch.hej_3gang_bedroom_bed_light_bottom
+        from: "off"
+        to: "on"
+      action:
+        - service: scene.turn_on
+          entity_id: scene.night
+        - service: alarm_control_panel.alarm_arm_night
+          entity_id: alarm_control_panel.home_monitoring
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "좋은 밤 되세요."

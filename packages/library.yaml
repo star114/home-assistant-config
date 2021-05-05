@@ -1,110 +1,117 @@
 # library
-input_boolean:
-  library_light_triggered_by_motion:
-    name: Library Light triggered by motion
-    initial: false
+library_package:
+  input_boolean:
+    library_light_triggered_by_motion:
+      name: Library Light triggered by motion
+      initial: false
 
-automation:
-  - alias: "library light off with no motion"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.smartthings_library_motion_occupancy
+  automation:
+    - alias: "library light off with no motion"
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.smartthings_library_motion_occupancy
+          to: "off"
+          for:
+            minutes: 2
+      condition:
+        - condition: state
+          entity_id: input_boolean.library_light_triggered_by_motion
+          state: "on"
+      action:
+        - service: light.turn_off
+          entity_id: light.hej_3gang_library_light_top
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.library_light_triggered_by_motion
+
+    - alias: "library light on with motion"
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.smartthings_library_motion_occupancy
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: light.hej_3gang_library_light_top
+          state: "off"
+      action:
+        - service: light.turn_on
+          entity_id: light.hej_3gang_library_light_top
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.library_light_triggered_by_motion
+
+    - alias: "away scene - switch on"
+      trigger:
+        platform: state
+        entity_id: switch.hej_3gang_library_light_bottom
+        from: "off"
+        to: "on"
+      action:
+        - service: scene.turn_on
+          entity_id: scene.away
+        - service: alarm_control_panel.alarm_arm_away
+          entity_id: alarm_control_panel.home_monitoring
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "잘 다녀 오세요."
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: input_boolean.roborock_ready_to_clean
+              state: "on"
+            - condition: time
+              after: "07:00:00"
+              before: "20:00:00"
+        - service: vacuum.start
+          entity_id: vacuum.roborock_vacuum_s5e
+
+    - alias: "home scene - switch off"
+      trigger:
+        platform: state
+        entity_id: switch.hej_3gang_library_light_bottom
+        from: "on"
         to: "off"
-        for:
-          minutes: 2
-    condition:
-      - condition: state
-        entity_id: input_boolean.library_light_triggered_by_motion
-        state: "on"
-    action:
-      - service: light.turn_off
-        entity_id: light.hej_3gang_library_light_top
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.library_light_triggered_by_motion
+      action:
+        - service: scene.turn_on
+          entity_id: scene.home
+        - service: alarm_control_panel.alarm_disarm
+          entity_id: alarm_control_panel.home_monitoring
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "어서 오세요."
 
-  - alias: "library light on with motion"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.smartthings_library_motion_occupancy
-        to: "on"
-    condition:
-      - condition: state
-        entity_id: light.hej_3gang_library_light_top
-        state: "off"
-    action:
-      - service: light.turn_on
-        entity_id: light.hej_3gang_library_light_top
-      - service: input_boolean.turn_on
-        entity_id: input_boolean.library_light_triggered_by_motion
+    - alias: "automatic away"
+      trigger:
+        - platform: template
+          value_template: >
+            {{ is_state('device_tracker.heesikiphone', 'not_home') and
+              is_state('device_tracker.seojiniphone', 'not_home') }}
+          for: "00:05:00"
+      condition:
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: alarm_control_panel.home_monitoring
+              state: "disarmed"
+            - condition: state
+              entity_id: switch.hej_3gang_library_light_bottom
+              state: "off"
+      action:
+        - service: switch.turn_on
+          entity_id: switch.hej_3gang_library_light_bottom
 
-  - alias: "away scene - switch on"
-    trigger:
-      platform: state
-      entity_id: switch.hej_3gang_library_light_bottom
-      from: "off"
-      to: "on"
-    action:
-      - service: scene.turn_on
-        entity_id: scene.away
-      - service: alarm_control_panel.alarm_arm_away
-        entity_id: alarm_control_panel.home_monitoring
-      - condition: and
-        conditions:
-          - condition: state
-            entity_id: input_boolean.roborock_ready_to_clean
-            state: "on"
-          - condition: time
-            after: "07:00:00"
-            before: "20:00:00"
-      - service: vacuum.start
-        entity_id: vacuum.roborock_vacuum_s5e
-
-  - alias: "home scene - switch off"
-    trigger:
-      platform: state
-      entity_id: switch.hej_3gang_library_light_bottom
-      from: "on"
-      to: "off"
-    action:
-      - service: scene.turn_on
-        entity_id: scene.home
-      - service: alarm_control_panel.alarm_disarm
-        entity_id: alarm_control_panel.home_monitoring
-
-  - alias: "automatic away"
-    trigger:
-      - platform: template
-        value_template: >
-          {{ is_state('device_tracker.heesikiphone', 'not_home') and
-            is_state('device_tracker.seojiniphone', 'not_home') }}
-        for: "00:05:00"
-    condition:
-      - condition: and
-        conditions:
-          - condition: state
-            entity_id: alarm_control_panel.home_monitoring
-            state: "disarmed"
-          - condition: state
-            entity_id: switch.hej_3gang_library_light_bottom
-            state: "off"
-    action:
-      - service: switch.turn_on
-        entity_id: switch.hej_3gang_library_light_bottom
-
-  - alias: "automatic home"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.smartthings_door_contact_contact
-        to: "on"
-    condition:
-      - condition: and
-        conditions:
-          - condition: state
-            entity_id: alarm_control_panel.home_monitoring
-            state: "armed_away"
-          - condition: state
-            entity_id: switch.hej_3gang_library_light_bottom
-            state: "on"
-    action:
-      - service: switch.turn_off
-        entity_id: switch.hej_3gang_library_light_bottom
+    - alias: "automatic home"
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.smartthings_door_contact_contact
+          to: "on"
+      condition:
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: alarm_control_panel.home_monitoring
+              state: "armed_away"
+            - condition: state
+              entity_id: switch.hej_3gang_library_light_bottom
+              state: "on"
+      action:
+        - service: switch.turn_off
+          entity_id: switch.hej_3gang_library_light_bottom

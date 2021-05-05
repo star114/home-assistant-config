@@ -1,5 +1,6 @@
-sensor:
-  - platform: citywaste_korea
-    tagprintcd: !secret city_waste_tag
-    aptdong: !secret city_waste_aptdong
-    apthono: !secret city_waste_apthono
+city_waste_package:
+  sensor:
+    - platform: citywaste_korea
+      tagprintcd: !secret city_waste_tag
+      aptdong: !secret city_waste_aptdong
+      apthono: !secret city_waste_apthono

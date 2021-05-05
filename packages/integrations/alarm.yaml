@@ -1,172 +1,176 @@
-automation:
-  - alias: "Send notification when alarm is Armed in Away mode"
-    trigger:
-      - platform: state
-        entity_id: alarm_control_panel.home_monitoring
-        to: "armed_away"
-    action:
-      - service: notify.notify_telegram
-        data:
-          message: "👻 Home monitoring is armed in Away mode"
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: binary_sensor.smartthings_bedroom_contact_contact
-            state: "on"
-          - condition: state
-            entity_id: binary_sensor.smartthings_dressroom_contact_contact
-            state: "on"
-          - condition: state
-            entity_id: binary_sensor.smartthings_library_contact_contact
-            state: "on"
-          - condition: state
-            entity_id: binary_sensor.smartthings_laundryroom_contact_contact
-            state: "on"
-      - service: notify.notify_telegram
-        data:
-          message: "❗️Some windows are open in Away mode"
-  - alias: "Send notification when alarm is Armed in Home mode"
-    trigger:
-      - platform: state
-        entity_id: alarm_control_panel.home_monitoring
-        to: "armed_home"
-    action:
-      - service: notify.notify_telegram
-        data:
-          message: "👻 Home monitoring is armed in Home mode"
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: binary_sensor.smartthings_bedroom_contact_contact
-            state: "on"
-          - condition: state
-            entity_id: binary_sensor.smartthings_dressroom_contact_contact
-            state: "on"
-          - condition: state
-            entity_id: binary_sensor.smartthings_library_contact_contact
-            state: "on"
-          - condition: state
-            entity_id: binary_sensor.smartthings_laundryroom_contact_contact
-            state: "on"
-      - service: notify.notify_telegram
-        data:
-          message: "❗️Some windows are open in Home mode"
-  - alias: "Send notification when alarm is Armed in Night mode"
-    trigger:
-      - platform: state
-        entity_id: alarm_control_panel.home_monitoring
-        to: "armed_night"
-    action:
-      - service: notify.notify_telegram
-        data:
-          message: "👻 Home monitoring is armed in Night mode"
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: binary_sensor.smartthings_bedroom_contact_contact
-            state: "on"
-          - condition: state
-            entity_id: binary_sensor.smartthings_dressroom_contact_contact
-            state: "on"
-          - condition: state
-            entity_id: binary_sensor.smartthings_library_contact_contact
-            state: "on"
-          - condition: state
-            entity_id: binary_sensor.smartthings_laundryroom_contact_contact
-            state: "on"
-      - service: notify.notify_telegram
-        data:
-          message: "❗️Some windows are open in Night mode"
-  - alias: "Send notification when alarm is Disarmed"
-    trigger:
-      - platform: state
-        entity_id: alarm_control_panel.home_monitoring
-        to: "disarmed"
-    action:
-      - service: notify.notify_telegram
-        data:
-          message: "👻 Home monitoring is disarmed"
-  - alias: "Send notification when alarm is in pending status"
-    trigger:
-      - platform: state
-        entity_id: alarm_control_panel.home_monitoring
-        to: "pending"
-    action:
-      - service: notify.notify_telegram
-        data:
-          message: "⛔️ Home monitoring is in pending status"
-  - alias: "Send notification when alarm triggered"
-    trigger:
-      - platform: state
-        entity_id: alarm_control_panel.home_monitoring
-        to: "triggered"
-    action:
-      - service: notify.notify_telegram
-        data:
-          message: "‼️ Home monitoring has been triggered"
-  - alias: "Trigger alarm while armed away"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.smartthings_bedroom_contact_contact
-        to: "on"
-      - platform: state
-        entity_id: binary_sensor.smartthings_dressroom_contact_contact
-        to: "on"
-      - platform: state
-        entity_id: binary_sensor.smartthings_library_contact_contact
-        to: "on"
-      - platform: state
-        entity_id: binary_sensor.smartthings_laundryroom_contact_contact
-        to: "on"
-    condition:
-      - condition: state
-        entity_id: alarm_control_panel.home_monitoring
-        state: armed_away
-    action:
-      service: alarm_control_panel.alarm_trigger
-      target:
-        entity_id: alarm_control_panel.home_monitoring
-  - alias: "Trigger alarm while armed home"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.smartthings_bedroom_contact_contact
-        to: "on"
-      - platform: state
-        entity_id: binary_sensor.smartthings_dressroom_contact_contact
-        to: "on"
-      - platform: state
-        entity_id: binary_sensor.smartthings_library_contact_contact
-        to: "on"
-      - platform: state
-        entity_id: binary_sensor.smartthings_laundryroom_contact_contact
-        to: "on"
-    condition:
-      - condition: state
-        entity_id: alarm_control_panel.home_monitoring
-        state: armed_home
-    action:
-      service: alarm_control_panel.alarm_trigger
-      target:
-        entity_id: alarm_control_panel.home_monitoring
-  - alias: "Trigger alarm while armed night"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.smartthings_bedroom_contact_contact
-        to: "on"
-      - platform: state
-        entity_id: binary_sensor.smartthings_dressroom_contact_contact
-        to: "on"
-      - platform: state
-        entity_id: binary_sensor.smartthings_library_contact_contact
-        to: "on"
-      - platform: state
-        entity_id: binary_sensor.smartthings_laundryroom_contact_contact
-        to: "on"
-    condition:
-      - condition: state
-        entity_id: alarm_control_panel.home_monitoring
-        state: armed_night
-    action:
-      service: alarm_control_panel.alarm_trigger
-      target:
-        entity_id: alarm_control_panel.home_monitoring
+alarm_package:
+  automation:
+    - alias: "Send notification when alarm is Armed in Away mode"
+      trigger:
+        - platform: state
+          entity_id: alarm_control_panel.home_monitoring
+          to: "armed_away"
+      action:
+        - service: notify.notify_telegram
+          data:
+            message: "👻 Home monitoring is armed in Away mode"
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: binary_sensor.smartthings_bedroom_contact_contact
+              state: "on"
+            - condition: state
+              entity_id: binary_sensor.smartthings_dressroom_contact_contact
+              state: "on"
+            - condition: state
+              entity_id: binary_sensor.smartthings_library_contact_contact
+              state: "on"
+            - condition: state
+              entity_id: binary_sensor.smartthings_laundryroom_contact_contact
+              state: "on"
+        - service: notify.notify_telegram
+          data:
+            message: "❗️Some windows are open in Away mode"
+    - alias: "Send notification when alarm is Armed in Home mode"
+      trigger:
+        - platform: state
+          entity_id: alarm_control_panel.home_monitoring
+          to: "armed_home"
+      action:
+        - service: notify.notify_telegram
+          data:
+            message: "👻 Home monitoring is armed in Home mode"
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: binary_sensor.smartthings_bedroom_contact_contact
+              state: "on"
+            - condition: state
+              entity_id: binary_sensor.smartthings_dressroom_contact_contact
+              state: "on"
+            - condition: state
+              entity_id: binary_sensor.smartthings_library_contact_contact
+              state: "on"
+            - condition: state
+              entity_id: binary_sensor.smartthings_laundryroom_contact_contact
+              state: "on"
+        - service: notify.notify_telegram
+          data:
+            message: "❗️Some windows are open in Home mode"
+    - alias: "Send notification when alarm is Armed in Night mode"
+      trigger:
+        - platform: state
+          entity_id: alarm_control_panel.home_monitoring
+          to: "armed_night"
+      action:
+        - service: notify.notify_telegram
+          data:
+            message: "👻 Home monitoring is armed in Night mode"
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: binary_sensor.smartthings_bedroom_contact_contact
+              state: "on"
+            - condition: state
+              entity_id: binary_sensor.smartthings_dressroom_contact_contact
+              state: "on"
+            - condition: state
+              entity_id: binary_sensor.smartthings_library_contact_contact
+              state: "on"
+            - condition: state
+              entity_id: binary_sensor.smartthings_laundryroom_contact_contact
+              state: "on"
+        - service: notify.notify_telegram
+          data:
+            message: "❗️Some windows are open in Night mode"
+    - alias: "Send notification when alarm is Disarmed"
+      trigger:
+        - platform: state
+          entity_id: alarm_control_panel.home_monitoring
+          to: "disarmed"
+      action:
+        - service: notify.notify_telegram
+          data:
+            message: "👻 Home monitoring is disarmed"
+    - alias: "Send notification when alarm is in pending status"
+      trigger:
+        - platform: state
+          entity_id: alarm_control_panel.home_monitoring
+          to: "pending"
+      action:
+        - service: notify.notify_telegram
+          data:
+            message: "⛔️ Home monitoring is in pending status"
+    - alias: "Send notification when alarm triggered"
+      trigger:
+        - platform: state
+          entity_id: alarm_control_panel.home_monitoring
+          to: "triggered"
+      action:
+        - service: notify.notify_telegram
+          data:
+            message: "‼️ Home monitoring has been triggered"
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "경고. 경고. 경보시스템이 동작합니다."
+    - alias: "Trigger alarm while armed away"
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.smartthings_bedroom_contact_contact
+          to: "on"
+        - platform: state
+          entity_id: binary_sensor.smartthings_dressroom_contact_contact
+          to: "on"
+        - platform: state
+          entity_id: binary_sensor.smartthings_library_contact_contact
+          to: "on"
+        - platform: state
+          entity_id: binary_sensor.smartthings_laundryroom_contact_contact
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: armed_away
+      action:
+        service: alarm_control_panel.alarm_trigger
+        target:
+          entity_id: alarm_control_panel.home_monitoring
+    - alias: "Trigger alarm while armed home"
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.smartthings_bedroom_contact_contact
+          to: "on"
+        - platform: state
+          entity_id: binary_sensor.smartthings_dressroom_contact_contact
+          to: "on"
+        - platform: state
+          entity_id: binary_sensor.smartthings_library_contact_contact
+          to: "on"
+        - platform: state
+          entity_id: binary_sensor.smartthings_laundryroom_contact_contact
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: armed_home
+      action:
+        service: alarm_control_panel.alarm_trigger
+        target:
+          entity_id: alarm_control_panel.home_monitoring
+    - alias: "Trigger alarm while armed night"
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.smartthings_bedroom_contact_contact
+          to: "on"
+        - platform: state
+          entity_id: binary_sensor.smartthings_dressroom_contact_contact
+          to: "on"
+        - platform: state
+          entity_id: binary_sensor.smartthings_library_contact_contact
+          to: "on"
+        - platform: state
+          entity_id: binary_sensor.smartthings_laundryroom_contact_contact
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: armed_night
+      action:
+        service: alarm_control_panel.alarm_trigger
+        target:
+          entity_id: alarm_control_panel.home_monitoring

@@ -10,41 +10,7 @@ homeassistant:
   time_zone: !secret time_zone
   external_url: !secret external_url
   internal_url: !secret internal_url
-  media_dirs:
-    media: /media
-  legacy_templates: false
-  packages:
-    bathroom: !include packages/bathroom.yaml
-    bedroom: !include packages/bedroom.yaml
-    dressroom: !include packages/dressroom.yaml
-    kitchen: !include packages/kitchen.yaml
-    laundryroom: !include packages/laundryroom.yaml
-    library: !include packages/library.yaml
-    first_morning_motion: !include packages/first_morning_motion.yaml
-
-    # custom_components
-    city_waste: !include packages/custom_components/city_waste.yaml
-    harmony_ac: !include packages/custom_components/harmony_ac.yaml
-    iphonedetect: !include packages/custom_components/iphonedetect.yaml
-    xiaomi_cloud_map_extractor: !include packages/custom_components/xiaomi_cloud_map_extractor.yaml
-    # integrations
-    alarm: !include packages/integrations/alarm.yaml
-    certificate_expiry: !include packages/integrations/certificate_expiry.yaml
-    google_assistant: !include packages/integrations/google_assistant.yaml
-    google_cast: !include packages/integrations/google_cast.yaml
-    ping: !include packages/integrations/ping.yaml
-    spotify: !include packages/integrations/spotify.yaml
-    systemmonitor: !include packages/integrations/systemmonitor.yaml
-    telegram: !include packages/integrations/telegram.yaml
-    time_date: !include packages/integrations/time_date.yaml
-    transmission: !include packages/integrations/transmission.yaml
-    updater: !include packages/integrations/updater.yaml
-    webostv: !include packages/integrations/webostv.yaml
-    xiaomi: !include packages/integrations/xiaomi.yaml
-    # addons
-    google_drive_backup: !include packages/addons/google_drive_backup.yaml
-    influxdb: !include packages/addons/influxdb.yaml
-    zigbee2mqtt: !include packages/addons/zigbee2mqtt.yaml
+  packages: !include_dir_merge_named packages/
 
 group: !include groups.yaml
 automation: !include automations.yaml

@@ -42,6 +42,12 @@
         - service: input_boolean.turn_on
           target:
             entity_id: input_boolean.dish_washer_state
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: "disarmed"
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "식기 세척을 시작합니다."
       ending_actions:
         - service: notify.notify_telegram
           data:
@@ -49,6 +55,12 @@
         - service: input_boolean.turn_off
           target:
             entity_id: input_boolean.dish_washer_state
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: "disarmed"
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "식기 세척이 완료되었습니다."
 - id: "1617444167235"
   alias: Food waste processor monitor
   description: ""
@@ -70,6 +82,12 @@
         - service: switch.turn_on
           target:
             entity_id: switch.dawon_kitchen_fan_plug
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: "disarmed"
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "음식물 쓰레기 처리를 시작합니다."
       ending_actions:
         - service: notify.notify_telegram
           data:
@@ -80,3 +98,9 @@
         - service: switch.turn_off
           target:
             entity_id: switch.dawon_kitchen_fan_plug
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: "disarmed"
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "음식물 쓰레기 처리가 완료되었습니다."

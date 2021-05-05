@@ -1,66 +1,82 @@
 # laundry room
+laundryroom_package:
+  automation:
+    - alias: "laundry room light off with no motion"
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.smartthings_laundryroom_motion_occupancy
+          to: "off"
+          for:
+            minutes: 2
+      condition:
+        - condition: state
+          entity_id: light.hej_3gang_laundryroom_light_top
+          state: "on"
+      action:
+        - service: light.turn_off
+          entity_id: light.hej_3gang_laundryroom_light_top
 
-automation:
-  - alias: "laundry room light off with no motion"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.smartthings_laundryroom_motion_occupancy
-        to: "off"
-        for:
-          minutes: 2
-    condition:
-      - condition: state
-        entity_id: light.hej_3gang_laundryroom_light_top
-        state: "on"
-    action:
-      - service: light.turn_off
-        entity_id: light.hej_3gang_laundryroom_light_top
+    - alias: "laundry room light on with motion when sun is below_horizon"
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.smartthings_laundryroom_motion_occupancy
+          to: "on"
+      condition:
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: sun.sun
+              state: "below_horizon"
+            - condition: state
+              entity_id: light.hej_3gang_laundryroom_light_top
+              state: "off"
+      action:
+        - service: light.turn_on
+          entity_id: light.hej_3gang_laundryroom_light_top
 
-  - alias: "laundry room light on with motion when sun is below_horizon"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.smartthings_laundryroom_motion_occupancy
-        to: "on"
-    condition:
-      - condition: and
-        conditions:
-          - condition: state
-            entity_id: sun.sun
-            state: "below_horizon"
-          - condition: state
-            entity_id: light.hej_3gang_laundryroom_light_top
-            state: "off"
-    action:
-      - service: light.turn_on
-        entity_id: light.hej_3gang_laundryroom_light_top
-
-  # dryer
-  - alias: "Dryer turned on"
-    trigger:
-      - platform: state
-        entity_id: switch.geonjogi
-        to: "on"
-    action:
-      - service: notify.notify_telegram
-        data:
-          message: |
-            🧽 Dryer has started.
-  - alias: "Dryer turned off"
-    trigger:
-      - platform: state
-        entity_id: switch.geonjogi
-        to: "off"
-    action:
-      - service: notify.notify_telegram
-        data:
-          message: 🏁 Dryer has finished.
-  - alias: "Dryer job state changes"
-    trigger:
-      - platform: state
-        entity_id: sensor.geonjogi_dryer_job_state
-        to: "drying"
-    action:
-      - service: notify.notify_telegram
-        data:
-          message: |
-            ⏱ Dryer will finish in about {{ ((as_timestamp(states('sensor.geonjogi_dryer_completion_time')) - as_timestamp(now())) / 60) | int }} minutes.
+    # dryer
+    - alias: "Dryer turned on"
+      trigger:
+        - platform: state
+          entity_id: switch.geonjogi
+          to: "on"
+      action:
+        - service: notify.notify_telegram
+          data:
+            message: 🧽 Dryer has started.
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: "disarmed"
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "건조를 시작합니다."
+    - alias: "Dryer turned off"
+      trigger:
+        - platform: state
+          entity_id: switch.geonjogi
+          to: "off"
+      action:
+        - service: notify.notify_telegram
+          data:
+            message: 🏁 Dryer has finished.
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: "disarmed"
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "건조가 완료되었습니다."
+    - alias: "Dryer job state changes"
+      trigger:
+        - platform: state
+          entity_id: sensor.geonjogi_dryer_job_state
+          to: "drying"
+      action:
+        - service: notify.notify_telegram
+          data:
+            message: ⏱ Dryer will finish in about {{ ((as_timestamp(states('sensor.geonjogi_dryer_completion_time')) - as_timestamp(now())) / 60) | int }} minutes.
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: "disarmed"
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "건조가 약 {{ ((as_timestamp(states('sensor.geonjogi_dryer_completion_time')) - as_timestamp(now())) / 60) | int }} 분 뒤에 종료됩니다."

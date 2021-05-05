@@ -1,105 +1,123 @@
 # kitchen
+kitchen_package:
+  input_boolean:
+    food_waste_machine_state:
+      name: Food waste machine state
+      initial: false
+    dish_washer_state:
+      name: Dish washer state
+      initial: false
+    co2_unhealthy_state:
+      name: CO2 unhealthy state
+      initial: false
 
-input_boolean:
-  food_waste_machine_state:
-    name: Food waste machine state
-    initial: false
-  dish_washer_state:
-    name: Dish washer state
-    initial: false
-  co2_unhealthy_state:
-    name: CO2 unhealthy state
-    initial: false
+  automation:
+    - alias: "kitchen light off with no motion"
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.smartthings_kitchen_motion_occupancy
+          to: "off"
+          for:
+            minutes: 2
+      condition:
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: alarm_control_panel.home_monitoring
+              state: "armed_night"
+            - condition: state
+              entity_id: light.hej_3gang_kitchen_light_left_center
+              state: "on"
+      action:
+        - service: light.turn_off
+          entity_id: light.hej_3gang_kitchen_light_left_center
 
-automation:
-  - alias: "kitchen light off with no motion"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.smartthings_kitchen_motion_occupancy
-        to: "off"
-        for:
-          minutes: 2
-    condition:
-      - condition: and
-        conditions:
-          - condition: state
-            entity_id: alarm_control_panel.home_monitoring
-            state: "armed_night"
-          - condition: state
-            entity_id: light.hej_3gang_kitchen_light_left_center
-            state: "on"
-    action:
-      - service: light.turn_off
-        entity_id: light.hej_3gang_kitchen_light_left_center
+    - alias: "kitchen light on with motion when sun is below_horizon"
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.smartthings_kitchen_motion_occupancy
+          to: "on"
+      condition:
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: sun.sun
+              state: "below_horizon"
+            - condition: state
+              entity_id: light.hej_3gang_kitchen_light_left_center
+              state: "off"
+            - condition: state
+              entity_id: light.hej_3gang_kitchen_light_left_top
+              state: "off"
+            - condition: state
+              entity_id: light.hej_3gang_kitchen_light_right_center
+              state: "off"
+            - condition: state
+              entity_id: light.hej_3gang_kitchen_light_right_top
+              state: "off"
+      action:
+        - service: light.turn_on
+          entity_id: light.hej_3gang_kitchen_light_left_center
 
-  - alias: "kitchen light on with motion when sun is below_horizon"
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.smartthings_kitchen_motion_occupancy
-        to: "on"
-    condition:
-      - condition: and
-        conditions:
-          - condition: state
-            entity_id: sun.sun
-            state: "below_horizon"
-          - condition: state
-            entity_id: light.hej_3gang_kitchen_light_left_center
-            state: "off"
-          - condition: state
-            entity_id: light.hej_3gang_kitchen_light_left_top
-            state: "off"
-          - condition: state
-            entity_id: light.hej_3gang_kitchen_light_right_center
-            state: "off"
-          - condition: state
-            entity_id: light.hej_3gang_kitchen_light_right_top
-            state: "off"
-    action:
-      - service: light.turn_on
-        entity_id: light.hej_3gang_kitchen_light_left_center
+    - alias: "CO2 level has reached unhealty state"
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.samseong_eeomoniteo_carbon_dioxide_measurement
+          for: "00:10:00"
+          above: 1400
+      action:
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.co2_unhealthy_state
+        - service: notify.notify_telegram
+          data:
+            title: ⚠️ Unhealthy CO2 level
+            message: Please open the windows.
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: "disarmed"
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "이산화탄소 농도가 너무 높습니다. 환기가 필요합니다."
+    - alias: "CO2 level has come back to normal"
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.samseong_eeomoniteo_carbon_dioxide_measurement
+          for: "00:03:00"
+          below: 1000
+      condition:
+        - condition: state
+          entity_id: input_boolean.co2_unhealthy_state
+          state: "on"
+      action:
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.co2_unhealthy_state
+        - service: notify.notify_telegram
+          data:
+            title: ✅ Normal CO2 level
+            message: Please close the windows.
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: "disarmed"
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "이산화탄소 농도가 정상으로 돌아왔습니다."
 
-  - alias: "CO2 level has reached unhealty state"
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.samseong_eeomoniteo_carbon_dioxide_measurement
-        for: "00:10:00"
-        above: 1400
-    action:
-      - service: input_boolean.turn_on
-        entity_id: input_boolean.co2_unhealthy_state
-      - service: notify.notify_telegram
-        data:
-          title: ⚠️ Unhealthy CO2 level
-          message: Please open the windows.
-  - alias: "CO2 level has come back to normal"
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.samseong_eeomoniteo_carbon_dioxide_measurement
-        for: "00:03:00"
-        below: 1000
-    condition:
-      - condition: state
-        entity_id: input_boolean.co2_unhealthy_state
-        state: "on"
-    action:
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.co2_unhealthy_state
-      - service: notify.notify_telegram
-        data:
-          title: ✅ Normal CO2 level
-          message: Please close the windows.
-
-  - alias: "Nutritional supplements reminder"
-    trigger:
-      - platform: time
-        at: "12:40:00"
-    condition:
-      - condition: state
-        entity_id: alarm_control_panel.home_monitoring
-        state: "disarmed"
-    action:
-      - service: notify.notify_telegram
-        data:
-          title: 💊 Nutritional supplements reminder
-          message: Please take nutritional supplements.
+    - alias: "Nutritional supplements reminder"
+      trigger:
+        - platform: time
+          at: "12:40:00"
+      condition:
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: "disarmed"
+      action:
+        - service: notify.notify_telegram
+          data:
+            title: 💊 Nutritional supplements reminder
+            message: Please take nutritional supplements.
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: "disarmed"
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "영양제 먹을 시간입니다. 잊지 말고 드세요."
