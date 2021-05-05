@@ -31,12 +31,20 @@ automation:
         to: "on"
     action:
       - condition: state
-        entity_id: light.hej_3gang_bathroom_light_center
+        entity_id: light.hej_3gang_bathroom_light_bottom
         state: "off"
       - service: light.turn_on
-        entity_id: light.hej_3gang_bathroom_light_center
-      - service: light.turn_on
         entity_id: light.hej_3gang_bathroom_light_bottom
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: sun.sun
+            state: "above_horizon"
+          - condition: state
+            entity_id: light.hej_3gang_bathroom_light_center
+            state: "off"
+      - service: light.turn_on
+        entity_id: light.hej_3gang_bathroom_light_center
 
   - alias: "Trigger lights off timer when motion is off for x minutes"
     trigger:
