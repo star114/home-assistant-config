@@ -89,3 +89,17 @@ automation:
         data:
           title: ✅ Normal CO2 level
           message: Please close the windows.
+
+  - alias: "Nutritional supplements reminder"
+    trigger:
+      - platform: time
+        at: "12:40:00"
+    condition:
+      - condition: state
+        entity_id: alarm_control_panel.home_monitoring
+        state: "disarmed"
+    action:
+      - service: notify.notify_telegram
+        data:
+          title: 💊 Nutritional supplements reminder
+          message: Please take nutritional supplements.
