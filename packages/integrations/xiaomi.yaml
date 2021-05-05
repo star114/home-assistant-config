@@ -36,7 +36,52 @@ script:
           command: reset_consumable
           params: ["sensor_dirty_time"]
 
+input_boolean:
+  roborock_ready_to_clean:
+    name: Roborock ready to clean
+    initial: true
+
+# timer for robotock cleaning duration
+timer:
+  roborock_cleaning_duration:
+    duration: "06:00:00"
+
 automation:
+  - alias: "Roborock S5 MAX - cleaning duration finished"
+    trigger:
+      - platform: event
+        event_type: timer.finished
+        event_data:
+          entity_id: timer.roborock_cleaning_duration
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.roborock_ready_to_clean
+      - condition: and
+        conditions:
+          - condition: time
+            after: "07:00:00"
+            before: "20:00:00"
+          - condition: state
+            entity_id: alarm_control_panel.home_monitoring
+            state: "armed_away"
+      - service: vacuum.start
+        entity_id: vacuum.roborock_vacuum_s5e
+  - alias: "Roborock S5 MAX - reserved time clean"
+    trigger:
+      - platform: time
+        at: "17:00:00"
+    condition:
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.roborock_ready_to_clean
+            state: "on"
+          - condition: state
+            entity_id: alarm_control_panel.home_monitoring
+            state: "armed_away"
+    action:
+      - service: vacuum.start
+        entity_id: vacuum.roborock_vacuum_s5e
   - alias: "Roborock S5 MAX - Cleaning"
     trigger:
       - platform: state
@@ -87,6 +132,10 @@ automation:
             📈 Cleaning report
               Time: {{ state_attr('vacuum.roborock_vacuum_s5e', 'cleaning_time') }} minutes
               Area: {{ state_attr('vacuum.roborock_vacuum_s5e', 'cleaned_area') }} m^2
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.roborock_ready_to_clean
+      - service: timer.start
+        entity_id: timer.roborock_cleaning_duration
       - condition: template
         value_template: |
           {% if (state_attr('vacuum.roborock_vacuum_s5e', 'main_brush_left') | int < 2) 

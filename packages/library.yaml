@@ -48,6 +48,16 @@ automation:
         entity_id: scene.away
       - service: alarm_control_panel.alarm_arm_away
         entity_id: alarm_control_panel.home_monitoring
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.roborock_ready_to_clean
+            state: "on"
+          - condition: time
+            after: "07:00:00"
+            before: "20:00:00"
+      - service: vacuum.start
+        entity_id: vacuum.roborock_vacuum_s5e
 
   - alias: "home scene - switch off"
     trigger:
