@@ -17,4 +17,5 @@ service_account.json
 home-assistant_v2.db*
 known_devices.yaml
 harmony_*.conf
+webostv.conf
 .HA_VERSION

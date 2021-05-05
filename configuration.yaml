@@ -39,6 +39,7 @@ homeassistant:
     time_date: !include packages/integrations/time_date.yaml
     transmission: !include packages/integrations/transmission.yaml
     updater: !include packages/integrations/updater.yaml
+    webostv: !include packages/integrations/webostv.yaml
     xiaomi: !include packages/integrations/xiaomi.yaml
     # addons
     google_drive_backup: !include packages/addons/google_drive_backup.yaml
@@ -80,7 +81,7 @@ lovelace:
       type: module
     - url: /local/community/transmission-card/transmission-card.js
       type: module
-    - url: /local/community/harmony-card/harmony-card.js
-      type: module
     - url: /local/community/flex-table-card/flex-table-card.js
+      type: module
+    - url: /local/community/LG-WebOS-Remote-Control/lg-remote-control.js
       type: module

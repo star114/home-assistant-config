@@ -846,6 +846,8 @@ views:
     path: media
     badges: []
     cards:
+      - type: "custom:lg-remote-control"
+        entity: media_player.lg_webos_smart_tv
       - type: vertical-stack
         cards:
           - type: media-control
@@ -864,47 +866,11 @@ views:
           - type: media-control
             entity: media_player.spotify_seojin12
             name: Seo Jin's Spotify
-      - type: "custom:harmony-card"
-        entity: remote.harmony_hub
-        scale: 1.5
-        activities:
-          - name: TV
-            device: LG TV
-            volume_device: LG TV
-          - name: Netflix
-            device: LG TV
-            volume_device: LG TV
-        buttons:
-          xbox:
-            command: "Xbox"
-            hide: true
-          back:
-            command: "Back"
-            icon: "mdi:undo-variant"
-            hide: false
-          a:
-            command: "ChannelUp"
-            icon: "mdi:arrow-up-bold"
-            hide: false
-          b:
-            command: "ChannelDown"
-            icon: "mdi:arrow-down-bold"
-            hide: false
-          x:
-            command: "X"
-            icon: "mdi:alpha-x-circle"
-            hide: true
-            color: "#003bbd"
-          y:
-            command: "Y"
-            icon: "mdi:alpha-y-circle"
-            hide: true
-            color: "#f1c70f"
-      - type: entity
-        entity: sensor.plex_star114_plex_server
-        name: Plex server
-      - type: custom:transmission-card
-        hide_type: false
+          - type: entity
+            entity: sensor.plex_star114_plex_server
+            name: Plex server
+          - type: custom:transmission-card
+            hide_type: false
   - title: HA server
     path: HA server
     icon: "mdi:home-assistant"
