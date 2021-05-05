@@ -41,6 +41,16 @@ input_boolean:
     name: Roborock ready to clean
     initial: true
 
+input_number:
+  cleaning_dustbin:
+    name: cleaning dustbin gauge
+    initial: 0
+    min: 0
+    max: 100
+    step: 5
+    mode: box
+    unit_of_measurement: "%"
+
 # timer for robotock cleaning duration
 timer:
   roborock_cleaning_duration:
@@ -101,6 +111,13 @@ automation:
       - service: notify.notify_telegram
         data:
           message: "🪑 Bbo bot is docked."
+      - condition: numeric_state
+        entity_id: input_number.cleaning_dustbin
+        above: 70
+      - service: notify.notify_telegram
+        data:
+          title: 🚧 Maintainance 🚧
+          message: "Please clean up dustbin."
   - alias: "Roborock S5 MAX - Paused"
     trigger:
       - platform: state
@@ -136,6 +153,8 @@ automation:
         entity_id: input_boolean.roborock_ready_to_clean
       - service: timer.start
         entity_id: timer.roborock_cleaning_duration
+      - service: input_number.increment
+        entity_id: input_number.cleaning_dustbin
       - condition: template
         value_template: |
           {% if (state_attr('vacuum.roborock_vacuum_s5e', 'main_brush_left') | int < 2) 

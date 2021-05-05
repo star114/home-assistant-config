@@ -838,6 +838,9 @@ views:
             entity: vacuum.roborock_vacuum_s5e
             map_camera: camera.xiaomi_cloud_map_extractor
             camera_calibration: true
+          - type: entity
+            name: Cleaning dustbin gauge
+            entity: input_number.cleaning_dustbin
   - title: Media
     icon: "mdi:play-network"
     path: media
