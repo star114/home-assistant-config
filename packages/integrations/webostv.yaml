@@ -1,7 +1,7 @@
 wake_on_lan: # enables `wake_on_lan` domain
 
 webostv:
-  host: 192.168.0.37
+  host: !secret LGWebOSTV_ip
   #other settings
   turn_on_action:
     service: remote.send_command
