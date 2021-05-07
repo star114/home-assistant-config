@@ -1,0 +1,59 @@
+naver_weather_package:
+  automation:
+    - alias: "notify rain forecast"
+      trigger:
+        - platform: state
+          entity_id: sensor.naver_weather_rainystart_1
+          from: "비안옴"
+      action:
+        - service: notify.notify_telegram
+          data:
+            message: "🌂 오늘 비 예보가 있어요."
+    - alias: "umbrella notification"
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.smartthings_door_contact_contact
+          to: "on"
+      condition:
+        - condition: not
+          conditions:
+            - condition: state
+              entity_id: sensor.naver_weather_rainystart_1
+              state: "비안옴"
+      action:
+        - service: notify.notify_telegram
+          data:
+            message: "🌂 오늘 비 예보가 있으니 우산을 챙기세요."
+        - service: notify.in_the_library
+          data:
+            message: "오늘 비 예보가 있으니 우산을 챙기세요."
+    - alias: "notify rain"
+      trigger:
+        - platform: state
+          entity_id: weather.naver_weather_1
+          to: "rainy"
+      condition:
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: binary_sensor.smartthings_bedroom_contact_contact
+              state: "on"
+            - condition: state
+              entity_id: binary_sensor.smartthings_dressroom_contact_contact
+              state: "on"
+            - condition: state
+              entity_id: binary_sensor.smartthings_library_contact_contact
+              state: "on"
+            - condition: state
+              entity_id: binary_sensor.smartthings_laundryroom_contact_contact
+              state: "on"
+      action:
+        - service: notify.notify_telegram
+          data:
+            message: "☔️ 지금 비가 내려요. 창문을 닫아주세요."
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: "disarmed"
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "비가 내려요. 창문을 닫아주세요."
