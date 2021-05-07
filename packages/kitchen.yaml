@@ -70,14 +70,14 @@ kitchen_package:
           entity_id: input_boolean.co2_unhealthy_state
         - service: notify.notify_telegram
           data:
-            title: ⚠️ Unhealthy CO2 level
-            message: Please open the windows.
+            title: "⚠️ 실내 이산화탄소 수치 관리 필요"
+            message: "창문을 열어 환기하세요"
         - condition: state
           entity_id: alarm_control_panel.home_monitoring
           state: "disarmed"
         - service: notify.galaxy_cloud_speak
           data:
-            message: "이산화탄소 농도가 너무 높습니다. 환기가 필요합니다."
+            message: "실내 이산화탄소 농도가 너무 높습니다. 환기가 필요합니다."
     - alias: "CO2 level has come back to normal"
       trigger:
         - platform: numeric_state
@@ -93,8 +93,8 @@ kitchen_package:
           entity_id: input_boolean.co2_unhealthy_state
         - service: notify.notify_telegram
           data:
-            title: ✅ Normal CO2 level
-            message: Please close the windows.
+            title: "✅ 실내 이산화탄소 수치 정상"
+            message: "이제 창문을 닫아도 좋습니다."
         - condition: state
           entity_id: alarm_control_panel.home_monitoring
           state: "disarmed"
@@ -113,8 +113,7 @@ kitchen_package:
       action:
         - service: notify.notify_telegram
           data:
-            title: 💊 Nutritional supplements reminder
-            message: Please take nutritional supplements.
+            message: "💊 영양제 알림. 잊지 말고 드세요."
         - condition: state
           entity_id: alarm_control_panel.home_monitoring
           state: "disarmed"

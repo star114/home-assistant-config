@@ -11,8 +11,8 @@ updater_package:
       action:
         - service: notify.notify_telegram
           data:
-            title: "🆕 New Home Assistant Release"
-            message: "Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version') }} is now available."
+            title: "🆕 새로운 Home Assistant 업데이트 알림"
+            message: "Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version') }} 으로 업데이트 하세요."
     - alias: "HACS Update notification"
       trigger:
         - platform: numeric_state
@@ -21,5 +21,5 @@ updater_package:
       action:
         - service: notify.notify_telegram
           data:
-            title: "🆕 New HACS Release"
-            message: "HACS has {{ states('sensor.hacs') | int }} pending updates."
+            title: "🆕 새로운 HACS 업데이트 알림"
+            message: "HACS 에 업데이트가 {{ states('sensor.hacs') | int }} 개 있습니다."

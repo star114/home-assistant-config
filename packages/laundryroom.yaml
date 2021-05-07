@@ -35,48 +35,33 @@ laundryroom_package:
           entity_id: light.hej_3gang_laundryroom_light_top
 
     # dryer
-    - alias: "Dryer turned on"
-      trigger:
-        - platform: state
-          entity_id: switch.geonjogi
-          to: "on"
-      action:
-        - service: notify.notify_telegram
-          data:
-            message: 🧽 Dryer has started.
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "건조를 시작합니다."
     - alias: "Dryer turned off"
       trigger:
         - platform: state
-          entity_id: switch.geonjogi
-          to: "off"
+          entity_id: sensor.geonjogi_dryer_machine_state
+          to: "stop"
       action:
         - service: notify.notify_telegram
           data:
-            message: 🏁 Dryer has finished.
+            message: "건조가 완료되었습니다."
         - condition: state
           entity_id: alarm_control_panel.home_monitoring
           state: "disarmed"
         - service: notify.galaxy_cloud_speak
           data:
             message: "건조가 완료되었습니다."
-    - alias: "Dryer job state changes"
+    - alias: "Dryer turned on"
       trigger:
         - platform: state
-          entity_id: sensor.geonjogi_dryer_job_state
-          to: "drying"
+          entity_id: sensor.geonjogi_dryer_machine_state
+          to: "run"
       action:
         - service: notify.notify_telegram
           data:
-            message: ⏱ Dryer will finish in about {{ ((as_timestamp(states('sensor.geonjogi_dryer_completion_time')) - as_timestamp(now())) / 60) | int }} minutes.
+            message: "건조를 시작합니다. ⏱ 약 {{ ((as_timestamp(states('sensor.geonjogi_dryer_completion_time')) - as_timestamp(now())) / 60) | int }} 분 뒤에 종료됩니다."
         - condition: state
           entity_id: alarm_control_panel.home_monitoring
           state: "disarmed"
         - service: notify.galaxy_cloud_speak
           data:
-            message: "건조가 약 {{ ((as_timestamp(states('sensor.geonjogi_dryer_completion_time')) - as_timestamp(now())) / 60) | int }} 분 뒤에 종료됩니다."
+            message: "건조를 시작합니다. 약 {{ ((as_timestamp(states('sensor.geonjogi_dryer_completion_time')) - as_timestamp(now())) / 60) | int }} 분 뒤에 종료됩니다."

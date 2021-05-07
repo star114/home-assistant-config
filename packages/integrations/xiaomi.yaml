@@ -101,7 +101,7 @@ xiaomi_package:
       action:
         - service: notify.notify_telegram
           data:
-            message: "🧹 Bbo bot is cleaning our house."
+            message: "🧹 청소를 시작합니다."
         - condition: state
           entity_id: alarm_control_panel.home_monitoring
           state: "disarmed"
@@ -117,20 +117,20 @@ xiaomi_package:
       action:
         - service: notify.notify_telegram
           data:
-            message: "🪑 Bbo bot is docked."
+            message: "🪑 뽀봇이 제 자리로 돌아왔어요."
         - condition: numeric_state
           entity_id: input_number.cleaning_dustbin
           above: 70
         - service: notify.notify_telegram
           data:
-            title: 🚧 Maintainance 🚧
-            message: "Please clean up dustbin."
+            title: "🚧 유지보수 🚧"
+            message: "먼지통을 비우세요."
         - condition: state
           entity_id: alarm_control_panel.home_monitoring
           state: "disarmed"
         - service: notify.galaxy_cloud_speak
           data:
-            message: "먼지통을 비워주세요."
+            message: "먼지통을 비우세요."
     - alias: "Roborock S5 MAX - Paused"
       trigger:
         - platform: state
@@ -139,7 +139,7 @@ xiaomi_package:
       action:
         - service: notify.notify_telegram
           data:
-            message: "⏸ Bbo bot is paused"
+            message: "⏸ 뽀봇이 일시정지되었습니다."
     - alias: "Roborock S5 MAX - Idle"
       trigger:
         - platform: state
@@ -148,7 +148,7 @@ xiaomi_package:
       action:
         - service: notify.notify_telegram
           data:
-            message: "⏹ Bbo bot is stopped."
+            message: "⏹ 뽀봇이 정지되었습니다."
     - alias: "Roborock S5 MAX - Returning to dock"
       trigger:
         - platform: state
@@ -157,11 +157,11 @@ xiaomi_package:
       action:
         - service: notify.notify_telegram
           data:
-            title: "Bbo bot is going back to dock"
+            title: "청소가 완료되었습니다."
             message: |
-              📈 Cleaning report
-                Time: {{ state_attr('vacuum.roborock_vacuum_s5e', 'cleaning_time') }} minutes
-                Area: {{ state_attr('vacuum.roborock_vacuum_s5e', 'cleaned_area') }} m^2
+              📈 보고서
+                청소시간: {{ state_attr('vacuum.roborock_vacuum_s5e', 'cleaning_time') }} 분
+                청소구역: {{ state_attr('vacuum.roborock_vacuum_s5e', 'cleaned_area') }} m2
         - service: input_boolean.turn_off
           entity_id: input_boolean.roborock_ready_to_clean
         - service: timer.start
@@ -184,24 +184,27 @@ xiaomi_package:
             {% endif %}
         - service: notify.notify_telegram
           data:
-            title: 🚧 Maintainance 🚧
+            title: "🚧 유지보수 🚧"
             message: >
               {% if state_attr('vacuum.roborock_vacuum_s5e', 'main_brush_left') | int < 2 %}
-                Please replace main brush within a hour.
+                메인 브러쉬를 교체하세요.
               {% endif %}
               {% if state_attr('vacuum.roborock_vacuum_s5e', 'side_brush_left') | int < 2 %}
-                Please replace side brush within a hour.
+                사이드 브러쉬를 교체하세요.
               {% endif %}
               {% if state_attr('vacuum.roborock_vacuum_s5e', 'filter_left') | int < 2 %}
-                Please replace filter within a hour.
+                필터를 교체하세요.
               {% endif %}
               {% if state_attr('vacuum.roborock_vacuum_s5e', 'sensor_dirty_left') | int < 2 %}
-                Please clean up sensor within a hour.
+                센서 청소가 필요합니다.
               {% endif %}
             data:
               inline_keyboard:
                 - "Reset main brush:/reset_main_brush_left, Reset side brush:/reset_side_brush_left"
                 - "Reset filter:/reset_filter_left, Reset sensor:/reset_sensor_dirty_left"
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: "disarmed"
         - service: notify.galaxy_cloud_speak
           data:
             message: "뽀봇 유지 관리가 필요합니다."

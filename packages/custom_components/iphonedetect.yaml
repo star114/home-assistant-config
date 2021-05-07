@@ -17,37 +17,41 @@ iphonedetect_package:
         entity_id: device_tracker.heesikiphone
         from: "not_home"
         to: "home"
+        for: "00:05:00"
       action:
         service: notify.notify_telegram
         data:
-          message: "🏡 Heesik is now home"
+          message: "🏡 희식님께서 집에 도착하셨습니다."
     - alias: "Notify my absence"
       trigger:
         platform: state
         entity_id: device_tracker.heesikiphone
         from: "home"
         to: "not_home"
+        for: "00:05:00"
       action:
         service: notify.notify_telegram
         data:
-          message: "🏡 Heesik is now not home"
+          message: "🏡 희식님께서 외출하셨습니다."
     - alias: "Notify seo's presence"
       trigger:
         platform: state
         entity_id: device_tracker.seojiniphone
         from: "not_home"
         to: "home"
+        for: "00:05:00"
       action:
         service: notify.notify_telegram
         data:
-          message: "🏡 Seo is now home"
+          message: "🏡 서진님께서 집에 도착하셨습니다."
     - alias: "Notify seo's absence"
       trigger:
         platform: state
         entity_id: device_tracker.seojiniphone
         from: "home"
         to: "not_home"
+        for: "00:05:00"
       action:
         service: notify.notify_telegram
         data:
-          message: "🏡 Seo is now not home"
+          message: "🏡 서진님께서 외출하셨습니다."

@@ -10,5 +10,5 @@ google_drive_backup_package:
       action:
         - service: notify.notify_telegram
           data:
-            title: 🚧 Snapshots are Stale
-            message: Please visit the 'Home Assistant Google Drive Backup ' add-on status page for details.
+            title: "🚧 구글 드라이브 백업 확인 필요"
+            message: "Home Assistant 의 구글 드라이브 백업 페이지를 방문하여 상세 내용을 확인하세요."

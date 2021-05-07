@@ -8,7 +8,7 @@ alarm_package:
       action:
         - service: notify.notify_telegram
           data:
-            message: "👻 Home monitoring is armed in Away mode"
+            message: "👻 보안모드를 외출로 설정합니다."
         - condition: or
           conditions:
             - condition: state
@@ -25,7 +25,7 @@ alarm_package:
               state: "on"
         - service: notify.notify_telegram
           data:
-            message: "❗️Some windows are open in Away mode"
+            message: "❗️보안모드에서 몇몇 창문이 열려 있습니다."
     - alias: "Send notification when alarm is Armed in Home mode"
       trigger:
         - platform: state
@@ -34,7 +34,7 @@ alarm_package:
       action:
         - service: notify.notify_telegram
           data:
-            message: "👻 Home monitoring is armed in Home mode"
+            message: "👻 보안모드를 재택으로 설정합니다."
         - condition: or
           conditions:
             - condition: state
@@ -51,7 +51,7 @@ alarm_package:
               state: "on"
         - service: notify.notify_telegram
           data:
-            message: "❗️Some windows are open in Home mode"
+            message: "❗️보안모드에서 몇몇 창문이 열려 있습니다."
     - alias: "Send notification when alarm is Armed in Night mode"
       trigger:
         - platform: state
@@ -60,7 +60,7 @@ alarm_package:
       action:
         - service: notify.notify_telegram
           data:
-            message: "👻 Home monitoring is armed in Night mode"
+            message: "👻 보안모드를 취침으로 설정합니다."
         - condition: or
           conditions:
             - condition: state
@@ -77,7 +77,7 @@ alarm_package:
               state: "on"
         - service: notify.notify_telegram
           data:
-            message: "❗️Some windows are open in Night mode"
+            message: "❗️보안모드에서 몇몇 창문이 열려있습니다."
     - alias: "Send notification when alarm is Disarmed"
       trigger:
         - platform: state
@@ -86,7 +86,7 @@ alarm_package:
       action:
         - service: notify.notify_telegram
           data:
-            message: "👻 Home monitoring is disarmed"
+            message: "👻 보안모드를 해제합니다."
     - alias: "Send notification when alarm is in pending status"
       trigger:
         - platform: state
@@ -95,7 +95,7 @@ alarm_package:
       action:
         - service: notify.notify_telegram
           data:
-            message: "⛔️ Home monitoring is in pending status"
+            message: "⛔️ 보안모드가 펜딩상태입니다."
     - alias: "Send notification when alarm triggered"
       trigger:
         - platform: state
@@ -104,7 +104,7 @@ alarm_package:
       action:
         - service: notify.notify_telegram
           data:
-            message: "‼️ Home monitoring has been triggered"
+            message: "‼️ 경고. 경고. 경보시스템이 동작합니다."
         - service: notify.galaxy_cloud_speak
           data:
             message: "경고. 경고. 경보시스템이 동작합니다."

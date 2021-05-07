@@ -2,6 +2,7 @@
 .storage/*
 .vscode/
 blueprints/automation/homeassistant/*
+blueprints/script/homeassistant/*
 custom_components/*
 deps/*
 themes/*

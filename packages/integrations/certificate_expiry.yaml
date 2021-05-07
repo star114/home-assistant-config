@@ -23,8 +23,8 @@ certificate_expiry_package:
       action:
         - service: notify.notify_telegram
           data:
-            title: ⚠️ Certificate is expiring ⚠️
-            message: Please visit the 'Nginx Proxy Manager' web page and renew the certificates.
+            title: "⚠️ 인증서 만료 알림 ⚠️"
+            message: "Nginx Proxy Manager 웹을 방문하여 인증서를 갱신하세요."
     - alias: "Warning certificate expiry"
       trigger:
         - platform: numeric_state
@@ -33,5 +33,5 @@ certificate_expiry_package:
       action:
         - service: notify.notify_telegram
           data:
-            title: ⛔️ Certificate is almost expiring ⛔️
-            message: Please visit the 'Nginx Proxy Manager' web page and renew the certificates.!!!!
+            title: "⛔️ 인증서 만료 경고 ⛔️"
+            message: "Nginx Proxy Manager 웹을 방문하여 인증서를 갱신하세요."

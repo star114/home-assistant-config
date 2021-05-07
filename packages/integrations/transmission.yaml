@@ -7,7 +7,7 @@ transmission_package:
       action:
         - service: notify.notify_telegram
           data:
-            title: "🚦 Torrent download completed"
+            title: "🚦 토렌트 다운로드가 완료되었습니다."
             message: "{{trigger.event.data.name}}"
         - service: transmission.remove_torrent
           data:

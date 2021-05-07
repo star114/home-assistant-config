@@ -11,7 +11,3 @@ webostv_package:
           - PowerOn
         device: LG TV
         delay_secs: 0.6
-
-  media_player:
-
-  notify:
