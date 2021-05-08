@@ -216,6 +216,9 @@ xiaomi_package:
             data: "/reset_main_brush_left"
       action:
         - service: script.reset_main_brush_left
+        - service: notify.notify_telegram
+          data:
+            message: "뽀봇 메인브러쉬 리셋 완료"
     - alias: "Telegram callback to reset side brush left"
       trigger:
         - platform: event
@@ -224,6 +227,9 @@ xiaomi_package:
             data: "/reset_side_brush_left"
       action:
         - service: script.reset_side_brush_left
+        - service: notify.notify_telegram
+          data:
+            message: "뽀봇 사이드브러쉬 리셋 완료"
     - alias: "Telegram callback to reset filter left"
       trigger:
         - platform: event
@@ -232,6 +238,9 @@ xiaomi_package:
             data: "/reset_filter_left"
       action:
         - service: script.reset_filter_left
+        - service: notify.notify_telegram
+          data:
+            message: "뽀봇 필터 리셋 완료"
     - alias: "Telegram callback to reset sensor dirty left"
       trigger:
         - platform: event
@@ -240,3 +249,6 @@ xiaomi_package:
             data: "/reset_sensor_dirty_left"
       action:
         - service: script.reset_sensor_dirty_left
+        - service: notify.notify_telegram
+          data:
+            message: "뽀봇 센서 리셋 완료"

@@ -35,6 +35,12 @@ iphonedetect_package:
         - service: notify.notify_telegram
           data:
             message: "🏡 희식님께서 집에 도착하셨습니다."
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: "disarmed"
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "어서오세요 희식님."
     - alias: "Notify my absence"
       trigger:
         - platform: state
@@ -67,6 +73,12 @@ iphonedetect_package:
         - service: notify.notify_telegram
           data:
             message: "🏡 서진님께서 집에 도착하셨습니다."
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: "disarmed"
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "어서오세요 서진님."
     - alias: "Notify seo's absence"
       trigger:
         - platform: state

@@ -49,7 +49,7 @@ library_package:
           entity_id: scene.away
         - service: alarm_control_panel.alarm_arm_away
           entity_id: alarm_control_panel.home_monitoring
-        - service: notify.galaxy_cloud_speak
+        - service: notify.in_the_library
           data:
             message: "잘 다녀 오세요."
         - condition: and
@@ -74,7 +74,7 @@ library_package:
           entity_id: scene.home
         - service: alarm_control_panel.alarm_disarm
           entity_id: alarm_control_panel.home_monitoring
-        - service: notify.galaxy_cloud_speak
+        - service: notify.in_the_library
           data:
             message: "어서 오세요."
 
