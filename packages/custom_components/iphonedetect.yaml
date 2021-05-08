@@ -9,49 +9,75 @@ iphonedetect_package:
         HeesikiPhone11ProMax: !secret HeesikiPhone11ProMax_ip
         HeesikiPadPro: !secret HeesikiPadPro_ip
         SeoJiniPhone: !secret SeoJiniPhone_ip
-
+  input_boolean:
+    heesik_out_check:
+      name: Heesik out check
+      initial: false
+    seojin_out_check:
+      name: Seojin out check
+      initial: false
   automation:
     - alias: "Notify my presence"
       trigger:
-        platform: state
-        entity_id: device_tracker.heesikiphone
-        from: "not_home"
-        to: "home"
-        for: "00:05:00"
+        - platform: state
+          entity_id: device_tracker.heesikiphone
+          from: "not_home"
+          to: "home"
+          for: "00:05:00"
+      condition:
+        - condition: state
+          entity_id: input_boolean.heesik_out_check
+          state: "on"
       action:
-        service: notify.notify_telegram
-        data:
-          message: "🏡 희식님께서 집에 도착하셨습니다."
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.heesik_out_check
+        - service: notify.notify_telegram
+          data:
+            message: "🏡 희식님께서 집에 도착하셨습니다."
     - alias: "Notify my absence"
       trigger:
-        platform: state
-        entity_id: device_tracker.heesikiphone
-        from: "home"
-        to: "not_home"
-        for: "00:05:00"
+        - platform: state
+          entity_id: device_tracker.heesikiphone
+          from: "home"
+          to: "not_home"
+          for: "00:05:00"
       action:
-        service: notify.notify_telegram
-        data:
-          message: "🏡 희식님께서 외출하셨습니다."
+        - service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.heesik_out_check
+        - service: notify.notify_telegram
+          data:
+            message: "🏡 희식님께서 외출하셨습니다."
     - alias: "Notify seo's presence"
       trigger:
-        platform: state
-        entity_id: device_tracker.seojiniphone
-        from: "not_home"
-        to: "home"
-        for: "00:05:00"
+        - platform: state
+          entity_id: device_tracker.seojiniphone
+          from: "not_home"
+          to: "home"
+          for: "00:05:00"
+      condition:
+        - condition: state
+          entity_id: input_boolean.seojin_out_check
+          state: "on"
       action:
-        service: notify.notify_telegram
-        data:
-          message: "🏡 서진님께서 집에 도착하셨습니다."
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.seojin_out_check
+        - service: notify.notify_telegram
+          data:
+            message: "🏡 서진님께서 집에 도착하셨습니다."
     - alias: "Notify seo's absence"
       trigger:
-        platform: state
-        entity_id: device_tracker.seojiniphone
-        from: "home"
-        to: "not_home"
-        for: "00:05:00"
+        - platform: state
+          entity_id: device_tracker.seojiniphone
+          from: "home"
+          to: "not_home"
+          for: "00:05:00"
       action:
-        service: notify.notify_telegram
-        data:
-          message: "🏡 서진님께서 외출하셨습니다."
+        - service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.seojin_out_check
+        - service: notify.notify_telegram
+          data:
+            message: "🏡 서진님께서 외출하셨습니다."

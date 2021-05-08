@@ -9,6 +9,7 @@ themes/*
 tts/*
 www/*
 zigbee2mqtt/*
+aircast.xml
 *.log
 secrets.yaml
 service_account.json
