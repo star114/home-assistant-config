@@ -23,7 +23,6 @@ iphonedetect_package:
           entity_id: device_tracker.heesikiphone
           from: "not_home"
           to: "home"
-          for: "00:05:00"
       condition:
         - condition: state
           entity_id: input_boolean.heesik_out_check
@@ -47,7 +46,7 @@ iphonedetect_package:
           entity_id: device_tracker.heesikiphone
           from: "home"
           to: "not_home"
-          for: "00:05:00"
+          for: "00:30:00"
       action:
         - service: input_boolean.turn_on
           target:
@@ -61,7 +60,6 @@ iphonedetect_package:
           entity_id: device_tracker.seojiniphone
           from: "not_home"
           to: "home"
-          for: "00:05:00"
       condition:
         - condition: state
           entity_id: input_boolean.seojin_out_check
@@ -85,7 +83,7 @@ iphonedetect_package:
           entity_id: device_tracker.seojiniphone
           from: "home"
           to: "not_home"
-          for: "00:05:00"
+          for: "00:30:00"
       action:
         - service: input_boolean.turn_on
           target:

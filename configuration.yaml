@@ -51,3 +51,5 @@ lovelace:
       type: module
     - url: /local/community/LG-WebOS-Remote-Control/lg-remote-control.js
       type: module
+    - url: /local/community/mini-media-player/mini-media-player-bundle.js
+      type: module

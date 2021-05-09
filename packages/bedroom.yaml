@@ -1,12 +1,18 @@
 # bedroom
 bedroom_package:
+  input_text:
+    morning_spotify_playlist_id:
+      name: morning spotify playlist id
+      initial: 37i9dQZF1DX4sWSpwq3LiO # peaceful piano.
+      # 37i9dQZF1DXcgZcN2HVMoe # morning coffee.
+
   automation:
     - alias: "morning scene - switch off"
       trigger:
-        platform: state
-        entity_id: switch.hej_3gang_bedroom_bed_light_bottom
-        from: "on"
-        to: "off"
+        - platform: state
+          entity_id: switch.hej_3gang_bedroom_bed_light_bottom
+          from: "on"
+          to: "off"
       action:
         - service: scene.turn_on
           entity_id: scene.morning
@@ -18,10 +24,10 @@ bedroom_package:
 
     - alias: "night scene - switch on"
       trigger:
-        platform: state
-        entity_id: switch.hej_3gang_bedroom_bed_light_bottom
-        from: "off"
-        to: "on"
+        - platform: state
+          entity_id: switch.hej_3gang_bedroom_bed_light_bottom
+          from: "off"
+          to: "on"
       action:
         - service: scene.turn_on
           entity_id: scene.night
@@ -30,3 +36,17 @@ bedroom_package:
         - service: notify.galaxy_cloud_speak
           data:
             message: "좋은 밤 되세요."
+
+    - alias: "good morning songs"
+      trigger:
+        - platform: time
+          at: "06:00:00"
+      condition: []
+      action:
+        - service: spotcast.start
+          data:
+            uri: "spotify:playlist:{{ states('input_text.morning_spotify_playlist_id') }}"
+            random_song: true
+            shuffle: true
+            start_volume: 40
+            entity_id: media_player.anbang_seupikeo
