@@ -886,12 +886,24 @@ views:
             shortcuts:
               columns: 4 # Max buttons per row
               buttons:
-                - name: Crooners Playlist
+                - name: Family Mix
                   type: service
                   id: spotcast.start
                   data:
                     entity_id: media_player.geurubseupikeo
-                    uri: spotify:playlist:37i9dQZF1DX9XiAcF7t1s5
+                    uri: spotify:playlist:37i9dQZF1EgvNx9M6j10YE # family mix
+                    random_song: true
+                    shuffle: true
+                    start_volume: 30
+                - name: Coffee House
+                  type: service
+                  id: spotcast.start
+                  data:
+                    entity_id: media_player.geurubseupikeo
+                    uri: spotify:playlist:37i9dQZF1DX4sWSpwq3LiO # your favorite coffee house
+                    random_song: true
+                    shuffle: true
+                    start_volume: 30
           - type: custom:mini-media-player
             entity: media_player.spotify_seojin12
             name: Seo Jin's Spotify
@@ -899,6 +911,7 @@ views:
             source: icon
           - type: "custom:mini-media-player"
             entity: media_player.ytube_music_player
+            name: Heesik's Youtube Music Player
             artwork: cover
             source: icon
             shortcuts:
