@@ -58,10 +58,19 @@ laundryroom_package:
       action:
         - service: notify.notify_telegram
           data:
-            message: "건조를 시작합니다. ⏱ 약 {{ ((as_timestamp(states('sensor.geonjogi_dryer_completion_time')) - as_timestamp(now())) / 60) | int }} 분 뒤에 종료됩니다."
+            message: "건조를 시작합니다."
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "건조를 시작합니다."
+        - wait_for_trigger:
+            - platform: numeric_state
+              entity_id: sensor.geonjogi_dryer_completion_time
+        - service: notify.notify_telegram
+          data:
+            message: "약 {{ ((as_timestamp(states('sensor.geonjogi_dryer_completion_time')) - as_timestamp(now())) / 60) | int }} 분 뒤에 종료됩니다."
         - condition: state
           entity_id: alarm_control_panel.home_monitoring
           state: "disarmed"
         - service: notify.galaxy_cloud_speak
           data:
-            message: "건조를 시작합니다. 약 {{ ((as_timestamp(states('sensor.geonjogi_dryer_completion_time')) - as_timestamp(now())) / 60) | int }} 분 뒤에 종료됩니다."
+            message: "약 {{ ((as_timestamp(states('sensor.geonjogi_dryer_completion_time')) - as_timestamp(now())) / 60) | int }} 분 뒤에 종료됩니다."
