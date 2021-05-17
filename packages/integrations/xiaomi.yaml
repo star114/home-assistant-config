@@ -77,7 +77,23 @@ xiaomi_package:
               state: "armed_away"
         - service: vacuum.start
           entity_id: vacuum.roborock_vacuum_s5e
-    - alias: "Roborock S5 MAX - reserved time clean"
+    - alias: "Roborock S5 MAX - reserved time clean (1)"
+      trigger:
+        - platform: time
+          at: "07:00:00"
+      condition:
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: input_boolean.roborock_ready_to_clean
+              state: "on"
+            - condition: state
+              entity_id: alarm_control_panel.home_monitoring
+              state: "armed_away"
+      action:
+        - service: vacuum.start
+          entity_id: vacuum.roborock_vacuum_s5e
+    - alias: "Roborock S5 MAX - reserved time clean (2)"
       trigger:
         - platform: time
           at: "17:00:00"
