@@ -891,7 +891,7 @@ views:
                   id: spotcast.start
                   data:
                     entity_id: media_player.geurubseupikeo
-                    uri: spotify:playlist:37i9dQZF1EgvNx9M6j10YE # family mix
+                    uri: spotify:playlist:37i9dQZF1EgvNx9M6j10YE
                     random_song: true
                     shuffle: true
                     start_volume: 30
@@ -900,7 +900,16 @@ views:
                   id: spotcast.start
                   data:
                     entity_id: media_player.geurubseupikeo
-                    uri: spotify:playlist:37i9dQZF1DX4sWSpwq3LiO # your favorite coffee house
+                    uri: spotify:playlist:37i9dQZF1DX6ziVCJnEm59
+                    random_song: true
+                    shuffle: true
+                    start_volume: 30
+                - name: Peaceful Piano
+                  type: service
+                  id: spotcast.start
+                  data:
+                    entity_id: media_player.geurubseupikeo
+                    uri: spotify:playlist:37i9dQZF1DX4sWSpwq3LiO
                     random_song: true
                     shuffle: true
                     start_volume: 30
