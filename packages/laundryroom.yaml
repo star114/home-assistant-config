@@ -63,7 +63,7 @@ laundryroom_package:
           data:
             message: "건조를 시작합니다."
         - wait_for_trigger:
-            - platform: numeric_state
+            - platform: state
               entity_id: sensor.geonjogi_dryer_completion_time
         - service: notify.notify_telegram
           data:
