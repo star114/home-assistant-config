@@ -59,6 +59,46 @@ kitchen_package:
         - service: light.turn_on
           entity_id: light.hej_3gang_kitchen_light_left_center
 
+    - alias: "kitchen pantry light on when door is open"
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.aqara_kitchen_pantry_door_left_contact
+          to: "on"
+        - platform: state
+          entity_id: binary_sensor.aqara_kitchen_pantry_door_right_contact
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: light.hej_3gang_kitchen_light_right_top
+          state: "off"
+      action:
+        - service: light.turn_on
+          entity_id: light.hej_3gang_kitchen_light_right_top
+
+    - alias: "kitchen pantry light off when door is closed"
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.aqara_kitchen_pantry_door_left_contact
+          to: "off"
+        - platform: state
+          entity_id: binary_sensor.aqara_kitchen_pantry_door_right_contact
+          to: "off"
+      condition:
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: light.hej_3gang_kitchen_light_right_top
+              state: "on"
+            - condition: state
+              entity_id: binary_sensor.aqara_kitchen_pantry_door_left_contact
+              state: "off"
+            - condition: state
+              entity_id: binary_sensor.aqara_kitchen_pantry_door_right_contact
+              state: "off"
+      action:
+        - service: light.turn_off
+          entity_id: light.hej_3gang_kitchen_light_right_top
+
     - alias: "CO2 level has reached unhealty state"
       trigger:
         - platform: numeric_state
