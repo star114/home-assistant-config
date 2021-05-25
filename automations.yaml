@@ -13,7 +13,7 @@
   use_blueprint:
     path: custom/contact_switch.yaml
     input:
-      window_entity: binary_sensor.smartthings_bedroom_contact_contact
+      window_entity: binary_sensor.smartthings_laundryroom_contact_contact
       minimum_open_time: 12
       switch_target: switch.anbang_gonggiceongjeonggi
 - id: "1617276883183"
@@ -23,7 +23,7 @@
     path: custom/contact_switch.yaml
     input:
       window_entity: binary_sensor.smartthings_bedroom_contact_contact
-      switch_target: switch.dawon_bedroom_humidifier_plug
+      switch_target: switch.dawon_bedroom_plug
 - id: "1617443911976"
   alias: Dish washer monitor
   description: ""
