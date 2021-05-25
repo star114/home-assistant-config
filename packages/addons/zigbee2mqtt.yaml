@@ -78,6 +78,18 @@ zigbee2mqtt_package:
       sensors:
         hej_laundryroom_thsensor_battery_low:
           value_template: "{{ state_attr('sensor.hej_laundryroom_thsensor_battery', 'battery') | int < 15 }}"
+    - platform: template
+      sensors:
+        aqara_kitchen_pantry_door_left_battery_low:
+          value_template: "{{ state_attr('sensor.aqara_kitchen_pantry_door_left_battery', 'battery') | int < 15 }}"
+    - platform: template
+      sensors:
+        aqara_kitchen_pantry_door_right_battery_low:
+          value_template: "{{ state_attr('sensor.aqara_kitchen_pantry_door_right_battery', 'battery') | int < 15 }}"
+    - platform: template
+      sensors:
+        aqara_library_data_center_door_battery_low:
+          value_template: "{{ state_attr('sensor.aqara_library_data_center_door_battery', 'battery') | int < 15 }}"
 
   # alert: https://www.home-assistant.io/integrations/alert/
   alert:
@@ -258,6 +270,33 @@ zigbee2mqtt_package:
       message: "🚨 베란다 온습도센서 배터리 확인 필요."
       done_message: "✅ 베란다 온습도센서 배터리가 정상으로 돌아왔습니다."
       entity_id: binary_sensor.hej_laundryroom_thsensor_battery_low
+      skip_first: true
+      repeat: 360
+      notifiers:
+        - notify_telegram
+    aqara_kitchen_pantry_door_left_battery_low:
+      name: Kitchen Pantry Left Door Sensor Battery is Low
+      message: "🚨 팬트리 왼쪽 도어센서 배터리 확인 필요."
+      done_message: "✅ 팬트리 왼쪽 도어센서 배터리가 정상으로 돌아왔습니다."
+      entity_id: binary_sensor.aqara_kitchen_pantry_door_left_battery_low
+      skip_first: true
+      repeat: 360
+      notifiers:
+        - notify_telegram
+    aqara_kitchen_pantry_door_right_battery_low:
+      name: Kitchen Pantry Right Door Sensor Battery is Low
+      message: "🚨 팬트리 오른쪽 도어센서 배터리 확인 필요."
+      done_message: "✅ 팬트리 오른쪽 도어센서 배터리가 정상으로 돌아왔습니다."
+      entity_id: binary_sensor.aqara_kitchen_pantry_door_right_battery_low
+      skip_first: true
+      repeat: 360
+      notifiers:
+        - notify_telegram
+    aqara_library_data_center_door_battery_low:
+      name: Library Data Center Door Sensor Battery is Low
+      message: "🚨 데이터센터 도어센서 배터리 확인 필요."
+      done_message: "✅ 데이터센터 도어센서 배터리가 정상으로 돌아왔습니다."
+      entity_id: binary_sensor.aqara_library_data_center_door_battery_low
       skip_first: true
       repeat: 360
       notifiers:
