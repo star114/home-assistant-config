@@ -30,9 +30,18 @@ first_morning_motion_package:
     # This is the main automation. It triggers when my motion sensor is triggered
     - alias: "First Morning Motion"
       trigger:
-        platform: state
-        entity_id: binary_sensor.smartthings_kitchen_motion_occupancy
-        to: "on"
+        - platform: state
+          entity_id: binary_sensor.smartthings_kitchen_motion_occupancy
+          to: "on"
+        - platform: state
+          entity_id: binary_sensor.smartthings_library_motion_occupancy
+          to: "on"
+        - platform: state
+          entity_id: binary_sensor.smartthings_bathroom_motion_occupancy
+          to: "on"
+        - platform: state
+          entity_id: binary_sensor.smartthings_dressroom_motion_occupancy
+          to: "on"
       # only complete the automation if we're still waiting for the first motion
       condition:
         condition: state
