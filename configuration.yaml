@@ -12,6 +12,12 @@ homeassistant:
   internal_url: !secret internal_url
   packages: !include_dir_merge_named packages/
 
+http:
+  ip_ban_enabled: true
+  login_attempts_threshold: 3
+  use_x_forwarded_for: true 
+  trusted_proxies: !secret trusted_proxies
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
