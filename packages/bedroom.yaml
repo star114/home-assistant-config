@@ -41,7 +41,10 @@ bedroom_package:
       trigger:
         - platform: time
           at: "06:00:00"
-      condition: []
+      condition:
+        - condition: state
+          entity_id: input_boolean.trigger_first_morning
+          state: "on"
       action:
         - service: spotcast.start
           data:
