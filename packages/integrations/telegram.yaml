@@ -11,8 +11,6 @@ telegram_package:
       api_key: !secret telegram_bot_api_key
       allowed_chat_ids:
         - !secret telegram_chat_id1
-      trusted_networks:
-        - !secret telegram_trusted_network_nginx_proxy_manager_ip #IP OF DOCKER CONTAINER RUNNING NGINX
 
   # notifier
   notify:

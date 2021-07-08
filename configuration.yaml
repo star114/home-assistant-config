@@ -15,8 +15,9 @@ homeassistant:
 http:
   ip_ban_enabled: true
   login_attempts_threshold: 3
-  use_x_forwarded_for: true 
-  trusted_proxies: !secret trusted_proxies
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - !secret docker_ips
 
 group: !include groups.yaml
 automation: !include automations.yaml
