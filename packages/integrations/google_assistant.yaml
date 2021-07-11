@@ -4,3 +4,137 @@ google_assistant_package:
     project_id: !secret ga_project_id
     service_account: !include service_account.json
     report_state: true
+    expose_by_default: false
+    entity_config:
+      vacuum.roborock_vacuum_s5e:
+        name: 뽀봇 청소기
+        expose: true
+        room: 라이브러리
+      media_player.lg_webos_smart_tv:
+        name: LG Smart TV
+        expose: true
+        room: 안방
+      light.hej_1gang_dressroom_light:
+        name: 드레스룸 조명
+        expose: true
+        room: 드레스룸
+      light.hej_3gang_bathroom_light_center:
+        name: 화장실 간접 조명
+        expose: true
+        room: 화장실
+      light.hej_3gang_bathroom_light_bottom:
+        name: 화장실 벽 조명
+        expose: true
+        room: 화장실
+      light.hej_3gang_bedroom_bed_light_top:
+        name: 안방 침대 조명
+        expose: true
+        room: 안방
+      light.hej_3gang_bedroom_light_top:
+        name: 안방 TV 조명
+        expose: true
+        room: 안방
+      light.hej_3gang_bedroom_light_center:
+        name: 안방 창가 조명
+        expose: true
+        room: 안방
+      light.hej_3gang_bedroom_light_bottom:
+        name: 안방 보름달 조명
+        expose: true
+        room: 안방
+      light.hej_3gang_kitchen_light_left_top:
+        name: 주방 식탁 조명
+        expose: true
+        room: 주방
+      light.hej_3gang_kitchen_light_left_center:
+        name: 주방 간접 조명
+        expose: true
+        room: 주방
+      light.hej_3gang_kitchen_light_right_top:
+        name: 주방 팬트리 조명
+        expose: true
+        room: 주방
+      light.hej_3gang_kitchen_light_right_center:
+        name: 주방 조리대 조명
+        expose: true
+        room: 주방
+      light.hej_3gang_laundryroom_light_top:
+        name: 베란다 조명
+        expose: true
+        room: 베란다
+      light.hej_3gang_library_light_top:
+        name: 라이브러리 조명
+        expose: true
+        room: 라이브러리
+      light.hej_3gang_library_light_center:
+        name: 복도 조명
+        expose: true
+        room: 라이브러리
+      light.lellki_library_multi_outlets_l1:
+        name: 라이브러리 별 조명
+        expose: true
+        room: 라이브러리
+      switch.anbang_gonggiceongjeonggi:
+        name: 안방 공기청정기
+        expose: true
+        room: 안방
+      switch.dawon_bathroom_plug:
+        name: 화장실 플러그
+        expose: true
+        room: 화장실
+      switch.dawon_bedroom_plug:
+        name: 안방 플러그
+        expose: true
+        room: 안방
+      switch.dawon_dressroom_plug:
+        name: 드레스룸 플러그
+        expose: true
+        room: 드레스룸
+      switch.dawon_kitchen_dishwasher_plug:
+        name: 주방 식기세척기 플러그
+        expose: true
+        room: 주방
+      switch.dawon_kitchen_foodwaste_plug:
+        name: 주방 음식물 처리기 플러그
+        expose: true
+        room: 주방
+      switch.dawon_kitchen_fan_plug:
+        name: 주방 환풍기 플러그
+        expose: true
+        room: 주방
+      switch.geonjogi:
+        name: 건조기
+        expose: true
+        room: 베란다
+      switch.hej_3gang_bathroom_light_top:
+        name: 화장실 환풍기
+        expose: true
+        room: 화장실
+      switch.hej_3gang_bedroom_bed_light_bottom:
+        name: 취침모드
+        expose: true
+        room: 기타
+      switch.hej_3gang_library_light_bottom:
+        name: 외출모드
+        expose: true
+        room: 기타
+      switch.jubang_eeokeon:
+        name: 주방 에어컨
+        expose: true
+        room: 주방
+      switch.bedroom_ac:
+        name: 안방 에어컨
+        expose: true
+        room: 안방
+      switch.lellki_library_multi_outlets_l2:
+        name: 라이브러리 워머
+        expose: true
+        room: 라이브러리
+      switch.lellki_library_multi_outlets_l3:
+        name: 라이브러리 턴테이블
+        expose: true
+        room: 라이브러리
+      switch.lellki_library_multi_outlets_l4:
+        name: 라이브러리 멀티탭 4
+        expose: true
+        room: 라이브러리
