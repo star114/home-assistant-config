@@ -18,6 +18,7 @@ http:
   use_x_forwarded_for: true
   trusted_proxies:
     - !secret docker_ips
+    - !secret subnet_ips
 
 group: !include groups.yaml
 automation: !include automations.yaml
