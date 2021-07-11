@@ -8,7 +8,7 @@ alarm_package:
       action:
         - service: notify.notify_telegram
           data:
-            message: "👻 보안모드를 외출로 설정합니다."
+            message: "👻보안모드를 외출로 설정합니다."
         - condition: or
           conditions:
             - condition: state
@@ -25,7 +25,12 @@ alarm_package:
               state: "on"
         - service: notify.notify_telegram
           data:
-            message: "❗️보안모드에서 몇몇 창문이 열려 있습니다."
+            message: |
+              ❗️외출모드에서 창문이 열려 있습니다.
+              {% if is_state('binary_sensor.smartthings_bedroom_contact_contact', 'on') %}🪟안방 창문{% endif %}
+              {% if is_state('binary_sensor.smartthings_dressroom_contact_contact', 'on') %}🪟드레스룸 창문{% endif %}
+              {% if is_state('binary_sensor.smartthings_library_contact_contact', 'on') %}🪟라이브러리 창문{% endif %}
+              {% if is_state('binary_sensor.smartthings_laundryroom_contact_contact', 'on') %}🪟베란다 창문{% endif %}
     - alias: "Send notification when alarm is Armed in Home mode"
       trigger:
         - platform: state
@@ -34,7 +39,7 @@ alarm_package:
       action:
         - service: notify.notify_telegram
           data:
-            message: "👻 보안모드를 재택으로 설정합니다."
+            message: "👻보안모드를 재택으로 설정합니다."
         - condition: or
           conditions:
             - condition: state
@@ -51,7 +56,12 @@ alarm_package:
               state: "on"
         - service: notify.notify_telegram
           data:
-            message: "❗️보안모드에서 몇몇 창문이 열려 있습니다."
+            message: |
+              ❗️재택모드에서 창문이 열려 있습니다.
+              {% if is_state('binary_sensor.smartthings_bedroom_contact_contact', 'on') %}🪟안방 창문{% endif %}
+              {% if is_state('binary_sensor.smartthings_dressroom_contact_contact', 'on') %}🪟드레스룸 창문{% endif %}
+              {% if is_state('binary_sensor.smartthings_library_contact_contact', 'on') %}🪟라이브러리 창문{% endif %}
+              {% if is_state('binary_sensor.smartthings_laundryroom_contact_contact', 'on') %}🪟베란다 창문{% endif %}
     - alias: "Send notification when alarm is Armed in Night mode"
       trigger:
         - platform: state
@@ -60,7 +70,7 @@ alarm_package:
       action:
         - service: notify.notify_telegram
           data:
-            message: "👻 보안모드를 취침으로 설정합니다."
+            message: "👻보안모드를 취침으로 설정합니다."
         - condition: or
           conditions:
             - condition: state
@@ -77,7 +87,12 @@ alarm_package:
               state: "on"
         - service: notify.notify_telegram
           data:
-            message: "❗️보안모드에서 몇몇 창문이 열려있습니다."
+            message: |
+              ❗️취침모드에서 창문이 열려 있습니다.
+              {% if is_state('binary_sensor.smartthings_bedroom_contact_contact', 'on') %}🪟안방 창문{% endif %}
+              {% if is_state('binary_sensor.smartthings_dressroom_contact_contact', 'on') %}🪟드레스룸 창문{% endif %}
+              {% if is_state('binary_sensor.smartthings_library_contact_contact', 'on') %}🪟라이브러리 창문{% endif %}
+              {% if is_state('binary_sensor.smartthings_laundryroom_contact_contact', 'on') %}🪟베란다 창문{% endif %}
     - alias: "Send notification when alarm is Disarmed"
       trigger:
         - platform: state
@@ -86,7 +101,7 @@ alarm_package:
       action:
         - service: notify.notify_telegram
           data:
-            message: "👻 보안모드를 해제합니다."
+            message: "✅보안모드를 해제합니다."
     - alias: "Send notification when alarm is in pending status"
       trigger:
         - platform: state
@@ -95,7 +110,7 @@ alarm_package:
       action:
         - service: notify.notify_telegram
           data:
-            message: "⛔️ 보안모드가 펜딩상태입니다."
+            message: "⛔️보안모드가 펜딩상태입니다."
     - alias: "Send notification when alarm triggered"
       trigger:
         - platform: state
@@ -104,7 +119,7 @@ alarm_package:
       action:
         - service: notify.notify_telegram
           data:
-            message: "‼️ 경고. 경고. 경보시스템이 동작합니다."
+            message: "❗️경고. 경고. 경보시스템이 동작합니다."
         - service: notify.galaxy_cloud_speak
           data:
             message: "경고. 경고. 경보시스템이 동작합니다."
