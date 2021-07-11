@@ -665,6 +665,12 @@ views:
                   service: script.ac_temp_cooler
                 name: "-1"
                 icon: mdi:thermometer-chevron-down
+              - type: button
+                tap_action:
+                  action: toggle
+                entity: switch.bedroom_ac
+                name: 전원
+                icon: mdi:air-conditioner
   - title: Roborock
     panel: false
     path: roborock

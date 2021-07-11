@@ -1,4 +1,23 @@
 harmony_package:
+  input_boolean:
+    bedroom_ac_status:
+      name: bedroom ac status
+      initial: false
+
+  switch:
+    - platform: template
+      switches:
+        bedroom_ac:
+          value_template: "{{ is_state('input_boolean.bedroom_ac_status', 'on') }}"
+          turn_on:
+            service: script.turn_on
+            target:
+              entity_id: script.ac_on
+          turn_off:
+            service: script.turn_on
+            target:
+              entity_id: script.ac_off
+
   script:
     ac_on:
       sequence:
@@ -10,6 +29,9 @@ harmony_package:
               - "Power On"
             device: !secret harmony_climate_device_id
             delay_secs: 0.6
+        - service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.bedroom_ac_status
     ac_off:
       sequence:
         - service: remote.send_command
@@ -20,6 +42,9 @@ harmony_package:
               - "Power Off"
             device: !secret harmony_climate_device_id
             delay_secs: 0.6
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.bedroom_ac_status
     ac_temp_cooler:
       sequence:
         - service: remote.send_command
