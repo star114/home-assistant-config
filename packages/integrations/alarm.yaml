@@ -26,11 +26,8 @@ alarm_package:
         - service: notify.notify_telegram
           data:
             message: |
-              ❗️외출모드에서 창문이 열려 있습니다.
-              {% if is_state('binary_sensor.smartthings_bedroom_contact_contact', 'on') %}🪟안방 창문{% endif %}
-              {% if is_state('binary_sensor.smartthings_dressroom_contact_contact', 'on') %}🪟드레스룸 창문{% endif %}
-              {% if is_state('binary_sensor.smartthings_library_contact_contact', 'on') %}🪟라이브러리 창문{% endif %}
-              {% if is_state('binary_sensor.smartthings_laundryroom_contact_contact', 'on') %}🪟베란다 창문{% endif %}
+              ❗️외출모드에서 🪟창문이 열려 있습니다.
+              {% if is_state('binary_sensor.smartthings_bedroom_contact_contact', 'on') %}안방{% endif %} {% if is_state('binary_sensor.smartthings_dressroom_contact_contact', 'on') %}드레스룸{% endif %} {% if is_state('binary_sensor.smartthings_library_contact_contact', 'on') %}라이브러리{% endif %} {% if is_state('binary_sensor.smartthings_laundryroom_contact_contact', 'on') %}베란다{% endif %} 확인하세요.
     - alias: "Send notification when alarm is Armed in Home mode"
       trigger:
         - platform: state
@@ -57,11 +54,8 @@ alarm_package:
         - service: notify.notify_telegram
           data:
             message: |
-              ❗️재택모드에서 창문이 열려 있습니다.
-              {% if is_state('binary_sensor.smartthings_bedroom_contact_contact', 'on') %}🪟안방 창문{% endif %}
-              {% if is_state('binary_sensor.smartthings_dressroom_contact_contact', 'on') %}🪟드레스룸 창문{% endif %}
-              {% if is_state('binary_sensor.smartthings_library_contact_contact', 'on') %}🪟라이브러리 창문{% endif %}
-              {% if is_state('binary_sensor.smartthings_laundryroom_contact_contact', 'on') %}🪟베란다 창문{% endif %}
+              ❗️재택모드에서 🪟창문이 열려 있습니다.
+              {% if is_state('binary_sensor.smartthings_bedroom_contact_contact', 'on') %}안방{% endif %} {% if is_state('binary_sensor.smartthings_dressroom_contact_contact', 'on') %}드레스룸{% endif %} {% if is_state('binary_sensor.smartthings_library_contact_contact', 'on') %}라이브러리{% endif %} {% if is_state('binary_sensor.smartthings_laundryroom_contact_contact', 'on') %}베란다{% endif %} 확인하세요.
     - alias: "Send notification when alarm is Armed in Night mode"
       trigger:
         - platform: state
@@ -88,11 +82,8 @@ alarm_package:
         - service: notify.notify_telegram
           data:
             message: |
-              ❗️취침모드에서 창문이 열려 있습니다.
-              {% if is_state('binary_sensor.smartthings_bedroom_contact_contact', 'on') %}🪟안방 창문{% endif %}
-              {% if is_state('binary_sensor.smartthings_dressroom_contact_contact', 'on') %}🪟드레스룸 창문{% endif %}
-              {% if is_state('binary_sensor.smartthings_library_contact_contact', 'on') %}🪟라이브러리 창문{% endif %}
-              {% if is_state('binary_sensor.smartthings_laundryroom_contact_contact', 'on') %}🪟베란다 창문{% endif %}
+              ❗️취침모드에서 🪟창문이 열려 있습니다.
+              {% if is_state('binary_sensor.smartthings_bedroom_contact_contact', 'on') %}안방{% endif %} {% if is_state('binary_sensor.smartthings_dressroom_contact_contact', 'on') %}드레스룸{% endif %} {% if is_state('binary_sensor.smartthings_library_contact_contact', 'on') %}라이브러리{% endif %} {% if is_state('binary_sensor.smartthings_laundryroom_contact_contact', 'on') %}베란다{% endif %} 확인하세요.
     - alias: "Send notification when alarm is Disarmed"
       trigger:
         - platform: state
