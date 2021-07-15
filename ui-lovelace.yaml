@@ -513,8 +513,8 @@ views:
               - type: button
                 tap_action:
                   action: toggle
-                entity: switch.dawon_bedroom_plug
-                name: 안방 플러그
+                entity: switch.dawon_kitchen_cooker_plug
+                name: 밥솥
                 icon: mdi:power-socket-eu
           - type: grid
             title: 멀티탭

@@ -82,10 +82,6 @@ google_assistant_package:
         name: 화장실 플러그
         expose: true
         room: 화장실
-      switch.dawon_bedroom_plug:
-        name: 안방 플러그
-        expose: true
-        room: 안방
       switch.dawon_bedroom_aircon_plug:
         name: 안방 에어컨 플러그
         expose: true
@@ -94,6 +90,10 @@ google_assistant_package:
         name: 드레스룸 플러그
         expose: true
         room: 드레스룸
+      switch.dawon_kitchen_cooker_plug:
+        name: 주방 밥솥 플러그
+        expose: true
+        room: 주방
       switch.dawon_kitchen_dishwasher_plug:
         name: 주방 식기세척기 플러그
         expose: true

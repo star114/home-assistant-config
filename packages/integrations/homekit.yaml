@@ -81,14 +81,14 @@ homekit_package:
         switch.dawon_bathroom_plug:
           name: 화장실 플러그
           type: outlet
-        switch.dawon_bedroom_plug:
-          name: 안방 플러그
-          type: outlet
         switch.dawon_bedroom_aircon_plug:
           name: 안방 에어컨 플러그
           type: outlet
         switch.dawon_dressroom_plug:
           name: 드레스룸 플러그
+          type: outlet
+        switch.dawon_kitchen_cooker_plug:
+          name: 주방 밥솥 플러그
           type: outlet
         switch.dawon_kitchen_dishwasher_plug:
           name: 주방 식기세척기 플러그
