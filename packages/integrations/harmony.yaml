@@ -18,6 +18,21 @@ harmony_package:
             target:
               entity_id: script.ac_off
 
+  automation:
+    - alias: "Sync air conditioner status by power"
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.dawon_bedroom_aircon_plug_power
+          for: 00:05:00
+          below: 5
+      condition:
+        - condition: state
+          entity_id: input_boolean.bedroom_ac_status
+          state: "on"
+      action:
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.bedroom_ac_status
+
   script:
     ac_on:
       sequence:
