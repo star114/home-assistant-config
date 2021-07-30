@@ -13,7 +13,7 @@ homeassistant:
   packages: !include_dir_merge_named packages/
 
 http:
-  ip_ban_enabled: true
+  ip_ban_enabled: false
   login_attempts_threshold: 3
   use_x_forwarded_for: true
   trusted_proxies:
