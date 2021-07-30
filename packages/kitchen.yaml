@@ -12,7 +12,8 @@ kitchen_package:
       initial: false
 
   automation:
-    - alias: "kitchen light off with no motion"
+    - id: "kitchen_light_off_with_no_motion"
+      alias: "kitchen light off with no motion"
       trigger:
         - platform: state
           entity_id: binary_sensor.smartthings_kitchen_motion_occupancy
@@ -32,7 +33,8 @@ kitchen_package:
         - service: light.turn_off
           entity_id: light.hej_3gang_kitchen_light_left_center
 
-    - alias: "kitchen light on with motion when sun is below_horizon"
+    - id: "kitchen_light_on_with_motion_when_sun_is_below_horizon"
+      alias: "kitchen light on with motion when sun is below_horizon"
       trigger:
         - platform: state
           entity_id: binary_sensor.smartthings_kitchen_motion_occupancy
@@ -59,7 +61,31 @@ kitchen_package:
         - service: light.turn_on
           entity_id: light.hej_3gang_kitchen_light_left_center
 
-    - alias: "kitchen pantry light on when door is open"
+    - id: "notification_when_kitchen_cooker_is_on_and_pantry_door_is_closed"
+      alias: "notification when kitchen cooker is on and pantry door is closed"
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.aqara_kitchen_pantry_door_right_contact
+          to: "off"
+        - platform: state
+          entity_id: switch.dawon_kitchen_cooker_plug
+          to: "on"
+      condition:
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: binary_sensor.aqara_kitchen_pantry_door_right_contact
+              state: "off"
+            - condition: state
+              entity_id: switch.dawon_kitchen_cooker_plug
+              state: "on"
+      action:
+        - service: notify.notify_telegram
+          data:
+            message: "밥솥 동작 중에 팬트리 문이 닫혀 있습니다."
+
+    - id: "kitchen_pantry_light_on_when_door_is_open"
+      alias: "kitchen pantry light on when door is open"
       trigger:
         - platform: state
           entity_id: binary_sensor.aqara_kitchen_pantry_door_left_contact
@@ -75,7 +101,8 @@ kitchen_package:
         - service: light.turn_on
           entity_id: light.hej_3gang_kitchen_light_right_top
 
-    - alias: "kitchen pantry light off when door is closed"
+    - id: "kitchen_pantry_light_off_when_door_is_closed"
+      alias: "kitchen pantry light off when door is closed"
       trigger:
         - platform: state
           entity_id: binary_sensor.aqara_kitchen_pantry_door_left_contact
@@ -99,13 +126,14 @@ kitchen_package:
         - service: light.turn_off
           entity_id: light.hej_3gang_kitchen_light_right_top
 
-    - alias: "CO2 level has reached unhealty state"
+    - id: "co2_level_has_reached_unhealthy_state"
+      alias: "CO2 level has reached unhealthy state"
       trigger:
         - platform: numeric_state
           entity_id: sensor.samseong_eeomoniteo_carbon_dioxide_measurement
           for: "00:10:00"
           above: 1400
-          below: 9999 # wrong reporting value from sensor
+          #below: 9999 # wrong reporting value from sensor
       action:
         - service: input_boolean.turn_on
           entity_id: input_boolean.co2_unhealthy_state
@@ -119,7 +147,8 @@ kitchen_package:
         - service: notify.galaxy_cloud_speak
           data:
             message: "실내 이산화탄소 농도가 너무 높습니다. 환기가 필요합니다."
-    - alias: "CO2 level has come back to normal"
+    - id: "co2_level_has_come_back_to_normal"
+      alias: "CO2 level has come back to normal"
       trigger:
         - platform: numeric_state
           entity_id: sensor.samseong_eeomoniteo_carbon_dioxide_measurement
@@ -143,7 +172,8 @@ kitchen_package:
           data:
             message: "이산화탄소 농도가 정상으로 돌아왔습니다."
 
-    - alias: "Nutritional supplements reminder"
+    - id: "nutritional_supplements_reminder"
+      alias: "Nutritional supplements reminder"
       trigger:
         - platform: time
           at: "12:40:00"

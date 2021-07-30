@@ -6,7 +6,8 @@ dressroom_package:
       initial: false
 
   automation:
-    - alias: "dressroom light off with no motion"
+    - id: "dressroom_light_off_with_no_motion"
+      alias: "dressroom light off with no motion"
       trigger:
         - platform: state
           entity_id: binary_sensor.smartthings_dressroom_motion_occupancy
@@ -23,7 +24,8 @@ dressroom_package:
         - service: input_boolean.turn_off
           entity_id: input_boolean.dressroom_light_triggered_by_motion
 
-    - alias: "dressroom light on with motion"
+    - id: "dressroom_light_on_with_motion"
+      alias: "dressroom light on with motion"
       trigger:
         - platform: state
           entity_id: binary_sensor.smartthings_dressroom_motion_occupancy

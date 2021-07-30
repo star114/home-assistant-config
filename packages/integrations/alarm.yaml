@@ -1,6 +1,7 @@
 alarm_package:
   automation:
-    - alias: "Send notification when alarm is Armed in Away mode"
+    - id: "send_notification_when_alarm_is_armed_in_away_mode"
+      alias: "Send notification when alarm is Armed in Away mode"
       trigger:
         - platform: state
           entity_id: alarm_control_panel.home_monitoring
@@ -27,8 +28,9 @@ alarm_package:
           data:
             message: |
               ❗️외출모드에서 🪟창문이 열려 있습니다.
-              {% if is_state('binary_sensor.smartthings_bedroom_contact_contact', 'on') %}안방{% endif %} {% if is_state('binary_sensor.smartthings_dressroom_contact_contact', 'on') %}드레스룸{% endif %} {% if is_state('binary_sensor.smartthings_library_contact_contact', 'on') %}라이브러리{% endif %} {% if is_state('binary_sensor.smartthings_laundryroom_contact_contact', 'on') %}베란다{% endif %} 확인하세요.
-    - alias: "Send notification when alarm is Armed in Home mode"
+              {% if is_state('binary_sensor.smartthings_bedroom_contact_contact', 'on') %}안방 {% endif %}{% if is_state('binary_sensor.smartthings_dressroom_contact_contact', 'on') %}드레스룸 {% endif %}{% if is_state('binary_sensor.smartthings_library_contact_contact', 'on') %}라이브러리 {% endif %}{% if is_state('binary_sensor.smartthings_laundryroom_contact_contact', 'on') %}베란다 {% endif %}확인하세요.
+    - id: "send_notification_when_alarm_is_armed_in_home_mode"
+      alias: "Send notification when alarm is Armed in Home mode"
       trigger:
         - platform: state
           entity_id: alarm_control_panel.home_monitoring
@@ -55,8 +57,9 @@ alarm_package:
           data:
             message: |
               ❗️재택모드에서 🪟창문이 열려 있습니다.
-              {% if is_state('binary_sensor.smartthings_bedroom_contact_contact', 'on') %}안방{% endif %} {% if is_state('binary_sensor.smartthings_dressroom_contact_contact', 'on') %}드레스룸{% endif %} {% if is_state('binary_sensor.smartthings_library_contact_contact', 'on') %}라이브러리{% endif %} {% if is_state('binary_sensor.smartthings_laundryroom_contact_contact', 'on') %}베란다{% endif %} 확인하세요.
-    - alias: "Send notification when alarm is Armed in Night mode"
+              {% if is_state('binary_sensor.smartthings_bedroom_contact_contact', 'on') %}안방 {% endif %}{% if is_state('binary_sensor.smartthings_dressroom_contact_contact', 'on') %}드레스룸 {% endif %}{% if is_state('binary_sensor.smartthings_library_contact_contact', 'on') %}라이브러리 {% endif %}{% if is_state('binary_sensor.smartthings_laundryroom_contact_contact', 'on') %}베란다 {% endif %}확인하세요.
+    - id: "send_notification_when_alarm_is_armed_in_night_mode"
+      alias: "Send notification when alarm is Armed in Night mode"
       trigger:
         - platform: state
           entity_id: alarm_control_panel.home_monitoring
@@ -83,8 +86,9 @@ alarm_package:
           data:
             message: |
               ❗️취침모드에서 🪟창문이 열려 있습니다.
-              {% if is_state('binary_sensor.smartthings_bedroom_contact_contact', 'on') %}안방{% endif %} {% if is_state('binary_sensor.smartthings_dressroom_contact_contact', 'on') %}드레스룸{% endif %} {% if is_state('binary_sensor.smartthings_library_contact_contact', 'on') %}라이브러리{% endif %} {% if is_state('binary_sensor.smartthings_laundryroom_contact_contact', 'on') %}베란다{% endif %} 확인하세요.
-    - alias: "Send notification when alarm is Disarmed"
+              {% if is_state('binary_sensor.smartthings_bedroom_contact_contact', 'on') %}안방 {% endif %}{% if is_state('binary_sensor.smartthings_dressroom_contact_contact', 'on') %}드레스룸 {% endif %}{% if is_state('binary_sensor.smartthings_library_contact_contact', 'on') %}라이브러리 {% endif %}{% if is_state('binary_sensor.smartthings_laundryroom_contact_contact', 'on') %}베란다 {% endif %}확인하세요.
+    - id: "send_notification_when_alarm_is_disarmed"
+      alias: "Send notification when alarm is Disarmed"
       trigger:
         - platform: state
           entity_id: alarm_control_panel.home_monitoring
@@ -93,7 +97,8 @@ alarm_package:
         - service: notify.notify_telegram
           data:
             message: "✅보안모드를 해제합니다."
-    - alias: "Send notification when alarm is in pending status"
+    - id: "send_notification_when_alarm_is_in_pending_status"
+      alias: "Send notification when alarm is in pending status"
       trigger:
         - platform: state
           entity_id: alarm_control_panel.home_monitoring
@@ -102,7 +107,8 @@ alarm_package:
         - service: notify.notify_telegram
           data:
             message: "⛔️보안모드가 펜딩상태입니다."
-    - alias: "Send notification when alarm triggered"
+    - id: "sned_notification_when_alarm_triggered"
+      alias: "Send notification when alarm triggered"
       trigger:
         - platform: state
           entity_id: alarm_control_panel.home_monitoring
@@ -114,7 +120,8 @@ alarm_package:
         - service: notify.galaxy_cloud_speak
           data:
             message: "경고. 경고. 경보시스템이 동작합니다."
-    - alias: "Trigger alarm while armed away"
+    - id: "trigger_alarm_while_armed_away"
+      alias: "Trigger alarm while armed away"
       trigger:
         - platform: state
           entity_id: binary_sensor.smartthings_bedroom_contact_contact
@@ -136,7 +143,8 @@ alarm_package:
         service: alarm_control_panel.alarm_trigger
         target:
           entity_id: alarm_control_panel.home_monitoring
-    - alias: "Trigger alarm while armed home"
+    - id: "trigger_alarm_while_armed_home"
+      alias: "Trigger alarm while armed home"
       trigger:
         - platform: state
           entity_id: binary_sensor.smartthings_bedroom_contact_contact
@@ -158,7 +166,8 @@ alarm_package:
         service: alarm_control_panel.alarm_trigger
         target:
           entity_id: alarm_control_panel.home_monitoring
-    - alias: "Trigger alarm while armed night"
+    - id: "trigger_alarm_while_armed_night"
+      alias: "Trigger alarm while armed night"
       trigger:
         - platform: state
           entity_id: binary_sensor.smartthings_bedroom_contact_contact

@@ -1,7 +1,8 @@
 # laundry room
 laundryroom_package:
   automation:
-    - alias: "laundry room light off with no motion"
+    - id: "laundry_room_light_off_with_no_motion"
+      alias: "laundry room light off with no motion"
       trigger:
         - platform: state
           entity_id: binary_sensor.smartthings_laundryroom_motion_occupancy
@@ -16,7 +17,8 @@ laundryroom_package:
         - service: light.turn_off
           entity_id: light.hej_3gang_laundryroom_light_top
 
-    - alias: "laundry room light on with motion when sun is below_horizon"
+    - id: "laundry_room_light_on_with_motion_when_sun_is_below_horizon"
+      alias: "laundry room light on with motion when sun is below_horizon"
       trigger:
         - platform: state
           entity_id: binary_sensor.smartthings_laundryroom_motion_occupancy
@@ -35,7 +37,8 @@ laundryroom_package:
           entity_id: light.hej_3gang_laundryroom_light_top
 
     # dryer
-    - alias: "Dryer turned off"
+    - id: "dryer_turned_off"
+      alias: "Dryer turned off"
       trigger:
         - platform: state
           entity_id: sensor.geonjogi_dryer_machine_state
@@ -50,7 +53,8 @@ laundryroom_package:
         - service: notify.galaxy_cloud_speak
           data:
             message: "건조가 완료되었습니다."
-    - alias: "Dryer turned on"
+    - id: "dryer_turned_on"
+      alias: "Dryer turned on"
       trigger:
         - platform: state
           entity_id: sensor.geonjogi_dryer_machine_state

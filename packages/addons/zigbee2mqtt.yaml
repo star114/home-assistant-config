@@ -45,7 +45,8 @@ zigbee2mqtt_package:
               모델: {{trigger.payload_json.data.definition.model}},
               상세설명: {{trigger.payload_json.data.definition.description}}"
     # alert callback: https://www.home-assistant.io/integrations/alert/
-    - alias: "Telegram callback to stop alerts for door"
+    - id: "telegram_callback_to_stop_alerts_for_door"
+      alias: "Telegram callback to stop alerts for door"
       trigger:
         - platform: event
           event_type: telegram_callback

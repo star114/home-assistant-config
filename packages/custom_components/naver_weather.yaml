@@ -1,15 +1,18 @@
 naver_weather_package:
   automation:
-    - alias: "notify rain forecast"
-      trigger:
-        - platform: state
-          entity_id: sensor.naver_weather_rainystart_1
-          from: "비안옴"
-      action:
-        - service: notify.notify_telegram
-          data:
-            message: "🌂 오늘 비 예보가 있어요."
-    - alias: "umbrella notification"
+    # too many notifications
+    #- id: "notify_rain_forecast"
+    #  alias: "notify rain forecast"
+    #  trigger:
+    #    - platform: state
+    #      entity_id: sensor.naver_weather_rainystart_1
+    #      from: "비안옴"
+    #  action:
+    #    - service: notify.notify_telegram
+    #      data:
+    #        message: "🌂 오늘 비 예보가 있어요."
+    - id: "umbrella_notification"
+      alias: "umbrella notification"
       trigger:
         - platform: state
           entity_id: binary_sensor.smartthings_door_contact_contact
@@ -27,7 +30,8 @@ naver_weather_package:
         - service: notify.in_the_library
           data:
             message: "오늘 비 예보가 있으니 우산을 챙기세요."
-    - alias: "notify rain"
+    - id: "notify_rain"
+      alias: "notify rain"
       trigger:
         - platform: state
           entity_id: weather.naver_weather_1

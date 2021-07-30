@@ -58,7 +58,8 @@ xiaomi_package:
       duration: "06:00:00"
 
   automation:
-    - alias: "Roborock S5 MAX - cleaning duration finished"
+    - id: "roborock_s5_max_cleaning_duration_finished"
+      alias: "Roborock S5 MAX - cleaning duration finished"
       trigger:
         - platform: event
           event_type: timer.finished
@@ -77,7 +78,8 @@ xiaomi_package:
               state: "armed_away"
         - service: vacuum.start
           entity_id: vacuum.roborock_vacuum_s5e
-    - alias: "Roborock S5 MAX - reserved time clean (1)"
+    - id: "roborock_s5_max_reserved_time_clean_1"
+      alias: "Roborock S5 MAX - reserved time clean (1)"
       trigger:
         - platform: time
           at: "07:00:00"
@@ -93,7 +95,8 @@ xiaomi_package:
       action:
         - service: vacuum.start
           entity_id: vacuum.roborock_vacuum_s5e
-    - alias: "Roborock S5 MAX - reserved time clean (2)"
+    - id: "roborock_s5_max_reserved_time_clean_2"
+      alias: "Roborock S5 MAX - reserved time clean (2)"
       trigger:
         - platform: time
           at: "17:00:00"
@@ -109,7 +112,8 @@ xiaomi_package:
       action:
         - service: vacuum.start
           entity_id: vacuum.roborock_vacuum_s5e
-    - alias: "Roborock S5 MAX - Cleaning"
+    - id: "roborock_s5_max_cleaning"
+      alias: "Roborock S5 MAX - Cleaning"
       trigger:
         - platform: state
           entity_id: vacuum.roborock_vacuum_s5e
@@ -124,7 +128,8 @@ xiaomi_package:
         - service: notify.galaxy_cloud_speak
           data:
             message: "청소를 시작합니다."
-    - alias: "Roborock S5 MAX - Docked"
+    - id: "roborock_s5_max_docked"
+      alias: "Roborock S5 MAX - Docked"
       trigger:
         - platform: state
           entity_id: vacuum.roborock_vacuum_s5e
@@ -147,7 +152,8 @@ xiaomi_package:
         - service: notify.galaxy_cloud_speak
           data:
             message: "먼지통을 비우세요."
-    - alias: "Roborock S5 MAX - Paused"
+    - id: "roborock_s5_max_paused"
+      alias: "Roborock S5 MAX - Paused"
       trigger:
         - platform: state
           entity_id: vacuum.roborock_vacuum_s5e
@@ -156,7 +162,8 @@ xiaomi_package:
         - service: notify.notify_telegram
           data:
             message: "⏸ 뽀봇이 일시정지되었습니다."
-    - alias: "Roborock S5 MAX - Idle"
+    - id: "roborock_s5_max_idle"
+      alias: "Roborock S5 MAX - Idle"
       trigger:
         - platform: state
           entity_id: vacuum.roborock_vacuum_s5e
@@ -165,7 +172,8 @@ xiaomi_package:
         - service: notify.notify_telegram
           data:
             message: "⏹ 뽀봇이 정지되었습니다."
-    - alias: "Roborock S5 MAX - Returning to dock"
+    - id: "roborock_s5_max_returning_to_dock"
+      alias: "Roborock S5 MAX - Returning to dock"
       trigger:
         - platform: state
           entity_id: vacuum.roborock_vacuum_s5e
@@ -202,7 +210,7 @@ xiaomi_package:
           data:
             title: "🚧 유지보수"
             message: >
-              확인 필요: {% if state_attr('vacuum.roborock_vacuum_s5e', 'main_brush_left') | int < 2 %}메인 브러쉬{% endif %} {% if state_attr('vacuum.roborock_vacuum_s5e', 'side_brush_left') | int < 2 %}사이드 브러쉬{% endif %} {% if state_attr('vacuum.roborock_vacuum_s5e', 'filter_left') | int < 2 %}필터{% endif %} {% if state_attr('vacuum.roborock_vacuum_s5e', 'sensor_dirty_left') | int < 2 %}센서{% endif %}
+              확인 필요:{% if state_attr('vacuum.roborock_vacuum_s5e', 'main_brush_left') | int < 2 %} 메인 브러쉬{% endif %}{% if state_attr('vacuum.roborock_vacuum_s5e', 'side_brush_left') | int < 2 %} 사이드 브러쉬{% endif %}{% if state_attr('vacuum.roborock_vacuum_s5e', 'filter_left') | int < 2 %} 필터{% endif %}{% if state_attr('vacuum.roborock_vacuum_s5e', 'sensor_dirty_left') | int < 2 %} 센서{% endif %}
             data:
               inline_keyboard:
                 - "Reset main brush:/reset_main_brush_left, Reset side brush:/reset_side_brush_left"
@@ -213,7 +221,8 @@ xiaomi_package:
         - service: notify.galaxy_cloud_speak
           data:
             message: "뽀봇 유지 관리가 필요합니다."
-    - alias: "Telegram callback to reset main brush left"
+    - id: "telegram_callback_to_reset_main_brush_left"
+      alias: "Telegram callback to reset main brush left"
       trigger:
         - platform: event
           event_type: telegram_callback
@@ -224,7 +233,8 @@ xiaomi_package:
         - service: notify.notify_telegram
           data:
             message: "뽀봇 메인브러쉬 리셋 완료"
-    - alias: "Telegram callback to reset side brush left"
+    - id: "telegram_callback_to_reset_side_brush_left"
+      alias: "Telegram callback to reset side brush left"
       trigger:
         - platform: event
           event_type: telegram_callback
@@ -235,7 +245,8 @@ xiaomi_package:
         - service: notify.notify_telegram
           data:
             message: "뽀봇 사이드브러쉬 리셋 완료"
-    - alias: "Telegram callback to reset filter left"
+    - id: "telegram_callback_to_reset_filter_left"
+      alias: "Telegram callback to reset filter left"
       trigger:
         - platform: event
           event_type: telegram_callback
@@ -246,7 +257,8 @@ xiaomi_package:
         - service: notify.notify_telegram
           data:
             message: "뽀봇 필터 리셋 완료"
-    - alias: "Telegram callback to reset sensor dirty left"
+    - id: "telegram_callback_to_reset_sensor_dirty_left"
+      alias: "Telegram callback to reset sensor dirty left"
       trigger:
         - platform: event
           event_type: telegram_callback

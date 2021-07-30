@@ -19,7 +19,8 @@ harmony_package:
               entity_id: script.ac_off
 
   automation:
-    - alias: "Sync air conditioner status by power"
+    - id: "sync_air_conditioner status by power"
+      alias: "Sync air conditioner status by power"
       trigger:
         - platform: numeric_state
           entity_id: sensor.dawon_bedroom_aircon_plug_power

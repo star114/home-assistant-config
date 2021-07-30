@@ -7,7 +7,8 @@ bedroom_package:
       # 37i9dQZF1DXcgZcN2HVMoe # morning coffee.
 
   automation:
-    - alias: "morning scene - switch off"
+    - id: "morning_scene_switch_off"
+      alias: "morning scene - switch off"
       trigger:
         - platform: state
           entity_id: switch.hej_3gang_bedroom_bed_light_bottom
@@ -22,7 +23,8 @@ bedroom_package:
           data:
             message: "좋은 아침입니다."
 
-    - alias: "night scene - switch on"
+    - id: "night_scene_switch_on"
+      alias: "night scene - switch on"
       trigger:
         - platform: state
           entity_id: switch.hej_3gang_bedroom_bed_light_bottom
@@ -37,7 +39,8 @@ bedroom_package:
           data:
             message: "좋은 밤 되세요."
 
-    - alias: "good morning songs"
+    - id: "good_morning_songs"
+      alias: "good morning songs"
       trigger:
         - platform: time
           at: "06:00:00"

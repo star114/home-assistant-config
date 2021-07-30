@@ -7,17 +7,19 @@ first_morning_motion_package:
 
   automation:
     #turns it on at 5am
-    - alias: "Enable First Morning Trigger"
+    - id: "enable_first_morning_trigger"
+      alias: "Enable First Morning Trigger"
       trigger:
         - platform: time
-          at: "05:50:00"
+          at: "05:30:00"
       action:
         service: input_boolean.turn_on
         target:
           entity_id: input_boolean.trigger_first_morning
 
     # turns it off an hour after sunrise
-    - alias: "Disable First Morning Trigger"
+    - id: "disable_first_morning_trigger"
+      alias: "Disable First Morning Trigger"
       trigger:
         - platform: sun
           event: sunrise
@@ -28,7 +30,8 @@ first_morning_motion_package:
           entity_id: input_boolean.trigger_first_morning
 
     # This is the main automation. It triggers when my motion sensor is triggered
-    - alias: "First Morning Motion"
+    - id: "first_morning_motion"
+      alias: "First Morning Motion"
       trigger:
         - platform: state
           entity_id: binary_sensor.smartthings_kitchen_motion_occupancy

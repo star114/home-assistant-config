@@ -2,7 +2,8 @@
 # https://www.home-assistant.io/cookbook/notify_if__new_ha_release/
 updater_package:
   automation:
-    - alias: "HA Update notification"
+    - id: "ha_update_notification"
+      alias: "HA Update notification"
       trigger:
         - platform: state
           entity_id: binary_sensor.updater
@@ -13,7 +14,8 @@ updater_package:
           data:
             title: "🆕 새로운 Home Assistant 업데이트 알림"
             message: "Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version') }} 으로 업데이트 하세요."
-    - alias: "HACS Update notification"
+    - id: "hacs_update_notification"
+      alias: "HACS Update notification"
       trigger:
         - platform: numeric_state
           entity_id: sensor.hacs

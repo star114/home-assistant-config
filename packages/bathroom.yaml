@@ -10,7 +10,8 @@ bathroom_package:
       duration: "00:20:00"
 
   automation:
-    - alias: "Turn on bathroom in use for x minutes when bathroom door is closed"
+    - id: "turn_on_bathroom_in_use_for_x_minutes_when_bathroom_dorr_is_closed"
+      alias: "Turn on bathroom in use for x minutes when bathroom door is closed"
       trigger:
         - platform: state
           entity_id: binary_sensor.smartthings_bathroom_contact_contact
@@ -25,7 +26,8 @@ bathroom_package:
           entity_id:
             - timer.bathroom_fan_off_in
 
-    - alias: "Turn on lights when motion"
+    - id: "turn_on_lights_when_motion"
+      alias: "Turn on lights when motion"
       trigger:
         - platform: state
           entity_id: binary_sensor.smartthings_bathroom_motion_occupancy
@@ -47,7 +49,8 @@ bathroom_package:
         - service: light.turn_on
           entity_id: light.hej_3gang_bathroom_light_center
 
-    - alias: "Trigger lights off timer when motion is off for x minutes"
+    - id: "trigger_lights_off_timer_when_motion_is_off_for_x_minutes"
+      alias: "Trigger lights off timer when motion is off for x minutes"
       trigger:
         - platform: state
           entity_id: binary_sensor.smartthings_bathroom_motion_occupancy
@@ -63,7 +66,8 @@ bathroom_package:
         - service: light.turn_off
           entity_id: light.hej_3gang_bathroom_light_bottom
 
-    - alias: "Turn off bathroom in use after x minutes"
+    - id: "turn_off_bathroom_in_use_after_x_minutes"
+      alias: "Turn off bathroom in use after x minutes"
       trigger:
         - platform: state
           entity_id: binary_sensor.smartthings_bathroom_motion_occupancy
@@ -74,7 +78,8 @@ bathroom_package:
           entity_id:
             - input_boolean.bathroom_in_use
 
-    - alias: "Turn off bathroom lights when in use switch turned off"
+    - id: "turn_off_bathroom_lights_when_in_use_switch_turned_off"
+      alias: "Turn off bathroom lights when in use switch turned off"
       trigger:
         - platform: state
           entity_id: input_boolean.bathroom_in_use
@@ -85,7 +90,8 @@ bathroom_package:
         - service: light.turn_off
           entity_id: light.hej_3gang_bathroom_light_bottom
 
-    - alias: "Turn off fan after x minutes"
+    - id: "turn_off_fan_after_x_minutes"
+      alias: "Turn off fan after x minutes"
       trigger:
         - platform: event
           event_type: timer.finished
@@ -96,11 +102,12 @@ bathroom_package:
           entity_id:
             - switch.hej_3gang_bathroom_light_top # turn off the fan
 
-    - alias: "Turn on fan when humidity is high"
+    - id: "turn_on_fan_when_humidity_is_high"
+      alias: "Turn on fan when humidity is high"
       trigger:
         - platform: numeric_state
           entity_id: sensor.hej_bathroom_thsensor_humidity
-          above: 70
+          above: 80
       action:
         - service: switch.turn_on
           entity_id:

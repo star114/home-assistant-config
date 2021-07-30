@@ -9,7 +9,8 @@ tesla_package:
       unit_of_measurement: km
 
   automation:
-    - alias: Update Tesla location as MQTT location updates
+    - id: "update_tesla_location_as_mqtt_location_updates"
+      alias: Update Tesla location as MQTT location updates
       initial_state: on
       trigger:
         - platform: mqtt

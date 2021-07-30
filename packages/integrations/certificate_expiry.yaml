@@ -15,7 +15,8 @@ certificate_expiry_package:
           unit_of_measurement: "days"
 
   automation:
-    - alias: "Notify the remaining days of certificate expiry"
+    - id: "notify_the_remaining_days_of_certificate_expiry"
+      alias: "Notify the remaining days of certificate expiry"
       trigger:
         - platform: numeric_state
           entity_id: sensor.s_cert_exiry_d
@@ -25,7 +26,8 @@ certificate_expiry_package:
           data:
             title: "⚠️ 인증서 만료 알림 ⚠️"
             message: "Nginx Proxy Manager 웹을 방문하여 인증서를 갱신하세요."
-    - alias: "Warning certificate expiry"
+    - id: "warning_certificate_expiry"
+      alias: "Warning certificate expiry"
       trigger:
         - platform: numeric_state
           entity_id: sensor.s_cert_exiry_d

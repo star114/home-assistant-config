@@ -6,7 +6,8 @@ library_package:
       initial: false
 
   automation:
-    - alias: "library light off with no motion"
+    - id: "library_light_off_with_no_motion"
+      alias: "library light off with no motion"
       trigger:
         - platform: state
           entity_id: binary_sensor.smartthings_library_motion_occupancy
@@ -23,7 +24,8 @@ library_package:
         - service: input_boolean.turn_off
           entity_id: input_boolean.library_light_triggered_by_motion
 
-    - alias: "library light on with motion"
+    - id: "library_light_on_with_motion"
+      alias: "library light on with motion"
       trigger:
         - platform: state
           entity_id: binary_sensor.smartthings_library_motion_occupancy
@@ -38,7 +40,8 @@ library_package:
         - service: input_boolean.turn_on
           entity_id: input_boolean.library_light_triggered_by_motion
 
-    - alias: "away scene - switch on"
+    - id: "away_scene_switch_on"
+      alias: "away scene - switch on"
       trigger:
         platform: state
         entity_id: switch.hej_3gang_library_light_bottom
@@ -63,7 +66,8 @@ library_package:
         - service: vacuum.start
           entity_id: vacuum.roborock_vacuum_s5e
 
-    - alias: "home scene - switch off"
+    - id: "home_scene_switch_off"
+      alias: "home scene - switch off"
       trigger:
         platform: state
         entity_id: switch.hej_3gang_library_light_bottom
@@ -78,7 +82,8 @@ library_package:
           data:
             message: "어서 오세요."
 
-    - alias: "automatic away"
+    - id: "automatic_away"
+      alias: "automatic away"
       trigger:
         - platform: template
           value_template: >
@@ -98,7 +103,8 @@ library_package:
         - service: switch.turn_on
           entity_id: switch.hej_3gang_library_light_bottom
 
-    - alias: "automatic home"
+    - id: "automatic_home"
+      alias: "automatic home"
       trigger:
         - platform: state
           entity_id: binary_sensor.smartthings_door_contact_contact
