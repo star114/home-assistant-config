@@ -17,7 +17,6 @@ http:
   login_attempts_threshold: 3
   use_x_forwarded_for: true
   trusted_proxies:
-    - !secret docker_ips
     - !secret subnet_ips
 
 group: !include groups.yaml
