@@ -72,11 +72,3 @@ first_morning_motion_package:
         - service: switch.turn_off
           target:
             entity_id: switch.hej_3gang_bedroom_bed_light_bottom
-
-        # pause the alarm music from speaker
-        - condition: state
-          entity_id: media_player.anbang_seupikeo
-          state: "playing"
-        - service: media_player.media_pause
-          target:
-            entity_id: media_player.anbang_seupikeo

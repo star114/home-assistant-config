@@ -22,6 +22,13 @@ bedroom_package:
         - service: notify.galaxy_cloud_speak
           data:
             message: "좋은 아침입니다."
+        # pause the alarm music from speaker
+        - condition: state
+          entity_id: media_player.anbang_seupikeo
+          state: "playing"
+        - service: media_player.media_pause
+          target:
+            entity_id: media_player.anbang_seupikeo
 
     - id: "night_scene_switch_on"
       alias: "night scene - switch on"
