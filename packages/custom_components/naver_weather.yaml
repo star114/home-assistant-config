@@ -37,27 +37,16 @@ naver_weather_package:
           entity_id: weather.naver_weather_1
           to: "rainy"
       condition:
-        - condition: or
-          conditions:
-            - condition: state
-              entity_id: binary_sensor.smartthings_bedroom_contact_contact
-              state: "on"
-            - condition: state
-              entity_id: binary_sensor.smartthings_dressroom_contact_contact
-              state: "on"
-            - condition: state
-              entity_id: binary_sensor.smartthings_library_contact_contact
-              state: "on"
-            - condition: state
-              entity_id: binary_sensor.smartthings_laundryroom_contact_contact
-              state: "on"
+        - condition: state
+          entity_id: binary_sensor.smartthings_bedroom_contact_contact
+          state: "on"
       action:
         - service: notify.notify_telegram
           data:
-            message: "☔️ 지금 비가 내려요. 창문을 닫아주세요."
+            message: "☔️ 지금 비가 내려요. 안방 창문을 닫아주세요."
         - condition: state
           entity_id: alarm_control_panel.home_monitoring
           state: "disarmed"
         - service: notify.galaxy_cloud_speak
           data:
-            message: "비가 내려요. 창문을 닫아주세요."
+            message: "비가 내려요. 안방 창문을 닫아주세요."
