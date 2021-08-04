@@ -26,10 +26,10 @@ naver_weather_package:
       action:
         - service: notify.notify_telegram
           data:
-            message: "🌂 오늘 비 예보가 있으니 우산을 챙기세요."
-        - service: notify.in_the_library
+            message: "🌂 비 예보가 있으니 우산을 챙기세요."
+        - service: notify.in_the_library_kakao
           data:
-            message: "오늘 비 예보가 있으니 우산을 챙기세요."
+            message: "비 예보가 있으니 우산을 챙기세요."
     - id: "notify_rain"
       alias: "notify rain"
       trigger:

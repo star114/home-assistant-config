@@ -1,0 +1,25 @@
+# https://github.com/miumida/kakao_tts
+kakao_tts_package:
+  tts:
+    - platform: kakao_tts
+      api_key: !secret kakao_tts_api_key
+      voice: "MAN_DIALOG_BRIGHT"
+      volume: "medium"
+
+  notify:
+    - platform: tts
+      name: in_the_kitchen_kakao
+      tts_service: tts.kakao_tts_say
+      media_player: media_player.jubang_seupikeo
+    - platform: tts
+      name: in_the_bedroom_kakao
+      tts_service: tts.kakao_tts_say
+      media_player: media_player.anbang_seupikeo
+    - platform: tts
+      name: in_the_library_kakao
+      tts_service: tts.kakao_tts_say
+      media_player: media_player.raibeureori_seupikeo
+    - platform: tts
+      name: in_the_house_kakao
+      tts_service: tts.kakao_tts_say
+      media_player: media_player.geurubseupikeo
