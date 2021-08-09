@@ -954,23 +954,43 @@ views:
     icon: "mdi:car-connected"
     cards:
       - type: "custom:vertical-stack-in-card"
-        title: Model Y 드림
+        title: 기본 정보
         cards:
           - type: glance
-            columns: 3
+            columns: 4
+            entities:
+              - entity: sensor.tesla_display_name
+                name: 이름
+              - entity: sensor.tesla_model
+                name: 모델
+              - entity: sensor.tesla_trim_badging
+                name: 트림
+              - entity: sensor.tesla_exterior_color
+                name: 외장
+              - entity: sensor.tesla_wheel_type
+                name: 휠
+              - entity: sensor.tesla_spoiler_type
+                name: 스포일러
+              - entity: sensor.tesla_odometer
+                name: 주행거리
+              - entity: sensor.tesla_version
+                name: 현재 버전
+              - entity: binary_sensor.tesla_update_available
+                name: 업데이트
+              - entity: sensor.tesla_update_version
+                name: 업데이트 버전
+              - entity: binary_sensor.tesla_healthy
+                name: 테슬라메이트 상태
+      - type: "custom:vertical-stack-in-card"
+        title: 상태
+        cards:
+          - type: glance
+            columns: 4
             entities:
               - entity: sensor.tesla_state
                 name: 상태
               - entity: sensor.tesla_since
-                name: 업데이트 시간
-              - entity: sensor.tesla_odometer
-                name: 주행거리
-              - entity: proximity.home_tesla
-                name: 집까지 거리
-              - entity: sensor.tesla_latitude
-                name: 위도
-              - entity: sensor.tesla_longitude
-                name: 경도
+                name: 상태 변화
               - entity: binary_sensor.tesla_is_user_present
                 name: 운전자
               - entity: binary_sensor.tesla_locked
@@ -989,35 +1009,12 @@ views:
                 name: 충전구
               - entity: binary_sensor.tesla_windows_open
                 name: 창문
-          - type: map
-            default_zoom: 12
-            entities:
-              - device_tracker.tesla_location
-      - type: "custom:vertical-stack-in-card"
-        title: 주행
-        cards:
-          - type: glance
-            columns: 4
-            entities:
-              - entity: sensor.tesla_battery_level
-                name: 퍼센트
-              - entity: sensor.tesla_est_battery_range_km
-                name: 거리
-              - entity: sensor.tesla_rated_battery_range_km
-                name: 추정 거리
-              - entity: sensor.tesla_ideal_battery_range_km
-                name: 이상 거리
               - entity: binary_sensor.tesla_park_brake
                 name: 주차 브레이크
-              - entity: sensor.tesla_speed
-                name: 속도
-              - entity: sensor.tesla_heading
-                name: 방향
-              - entity: sensor.tesla_elevation
-                name: 높이
-          - type: thermostat
-            entity: climate.deurim_hvac_climate_system
-            name: 에어컨
+              - entity: sensor.tesla_inside_temp
+                name: 실내온도
+              - entity: sensor.tesla_outside_temp
+                name: 실외온도
           - type: history-graph
             entities:
               - entity: sensor.tesla_inside_temp
@@ -1027,10 +1024,42 @@ views:
             hours_to_show: 24
             refresh_interval: 60
       - type: "custom:vertical-stack-in-card"
-        title: 충전
+        title: 주행
+        cards:
+          - type: map
+            default_zoom: 12
+            entities:
+              - device_tracker.tesla_location
+          - type: glance
+            columns: 4
+            entities:
+              - entity: sensor.tesla_speed
+                name: 속도
+              - entity: sensor.tesla_geofence
+                name: 지오펜스
+              - entity: proximity.home_tesla
+                name: 집까지 거리
+              - entity: sensor.tesla_battery_level
+                name: 배터리
+              - entity: sensor.tesla_est_battery_range_km
+                name: 거리
+              - entity: sensor.tesla_rated_battery_range_km
+                name: 추정 거리
+              - entity: sensor.tesla_ideal_battery_range_km
+                name: 이상 거리
+              - entity: sensor.tesla_latitude
+                name: 위도
+              - entity: sensor.tesla_longitude
+                name: 경도
+              - entity: sensor.tesla_heading
+                name: 방향
+              - entity: sensor.tesla_elevation
+                name: 높이
+      - type: "custom:vertical-stack-in-card"
         cards:
           - type: glance
-            columns: 3
+            title: 충전
+            columns: 4
             entities:
               - entity: binary_sensor.tesla_plugged_in
                 name: 충전중
@@ -1052,47 +1081,6 @@ views:
                 name: 충전 전압
               - entity: sensor.tesla_charge_energy_added
                 name: 충전된 에너지
-      - type: grid
-        title: 조작
-        columns: 4
-        cards:
-          - type: button
-            entity: lock.deurim_door_lock
-            name: 문
-          - type: button
-            entity: lock.deurim_frunk_lock
-            name: 프렁크
-          - type: button
-            entity: lock.deurim_trunk_lock
-            name: 트렁크
-          - type: button
-            entity: lock.deurim_charger_door_lock
-            name: 충전구
-          - type: button
-            entity: switch.deurim_charger_switch
-            name: 충전
-          - type: button
-            entity: switch.deurim_maxrange_switch
-            name: 최고속도 제한
-          - type: button
-            entity: switch.deurim_sentry_mode_switch
-            name: 감시 모드
-          - type: button
-            entity: switch.deurim_update_switch
-            name: 데이터 업데이트
-      - type: "custom:vertical-stack-in-card"
-        title: 업데이트
-        cards:
-          - type: glance
-            entities:
-              - entity: binary_sensor.tesla_update_available
-                name: 업데이트 확인
-              - entity: sensor.tesla_version
-                name: 소프트웨어 버전
-              - entity: sensor.tesla_update_version
-                name: 업데이트 버전
-              - entity: binary_sensor.tesla_healthy
-                name: 테슬라메이트 상태
   - title: HA server
     path: HA server
     icon: "mdi:home-assistant"
