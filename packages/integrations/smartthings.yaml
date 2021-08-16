@@ -1,0 +1,9 @@
+# smartthings - mainly integrated with UI
+smartthings_package:
+  utility_meter:
+    geonjogi_daily_energy:
+      source: sensor.geonjogi_energy
+      cycle: daily
+    geonjogi_monthly_energy:
+      source: sensor.geonjogi_energy
+      cycle: monthly
