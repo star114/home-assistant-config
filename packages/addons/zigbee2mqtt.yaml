@@ -27,6 +27,50 @@ zigbee2mqtt_package:
       # again, if you change base_topic of Zigbee2mqtt, change json_attributes_topic accordingly
       json_attributes_topic: zigbee2mqtt/bridge/networkmap/raw
 
+  utility_meter:
+    dawon_bedroom_aircon_plug_daily_energy:
+      source: sensor.dawon_bedroom_aircon_plug_energy
+      cycle: daily
+    dawon_bedroom_aircon_plug_monthly_energy:
+      source: sensor.dawon_bedroom_aircon_plug_energy
+      cycle: monthly
+    dawon_kitchen_foodwaste_plug_daily_energy:
+      source: sensor.dawon_kitchen_foodwaste_plug_energy
+      cycle: daily
+    dawon_kitchen_foodwaste_plug_monthly_energy:
+      source: sensor.dawon_kitchen_foodwaste_plug_energy
+      cycle: monthly
+    dawon_kitchen_cooker_plug_daily_energy:
+      source: sensor.dawon_kitchen_cooker_plug_energy
+      cycle: daily
+    dawon_kitchen_cooker_plug_monthly_energy:
+      source: sensor.dawon_kitchen_cooker_plug_energy
+      cycle: monthly
+    dawon_dressroom_plug_daily_energy:
+      source: sensor.dawon_dressroom_plug_energy
+      cycle: daily
+    dawon_dressroom_plug_monthly_energy:
+      source: sensor.dawon_dressroom_plug_energy
+      cycle: monthly
+    dawon_bathroom_plug_daily_energy:
+      source: sensor.dawon_bathroom_plug_energy
+      cycle: daily
+    dawon_bathroom_plug_monthly_energy:
+      source: sensor.dawon_bathroom_plug_energy
+      cycle: monthly
+    dawon_kitchen_dishwasher_plug_daily_energy:
+      source: sensor.dawon_kitchen_dishwasher_plug_energy
+      cycle: daily
+    dawon_kitchen_dishwasher_plug_monthly_energy:
+      source: sensor.dawon_kitchen_dishwasher_plug_energy
+      cycle: monthly
+    dawon_kitchen_fan_plug_daily_energy:
+      source: sensor.dawon_kitchen_fan_plug_energy
+      cycle: daily
+    dawon_kitchen_fan_plug_monthly_energy:
+      source: sensor.dawon_kitchen_fan_plug_energy
+      cycle: monthly
+
   automation:
     - id: "zigbee2mqtt_create_notification_on_successfull_interview"
       alias: Zigbee Device Joined Notification
