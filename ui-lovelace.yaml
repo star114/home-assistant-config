@@ -745,6 +745,22 @@ views:
                         - font-size: 15px
                         - font-weight: bold
                         - padding-right: 12px
+                    state:
+                      - value: 'on' 
+                        styles:
+                          name:
+                            - font-weight: bold
+                            - color: white
+                          card:
+                            - background-color: 'RGB(233,130,75)'
+                      - value: 'off'
+                        styles:
+                          icon:
+                            - filter: grayscale(100%)
+                          card:
+                            - background-color: 'RGB(255,255,255)'
+                          name:
+                            - color: grey
               - type: horizontal-stack
                 cards:
                   - type: 'custom:button-card'
