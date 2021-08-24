@@ -40,12 +40,10 @@ xiaomi_package:
   input_boolean:
     roborock_ready_to_clean:
       name: Roborock ready to clean
-      initial: true
 
   input_number:
     cleaning_dustbin:
       name: cleaning dustbin gauge
-      initial: 0
       min: 0
       max: 100
       step: 5

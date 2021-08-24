@@ -2,7 +2,6 @@ harmony_package:
   input_boolean:
     bedroom_ac_status:
       name: bedroom ac status
-      initial: false
 
   switch:
     - platform: template

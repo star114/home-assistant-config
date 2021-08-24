@@ -3,7 +3,6 @@ dressroom_package:
   input_boolean:
     dressroom_light_triggered_by_motion:
       name: Dressroom Light triggered by motion
-      initial: false
 
   automation:
     - id: "dressroom_light_off_with_no_motion"

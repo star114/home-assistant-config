@@ -3,13 +3,10 @@ kitchen_package:
   input_boolean:
     food_waste_machine_state:
       name: Food waste machine state
-      initial: false
     dish_washer_state:
       name: Dish washer state
-      initial: false
     co2_unhealthy_state:
       name: CO2 unhealthy state
-      initial: false
 
   automation:
     - id: "kitchen_light_off_with_no_motion"

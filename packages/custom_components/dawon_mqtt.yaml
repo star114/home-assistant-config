@@ -51,7 +51,8 @@ dawon_mqtt_package:
 
   # 실시간 파워를 가져오기 위한 자동화 설정 (30초 마다 센서 값을 갱신하기 위한 메시지 발행)
   automation:
-    - alias: 'power refresh'
+    - id: "dawon_mqtt_power_refresh"
+      alias: 'dawon mqtt power refresh'
       trigger:
         platform: time_pattern
         seconds: '/30'

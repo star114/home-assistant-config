@@ -3,8 +3,8 @@ bedroom_package:
   input_text:
     morning_spotify_playlist_id:
       name: morning spotify playlist id
-      initial: 37i9dQZF1DX4sWSpwq3LiO # peaceful piano.
-      # 37i9dQZF1DXcgZcN2HVMoe # morning coffee.
+    morning_ytube_music_playlist_id:
+      name: morning youtube music playlist id
 
   automation:
     - id: "morning_scene_switch_off"
@@ -91,5 +91,5 @@ bedroom_package:
         - service: media_player.play_media
           data:
             entity_id: media_player.ytube_music_player
-            media_content_id: PLt_47Imx98wqc2_lOAg53v8Op-oks9KB5
+            media_content_id: input_text.morning_ytube_music_playlist_id
             media_content_type: playlist

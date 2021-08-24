@@ -3,7 +3,6 @@ library_package:
   input_boolean:
     library_light_triggered_by_motion:
       name: Library Light triggered by motion
-      initial: false
 
   automation:
     - id: "library_light_off_with_no_motion"

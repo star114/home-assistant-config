@@ -12,10 +12,8 @@ iphonedetect_package:
   input_boolean:
     heesik_out_check:
       name: Heesik out check
-      initial: false
     seojin_out_check:
       name: Seojin out check
-      initial: false
   automation:
     - id: "notify_my_presence"
       alias: "Notify my presence"

@@ -2,7 +2,6 @@ bathroom_package:
   input_boolean:
     bathroom_in_use:
       name: Bathroom In Use
-      initial: false
       icon: mdi:paper-roll
 
   timer:
