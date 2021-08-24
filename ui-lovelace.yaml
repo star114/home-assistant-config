@@ -94,6 +94,8 @@ views:
               - type: state-icon
                 entity: binary_sensor.smartthings_door_contact_contact
                 style:
+                  "--paper-item-icon-active-color": "RGB(233,130,75)"
+                  "--paper-item-icon-color": "#B9A9C0"
                   top: 7%
                   left: 50%
               - type: state-icon
@@ -132,16 +134,22 @@ views:
               - type: state-icon
                 entity: binary_sensor.smartthings_library_motion_occupancy
                 style:
+                  "--paper-item-icon-active-color": "RGB(233,130,75)"
+                  "--paper-item-icon-color": "#B9A9C0"
                   top: 28%
                   left: 26%
               - type: state-icon
                 entity: binary_sensor.smartthings_library_contact_contact
                 style:
+                  "--paper-item-icon-active-color": "RGB(233,130,75)"
+                  "--paper-item-icon-color": "#B9A9C0"
                   top: 7%
                   left: 25%
               - type: state-icon
                 entity: binary_sensor.aqara_library_data_center_door_contact
                 style:
+                  "--paper-item-icon-active-color": "RGB(233,130,75)"
+                  "--paper-item-icon-color": "#B9A9C0"
                   top: 12%
                   left: 15%
               - type: state-icon
@@ -158,11 +166,15 @@ views:
               - type: state-icon
                 entity: binary_sensor.smartthings_dressroom_motion_occupancy
                 style:
+                  "--paper-item-icon-active-color": "RGB(233,130,75)"
+                  "--paper-item-icon-color": "#B9A9C0"
                   top: 28%
                   left: 73%
               - type: state-icon
                 entity: binary_sensor.smartthings_dressroom_contact_contact
                 style:
+                  "--paper-item-icon-active-color": "RGB(233,130,75)"
+                  "--paper-item-icon-color": "#B9A9C0"
                   top: 7%
                   left: 73%
               - type: state-icon
@@ -212,11 +224,15 @@ views:
               - type: state-icon
                 entity: binary_sensor.hue_bedroom_motion_occupancy
                 style:
+                  "--paper-item-icon-active-color": "RGB(233,130,75)"
+                  "--paper-item-icon-color": "#B9A9C0"
                   top: 57%
                   left: 40%
               - type: state-icon
                 entity: binary_sensor.smartthings_bedroom_contact_contact
                 style:
+                  "--paper-item-icon-active-color": "RGB(233,130,75)"
+                  "--paper-item-icon-color": "#B9A9C0"
                   top: 93%
                   left: 35%
               - type: state-icon
@@ -277,16 +293,22 @@ views:
               - type: state-icon
                 entity: binary_sensor.smartthings_kitchen_motion_occupancy
                 style:
+                  "--paper-item-icon-active-color": "RGB(233,130,75)"
+                  "--paper-item-icon-color": "#B9A9C0"
                   top: 45%
                   left: 80%
               - type: state-icon
                 entity: binary_sensor.aqara_kitchen_pantry_door_left_contact
                 style:
+                  "--paper-item-icon-active-color": "RGB(233,130,75)"
+                  "--paper-item-icon-color": "#B9A9C0"
                   top: 35%
                   left: 66%
               - type: state-icon
                 entity: binary_sensor.aqara_kitchen_pantry_door_right_contact
                 style:
+                  "--paper-item-icon-active-color": "RGB(233,130,75)"
+                  "--paper-item-icon-color": "#B9A9C0"
                   top: 35%
                   left: 76%
               - type: state-icon
@@ -325,11 +347,15 @@ views:
               - type: state-icon
                 entity: binary_sensor.smartthings_bathroom_motion_occupancy
                 style:
+                  "--paper-item-icon-active-color": "RGB(233,130,75)"
+                  "--paper-item-icon-color": "#B9A9C0"
                   top: 46%
                   left: 15%
               - type: state-icon
                 entity: binary_sensor.smartthings_bathroom_contact_contact
                 style:
+                  "--paper-item-icon-active-color": "RGB(233,130,75)"
+                  "--paper-item-icon-color": "#B9A9C0"
                   top: 47%
                   left: 40%
               - type: state-icon
@@ -346,11 +372,15 @@ views:
               - type: state-icon
                 entity: binary_sensor.smartthings_laundryroom_motion_occupancy
                 style:
+                  "--paper-item-icon-active-color": "RGB(233,130,75)"
+                  "--paper-item-icon-color": "#B9A9C0"
                   top: 88%
                   left: 55%
               - type: state-icon
                 entity: binary_sensor.smartthings_laundryroom_contact_contact
                 style:
+                  "--paper-item-icon-active-color": "RGB(233,130,75)"
+                  "--paper-item-icon-color": "#B9A9C0"
                   top: 93%
                   left: 65%
       - type: vertical-stack
@@ -391,7 +421,7 @@ views:
                   - type: 'custom:button-card'
                     entity: input_boolean.food_waste_machine_state
                     name: 스마트카라
-                    color_type: card
+                    color_type: auto 
                     show_icon: true
                     show_state: true
                     show_name: true
@@ -399,8 +429,6 @@ views:
                     styles:
                       card:
                         - height: 60px
-                        - border: '1px solid RGB(255,255,255)'
-                        - border-radius: 10px
                       grid:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
@@ -428,14 +456,12 @@ views:
                         styles:
                           icon:
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                           name:
                             - color: grey
                   - type: 'custom:button-card'
                     entity: input_boolean.dish_washer_state
                     name: 식세기
-                    color_type: card
+                    color_type: auto
                     show_icon: true
                     show_state: true
                     show_name: true
@@ -443,8 +469,6 @@ views:
                     styles:
                       card:
                         - height: 60px
-                        - border: '1px solid RGB(255,255,255)'
-                        - border-radius: 10px
                       grid:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
@@ -472,8 +496,6 @@ views:
                         styles:
                           icon:
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                           name:
                             - color: grey
               - type: horizontal-stack
@@ -544,7 +566,7 @@ views:
                   - type: 'custom:button-card'
                     entity: binary_sensor.blitzwolf_kitchen_boiler_waterleak_water_leak
                     name: 보일러분배기 
-                    color_type: card
+                    color_type: auto
                     show_icon: true
                     show_state: true
                     show_name: true
@@ -552,8 +574,6 @@ views:
                     styles:
                       card:
                         - height: 60px
-                        - border: '1px solid RGB(255,255,255)'
-                        - border-radius: 10px
                       grid:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
@@ -581,14 +601,12 @@ views:
                         styles:
                           icon:
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                           name:
                             - color: grey
                   - type: 'custom:button-card'
                     entity: binary_sensor.blitzwolf_kitchen_sink_waterleak_water_leak
                     name: 주방 싱크대
-                    color_type: card
+                    color_type: auto
                     show_icon: true
                     show_state: true
                     show_name: true
@@ -596,8 +614,6 @@ views:
                     styles:
                       card:
                         - height: 60px
-                        - border: '1px solid RGB(255,255,255)'
-                        - border-radius: 10px
                       grid:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
@@ -625,14 +641,12 @@ views:
                         styles:
                           icon:
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                           name:
                             - color: grey
                   - type: 'custom:button-card'
                     entity: binary_sensor.blitzwolf_bathroom_sink_waterleak_water_leak
                     name: 화장실 세면대
-                    color_type: card
+                    color_type: auto
                     show_icon: true
                     show_state: true
                     show_name: true
@@ -640,8 +654,6 @@ views:
                     styles:
                       card:
                         - height: 60px
-                        - border: '1px solid RGB(255,255,255)'
-                        - border-radius: 10px
                       grid:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
@@ -669,14 +681,12 @@ views:
                         styles:
                           icon:
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                           name:
                             - color: grey
                   - type: 'custom:button-card'
                     entity: binary_sensor.blitzwolf_bathroom_ceiling_waterleak_water_leak
                     name: 화장실 천장
-                    color_type: card
+                    color_type: auto
                     show_icon: true
                     show_state: true
                     show_name: true
@@ -684,8 +694,6 @@ views:
                     styles:
                       card:
                         - height: 60px
-                        - border: '1px solid RGB(255,255,255)'
-                        - border-radius: 10px
                       grid:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
@@ -713,14 +721,12 @@ views:
                         styles:
                           icon:
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                           name:
                             - color: grey
                   - type: 'custom:button-card'
                     entity: binary_sensor.blitzwolf_laundryroom_waterleak_water_leak
                     name: 베란다 
-                    color_type: card
+                    color_type: auto
                     show_icon: true
                     show_state: true
                     show_name: true
@@ -728,8 +734,6 @@ views:
                     styles:
                       card:
                         - height: 60px
-                        - border: '1px solid RGB(255,255,255)'
-                        - border-radius: 10px
                       grid:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
@@ -757,8 +761,6 @@ views:
                         styles:
                           icon:
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                           name:
                             - color: grey
               - type: horizontal-stack
@@ -766,7 +768,7 @@ views:
                   - type: 'custom:button-card'
                     entity: switch.hej_3gang_library_light_bottom
                     name: 외출 
-                    color_type: card
+                    color_type: auto
                     show_icon: true
                     show_state: true
                     show_name: true
@@ -774,8 +776,6 @@ views:
                     styles:
                       card:
                         - height: 90px
-                        - border: '1px solid RGB(255,255,255)'
-                        - border-radius: 10px
                       grid:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
@@ -802,14 +802,12 @@ views:
                         styles:
                           icon:
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                           name:
                             - color: grey
                   - type: 'custom:button-card'
                     entity: switch.hej_3gang_bedroom_bed_light_bottom
                     name: 취침
-                    color_type: card
+                    color_type: auto
                     show_icon: true
                     show_state: true
                     show_name: true
@@ -817,8 +815,6 @@ views:
                     styles:
                       card:
                         - height: 90px
-                        - border: '1px solid RGB(255,255,255)'
-                        - border-radius: 10px
                       grid:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
@@ -845,14 +841,12 @@ views:
                         styles:
                           icon:
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                           name:
                             - color: grey
                   - type: 'custom:button-card'
                     entity: switch.anbang_gonggiceongjeonggi
                     name: 공기청정기
-                    color_type: card
+                    color_type: auto
                     show_icon: true
                     show_state: true
                     show_name: true
@@ -860,8 +854,6 @@ views:
                     styles:
                       card:
                         - height: 90px
-                        - border: '1px solid RGB(255,255,255)'
-                        - border-radius: 10px
                       grid:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
@@ -888,8 +880,6 @@ views:
                         styles:
                           icon:
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                           name:
                             - color: grey
               - type: horizontal-stack
@@ -897,7 +887,7 @@ views:
                   - type: 'custom:button-card'
                     entity: switch.lellki_library_multi_outlets_l2
                     name: 캔들워머
-                    color_type: card
+                    color_type: auto
                     show_icon: true
                     show_state: true
                     show_name: true
@@ -905,8 +895,6 @@ views:
                     styles:
                       card:
                         - height: 90px
-                        - border: '1px solid RGB(255,255,255)'
-                        - border-radius: 10px
                       grid:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
@@ -933,14 +921,12 @@ views:
                         styles:
                           icon:
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                           name:
                             - color: grey
                   - type: 'custom:button-card'
                     entity: switch.lellki_library_multi_outlets_l3
                     name: 턴테이블
-                    color_type: card
+                    color_type: auto
                     show_icon: true
                     show_state: true
                     show_name: true
@@ -948,8 +934,6 @@ views:
                     styles:
                       card:
                         - height: 90px
-                        - border: '1px solid RGB(255,255,255)'
-                        - border-radius: 10px
                       grid:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
@@ -976,14 +960,12 @@ views:
                         styles:
                           icon:
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                           name:
                             - color: grey
                   - type: 'custom:button-card'
                     entity: switch.lellki_library_multi_outlets_l4
                     name: 소켓4
-                    color_type: card
+                    color_type: auto
                     show_icon: true
                     show_state: true
                     show_name: true
@@ -991,8 +973,6 @@ views:
                     styles:
                       card:
                         - height: 90px
-                        - border: '1px solid RGB(255,255,255)'
-                        - border-radius: 10px
                       grid:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
@@ -1019,22 +999,18 @@ views:
                         styles:
                           icon:
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                           name:
                             - color: grey
           - type: vertical-stack
             cards:
               - type: 'custom:button-card'
-                color_type: card
+                color_type: auto
                 show_state: false
                 show_name: false
                 show_icon: false
                 styles:
                   card:
                     - height: 5px
-                    - background-color: 'RGB(255,255,255)'
-                    - border-radius: 0px
           - type: vertical-stack
             cards:
               - type: horizontal-stack
@@ -1171,8 +1147,6 @@ views:
                           icon:
                             - color: grey
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                     tap_action:
                       action: toggle
           - type: vertical-stack
@@ -1312,8 +1286,6 @@ views:
                           icon:
                             - color: grey
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                     tap_action:
                       action: toggle
               - type: horizontal-stack
@@ -1385,8 +1357,6 @@ views:
                           icon:
                             - color: grey
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                     tap_action:
                       action: toggle
               - type: horizontal-stack
@@ -1458,8 +1428,6 @@ views:
                           icon:
                             - color: grey
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                     tap_action:
                       action: toggle
           - type: vertical-stack
@@ -1516,7 +1484,7 @@ views:
                   - type: 'custom:button-card'
                     entity: input_boolean.bathroom_in_use
                     name: 사용중
-                    color_type: card
+                    color_type: auto
                     show_icon: true
                     show_state: true
                     show_name: true
@@ -1524,8 +1492,6 @@ views:
                     styles:
                       card:
                         - height: 60px
-                        - border: '1px solid RGB(255,255,255)'
-                        - border-radius: 10px
                       grid:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
@@ -1553,8 +1519,6 @@ views:
                         styles:
                           icon:
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                           name:
                             - color: grey
               - type: horizontal-stack
@@ -1626,8 +1590,6 @@ views:
                           icon:
                             - color: grey
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                     tap_action:
                       action: toggle
 
@@ -1669,7 +1631,7 @@ views:
                   - type: 'custom:button-card'
                     entity: input_boolean.dressroom_light_triggered_by_motion
                     name: 모션조명
-                    color_type: card
+                    color_type: auto
                     show_icon: true
                     show_state: true
                     show_name: true
@@ -1677,8 +1639,6 @@ views:
                     styles:
                       card:
                         - height: 60px
-                        - border: '1px solid RGB(255,255,255)'
-                        - border-radius: 10px
                       grid:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
@@ -1706,8 +1666,6 @@ views:
                         styles:
                           icon:
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                           name:
                             - color: grey
                   - type: "custom:button-card"
@@ -1787,8 +1745,6 @@ views:
                           icon:
                             - color: grey
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                     tap_action:
                       action: toggle
           - type: vertical-stack
@@ -1845,7 +1801,7 @@ views:
                   - type: 'custom:button-card'
                     entity: switch.geonjogi
                     name: 건조기
-                    color_type: card
+                    color_type: auto
                     show_icon: true
                     show_state: true
                     show_name: true
@@ -1853,8 +1809,6 @@ views:
                     styles:
                       card:
                         - height: 60px
-                        - border: '1px solid RGB(255,255,255)'
-                        - border-radius: 10px
                       grid:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
@@ -1882,8 +1836,6 @@ views:
                         styles:
                           icon:
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                           name:
                             - color: grey
           - type: vertical-stack
@@ -1940,7 +1892,7 @@ views:
                   - type: 'custom:button-card'
                     entity: input_boolean.library_light_triggered_by_motion
                     name: 모션조명
-                    color_type: card
+                    color_type: auto
                     show_icon: true
                     show_state: true
                     show_name: true
@@ -1948,8 +1900,6 @@ views:
                     styles:
                       card:
                         - height: 60px
-                        - border: '1px solid RGB(255,255,255)'
-                        - border-radius: 10px
                       grid:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
@@ -1977,8 +1927,6 @@ views:
                         styles:
                           icon:
                             - filter: grayscale(100%)
-                          card:
-                            - background-color: 'RGB(255,255,255)'
                           name:
                             - color: grey
   - title: Air conditioner
@@ -2491,9 +2439,15 @@ views:
     cards:
       - type: vertical-stack
         cards:
+          - type: entities
+            show_header_toggle: false
+            entities:
+              - entity: input_select.themes
           - type: entity
             entity: input_text.morning_spotify_playlist_id
             name: Morning spotify playlist id
+          - type: entity
+            entity: input_text.morning_ytube_music_playlist_id
           - type: custom:transmission-card
             hide_type: false
       - type: vertical-stack
