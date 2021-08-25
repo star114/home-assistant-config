@@ -186,7 +186,7 @@ smartthings_package:
         - service: notify.galaxy_cloud_speak
           data:
             message: "실내 공기질 수치 나쁨. 관리가 필요합니다."
-    - id: "caqi_level_has_come_back_to_normal질
+    - id: "caqi_level_has_come_back_to_normal"
       alias: "CAQI level has come back to normal"
       trigger:
         - platform: numeric_state
