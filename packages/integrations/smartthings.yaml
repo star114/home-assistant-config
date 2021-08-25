@@ -166,4 +166,4 @@ smartthings_package:
           state: "disarmed"
         - service: notify.galaxy_cloud_speak
           data:
-            message: "실내 초미세먼지 수치가 정상으로 돌아왔습초다."
+            message: "실내 초미세먼지 수치가 정상으로 돌아왔습니다.
