@@ -222,6 +222,17 @@ views:
                   left: 10%
                   transform: scale(1.2,1.2)
               - type: state-icon
+                tap_action:
+                  action: toggle
+                entity: switch.bedroom_ac
+                icon: mdi:air-conditioner              
+                style:
+                  "--paper-item-icon-active-color": "RGB(81,156,202)"
+                  "--paper-item-icon-color": "#B9A9C0"
+                  top: 85%
+                  left: 10%
+                  transform: scale(1.0,1.0)
+              - type: state-icon
                 entity: binary_sensor.hue_bedroom_motion_occupancy
                 style:
                   "--paper-item-icon-active-color": "RGB(233,130,75)"
@@ -277,7 +288,7 @@ views:
                   "--paper-item-icon-active-color": "RGB(233,130,75)"
                   "--paper-item-icon-color": "#B9A9C0"
                   top: 76%
-                  left: 62%
+                  left: 64%
                   transform: scale(1.5,1.5)
               - type: state-icon
                 tap_action:
@@ -290,6 +301,17 @@ views:
                   top: 32%
                   left: 81%
                   transform: scale(1.2,1.2)
+              - type: state-icon
+                tap_action:
+                  action: toggle
+                entity: switch.jubang_eeokeon
+                icon: mdi:air-conditioner              
+                style:
+                  "--paper-item-icon-active-color": "RGB(81,156,202)"
+                  "--paper-item-icon-color": "#B9A9C0"
+                  top: 75%
+                  left: 52%
+                  transform: scale(1.0,1.0)
               - type: state-icon
                 entity: binary_sensor.smartthings_kitchen_motion_occupancy
                 style:
