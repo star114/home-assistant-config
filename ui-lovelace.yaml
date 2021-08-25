@@ -448,9 +448,11 @@ views:
                       - value: "on"
                         styles:
                           name:
-                            - font-weight: bold
                             - color: white
                           icon:
+                            - font-weight: bold
+                            - color: white
+                          state:
                             - font-weight: bold
                             - color: white
                           card:
@@ -458,9 +460,10 @@ views:
                       - value: "off"
                         styles:
                           icon:
-                            - filter: grayscale(100%)
                             - color: grey
                           name:
+                            - color: grey
+                          state:
                             - color: grey
                   - type: "custom:button-card"
                     entity: input_boolean.dish_washer_state
@@ -492,9 +495,11 @@ views:
                       - value: "on"
                         styles:
                           name:
-                            - font-weight: bold
                             - color: white
                           icon:
+                            - font-weight: bold
+                            - color: white
+                          state:
                             - font-weight: bold
                             - color: white
                           card:
@@ -502,12 +507,29 @@ views:
                       - value: "off"
                         styles:
                           icon:
-                            - filter: grayscale(100%)
                             - color: grey
                           name:
                             - color: grey
+                          state:
+                            - color: grey
               - type: horizontal-stack
                 cards:
+                  - type: "custom:button-card"
+                    show_state: true
+                    show_name: true
+                    show_icon: false
+                    show_units: true
+                    units: AQI
+                    entity: sensor.samseong_eeomoniteo_air_quality
+                    name: 공기질
+                    styles:
+                      card:
+                        - height: 60px
+                      name:
+                        - font-size: 11px
+                      state:
+                        - font-size: 15px
+                        - font-weight: bold
                   - type: "custom:button-card"
                     show_state: true
                     show_name: true
@@ -517,7 +539,6 @@ views:
                     name: TVOC
                     styles:
                       card:
-                        - width: 130px
                         - height: 60px
                       name:
                         - font-size: 11px
@@ -599,6 +620,7 @@ views:
                         - padding-right: 12px
                     state:
                       - value: "on"
+                        icon: mdi:alert
                         styles:
                           name:
                             - font-weight: bold
@@ -607,7 +629,8 @@ views:
                             - font-weight: bold
                             - color: white
                           card:
-                            - background-color: "RGB(233,130,75)"
+                            - background-color: red
+                            - animation: blink 2s ease infinite
                       - value: "off"
                         styles:
                           icon:
@@ -643,6 +666,7 @@ views:
                         - padding-right: 12px
                     state:
                       - value: "on"
+                        icon: mdi:alert
                         styles:
                           name:
                             - font-weight: bold
@@ -651,7 +675,8 @@ views:
                             - font-weight: bold
                             - color: white
                           card:
-                            - background-color: "RGB(233,130,75)"
+                            - background-color: red
+                            - animation: blink 2s ease infinite
                       - value: "off"
                         styles:
                           icon:
@@ -687,6 +712,7 @@ views:
                         - padding-right: 12px
                     state:
                       - value: "on"
+                        icon: mdi:alert
                         styles:
                           name:
                             - font-weight: bold
@@ -695,7 +721,8 @@ views:
                             - font-weight: bold
                             - color: white
                           card:
-                            - background-color: "RGB(233,130,75)"
+                            - background-color: red
+                            - animation: blink 2s ease infinite
                       - value: "off"
                         styles:
                           icon:
@@ -731,6 +758,7 @@ views:
                         - padding-right: 12px
                     state:
                       - value: "on"
+                        icon: mdi:alert
                         styles:
                           name:
                             - font-weight: bold
@@ -739,7 +767,8 @@ views:
                             - font-weight: bold
                             - color: white
                           card:
-                            - background-color: "RGB(233,130,75)"
+                            - background-color: red
+                            - animation: blink 2s ease infinite
                       - value: "off"
                         styles:
                           icon:
@@ -775,6 +804,7 @@ views:
                         - padding-right: 12px
                     state:
                       - value: "on"
+                        icon: mdi:alert
                         styles:
                           name:
                             - font-weight: bold
@@ -783,7 +813,8 @@ views:
                             - font-weight: bold
                             - color: white
                           card:
-                            - background-color: "RGB(233,130,75)"
+                            - background-color: red
+                            - animation: blink 2s ease infinite
                       - value: "off"
                         styles:
                           icon:
@@ -822,9 +853,11 @@ views:
                       - value: "on"
                         styles:
                           name:
-                            - font-weight: bold
                             - color: white
                           icon:
+                            - font-weight: bold
+                            - color: white
+                          state:
                             - font-weight: bold
                             - color: white
                           card:
@@ -832,9 +865,10 @@ views:
                       - value: "off"
                         styles:
                           icon:
-                            - filter: grayscale(100%)
                             - color: grey
                           name:
+                            - color: grey
+                          state:
                             - color: grey
                   - type: "custom:button-card"
                     entity: switch.hej_3gang_bedroom_bed_light_bottom
@@ -865,9 +899,11 @@ views:
                       - value: "on"
                         styles:
                           name:
-                            - font-weight: bold
                             - color: white
                           icon:
+                            - font-weight: bold
+                            - color: white
+                          state:
                             - font-weight: bold
                             - color: white
                           card:
@@ -875,9 +911,10 @@ views:
                       - value: "off"
                         styles:
                           icon:
-                            - filter: grayscale(100%)
                             - color: grey
                           name:
+                            - color: grey
+                          state:
                             - color: grey
                   - type: "custom:button-card"
                     entity: switch.anbang_gonggiceongjeonggi
@@ -908,9 +945,11 @@ views:
                       - value: "on"
                         styles:
                           name:
-                            - font-weight: bold
                             - color: white
                           icon:
+                            - font-weight: bold
+                            - color: white
+                          state:
                             - font-weight: bold
                             - color: white
                           card:
@@ -918,9 +957,10 @@ views:
                       - value: "off"
                         styles:
                           icon:
-                            - filter: grayscale(100%)
                             - color: grey
                           name:
+                            - color: grey
+                          state:
                             - color: grey
               - type: horizontal-stack
                 cards:
@@ -953,9 +993,11 @@ views:
                       - value: "on"
                         styles:
                           name:
-                            - font-weight: bold
                             - color: white
                           icon:
+                            - font-weight: bold
+                            - color: white
+                          state:
                             - font-weight: bold
                             - color: white
                           card:
@@ -963,9 +1005,10 @@ views:
                       - value: "off"
                         styles:
                           icon:
-                            - filter: grayscale(100%)
                             - color: grey
                           name:
+                            - color: grey
+                          state:
                             - color: grey
                   - type: "custom:button-card"
                     entity: switch.lellki_library_multi_outlets_l3
@@ -996,9 +1039,11 @@ views:
                       - value: "on"
                         styles:
                           name:
-                            - font-weight: bold
                             - color: white
                           icon:
+                            - font-weight: bold
+                            - color: white
+                          state:
                             - font-weight: bold
                             - color: white
                           card:
@@ -1006,9 +1051,10 @@ views:
                       - value: "off"
                         styles:
                           icon:
-                            - filter: grayscale(100%)
                             - color: grey
                           name:
+                            - color: grey
+                          state:
                             - color: grey
                   - type: "custom:button-card"
                     entity: switch.lellki_library_multi_outlets_l4
@@ -1039,9 +1085,11 @@ views:
                       - value: "on"
                         styles:
                           name:
-                            - font-weight: bold
                             - color: white
                           icon:
+                            - font-weight: bold
+                            - color: white
+                          state:
                             - font-weight: bold
                             - color: white
                           card:
@@ -1049,9 +1097,10 @@ views:
                       - value: "off"
                         styles:
                           icon:
-                            - filter: grayscale(100%)
                             - color: grey
                           name:
+                            - color: grey
+                          state:
                             - color: grey
           - type: vertical-stack
             cards:
@@ -1267,7 +1316,6 @@ views:
                         - font-size: 11px
                       state:
                         - font-size: 15px
-                        - font-weight: bold
                         - font-weight: bold
               - type: horizontal-stack
                 cards:
@@ -1563,9 +1611,11 @@ views:
                       - value: "on"
                         styles:
                           name:
-                            - font-weight: bold
                             - color: white
                           icon:
+                            - font-weight: bold
+                            - color: white
+                          state:
                             - font-weight: bold
                             - color: white
                           card:
@@ -1573,9 +1623,10 @@ views:
                       - value: "off"
                         styles:
                           icon:
-                            - filter: grayscale(100%)
                             - color: grey
                           name:
+                            - color: grey
+                          state:
                             - color: grey
               - type: horizontal-stack
                 cards:
@@ -1714,9 +1765,11 @@ views:
                       - value: "on"
                         styles:
                           name:
-                            - font-weight: bold
                             - color: white
                           icon:
+                            - font-weight: bold
+                            - color: white
+                          state:
                             - font-weight: bold
                             - color: white
                           card:
@@ -1724,9 +1777,10 @@ views:
                       - value: "off"
                         styles:
                           icon:
-                            - filter: grayscale(100%)
                             - color: grey
                           name:
+                            - color: grey
+                          state:
                             - color: grey
                   - type: "custom:button-card"
                     color_type: auto
@@ -1888,9 +1942,11 @@ views:
                       - value: "on"
                         styles:
                           name:
-                            - font-weight: bold
                             - color: white
                           icon:
+                            - font-weight: bold
+                            - color: white
+                          state:
                             - font-weight: bold
                             - color: white
                           card:
@@ -1898,10 +1954,13 @@ views:
                       - value: "off"
                         styles:
                           icon:
-                            - filter: grayscale(100%)
                             - color: grey
                           name:
                             - color: grey
+                          state:
+                            - color: grey
+                    tap_action:
+                      action: more-info
           - type: vertical-stack
             cards:
               - type: horizontal-stack
@@ -1983,9 +2042,11 @@ views:
                       - value: "on"
                         styles:
                           name:
-                            - font-weight: bold
                             - color: white
                           icon:
+                            - font-weight: bold
+                            - color: white
+                          state:
                             - font-weight: bold
                             - color: white
                           card:
@@ -1993,9 +2054,10 @@ views:
                       - value: "off"
                         styles:
                           icon:
-                            - filter: grayscale(100%)
                             - color: grey
                           name:
+                            - color: grey
+                          state:
                             - color: grey
   - title: Air conditioner
     panel: false
