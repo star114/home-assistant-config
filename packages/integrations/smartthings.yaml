@@ -167,3 +167,38 @@ smartthings_package:
         - service: notify.galaxy_cloud_speak
           data:
             message: "실내 초미세먼지 수치가 정상으로 돌아왔습니다."
+
+    # CAQI
+    - id: "caqi_level_has_reached_unhealthy_state"
+      alias: "CAQI level has reached unhealthy state"
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.samseong_eeomoniteo_air_quality
+          for: "00:10:00"
+          above: 3
+      action:
+        - service: notify.notify_telegram
+          data:
+            message: "⚠️ 실내 공기질 수치 관리 필요"
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: "disarmed"
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "실내 공기질 수치 나쁨. 관리가 필요합니다."
+    - id: "caqi_level_has_come_back_to_normal질
+      alias: "CAQI level has come back to normal"
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.samseong_eeomoniteo_air_quality
+          for: "00:10:00"
+          below: 4
+        - service: notify.notify_telegram
+          data:
+            message: "✅ 실내 공기질 수치 정상"
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: "disarmed"
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "실내 공기질 수치가 정상으로 돌아왔습니다."
