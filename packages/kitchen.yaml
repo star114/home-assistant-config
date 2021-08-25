@@ -5,8 +5,6 @@ kitchen_package:
       name: Food waste machine state
     dish_washer_state:
       name: Dish washer state
-    co2_unhealthy_state:
-      name: CO2 unhealthy state
 
   automation:
     - id: "kitchen_light_off_with_no_motion"
@@ -128,52 +126,6 @@ kitchen_package:
       action:
         - service: light.turn_off
           entity_id: light.hej_3gang_kitchen_light_right_top
-
-    - id: "co2_level_has_reached_unhealthy_state"
-      alias: "CO2 level has reached unhealthy state"
-      trigger:
-        - platform: numeric_state
-          entity_id: sensor.samseong_eeomoniteo_carbon_dioxide_measurement
-          for: "00:10:00"
-          above: 1400
-          #below: 9999 # wrong reporting value from sensor
-      action:
-        - service: input_boolean.turn_on
-          entity_id: input_boolean.co2_unhealthy_state
-        - service: notify.notify_telegram
-          data:
-            title: "⚠️ 실내 이산화탄소 수치 관리 필요"
-            message: "창문을 열어 환기하세요"
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "실내 이산화탄소 농도가 너무 높습니다. 환기가 필요합니다."
-    - id: "co2_level_has_come_back_to_normal"
-      alias: "CO2 level has come back to normal"
-      trigger:
-        - platform: numeric_state
-          entity_id: sensor.samseong_eeomoniteo_carbon_dioxide_measurement
-          for: "00:03:00"
-          below: 1000
-      condition:
-        - condition: state
-          entity_id: input_boolean.co2_unhealthy_state
-          state: "on"
-      action:
-        - service: input_boolean.turn_off
-          entity_id: input_boolean.co2_unhealthy_state
-        - service: notify.notify_telegram
-          data:
-            title: "✅ 실내 이산화탄소 수치 정상"
-            message: "이제 창문을 닫아도 좋습니다."
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "이산화탄소 농도가 정상으로 돌아왔습니다."
 
     - id: "nutritional_supplements_reminder"
       alias: "Nutritional supplements reminder"
