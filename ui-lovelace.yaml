@@ -519,7 +519,7 @@ views:
                     show_name: true
                     show_icon: false
                     show_units: true
-                    units: AQI
+                    units: CAQI
                     entity: sensor.samseong_eeomoniteo_air_quality
                     name: 공기질
                     styles:
@@ -530,6 +530,19 @@ views:
                       state:
                         - font-size: 15px
                         - font-weight: bold
+                    state:
+                      - value: 4
+                        operator: ">="
+                        styles:
+                          name:
+                            - font-weight: bold
+                            - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
+                          card:
+                            - background-color: red
+                            - animation: blink 2s ease infinite
                   - type: "custom:button-card"
                     show_state: true
                     show_name: true
@@ -545,6 +558,19 @@ views:
                       state:
                         - font-size: 15px
                         - font-weight: bold
+                    state:
+                      - value: 3
+                        operator: ">="
+                        styles:
+                          name:
+                            - font-weight: bold
+                            - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
+                          card:
+                            - background-color: red
+                            - animation: blink 2s ease infinite
                   - type: "custom:button-card"
                     show_state: true
                     show_name: true
@@ -560,6 +586,19 @@ views:
                       state:
                         - font-size: 15px
                         - font-weight: bold
+                    state:
+                      - value: 81
+                        operator: ">="
+                        styles:
+                          name:
+                            - font-weight: bold
+                            - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
+                          card:
+                            - background-color: red
+                            - animation: blink 2s ease infinite
                   - type: "custom:button-card"
                     show_state: true
                     show_name: true
@@ -575,6 +614,19 @@ views:
                       state:
                         - font-size: 15px
                         - font-weight: bold
+                    state:
+                      - value: 36
+                        operator: ">="
+                        styles:
+                          name:
+                            - font-weight: bold
+                            - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
+                          card:
+                            - background-color: red
+                            - animation: blink 2s ease infinite
                   - type: "custom:button-card"
                     show_state: true
                     show_name: true
@@ -590,6 +642,19 @@ views:
                       state:
                         - font-size: 15px
                         - font-weight: bold
+                    state:
+                      - value: 1500
+                        operator: ">="
+                        styles:
+                          name:
+                            - font-weight: bold
+                            - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
+                          card:
+                            - background-color: red
+                            - animation: blink 2s ease infinite
               - type: horizontal-stack
                 cards:
                   - type: "custom:button-card"
