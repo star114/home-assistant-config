@@ -418,10 +418,10 @@ views:
                       state:
                         - font-size: 15px
                         - font-weight: bold
-                  - type: 'custom:button-card'
+                  - type: "custom:button-card"
                     entity: input_boolean.food_waste_machine_state
                     name: 스마트카라
-                    color_type: auto 
+                    color_type: auto
                     show_icon: true
                     show_state: true
                     show_name: true
@@ -433,8 +433,8 @@ views:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
                         - width: 30%
-                        - margin-top: '-5%'
-                        - margin-left: '-20%'
+                        - margin-top: "-5%"
+                        - margin-left: "-20%"
                       name:
                         - justify-self: end
                         - padding-right: 12px
@@ -445,20 +445,24 @@ views:
                         - font-weight: bold
                         - padding-right: 12px
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           name:
                             - font-weight: bold
                             - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - filter: grayscale(100%)
+                            - color: grey
                           name:
                             - color: grey
-                  - type: 'custom:button-card'
+                  - type: "custom:button-card"
                     entity: input_boolean.dish_washer_state
                     name: 식세기
                     color_type: auto
@@ -473,8 +477,8 @@ views:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
                         - width: 30%
-                        - margin-top: '-5%'
-                        - margin-left: '-20%'
+                        - margin-top: "-5%"
+                        - margin-left: "-20%"
                       name:
                         - justify-self: end
                         - padding-right: 12px
@@ -485,17 +489,21 @@ views:
                         - font-weight: bold
                         - padding-right: 12px
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           name:
                             - font-weight: bold
                             - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - filter: grayscale(100%)
+                            - color: grey
                           name:
                             - color: grey
               - type: horizontal-stack
@@ -563,9 +571,9 @@ views:
                         - font-weight: bold
               - type: horizontal-stack
                 cards:
-                  - type: 'custom:button-card'
+                  - type: "custom:button-card"
                     entity: binary_sensor.blitzwolf_kitchen_boiler_waterleak_water_leak
-                    name: 보일러분배기 
+                    name: 보일러분배기
                     color_type: auto
                     show_icon: true
                     show_state: true
@@ -578,8 +586,8 @@ views:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
                         - width: 30%
-                        - margin-top: '-5%'
-                        - margin-left: '-30%'
+                        - margin-top: "-5%"
+                        - margin-left: "-30%"
                       name:
                         - justify-self: end
                         - padding-right: 12px
@@ -590,20 +598,24 @@ views:
                         - font-weight: bold
                         - padding-right: 12px
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           name:
                             - font-weight: bold
                             - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - filter: grayscale(100%)
+                            - color: grey
                           name:
                             - color: grey
-                  - type: 'custom:button-card'
+                  - type: "custom:button-card"
                     entity: binary_sensor.blitzwolf_kitchen_sink_waterleak_water_leak
                     name: 주방 싱크대
                     color_type: auto
@@ -618,8 +630,8 @@ views:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
                         - width: 30%
-                        - margin-top: '-5%'
-                        - margin-left: '-30%'
+                        - margin-top: "-5%"
+                        - margin-left: "-30%"
                       name:
                         - justify-self: end
                         - padding-right: 12px
@@ -630,20 +642,24 @@ views:
                         - font-weight: bold
                         - padding-right: 12px
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           name:
                             - font-weight: bold
                             - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - filter: grayscale(100%)
+                            - color: grey
                           name:
                             - color: grey
-                  - type: 'custom:button-card'
+                  - type: "custom:button-card"
                     entity: binary_sensor.blitzwolf_bathroom_sink_waterleak_water_leak
                     name: 화장실 세면대
                     color_type: auto
@@ -658,8 +674,8 @@ views:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
                         - width: 30%
-                        - margin-top: '-5%'
-                        - margin-left: '-30%'
+                        - margin-top: "-5%"
+                        - margin-left: "-30%"
                       name:
                         - justify-self: end
                         - padding-right: 12px
@@ -670,20 +686,24 @@ views:
                         - font-weight: bold
                         - padding-right: 12px
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           name:
                             - font-weight: bold
                             - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - filter: grayscale(100%)
+                            - color: grey
                           name:
                             - color: grey
-                  - type: 'custom:button-card'
+                  - type: "custom:button-card"
                     entity: binary_sensor.blitzwolf_bathroom_ceiling_waterleak_water_leak
                     name: 화장실 천장
                     color_type: auto
@@ -698,8 +718,8 @@ views:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
                         - width: 30%
-                        - margin-top: '-5%'
-                        - margin-left: '-30%'
+                        - margin-top: "-5%"
+                        - margin-left: "-30%"
                       name:
                         - justify-self: end
                         - padding-right: 12px
@@ -710,22 +730,26 @@ views:
                         - font-weight: bold
                         - padding-right: 12px
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           name:
                             - font-weight: bold
                             - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - filter: grayscale(100%)
+                            - color: grey
                           name:
                             - color: grey
-                  - type: 'custom:button-card'
+                  - type: "custom:button-card"
                     entity: binary_sensor.blitzwolf_laundryroom_waterleak_water_leak
-                    name: 베란다 
+                    name: 베란다
                     color_type: auto
                     show_icon: true
                     show_state: true
@@ -738,8 +762,8 @@ views:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
                         - width: 30%
-                        - margin-top: '-5%'
-                        - margin-left: '-30%'
+                        - margin-top: "-5%"
+                        - margin-left: "-30%"
                       name:
                         - justify-self: end
                         - padding-right: 12px
@@ -750,24 +774,28 @@ views:
                         - font-weight: bold
                         - padding-right: 12px
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           name:
                             - font-weight: bold
                             - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - filter: grayscale(100%)
+                            - color: grey
                           name:
                             - color: grey
               - type: horizontal-stack
                 cards:
-                  - type: 'custom:button-card'
+                  - type: "custom:button-card"
                     entity: switch.hej_3gang_library_light_bottom
-                    name: 외출 
+                    name: 외출
                     color_type: auto
                     show_icon: true
                     show_state: true
@@ -780,8 +808,8 @@ views:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
                         - width: 20%
-                        - margin-top: '-5%'
-                        - margin-left: '-20%'
+                        - margin-top: "-5%"
+                        - margin-left: "-20%"
                       name:
                         - justify-self: end
                         - padding-right: 12px
@@ -791,20 +819,24 @@ views:
                         - font-size: 12px
                         - padding-right: 12px
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           name:
                             - font-weight: bold
                             - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - filter: grayscale(100%)
+                            - color: grey
                           name:
                             - color: grey
-                  - type: 'custom:button-card'
+                  - type: "custom:button-card"
                     entity: switch.hej_3gang_bedroom_bed_light_bottom
                     name: 취침
                     color_type: auto
@@ -819,8 +851,8 @@ views:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
                         - width: 20%
-                        - margin-top: '-5%'
-                        - margin-left: '-20%'
+                        - margin-top: "-5%"
+                        - margin-left: "-20%"
                       name:
                         - justify-self: end
                         - padding-right: 12px
@@ -830,20 +862,24 @@ views:
                         - font-size: 12px
                         - padding-right: 12px
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           name:
                             - font-weight: bold
                             - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - filter: grayscale(100%)
+                            - color: grey
                           name:
                             - color: grey
-                  - type: 'custom:button-card'
+                  - type: "custom:button-card"
                     entity: switch.anbang_gonggiceongjeonggi
                     name: 공기청정기
                     color_type: auto
@@ -858,8 +894,8 @@ views:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
                         - width: 20%
-                        - margin-top: '-5%'
-                        - margin-left: '-20%'
+                        - margin-top: "-5%"
+                        - margin-left: "-20%"
                       name:
                         - justify-self: end
                         - padding-right: 12px
@@ -869,22 +905,26 @@ views:
                         - font-size: 12px
                         - padding-right: 12px
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           name:
                             - font-weight: bold
                             - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - filter: grayscale(100%)
+                            - color: grey
                           name:
                             - color: grey
               - type: horizontal-stack
                 cards:
-                  - type: 'custom:button-card'
+                  - type: "custom:button-card"
                     entity: switch.lellki_library_multi_outlets_l2
                     name: 캔들워머
                     color_type: auto
@@ -899,8 +939,8 @@ views:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
                         - width: 20%
-                        - margin-top: '-5%'
-                        - margin-left: '-20%'
+                        - margin-top: "-5%"
+                        - margin-left: "-20%"
                       name:
                         - justify-self: end
                         - padding-right: 12px
@@ -910,20 +950,24 @@ views:
                         - font-size: 12px
                         - padding-right: 12px
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           name:
                             - font-weight: bold
                             - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - filter: grayscale(100%)
+                            - color: grey
                           name:
                             - color: grey
-                  - type: 'custom:button-card'
+                  - type: "custom:button-card"
                     entity: switch.lellki_library_multi_outlets_l3
                     name: 턴테이블
                     color_type: auto
@@ -938,8 +982,8 @@ views:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
                         - width: 20%
-                        - margin-top: '-5%'
-                        - margin-left: '-20%'
+                        - margin-top: "-5%"
+                        - margin-left: "-20%"
                       name:
                         - justify-self: end
                         - padding-right: 12px
@@ -949,20 +993,24 @@ views:
                         - font-size: 12px
                         - padding-right: 12px
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           name:
                             - font-weight: bold
                             - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - filter: grayscale(100%)
+                            - color: grey
                           name:
                             - color: grey
-                  - type: 'custom:button-card'
+                  - type: "custom:button-card"
                     entity: switch.lellki_library_multi_outlets_l4
                     name: 소켓4
                     color_type: auto
@@ -977,8 +1025,8 @@ views:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
                         - width: 20%
-                        - margin-top: '-5%'
-                        - margin-left: '-20%'
+                        - margin-top: "-5%"
+                        - margin-left: "-20%"
                       name:
                         - justify-self: end
                         - padding-right: 12px
@@ -988,22 +1036,26 @@ views:
                         - font-size: 12px
                         - padding-right: 12px
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           name:
                             - font-weight: bold
                             - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - filter: grayscale(100%)
+                            - color: grey
                           name:
                             - color: grey
           - type: vertical-stack
             cards:
-              - type: 'custom:button-card'
+              - type: "custom:button-card"
                 color_type: auto
                 show_state: false
                 show_name: false
@@ -1135,14 +1187,14 @@ views:
                       icon:
                         - width: 40%
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           icon:
                             - font-weight: bold
                             - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - color: grey
@@ -1274,14 +1326,14 @@ views:
                       icon:
                         - width: 40%
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           icon:
                             - font-weight: bold
                             - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - color: grey
@@ -1345,14 +1397,14 @@ views:
                       icon:
                         - width: 40%
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           icon:
                             - font-weight: bold
                             - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - color: grey
@@ -1416,14 +1468,14 @@ views:
                       icon:
                         - width: 40%
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           icon:
                             - font-weight: bold
                             - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - color: grey
@@ -1481,7 +1533,7 @@ views:
                       state:
                         - font-size: 15px
                         - font-weight: bold
-                  - type: 'custom:button-card'
+                  - type: "custom:button-card"
                     entity: input_boolean.bathroom_in_use
                     name: 사용중
                     color_type: auto
@@ -1496,8 +1548,8 @@ views:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
                         - width: 30%
-                        - margin-top: '-5%'
-                        - margin-left: '-20%'
+                        - margin-top: "-5%"
+                        - margin-left: "-20%"
                       name:
                         - justify-self: end
                         - padding-right: 12px
@@ -1508,17 +1560,21 @@ views:
                         - font-weight: bold
                         - padding-right: 12px
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           name:
                             - font-weight: bold
                             - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - filter: grayscale(100%)
+                            - color: grey
                           name:
                             - color: grey
               - type: horizontal-stack
@@ -1578,14 +1634,14 @@ views:
                       icon:
                         - width: 40%
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           icon:
                             - font-weight: bold
                             - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - color: grey
@@ -1628,7 +1684,7 @@ views:
                       state:
                         - font-size: 15px
                         - font-weight: bold
-                  - type: 'custom:button-card'
+                  - type: "custom:button-card"
                     entity: input_boolean.dressroom_light_triggered_by_motion
                     name: 모션조명
                     color_type: auto
@@ -1643,8 +1699,8 @@ views:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
                         - width: 30%
-                        - margin-top: '-5%'
-                        - margin-left: '-20%'
+                        - margin-top: "-5%"
+                        - margin-left: "-20%"
                       name:
                         - justify-self: end
                         - padding-right: 12px
@@ -1655,17 +1711,21 @@ views:
                         - font-weight: bold
                         - padding-right: 12px
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           name:
                             - font-weight: bold
                             - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - filter: grayscale(100%)
+                            - color: grey
                           name:
                             - color: grey
                   - type: "custom:button-card"
@@ -1733,14 +1793,14 @@ views:
                       icon:
                         - width: 40%
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           icon:
                             - font-weight: bold
                             - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - color: grey
@@ -1798,7 +1858,7 @@ views:
                       state:
                         - font-size: 15px
                         - font-weight: bold
-                  - type: 'custom:button-card'
+                  - type: "custom:button-card"
                     entity: switch.geonjogi
                     name: 건조기
                     color_type: auto
@@ -1813,8 +1873,8 @@ views:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
                         - width: 30%
-                        - margin-top: '-5%'
-                        - margin-left: '-20%'
+                        - margin-top: "-5%"
+                        - margin-left: "-20%"
                       name:
                         - justify-self: end
                         - padding-right: 12px
@@ -1825,17 +1885,21 @@ views:
                         - font-weight: bold
                         - padding-right: 12px
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           name:
                             - font-weight: bold
                             - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - filter: grayscale(100%)
+                            - color: grey
                           name:
                             - color: grey
           - type: vertical-stack
@@ -1878,7 +1942,7 @@ views:
                     show_name: true
                     show_icon: false
                     show_units: true
-                    units: ℃ 
+                    units: ℃
                     entity: sensor.smartthings_door_contact_temperature
                     name: 현관온도
                     styles:
@@ -1889,7 +1953,7 @@ views:
                       state:
                         - font-size: 15px
                         - font-weight: bold
-                  - type: 'custom:button-card'
+                  - type: "custom:button-card"
                     entity: input_boolean.library_light_triggered_by_motion
                     name: 모션조명
                     color_type: auto
@@ -1904,8 +1968,8 @@ views:
                         - grid-template-areas: '"i" "n" "s"'
                       icon:
                         - width: 30%
-                        - margin-top: '-5%'
-                        - margin-left: '-20%'
+                        - margin-top: "-5%"
+                        - margin-left: "-20%"
                       name:
                         - justify-self: end
                         - padding-right: 12px
@@ -1916,17 +1980,21 @@ views:
                         - font-weight: bold
                         - padding-right: 12px
                     state:
-                      - value: 'on' 
+                      - value: "on"
                         styles:
                           name:
                             - font-weight: bold
                             - color: white
+                          icon:
+                            - font-weight: bold
+                            - color: white
                           card:
-                            - background-color: 'RGB(233,130,75)'
-                      - value: 'off'
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
                         styles:
                           icon:
                             - filter: grayscale(100%)
+                            - color: grey
                           name:
                             - color: grey
   - title: Air conditioner
