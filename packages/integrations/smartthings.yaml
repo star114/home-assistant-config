@@ -88,6 +88,7 @@ smartthings_package:
           entity_id: sensor.samseong_eeomoniteo_odor_sensor
           for: "00:10:00"
           below: 3
+      action:
         - service: notify.notify_telegram
           data:
             message: "✅ 실내 TVOC 수치 정상"
@@ -123,6 +124,7 @@ smartthings_package:
           entity_id: sensor.samseong_eeomoniteo_dust_level
           for: "00:10:00"
           below: 81
+      action:
         - service: notify.notify_telegram
           data:
             message: "✅ 실내 PM10 수치 정상"
@@ -158,6 +160,7 @@ smartthings_package:
           entity_id: sensor.samseong_eeomoniteo_fine_dust_level
           for: "00:10:00"
           below: 36
+      action:
         - service: notify.notify_telegram
           data:
             message: "✅ 실내 PM2.5 수치 정상"
@@ -193,6 +196,7 @@ smartthings_package:
           entity_id: sensor.samseong_eeomoniteo_air_quality
           for: "00:10:00"
           below: 4
+      action:
         - service: notify.notify_telegram
           data:
             message: "✅ 실내 공기질 수치 정상"
