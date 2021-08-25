@@ -13,6 +13,7 @@ smartthings_package:
       cycle: monthly
 
   automation:
+    # CO2
     - id: "co2_level_has_reached_unhealthy_state"
       alias: "CO2 level has reached unhealthy state"
       trigger:
@@ -61,3 +62,38 @@ smartthings_package:
         - service: notify.galaxy_cloud_speak
           data:
             message: "이산화탄소 농도가 정상으로 돌아왔습니다."
+
+    # TVOC
+    - id: "tvoc_level_has_reached_unhealthy_state"
+      alias: "TVOC level has reached unhealthy state"
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.samseong_eeomoniteo_odor_sensor
+          for: "00:10:00"
+          above: 2
+      action:
+        - service: notify.notify_telegram
+          data:
+            message: "⚠️ 실내 TVOC 수치 관리 필요"
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: "disarmed"
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "실내 TVOC 수치 나쁨. 환기가 필요합니다."
+    - id: "tvoc_level_has_come_back_to_normal"
+      alias: "TVOC level has come back to normal"
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.samseong_eeomoniteo_odor_sensor
+          for: "00:10:00"
+          below: 3
+        - service: notify.notify_telegram
+          data:
+            message: "✅ 실내 TVOC 수치 정상"
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: "disarmed"
+        - service: notify.galaxy_cloud_speak
+          data:
+            message: "실내 TVOC 수치가 정상으로 돌아왔습니다."
