@@ -3,6 +3,14 @@ smartthings_package:
   input_boolean:
     co2_unhealthy_state:
       name: CO2 unhealthy state
+    tvoc_unhealthy_state:
+      name: TVOC unhealthy state
+    pm10_unhealthy_state:
+      name: PM10 unhealthy state
+    pm25_unhealthy_state:
+      name: PM2.5 unhealthy state
+    caqi_unhealthy_state:
+      name: CAQI unhealthy state
 
   utility_meter:
     geonjogi_daily_energy:
@@ -71,7 +79,13 @@ smartthings_package:
           entity_id: sensor.samseong_eeomoniteo_odor_sensor
           for: "00:10:00"
           above: 2
+      condition:
+        - condition: state
+          entity_id: input_boolean.tvoc_unhealthy_state
+          state: "off"
       action:
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.tvoc_unhealthy_state
         - service: notify.notify_telegram
           data:
             message: "⚠️ 실내 TVOC 수치 관리 필요"
@@ -88,7 +102,13 @@ smartthings_package:
           entity_id: sensor.samseong_eeomoniteo_odor_sensor
           for: "00:10:00"
           below: 3
+      condition:
+        - condition: state
+          entity_id: input_boolean.tvoc_unhealthy_state
+          state: "on"
       action:
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.tvoc_unhealthy_state
         - service: notify.notify_telegram
           data:
             message: "✅ 실내 TVOC 수치 정상"
@@ -107,7 +127,13 @@ smartthings_package:
           entity_id: sensor.samseong_eeomoniteo_dust_level
           for: "00:10:00"
           above: 81
+      condition:
+        - condition: state
+          entity_id: input_boolean.pm10_unhealthy_state
+          state: "off"
       action:
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.pm10_unhealthy_state
         - service: notify.notify_telegram
           data:
             message: "⚠️ 실내 PM10 수치 관리 필요"
@@ -124,7 +150,13 @@ smartthings_package:
           entity_id: sensor.samseong_eeomoniteo_dust_level
           for: "00:10:00"
           below: 81
+      condition:
+        - condition: state
+          entity_id: input_boolean.pm10_unhealthy_state
+          state: "on"
       action:
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.pm10_unhealthy_state
         - service: notify.notify_telegram
           data:
             message: "✅ 실내 PM10 수치 정상"
@@ -143,7 +175,13 @@ smartthings_package:
           entity_id: sensor.samseong_eeomoniteo_fine_dust_level
           for: "00:10:00"
           above: 36
+      condition:
+        - condition: state
+          entity_id: input_boolean.pm25_unhealthy_state
+          state: "off"
       action:
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.pm25_unhealthy_state
         - service: notify.notify_telegram
           data:
             message: "⚠️ 실내 PM2.5 수치 관리 필요"
@@ -160,7 +198,13 @@ smartthings_package:
           entity_id: sensor.samseong_eeomoniteo_fine_dust_level
           for: "00:10:00"
           below: 36
+      condition:
+        - condition: state
+          entity_id: input_boolean.pm25_unhealthy_state
+          state: "on"
       action:
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.pm25_unhealthy_state
         - service: notify.notify_telegram
           data:
             message: "✅ 실내 PM2.5 수치 정상"
@@ -179,7 +223,13 @@ smartthings_package:
           entity_id: sensor.samseong_eeomoniteo_air_quality
           for: "00:10:00"
           above: 3
+      condition:
+        - condition: state
+          entity_id: input_boolean.caqi_unhealthy_state
+          state: "off"
       action:
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.caqi_unhealthy_state
         - service: notify.notify_telegram
           data:
             message: "⚠️ 실내 공기질 수치 관리 필요"
@@ -196,7 +246,13 @@ smartthings_package:
           entity_id: sensor.samseong_eeomoniteo_air_quality
           for: "00:10:00"
           below: 4
+      condition:
+        - condition: state
+          entity_id: input_boolean.caqi_unhealthy_state
+          state: "on"
       action:
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.caqi_unhealthy_state
         - service: notify.notify_telegram
           data:
             message: "✅ 실내 공기질 수치 정상"
