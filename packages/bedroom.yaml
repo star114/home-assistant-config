@@ -48,26 +48,28 @@ bedroom_package:
 
     # issue found: spotcast is not working
     # https://github.com/fondberg/spotcast/issues/241
-    #- id: "good_morning_songs"
-    #  alias: "good morning songs"
-    #  trigger:
-    #    - platform: time
-    #      at: "06:00:00"
-    #  condition:
-    #    - condition: state
-    #      entity_id: input_boolean.trigger_first_morning
-    #      state: "on"
-    #  action:
-    #    - service: spotcast.start
-    #      data:
-    #        uri: "spotify:playlist:{{ states('input_text.morning_spotify_playlist_id') }}"
-    #        random_song: true
-    #        shuffle: true
-    #        start_volume: 40
-    #        entity_id: media_player.anbang_seupikeo
+    - id: "good_morning_songs"
+      alias: "good morning songs"
+      initial_state: true
+      trigger:
+        - platform: time
+          at: "06:00:00"
+      condition:
+        - condition: state
+          entity_id: input_boolean.trigger_first_morning
+          state: "on"
+      action:
+        - service: spotcast.start
+          data:
+            uri: "spotify:playlist:{{ states('input_text.morning_spotify_playlist_id') }}"
+            random_song: true
+            shuffle: true
+            start_volume: 40
+            entity_id: media_player.anbang_seupikeo
 
     - id: "good_morning_songs_ytube_music_player"
       alias: "good morning songs from ytube_music_player"
+      initial_state: false
       trigger:
         - platform: time
           at: "06:00:00"
