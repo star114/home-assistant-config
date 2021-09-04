@@ -1,0 +1,100 @@
+# shelly
+# https://cafe.naver.com/koreassistant/3412
+# https://cafe.naver.com/koreassistant/5965
+
+shelly_package:
+  utility_meter:
+    # channel 1: from grid
+    shellyem_c45bbe5ff616_channel_1_energy_hourly:
+      source: sensor.shellyem_c45bbe5ff616_channel_1_energy
+      cycle: hourly
+    shellyem_c45bbe5ff616_channel_1_energy_daily:
+      source: sensor.shellyem_c45bbe5ff616_channel_1_energy
+      cycle: daily
+    shellyem_c45bbe5ff616_channel_1_monthly:
+      source: sensor.shellyem_c45bbe5ff616_channel_1_energy
+      cycle: monthly
+    # channel 2: induction
+    shellyem_c45bbe5ff616_channel_2_energy_hourly:
+      source: sensor.shellyem_c45bbe5ff616_channel_2_energy
+      cycle: hourly
+    shellyem_c45bbe5ff616_channel_2_energy_daily:
+      source: sensor.shellyem_c45bbe5ff616_channel_2_energy
+      cycle: daily
+    shellyem_c45bbe5ff616_channel_2_monthly:
+      source: sensor.shellyem_c45bbe5ff616_channel_2_energy
+      cycle: monthly
+
+  sensor:
+    - platform: template
+      sensors:
+        shellyem_c45bbe5ff616_channel_1_energy_prev_monthly:
+          friendly_name: "전력 전월 사용량"
+          unit_of_measurement: kWh
+          value_template: "{{ '%0.1f' | format(state_attr('sensor.shellyem_c45bbe5ff616_channel_1_energy_monthly','last_period')|float) }}"
+        shellyem_c45bbe5ff616_channel_1_energy_prev_daily:
+          friendly_name: "전력 전일 사용량"
+          unit_of_measurement: kWh
+          value_template: "{{ '%0.1f' | format(state_attr('sensor.shellyem_c45bbe5ff616_channel_1_energy_daily','last_period')|float) }}"
+        shellyem_c45bbe5ff616_channel_1_energy_prev_hourly:
+          friendly_name: "전력 전시간 사용량"
+          unit_of_measurement: Wh
+          value_template: "{{ state_attr('sensor.shellyem_c45bbe5ff616_channel_1_energy_hourly','last_period')|float *1000 }}"
+    - platform: template
+      sensors:
+        kwh2won :
+          friendly_name: "현재 요금"
+          icon_template: "mdi:cash-usd"
+          unit_of_measurement: "won"
+          # {% set energy = states('sensor.pzemac_energy_monthly') |float %} # 사용전력량 (kWh)
+          # {% set checkday = 11 %} # 검침일
+          # {% set basicprice = [910, 1600, 7300] %} # 기본요금(원/호)
+          # {% set kwhprice = [88.3, 182.9, 275.6] %} # 전력량 요금(원/kWh)
+          # {% set kwhsectioUp = [0, 200, 400] %} # 구간(kWh - 상계)
+          # {% set kwhsectionDown = [0, 300, 450] %} # 구간(kWh - 하계)
+          # {% set adjustment = [-5, 5.3, -3] %} # 환경비용차감 + 기후환경요금 + 연료비조정액
+          value_template: >
+            {% set energy = states('sensor.shellyem_c45bbe5ff616_channel_1_monthly') |float %}
+            {% set checkday = 1 %}
+            {% set basicprice = [910, 1600, 7300] %}
+            {% set kwhprice = [88.3, 182.9, 275.6] %}
+            {% set kwhsectioUp = [0, 200, 400] %}
+            {% set kwhsectionDown = [0, 300, 450] %}
+            {% set adjustment = [-5, 5.3, -3] %}
+            {% set month = now().strftime("%m%d")|int %}
+            {% set day = namespace(up=0,down=0) %}
+            {% set won = namespace(up=0,down=0) %}
+            {% set prog = namespace(up=0,down=0) %}
+            {% set energy2 = namespace(up=energy,down=energy) %}
+            {% set ret = 0 %}
+            {% set adjustment = adjustment[0] + adjustment[1] + adjustment[2] %}
+            {% for s in [2,1,0] %}
+              {% if kwhsectioUp[s] < energy2.up %}
+                {% set won.up = won.up + ((energy2.up - kwhsectioUp[s]) * kwhprice[s]) %}
+                {% set energy2.up = energy2.up - (energy2.up - kwhsectioUp[s]) %}
+                {% set prog.up = prog.up +1 %}
+              {% endif %}
+              {% if kwhsectionDown[s] < energy2.down %}
+                {% set won.down = won.down + ((energy2.down - kwhsectionDown[s]) * kwhprice[s]) %}
+                {% set energy2.down = energy2.down - (energy2.down - kwhsectionDown[s]) %}
+                {% set prog.down = prog.down +1 %}
+              {% endif %}
+            {% endfor %}
+            {% set won.up = won.up + basicprice[prog.up-1] %}
+            {% set won.down = won.down + basicprice[prog.down-1] %}
+            {% if month > checkday + 600 and month <= checkday + 900 %}
+              {% if month <= checkday + 700 %}
+                {% set day.up = 30 - checkday %}
+                {% set day.down = checkday %}
+              {% elif month <= checkday + 800 %}
+                {% set day.up = 0 %}
+                {% set day.down = 31 %}
+              {% else %}
+                {% set day.up = checkday %}
+                {% set day.down = 31 - checkday %}
+              {% endif %}
+              {% set ret = (won.up * day.up / (day.up+day.down))|int + (won.down * day.down / (day.up+day.down))|int %}
+            {% else %}
+              {% set ret = won.up %}
+            {% endif %}
+            {{ ((ret + (energy * adjustment)) * 1.137)|int }}
