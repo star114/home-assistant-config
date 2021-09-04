@@ -94,7 +94,7 @@ smartthings_package:
           state: "disarmed"
         - service: notify.galaxy_cloud_speak
           data:
-            message: "실내 TVOC 수치 나쁨. 관리가 필요합니다."
+            message: "실내 총휘발성유기화합물 수치 나쁨. 관리가 필요합니다."
     - id: "tvoc_level_has_come_back_to_normal"
       alias: "TVOC level has come back to normal"
       trigger:
@@ -117,7 +117,7 @@ smartthings_package:
           state: "disarmed"
         - service: notify.galaxy_cloud_speak
           data:
-            message: "실내 TVOC 수치가 정상으로 돌아왔습니다."
+            message: "실내 총휘발성유기화합물 수치가 정상으로 돌아왔습니다."
 
     # PM10
     - id: "pm10_level_has_reached_unhealthy_state"

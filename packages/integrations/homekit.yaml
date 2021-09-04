@@ -42,8 +42,6 @@ homekit_package:
           name: 희식
         device_tracker.seojiniphone:
           name: 서진
-        device_tracker.tesla_location:
-          name: 드림
         vacuum.roborock_vacuum_s5e:
           name: 뽀봇 청소기
         light.hej_1gang_dressroom_light:
@@ -143,6 +141,10 @@ homekit_package:
         binary_sensor.smartthings_library_motion_occupancy:
           name: 라이브러리 모션
           linked_battery_sensor: sensor.smartthings_library_motion_battery
+          low_battery_threshold: 31
+        binary_sensor.aqara_kitchen_fridge_door_contact:
+          name: 주방 냉장고 문
+          linked_battery_sensor: sensor.aqara_kitchen_fridge_door_battery
           low_battery_threshold: 31
         binary_sensor.aqara_kitchen_pantry_door_left_contact:
           name: 주방 팬트리 왼쪽 문
