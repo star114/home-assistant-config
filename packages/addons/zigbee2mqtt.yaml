@@ -28,45 +28,24 @@ zigbee2mqtt_package:
       json_attributes_topic: zigbee2mqtt/bridge/networkmap/raw
 
   utility_meter:
-    dawon_bedroom_aircon_plug_daily_energy:
-      source: sensor.dawon_bedroom_aircon_plug_energy
-      cycle: daily
     dawon_bedroom_aircon_plug_monthly_energy:
       source: sensor.dawon_bedroom_aircon_plug_energy
       cycle: monthly
-    dawon_kitchen_foodwaste_plug_daily_energy:
-      source: sensor.dawon_kitchen_foodwaste_plug_energy
-      cycle: daily
     dawon_kitchen_foodwaste_plug_monthly_energy:
       source: sensor.dawon_kitchen_foodwaste_plug_energy
       cycle: monthly
-    dawon_kitchen_cooker_plug_daily_energy:
-      source: sensor.dawon_kitchen_cooker_plug_energy
-      cycle: daily
     dawon_kitchen_cooker_plug_monthly_energy:
       source: sensor.dawon_kitchen_cooker_plug_energy
       cycle: monthly
-    dawon_dressroom_plug_daily_energy:
-      source: sensor.dawon_dressroom_plug_energy
-      cycle: daily
     dawon_dressroom_plug_monthly_energy:
       source: sensor.dawon_dressroom_plug_energy
       cycle: monthly
-    dawon_bathroom_plug_daily_energy:
-      source: sensor.dawon_bathroom_plug_energy
-      cycle: daily
     dawon_bathroom_plug_monthly_energy:
       source: sensor.dawon_bathroom_plug_energy
       cycle: monthly
-    dawon_kitchen_dishwasher_plug_daily_energy:
-      source: sensor.dawon_kitchen_dishwasher_plug_energy
-      cycle: daily
     dawon_kitchen_dishwasher_plug_monthly_energy:
       source: sensor.dawon_kitchen_dishwasher_plug_energy
       cycle: monthly
-    dawon_kitchen_fan_plug_daily_energy:
-      source: sensor.dawon_kitchen_fan_plug_energy
-      cycle: daily
     dawon_kitchen_fan_plug_monthly_energy:
       source: sensor.dawon_kitchen_fan_plug_energy
       cycle: monthly
@@ -89,6 +68,21 @@ zigbee2mqtt_package:
               모델: {{trigger.payload_json.data.definition.model}},
               상세설명: {{trigger.payload_json.data.definition.description}}"
     # alert callback: https://www.home-assistant.io/integrations/alert/
+    - id: "telegram_callback_to_stop_alerts_for_fridge_door"
+      alias: "Telegram callback to stop alerts for fridge door"
+      trigger:
+        - platform: event
+          event_type: telegram_callback
+          event_data:
+            data: "/fridge_acknowledge"
+      condition:
+        - condition: state
+          entity_id: alert.aqara_kitchen_fridge_door_contact
+          state: "on"
+      action:
+        - service: alert.turn_off
+          target:
+            entity_id: alert.aqara_kitchen_fridge_door_contact
     - id: "telegram_callback_to_stop_alerts_for_door"
       alias: "Telegram callback to stop alerts for door"
       trigger:
@@ -110,31 +104,35 @@ zigbee2mqtt_package:
     - platform: template
       sensors:
         hue_bedroom_motion_battery_low:
-          value_template: "{{ state_attr('sensor.hue_bedroom_motion_battery', 'battery') | int < 15 }}"
+          value_template: "{{ state_attr('sensor.hue_bedroom_motion_battery', 'battery') | int < 31 }}"
     - platform: template
       sensors:
         hej_bathroom_thsensor_battery_low:
-          value_template: "{{ state_attr('sensor.hej_bathroom_thsensor_battery', 'battery') | int < 15 }}"
+          value_template: "{{ state_attr('sensor.hej_bathroom_thsensor_battery', 'battery') | int < 31 }}"
     - platform: template
       sensors:
         hej_bedroom_thsensor_battery_low:
-          value_template: "{{ state_attr('sensor.hej_bedroom_thsensor_battery', 'battery') | int < 15 }}"
+          value_template: "{{ state_attr('sensor.hej_bedroom_thsensor_battery', 'battery') | int < 31 }}"
     - platform: template
       sensors:
         hej_laundryroom_thsensor_battery_low:
-          value_template: "{{ state_attr('sensor.hej_laundryroom_thsensor_battery', 'battery') | int < 15 }}"
+          value_template: "{{ state_attr('sensor.hej_laundryroom_thsensor_battery', 'battery') | int < 31 }}"
     - platform: template
       sensors:
         aqara_kitchen_pantry_door_left_battery_low:
-          value_template: "{{ state_attr('sensor.aqara_kitchen_pantry_door_left_battery', 'battery') | int < 15 }}"
+          value_template: "{{ state_attr('sensor.aqara_kitchen_pantry_door_left_battery', 'battery') | int < 31 }}"
     - platform: template
       sensors:
         aqara_kitchen_pantry_door_right_battery_low:
-          value_template: "{{ state_attr('sensor.aqara_kitchen_pantry_door_right_battery', 'battery') | int < 15 }}"
+          value_template: "{{ state_attr('sensor.aqara_kitchen_pantry_door_right_battery', 'battery') | int < 31 }}"
+    - platform: template
+      sensors:
+        aqara_kitchen_fridge_door_battery_low:
+          value_template: "{{ state_attr('sensor.aqara_kitchen_fridge_door_battery', 'battery') | int < 31 }}"
     - platform: template
       sensors:
         aqara_library_data_center_door_battery_low:
-          value_template: "{{ state_attr('sensor.aqara_library_data_center_door_battery', 'battery') | int < 15 }}"
+          value_template: "{{ state_attr('sensor.aqara_library_data_center_door_battery', 'battery') | int < 31}}"
 
   # alert: https://www.home-assistant.io/integrations/alert/
   alert:
@@ -337,6 +335,15 @@ zigbee2mqtt_package:
       repeat: 360
       notifiers:
         - notify_telegram
+    aqara_kitchen_fridge_door_battery_low:
+      name: Kitchen Fridge Door Sensor Battery is Low
+      message: "🚨 냉장고 도어센서 배터리 확인 필요."
+      done_message: "✅ 냉장고 도어센서 배터리가 정상으로 돌아왔습니다."
+      entity_id: binary_sensor.aqara_kitchen_fridge_door_battery_low
+      skip_first: true
+      repeat: 360
+      notifiers:
+        - notify_telegram
     aqara_library_data_center_door_battery_low:
       name: Library Data Center Door Sensor Battery is Low
       message: "🚨 데이터센터 도어센서 배터리 확인 필요."
@@ -404,6 +411,23 @@ zigbee2mqtt_package:
         - 1
         - 3
         - 15
+      notifiers:
+        - notify_telegram
+        - galaxy_cloud_speak
+    # fridge door open
+    aqara_kitchen_fridge_door_contact:
+      name: Fridge Door is open
+      message: "경고! 냉장고 문이 계속 열려 있습니다."
+      done_message: "냉장고 문이 정상적으로 닫혔습니다."
+      entity_id: binary_sensor.aqara_kitchen_fridge_door_contact
+      skip_first: true
+      repeat:
+        - 1
+        - 3
+        - 15
+      data:
+        inline_keyboard:
+          - "Acknowledge:/fridge_acknowledge"
       notifiers:
         - notify_telegram
         - galaxy_cloud_speak

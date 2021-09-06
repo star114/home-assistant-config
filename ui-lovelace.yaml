@@ -225,7 +225,7 @@ views:
                 tap_action:
                   action: toggle
                 entity: switch.bedroom_ac
-                icon: mdi:air-conditioner              
+                icon: mdi:air-conditioner
                 style:
                   "--paper-item-icon-active-color": "RGB(81,156,202)"
                   "--paper-item-icon-color": "#B9A9C0"
@@ -305,7 +305,7 @@ views:
                 tap_action:
                   action: toggle
                 entity: switch.jubang_eeokeon
-                icon: mdi:air-conditioner              
+                icon: mdi:air-conditioner
                 style:
                   "--paper-item-icon-active-color": "RGB(81,156,202)"
                   "--paper-item-icon-color": "#B9A9C0"

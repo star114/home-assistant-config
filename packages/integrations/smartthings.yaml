@@ -13,11 +13,8 @@ smartthings_package:
       name: CAQI unhealthy state
 
   utility_meter:
-    geonjogi_daily_energy:
-      source: sensor.geonjogi_energy
-      cycle: daily
     geonjogi_monthly_energy:
-      source: sensor.geonjogi_energy
+      source: sensor.geonjogi_energy_2
       cycle: monthly
 
   automation:
