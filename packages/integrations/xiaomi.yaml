@@ -54,7 +54,7 @@ xiaomi_package:
   # timer for robotock cleaning duration
   timer:
     roborock_cleaning_duration:
-      duration: "06:00:00"
+      duration: "05:00:00"
 
   automation:
     - id: "roborock_s5_max_cleaning_duration_finished"
@@ -71,7 +71,7 @@ xiaomi_package:
           conditions:
             - condition: time
               after: "07:00:00"
-              before: "20:00:00"
+              before: "22:00:00"
             - condition: state
               entity_id: alarm_control_panel.home_monitoring
               state: "armed_away"

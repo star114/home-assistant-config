@@ -61,7 +61,7 @@ library_package:
               state: "on"
             - condition: time
               after: "07:00:00"
-              before: "20:00:00"
+              before: "22:00:00"
         - service: vacuum.start
           entity_id: vacuum.roborock_vacuum_s5e
 
