@@ -26,6 +26,37 @@ zigbee2mqtt_package:
         {{ now().strftime('%Y-%m-%d %H:%M:%S') }}
       # again, if you change base_topic of Zigbee2mqtt, change json_attributes_topic accordingly
       json_attributes_topic: zigbee2mqtt/bridge/networkmap/raw
+    # Sensors for Utility meter (last month)
+    - platform: template
+      sensors:
+        dawon_bedroom_aircon_plug_monthly_energy_last_month:
+          friendly_name: "에어컨 전력 전월 사용량"
+          unit_of_measurement: kWh
+          value_template: "{{ state_attr('sensor.dawon_bedroom_aircon_plug_monthly_energy','last_period')|float }}"
+        dawon_kitchen_foodwaste_plug_monthly_energy_last_month:
+          friendly_name: "스마트카라 전력 전월 사용량"
+          unit_of_measurement: kWh
+          value_template: "{{ state_attr('sensor.dawon_kitchen_foodwaste_plug_monthly_energy','last_period')|float }}"
+        dawon_kitchen_cooker_plug_monthly_energy_last_month:
+          friendly_name: "밥솥 전력 전월 사용량"
+          unit_of_measurement: kWh
+          value_template: "{{ state_attr('sensor.dawon_kitchen_cooker_plug_monthly_energy','last_period')|float }}"
+        dawon_dressroom_plug_monthly_energy_last_month:
+          friendly_name: "드레스룸 공기청정기 전력 전월 사용량"
+          unit_of_measurement: kWh
+          value_template: "{{ state_attr('sensor.dawon_dressroom_plug_monthly_energy','last_period')|float }}"
+        dawon_bathroom_plug_monthly_energy_last_month:
+          friendly_name: "비데 전력 전월 사용량"
+          unit_of_measurement: kWh
+          value_template: "{{ state_attr('sensor.dawon_bathroom_plug_monthly_energy','last_period')|float }}"
+        dawon_kitchen_dishwasher_plug_monthly_energy_last_month:
+          friendly_name: "식세기 전력 전월 사용량"
+          unit_of_measurement: kWh
+          value_template: "{{ state_attr('sensor.dawon_kitchen_dishwasher_plug_monthly_energy','last_period')|float }}"
+        dawon_kitchen_fan_plug_monthly_energy_last_month:
+          friendly_name: "주방 환풍기 전력 전월 사용량"
+          unit_of_measurement: kWh
+          value_template: "{{ state_attr('sensor.dawon_kitchen_fan_plug_monthly_energy','last_period')|float }}"
 
   utility_meter:
     dawon_bedroom_aircon_plug_monthly_energy:

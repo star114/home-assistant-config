@@ -334,6 +334,13 @@ views:
                   top: 35%
                   left: 76%
               - type: state-icon
+                entity: binary_sensor.aqara_kitchen_fridge_door_contact
+                style:
+                  "--paper-item-icon-active-color": "RGB(233,130,75)"
+                  "--paper-item-icon-color": "#B9A9C0"
+                  top: 76%
+                  left: 80%
+              - type: state-icon
                 tap_action:
                   action: toggle
                 entity: switch.hej_3gang_bathroom_light_top
@@ -2484,6 +2491,11 @@ views:
                 - name: Piano
                   type: playlist
                   id: PLt_47Imx98wqc2_lOAg53v8Op-oks9KB5
+          - type: entity
+            entity: input_text.morning_spotify_playlist_id
+            name: Morning spotify playlist id
+          - type: entity
+            entity: input_text.morning_ytube_music_playlist_id
   - title: Tesla
     path: tesla
     badges: []
@@ -2777,57 +2789,16 @@ views:
             show_header_toggle: false
             entities:
               - entity: input_select.themes
-          - type: entity
-            entity: input_text.morning_spotify_playlist_id
-            name: Morning spotify playlist id
-          - type: entity
-            entity: input_text.morning_ytube_music_playlist_id
           - type: custom:transmission-card
             hide_type: false
-      - type: vertical-stack
-        cards:
-          - type: glance
-            entities:
-              - entity: device_tracker.heesiks_iphone
-              - entity: sensor.heesiks_iphone_ssid
-              - entity: sensor.heesiks_iphone_battery_level
-              - entity: sensor.heesiks_iphone_battery_state
-            show_name: false
-            title: Heesik’s iPhone
-          - type: glance
-            entities:
-              - entity: device_tracker.heesiks_iphone_11_pro_max
-              - entity: sensor.heesiks_iphone_11_pro_max_ssid
-              - entity: sensor.heesiks_iphone_11_pro_max_battery_level
-              - entity: sensor.heesiks_iphone_11_pro_max_battery_state
-            show_name: false
-            title: Heesik’s iPhone 11 Pro Max
-          - type: glance
-            entities:
-              - entity: device_tracker.heesiks_ipad
-              - entity: sensor.heesiks_ipad_ssid
-              - entity: sensor.heesiks_ipad_battery_level
-              - entity: sensor.heesiks_ipad_battery_state
-            show_name: false
-            title: Heesik’s iPad Pro
-          - type: glance
-            entities:
-              - entity: device_tracker.seo_jin
-              - entity: sensor.seo_jin_ssid
-              - entity: sensor.seo_jin_battery_level
-              - entity: sensor.seo_jin_battery_state
-            show_name: false
-            title: Seo Jin's iPhone
       - type: "custom:vertical-stack-in-card"
         cards:
-          - type: entity
-            entity: sensor.naver_weather_weathercast_1
           - type: weather-forecast
             entity: weather.naver_weather_1
             show_forecast: true
           - type: glance
             entities:
-              - sensor.naver_weather_todayfeeltemp_1
+              - sensor.naver_weather_rainpercent_1
               - sensor.naver_weather_rainfall_1
               - sensor.naver_weather_rainystarttmr_1
               - sensor.naver_weather_rainystart_1
@@ -2841,9 +2812,13 @@ views:
             entities:
               - sensor.naver_weather_ozon_1
               - sensor.naver_weather_ozongrade_1
-              - sensor.naver_weather_todayuv_1
               - sensor.naver_weather_windspeed_1
               - sensor.naver_weather_windbearing_1
+      - type: vertical-stack
+        cards:
+          - type: markdown
+            content: >
+              ### 음식물 쓰레기
           - type: glance
             entities:
               - entity: sensor.citywaste_total_count
@@ -2852,3 +2827,47 @@ views:
                 name: Total kg
               - entity: sensor.citywaste_last_kg
                 name: Last kg
+          - type: markdown
+            content: >
+              ### 전력
+          - type: horizontal-stack
+            cards:
+              - type: entity
+                entity: sensor.kwh2won
+              - type: entity
+                entity: sensor.kwh2won_last_month
+          - type: horizontal-stack
+            cards:
+              - type: entity
+                entity: sensor.shellyem_c45bbe5ff616_channel_1_monthly_energy
+                name: 이번달 소비전력
+              - type: entity
+                entity: sensor.shellyem_c45bbe5ff616_channel_1_monthly_energy_last_month
+                name: 지난달 소비전력
+          - type: horizontal-stack
+            cards:
+              - type: entity
+                entity: sensor.shellyem_c45bbe5ff616_channel_1_voltage
+                name: 전압
+              - type: entity
+                entity: sensor.shellyem_c45bbe5ff616_channel_1_power
+                name: 전력
+          - type: markdown
+            content: >
+              #### 인덕션
+          - type: horizontal-stack
+            cards:
+              - type: entity
+                entity: sensor.shellyem_c45bbe5ff616_channel_2_monthly_energy_induction
+                name: 이번달 소비전력
+              - type: entity
+                entity: sensor.shellyem_c45bbe5ff616_channel_2_monthly_energy_induction_last_month
+                name: 지난달 소비전력
+          - type: horizontal-stack
+            cards:
+              - type: entity
+                entity: sensor.shellyem_c45bbe5ff616_channel_2_voltage
+                name: 전압
+              - type: entity
+                entity: sensor.shellyem_c45bbe5ff616_channel_2_power
+                name: 전력

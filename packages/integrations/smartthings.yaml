@@ -17,6 +17,14 @@ smartthings_package:
       source: sensor.geonjogi_energy_2
       cycle: monthly
 
+  sensor:
+    - platform: template
+      sensors:
+        geonjogi_monthly_energy_last_month:
+          friendly_name: "건조기 전력 전월 사용량"
+          unit_of_measurement: kWh
+          value_template: "{{ state_attr('sensor.geonjogi_monthly_energy','last_period')|float }}"
+
   automation:
     # CO2
     - id: "co2_level_has_reached_unhealthy_state"

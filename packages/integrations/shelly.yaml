@@ -17,11 +17,11 @@ shelly_package:
         shellyem_c45bbe5ff616_channel_1_monthly_energy_last_month:
           friendly_name: "전력 전월 사용량"
           unit_of_measurement: kWh
-          value_template: "{{ '%0.1f' | format(state_attr('sensor.shellyem_c45bbe5ff616_channel_1_monthly_energy','last_period')|float) }}"
+          value_template: "{{ state_attr('sensor.shellyem_c45bbe5ff616_channel_1_monthly_energy','last_period')|float }}"
         shellyem_c45bbe5ff616_channel_2_monthly_energy_induction_last_month:
           friendly_name: "인덕션 전력 전월 사용량"
           unit_of_measurement: kWh
-          value_template: "{{ '%0.1f' | format(state_attr('sensor.shellyem_c45bbe5ff616_channel_2_monthly_energy_induction','last_period')|float) }}"
+          value_template: "{{ state_attr('sensor.shellyem_c45bbe5ff616_channel_2_monthly_energy_induction','last_period')|float }}"
         kwh2won:
           friendly_name: "현재 요금"
           icon_template: "mdi:cash-usd"
@@ -134,3 +134,34 @@ shelly_package:
               {% set ret = won.up %}
             {% endif %}
             {{ ((ret + (energy * adjustment)) * 1.137)|int }}
+
+  binary_sensor:
+    - platform: template
+      sensors:
+        shellyem_c45bbe5ff616_channel_2_induction_in_use:
+          friendly_name: "인덕션 사용중"
+          value_template: "{{ (states('sensor.shellyem_c45bbe5ff616_channel_2_power')|float) > 3 }}"
+
+  automation:
+    - id: "send_notification_when_alarm_is_armed_away_and_induction_is_on"
+      alias: "Send notification when alarm is Armed Away and induction is on"
+      trigger:
+        - platform: state
+          entity_id: alarm_control_panel.home_monitoring
+          to: "armed_away"
+        - platform: state
+          entity_id: binary_sensor.shellyem_c45bbe5ff616_channel_2_induction_in_use
+          to: "on"
+      condition:
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: alarm_control_panel.home_monitoring
+              state: "armed_away"
+            - condition: state
+              entity_id: binary_sensor.shellyem_c45bbe5ff616_channel_2_induction_in_use
+              state: "on"
+      action:
+        - service: notify.notify_telegram
+          data:
+            message: "❗️확인 필요❗️ 외출 중 인덕션이 켜져 있습니다."

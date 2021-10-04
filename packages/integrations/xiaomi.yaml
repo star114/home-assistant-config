@@ -343,7 +343,7 @@ xiaomi_package:
         - platform: event
           event_type: telegram_command
           event_data:
-            data: "/reset_dustbin_gauge"
+            command: "/reset_dustbin_gauge"
       action:
         - service: input_number.set_value
           target:
