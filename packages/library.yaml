@@ -63,7 +63,7 @@ library_package:
               after: "07:00:00"
               before: "22:00:00"
         - service: vacuum.start
-          entity_id: vacuum.roborock_vacuum_s5e
+          entity_id: vacuum.bbobos
 
     - id: "home_scene_switch_off"
       alias: "home scene - switch off"

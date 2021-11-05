@@ -116,10 +116,10 @@ alarm_package:
       action:
         - service: notify.notify_telegram
           data:
-            message: "❗️경고. 경고. 경보시스템이 동작합니다."
-        - service: notify.galaxy_cloud_speak
+            message: "❗️경고. 경고. 경고. 보안 확인 필요"
+        - service: notify.in_the_house_kakao
           data:
-            message: "경고. 경고. 경보시스템이 동작합니다."
+            message: "경고. 경고. 경고"
     - id: "trigger_alarm_while_armed_away"
       alias: "Trigger alarm while armed away"
       trigger:

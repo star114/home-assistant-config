@@ -5,6 +5,9 @@ bedroom_package:
       name: morning spotify playlist id
     morning_ytube_music_playlist_id:
       name: morning youtube music playlist id
+  input_boolean:
+    radiater_automation_trigger:
+      name: radiater automation trigger
 
   automation:
     - id: "morning_scene_switch_off"
@@ -19,9 +22,6 @@ bedroom_package:
           entity_id: scene.morning
         - service: alarm_control_panel.alarm_disarm
           entity_id: alarm_control_panel.home_monitoring
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "좋은 아침입니다."
         # pause the alarm music from speaker
         - condition: state
           entity_id: media_player.anbang_seupikeo
@@ -42,9 +42,6 @@ bedroom_package:
           entity_id: scene.night
         - service: alarm_control_panel.alarm_arm_night
           entity_id: alarm_control_panel.home_monitoring
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "좋은 밤 되세요."
 
     # issue found: spotcast is not working
     # https://github.com/fondberg/spotcast/issues/241
@@ -95,3 +92,76 @@ bedroom_package:
             entity_id: media_player.ytube_music_player
             media_content_id: input_text.morning_ytube_music_playlist_id
             media_content_type: playlist
+
+    - id: "turn_on_radiater_every_2_hours"
+      alias: "Turn on radiater every 2 hours"
+      trigger:
+        - platform: time_pattern
+          hours: "/2"
+      condition:
+        - condition: state
+          entity_id: input_boolean.radiater_automation_trigger
+          state: "on"
+      action:
+        - service: switch.turn_on
+          target:
+            entity_id: switch.dawon_bedroom_radiater_plug
+        - service: notify.notify_telegram
+          data:
+            message: "(자동화) 라디에이터 켜짐"
+        - delay:
+            minutes: 10
+        - service: switch.turn_off
+          target:
+            entity_id: switch.dawon_bedroom_radiater_plug
+        - service: notify.notify_telegram
+          data:
+            message: "(자동화) 라디에이터 꺼짐"
+
+    - id: "enable_radiater_automation_trigger"
+      alias: "enable radiater automation trigger"
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: switch.hej_3gang_bedroom_bed_light_bottom
+          from: "off"
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: switch.dawon_bedroom_radiater_plug
+          state: "on"
+      action:
+        - service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.radiater_automation_trigger
+        - service: notify.notify_telegram
+          data:
+            message: "라디에이터 자동화 시작"
+        - delay:
+            minutes: 10
+        - service: switch.turn_off
+          target:
+            entity_id: switch.dawon_bedroom_radiater_plug
+        - service: notify.notify_telegram
+          data:
+            message: "(자동화) 라디에이터 꺼짐"
+
+    - id: "diable_radiater_automation_trigger"
+      alias: "disable radiater automation trigger"
+      initial_state: true
+      trigger:
+        - platform: state
+          entity_id: switch.hej_3gang_bedroom_bed_light_bottom
+          from: "on"
+          to: "off"
+      condition:
+        - condition: state
+          entity_id: input_boolean.radiater_automation_trigger
+          state: "on"
+      action:
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.radiater_automation_trigger
+        - service: notify.notify_telegram
+          data:
+            message: "라디에이터 자동화 끝"

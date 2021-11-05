@@ -1,7 +1,0 @@
-# https://github.com/miumida/galaxy_cloud_speak
-galaxy_home_package:
-  notify:
-    - platform: galaxy_cloud_speak
-      name: galaxy_cloud_speak
-      token: !secret smartthings_token
-      device_id: !secret galaxy_home_mini_device_id

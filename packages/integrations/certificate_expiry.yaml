@@ -5,9 +5,9 @@ certificate_expiry_package:
         s_cert_exiry_d:
           friendly_name: "Duck DNS SSL Cert Expiry"
           value_template: >
-            {{ ((as_timestamp(states('sensor.cert_expiry_timestamp_ha_star114_duckdns_org')) - as_timestamp(states.sensor.date.last_updated)) / 86400) | int }}
+            {{ ((as_timestamp(states('sensor.cert_expiry_timestamp_ha_star114_duckdns_org'), as_timestamp(now())) - as_timestamp(states('sensor.date.last_updated'), as_timestamp(now()))) / 86400) | int }}
           icon_template: >-
-            {% if states('sensor.cert_expiry_timestamp_ha_star114_duckdns_org') | int > 0 %}
+            {% if ((as_timestamp(states('sensor.cert_expiry_timestamp_ha_star114_duckdns_org'), as_timestamp(now())) - as_timestamp(states('sensor.date.last_updated'), as_timestamp(now()))) / 86400) | int > 0 %}
               mdi:certificate
             {% else %}
               mdi:certificate-outline

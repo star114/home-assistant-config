@@ -43,7 +43,7 @@ telegram_package:
           event_data:
             command: "/broadcast"
       action:
-        - service: notify.galaxy_cloud_speak
+        - service: notify.in_the_house_kakao
           data:
             message: |
               {% for state in trigger.event.data["args"] %} {{ state }} {% endfor %}

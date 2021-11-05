@@ -33,6 +33,10 @@ zigbee2mqtt_package:
           friendly_name: "에어컨 전력 전월 사용량"
           unit_of_measurement: kWh
           value_template: "{{ state_attr('sensor.dawon_bedroom_aircon_plug_monthly_energy','last_period')|float }}"
+        dawon_bedroom_radiater_plug_monthly_energy_last_month:
+          friendly_name: "라디에이터 전력 전월 사용량"
+          unit_of_measurement: kWh
+          value_template: "{{ state_attr('sensor.dawon_bedroom_radiater_plug_monthly_energy','last_period')|float }}"
         dawon_kitchen_foodwaste_plug_monthly_energy_last_month:
           friendly_name: "스마트카라 전력 전월 사용량"
           unit_of_measurement: kWh
@@ -61,6 +65,9 @@ zigbee2mqtt_package:
   utility_meter:
     dawon_bedroom_aircon_plug_monthly_energy:
       source: sensor.dawon_bedroom_aircon_plug_energy
+      cycle: monthly
+    dawon_bedroom_radiater_plug_monthly_energy:
+      source: sensor.dawon_bedroom_radiater_plug_energy
       cycle: monthly
     dawon_kitchen_foodwaste_plug_monthly_energy:
       source: sensor.dawon_kitchen_foodwaste_plug_energy
@@ -135,35 +142,35 @@ zigbee2mqtt_package:
     - platform: template
       sensors:
         hue_bedroom_motion_battery_low:
-          value_template: "{{ state_attr('sensor.hue_bedroom_motion_battery', 'battery') | int < 31 }}"
+          value_template: "{{ states('sensor.hue_bedroom_motion_battery') | int < 31 }}"
     - platform: template
       sensors:
         hej_bathroom_thsensor_battery_low:
-          value_template: "{{ state_attr('sensor.hej_bathroom_thsensor_battery', 'battery') | int < 31 }}"
+          value_template: "{{ states('sensor.hej_bathroom_thsensor_battery') | int < 31 }}"
     - platform: template
       sensors:
         hej_bedroom_thsensor_battery_low:
-          value_template: "{{ state_attr('sensor.hej_bedroom_thsensor_battery', 'battery') | int < 31 }}"
+          value_template: "{{ states('sensor.hej_bedroom_thsensor_battery') | int < 31 }}"
     - platform: template
       sensors:
         hej_laundryroom_thsensor_battery_low:
-          value_template: "{{ state_attr('sensor.hej_laundryroom_thsensor_battery', 'battery') | int < 31 }}"
+          value_template: "{{ states('sensor.hej_laundryroom_thsensor_battery') | int < 31 }}"
     - platform: template
       sensors:
         aqara_kitchen_pantry_door_left_battery_low:
-          value_template: "{{ state_attr('sensor.aqara_kitchen_pantry_door_left_battery', 'battery') | int < 31 }}"
+          value_template: "{{ states('sensor.aqara_kitchen_pantry_door_left_battery') | int < 31 }}"
     - platform: template
       sensors:
         aqara_kitchen_pantry_door_right_battery_low:
-          value_template: "{{ state_attr('sensor.aqara_kitchen_pantry_door_right_battery', 'battery') | int < 31 }}"
+          value_template: "{{ states('sensor.aqara_kitchen_pantry_door_right_battery') | int < 31 }}"
     - platform: template
       sensors:
         aqara_kitchen_fridge_door_battery_low:
-          value_template: "{{ state_attr('sensor.aqara_kitchen_fridge_door_battery', 'battery') | int < 31 }}"
+          value_template: "{{ states('sensor.aqara_kitchen_fridge_door_battery') | int < 31 }}"
     - platform: template
       sensors:
         aqara_library_data_center_door_battery_low:
-          value_template: "{{ state_attr('sensor.aqara_library_data_center_door_battery', 'battery') | int < 31}}"
+          value_template: "{{ states('sensor.aqara_library_data_center_door_battery') | int < 31}}"
 
   # alert: https://www.home-assistant.io/integrations/alert/
   alert:
@@ -396,7 +403,6 @@ zigbee2mqtt_package:
         - 15
       notifiers:
         - notify_telegram
-        - galaxy_cloud_speak
     blitzwolf_bathroom_sink_waterleak_water_leak:
       name: Bathroom Sink Waterleak Leaked
       message: "경고! 화장실 세면대에서 누수가 발생했습니다."
@@ -408,7 +414,6 @@ zigbee2mqtt_package:
         - 15
       notifiers:
         - notify_telegram
-        - galaxy_cloud_speak
     blitzwolf_kitchen_boiler_waterleak_water_leak:
       name: Kitchen Boiler Waterleak Leaked
       message: "경고! 주방 보일러 분배기에서 누수가 발생했습니다."
@@ -420,7 +425,6 @@ zigbee2mqtt_package:
         - 15
       notifiers:
         - notify_telegram
-        - galaxy_cloud_speak
     blitzwolf_kitchen_sink_waterleak_water_leak:
       name: Kitchen Sink Waterleak Leaked
       message: "경고! 주방 싱크대에서 누수가 발생했습니다."
@@ -432,7 +436,6 @@ zigbee2mqtt_package:
         - 15
       notifiers:
         - notify_telegram
-        - galaxy_cloud_speak
     blitzwolf_laundryroom_waterleak_water_leak:
       name: Laundryroom Waterleak Leaked
       message: "경고! 베란다 세면대에서 누수가 발생했습니다."
@@ -444,7 +447,6 @@ zigbee2mqtt_package:
         - 15
       notifiers:
         - notify_telegram
-        - galaxy_cloud_speak
     # fridge door open
     aqara_kitchen_fridge_door_contact:
       name: Fridge Door is open
@@ -461,7 +463,6 @@ zigbee2mqtt_package:
           - "Acknowledge:/fridge_acknowledge"
       notifiers:
         - notify_telegram
-        - galaxy_cloud_speak
     # door open
     smartthings_door_contact_contact:
       name: Door is open
@@ -478,4 +479,3 @@ zigbee2mqtt_package:
           - "Acknowledge:/door_acknowledge"
       notifiers:
         - notify_telegram
-        - galaxy_cloud_speak

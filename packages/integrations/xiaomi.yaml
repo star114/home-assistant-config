@@ -5,7 +5,7 @@ xiaomi_package:
       sequence:
         - service: vacuum.send_command
           target:
-            entity_id: vacuum.roborock_vacuum_s5e
+            entity_id: vacuum.bbobos
           data:
             command: reset_consumable
             params: ["main_brush_work_time"]
@@ -14,7 +14,7 @@ xiaomi_package:
       sequence:
         - service: vacuum.send_command
           target:
-            entity_id: vacuum.roborock_vacuum_s5e
+            entity_id: vacuum.bbobos
           data:
             command: reset_consumable
             params: ["side_brush_work_time"]
@@ -23,7 +23,7 @@ xiaomi_package:
       sequence:
         - service: vacuum.send_command
           target:
-            entity_id: vacuum.roborock_vacuum_s5e
+            entity_id: vacuum.bbobos
           data:
             command: reset_consumable
             params: ["filter_work_time"]
@@ -32,7 +32,7 @@ xiaomi_package:
       sequence:
         - service: vacuum.send_command
           target:
-            entity_id: vacuum.roborock_vacuum_s5e
+            entity_id: vacuum.bbobos
           data:
             command: reset_consumable
             params: ["sensor_dirty_time"]
@@ -76,7 +76,7 @@ xiaomi_package:
               entity_id: alarm_control_panel.home_monitoring
               state: "armed_away"
         - service: vacuum.start
-          entity_id: vacuum.roborock_vacuum_s5e
+          entity_id: vacuum.bbobos
     - id: "roborock_s5_max_reserved_time_clean_1"
       alias: "Roborock S5 MAX - reserved time clean (1)"
       trigger:
@@ -93,7 +93,7 @@ xiaomi_package:
               state: "armed_away"
       action:
         - service: vacuum.start
-          entity_id: vacuum.roborock_vacuum_s5e
+          entity_id: vacuum.bbobos
     - id: "roborock_s5_max_reserved_time_clean_2"
       alias: "Roborock S5 MAX - reserved time clean (2)"
       trigger:
@@ -110,28 +110,22 @@ xiaomi_package:
               state: "armed_away"
       action:
         - service: vacuum.start
-          entity_id: vacuum.roborock_vacuum_s5e
+          entity_id: vacuum.bbobos
     - id: "roborock_s5_max_cleaning"
       alias: "Roborock S5 MAX - Cleaning"
       trigger:
         - platform: state
-          entity_id: vacuum.roborock_vacuum_s5e
+          entity_id: vacuum.bbobos
           to: "cleaning"
       action:
         - service: notify.notify_telegram
           data:
             message: "🧹 청소를 시작합니다."
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "청소를 시작합니다."
     - id: "roborock_s5_max_docked"
       alias: "Roborock S5 MAX - Docked"
       trigger:
         - platform: state
-          entity_id: vacuum.roborock_vacuum_s5e
+          entity_id: vacuum.bbobos
           from: "returning"
           to: "docked"
       action:
@@ -148,17 +142,11 @@ xiaomi_package:
             data:
               inline_keyboard:
                 - "Reset dustbin gauge:/reset_dustbin_gauge"
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "먼지통을 비우세요."
     - id: "roborock_s5_max_paused"
       alias: "Roborock S5 MAX - Paused"
       trigger:
         - platform: state
-          entity_id: vacuum.roborock_vacuum_s5e
+          entity_id: vacuum.bbobos
           to: "paused"
       action:
         - service: notify.notify_telegram
@@ -168,7 +156,7 @@ xiaomi_package:
       alias: "Roborock S5 MAX - Idle"
       trigger:
         - platform: state
-          entity_id: vacuum.roborock_vacuum_s5e
+          entity_id: vacuum.bbobos
           to: "idle"
       action:
         - service: notify.notify_telegram
@@ -178,7 +166,7 @@ xiaomi_package:
       alias: "Roborock S5 MAX - Returning to dock"
       trigger:
         - platform: state
-          entity_id: vacuum.roborock_vacuum_s5e
+          entity_id: vacuum.bbobos
           to: "returning"
       action:
         - service: notify.notify_telegram
@@ -186,23 +174,20 @@ xiaomi_package:
             title: "청소가 완료되었습니다."
             message: |
               📈 보고서
-                청소시간: {{ state_attr('vacuum.roborock_vacuum_s5e', 'cleaning_time') }} 분
-                청소구역: {{ state_attr('vacuum.roborock_vacuum_s5e', 'cleaned_area') }} m2
+                청소시간: {{ states('sensor.bbobos_last_clean_duration') | int / 60 }} 분 
+                청소구역: {{ states('sensor.bbobos_last_clean_area') }} m^2
         - service: input_boolean.turn_off
           entity_id: input_boolean.roborock_ready_to_clean
         - service: timer.start
           entity_id: timer.roborock_cleaning_duration
         - service: input_number.increment
           entity_id: input_number.cleaning_dustbin
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "청소가 완료되었습니다."
         - condition: template
           value_template: |
-            {% if (state_attr('vacuum.roborock_vacuum_s5e', 'main_brush_left') | int < 2) 
-              or (state_attr('vacuum.roborock_vacuum_s5e', 'side_brush_left') | int < 2)
-              or (state_attr('vacuum.roborock_vacuum_s5e', 'filter_left') | int < 2)
-              or (state_attr('vacuum.roborock_vacuum_s5e', 'sensor_dirty_left') | int < 2)
+            {% if ((states('sensor.bbobos_main_brush_left') | int / 3600) < 2) 
+              or ((states('sensor.bbobos_side_brush_left') | int / 3600) < 2)
+              or ((states('sensor.bbobos_filter_left') | int / 3600) < 2)
+              or ((states('sensor.bbobos_sensor_dirty_left') | int / 3600) < 2)
             %}
               true
             {% else %}
@@ -212,17 +197,11 @@ xiaomi_package:
           data:
             title: "🚧 유지보수"
             message: >
-              {% if state_attr('vacuum.roborock_vacuum_s5e', 'main_brush_left') | int < 2 %} 메인 브러쉬{% endif %}{% if state_attr('vacuum.roborock_vacuum_s5e', 'side_brush_left') | int < 2 %} 사이드 브러쉬{% endif %}{% if state_attr('vacuum.roborock_vacuum_s5e', 'filter_left') | int < 2 %} 필터{% endif %}{% if state_attr('vacuum.roborock_vacuum_s5e', 'sensor_dirty_left') | int < 2 %} 센서{% endif %}
+              {% if (states('sensor.bbobos_main_brush_left') | int / 3600) < 2 %} 메인 브러쉬{% endif %}{% if (states('sensor.bbobos_side_brush_left') | int / 3600) < 2 %} 사이드 브러쉬{% endif %}{% if (states('sensor.bbobos_filter_left') | int / 3600) < 2 %} 필터{% endif %}{% if (states('sensor.bbobos_sensor_dirty_left') | int / 3600) < 2 %} 센서{% endif %}
             data:
               inline_keyboard:
                 - "Reset main brush:/reset_main_brush_left, Reset side brush:/reset_side_brush_left"
                 - "Reset filter:/reset_filter_left, Reset sensor:/reset_sensor_dirty_left"
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "뽀봇 유지 관리가 필요합니다."
     # telegram callbacks
     - id: "telegram_callback_to_reset_main_brush_left"
       alias: "Telegram callback to reset main brush left"

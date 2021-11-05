@@ -44,9 +44,3 @@ naver_weather_package:
         - service: notify.notify_telegram
           data:
             message: "☔️ 지금 비가 내려요. 안방 창문을 닫아주세요."
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "비가 내려요. 안방 창문을 닫아주세요."

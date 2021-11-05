@@ -47,12 +47,6 @@ laundryroom_package:
         - service: notify.notify_telegram
           data:
             message: "건조가 완료되었습니다."
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "건조가 완료되었습니다."
     - id: "dryer_turned_on"
       alias: "Dryer turned on"
       trigger:
@@ -63,18 +57,9 @@ laundryroom_package:
         - service: notify.notify_telegram
           data:
             message: "건조를 시작합니다."
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "건조를 시작합니다."
         - wait_for_trigger:
             - platform: state
               entity_id: sensor.geonjogi_dryer_completion_time
         - service: notify.notify_telegram
-          data:
-            message: "약 {{ ((as_timestamp(states('sensor.geonjogi_dryer_completion_time')) - as_timestamp(now())) / 60) | int }} 분 뒤에 종료됩니다."
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
           data:
             message: "약 {{ ((as_timestamp(states('sensor.geonjogi_dryer_completion_time')) - as_timestamp(now())) / 60) | int }} 분 뒤에 종료됩니다."

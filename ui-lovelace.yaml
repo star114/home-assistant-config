@@ -1541,6 +1541,77 @@ views:
                             - filter: grayscale(100%)
                     tap_action:
                       action: toggle
+              - type: horizontal-stack
+                cards:
+                  - type: "custom:button-card"
+                    color_type: auto
+                    show_state: false
+                    show_name: false
+                    show_icon: false
+                    styles:
+                      card:
+                        - width: 130px
+                        - height: 30px
+                  - type: "custom:button-card"
+                    name: 라디에이터
+                    color_type: auto
+                    show_state: true
+                    show_name: true
+                    show_label: true
+                    show_icon: false
+                    styles:
+                      card:
+                        - height: 30px
+                        - border-radius: 8px
+                      grid:
+                        - grid-template-areas: '"n l"'
+                        - grid-template-columns: 2fr 1fr
+                        - grid-template-rows: 8px
+                      name:
+                        - text-align: start
+                        - justify-self: center
+                        - align-self: center
+                        - font-size: 11px
+                      label:
+                        - text-align: start
+                        - justify-self: center
+                        - align-self: center
+                        - font-size: 11px
+                    label: |
+                      [[[
+                        return states['sensor.dawon_bedroom_radiater_plug_power'].state + "w";
+                      ]]]
+                  - type: "custom:button-card"
+                    entity: switch.dawon_bedroom_radiater_plug
+                    color_type: auto
+                    show_state: false
+                    show_name: false
+                    show_icon: true
+                    icon: "mdi:power"
+                    styles:
+                      card:
+                        - height: 30px
+                        - width: 40px
+                        - border-radius: 8px
+                        - justify-self: center
+                        - align-self: center
+                      icon:
+                        - width: 40%
+                    state:
+                      - value: "on"
+                        styles:
+                          icon:
+                            - font-weight: bold
+                            - color: white
+                          card:
+                            - background-color: "RGB(233,130,75)"
+                      - value: "off"
+                        styles:
+                          icon:
+                            - color: grey
+                            - filter: grayscale(100%)
+                    tap_action:
+                      action: toggle
           - type: vertical-stack
             cards:
               - type: horizontal-stack
@@ -2363,7 +2434,7 @@ views:
     cards:
       - type: "custom:vacuum-card"
         name: Bbo-bot vacuum
-        entity: vacuum.roborock_vacuum_s5e
+        entity: vacuum.bbobos
         stats:
           default:
             - attribute: filter_left
@@ -2386,7 +2457,7 @@ views:
               unit: minutes
               subtitle: Cleaning time
       - type: "custom:xiaomi-vacuum-map-card"
-        entity: vacuum.roborock_vacuum_s5e
+        entity: vacuum.bbobos
         map_camera: camera.xiaomi_cloud_map_extractor
         camera_calibration: true
       - type: entity
@@ -2421,6 +2492,10 @@ views:
             source: icon
           - type: custom:mini-media-player
             entity: media_player.raibeureori_seupikeo
+            artwork: cover
+            source: icon
+          - type: custom:mini-media-player
+            entity: media_player.galaxy_home_mini
             artwork: cover
             source: icon
       - type: vertical-stack

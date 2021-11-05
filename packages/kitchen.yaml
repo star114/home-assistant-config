@@ -78,12 +78,6 @@ kitchen_package:
         - service: notify.notify_telegram
           data:
             message: "밥솥이 켜져 있습니다. 팬트리 문을 열어주세요."
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "밥솥이 켜져 있습니다. 팬트리 문을 열어주세요."
 
     - id: "kitchen_pantry_light_on_when_door_is_open"
       alias: "kitchen pantry light on when door is open"
@@ -140,9 +134,3 @@ kitchen_package:
         - service: notify.notify_telegram
           data:
             message: "💊 영양제 알림. 잊지 말고 드세요."
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "영양제 먹을 시간입니다. 잊지 말고 드세요."

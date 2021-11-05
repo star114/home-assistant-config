@@ -42,7 +42,7 @@ homekit_package:
           name: 희식
         device_tracker.seojiniphone:
           name: 서진
-        vacuum.roborock_vacuum_s5e:
+        vacuum.bbobos:
           name: 뽀봇 청소기
         light.hej_1gang_dressroom_light:
           name: 드레스룸 조명
@@ -78,6 +78,9 @@ homekit_package:
           name: 안방 공기청정기
         switch.dawon_bathroom_plug:
           name: 화장실 플러그
+          type: outlet
+        switch.dawon_bedroom_radiater_plug:
+          name: 안방 라디에이터 플러그
           type: outlet
         switch.dawon_bedroom_aircon_plug:
           name: 안방 에어컨 플러그

@@ -45,12 +45,6 @@ smartthings_package:
           data:
             title: "⚠️ 실내 이산화탄소 수치 관리 필요"
             message: "창문을 열어 환기하세요"
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "실내 이산화탄소 농도가 너무 높습니다. 환기가 필요합니다."
     - id: "co2_level_has_come_back_to_normal"
       alias: "CO2 level has come back to normal"
       trigger:
@@ -69,12 +63,6 @@ smartthings_package:
           data:
             title: "✅ 실내 이산화탄소 수치 정상"
             message: "이제 창문을 닫아도 좋습니다."
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "이산화탄소 농도가 정상으로 돌아왔습니다."
 
     # TVOC
     - id: "tvoc_level_has_reached_unhealthy_state"
@@ -94,12 +82,6 @@ smartthings_package:
         - service: notify.notify_telegram
           data:
             message: "⚠️ 실내 TVOC 수치 관리 필요"
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "실내 총휘발성유기화합물 수치 나쁨. 관리가 필요합니다."
     - id: "tvoc_level_has_come_back_to_normal"
       alias: "TVOC level has come back to normal"
       trigger:
@@ -117,12 +99,6 @@ smartthings_package:
         - service: notify.notify_telegram
           data:
             message: "✅ 실내 TVOC 수치 정상"
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "실내 총휘발성유기화합물 수치가 정상으로 돌아왔습니다."
 
     # PM10
     - id: "pm10_level_has_reached_unhealthy_state"
@@ -142,12 +118,6 @@ smartthings_package:
         - service: notify.notify_telegram
           data:
             message: "⚠️ 실내 PM10 수치 관리 필요"
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "실내 미세먼지 수치 나쁨. 관리가 필요합니다."
     - id: "pm10_level_has_come_back_to_normal"
       alias: "PM10 level has come back to normal"
       trigger:
@@ -165,12 +135,6 @@ smartthings_package:
         - service: notify.notify_telegram
           data:
             message: "✅ 실내 PM10 수치 정상"
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "실내 미세먼지 수치가 정상으로 돌아왔습니다."
 
     # PM2.5
     - id: "pm2_5_level_has_reached_unhealthy_state"
@@ -190,12 +154,6 @@ smartthings_package:
         - service: notify.notify_telegram
           data:
             message: "⚠️ 실내 PM2.5 수치 관리 필요"
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "실내 초미세먼지 수치 나쁨. 관리가 필요합니다."
     - id: "pm2_5_level_has_come_back_to_normal"
       alias: "PM2.5 level has come back to normal"
       trigger:
@@ -213,12 +171,6 @@ smartthings_package:
         - service: notify.notify_telegram
           data:
             message: "✅ 실내 PM2.5 수치 정상"
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "실내 초미세먼지 수치가 정상으로 돌아왔습니다."
 
     # CAQI
     - id: "caqi_level_has_reached_unhealthy_state"
@@ -238,12 +190,6 @@ smartthings_package:
         - service: notify.notify_telegram
           data:
             message: "⚠️ 실내 공기질 수치 관리 필요"
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "실내 공기질 수치 나쁨. 관리가 필요합니다."
     - id: "caqi_level_has_come_back_to_normal"
       alias: "CAQI level has come back to normal"
       trigger:
@@ -261,9 +207,3 @@ smartthings_package:
         - service: notify.notify_telegram
           data:
             message: "✅ 실내 공기질 수치 정상"
-        - condition: state
-          entity_id: alarm_control_panel.home_monitoring
-          state: "disarmed"
-        - service: notify.galaxy_cloud_speak
-          data:
-            message: "실내 공기질 수치가 정상으로 돌아왔습니다."
