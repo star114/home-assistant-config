@@ -142,35 +142,35 @@ zigbee2mqtt_package:
     - platform: template
       sensors:
         hue_bedroom_motion_battery_low:
-          value_template: "{{ states('sensor.hue_bedroom_motion_battery') | int < 31 }}"
+          value_template: "{{ states('sensor.hue_bedroom_motion_battery') | int(default=0) < 31 }}"
     - platform: template
       sensors:
         hej_bathroom_thsensor_battery_low:
-          value_template: "{{ states('sensor.hej_bathroom_thsensor_battery') | int < 31 }}"
+          value_template: "{{ states('sensor.hej_bathroom_thsensor_battery') | int(default=0) < 31 }}"
     - platform: template
       sensors:
         hej_bedroom_thsensor_battery_low:
-          value_template: "{{ states('sensor.hej_bedroom_thsensor_battery') | int < 31 }}"
+          value_template: "{{ states('sensor.hej_bedroom_thsensor_battery') | int(default=0) < 31 }}"
     - platform: template
       sensors:
         hej_laundryroom_thsensor_battery_low:
-          value_template: "{{ states('sensor.hej_laundryroom_thsensor_battery') | int < 31 }}"
+          value_template: "{{ states('sensor.hej_laundryroom_thsensor_battery') | int(default=0) < 31 }}"
     - platform: template
       sensors:
         aqara_kitchen_pantry_door_left_battery_low:
-          value_template: "{{ states('sensor.aqara_kitchen_pantry_door_left_battery') | int < 31 }}"
+          value_template: "{{ states('sensor.aqara_kitchen_pantry_door_left_battery') | int(default=0) < 31 }}"
     - platform: template
       sensors:
         aqara_kitchen_pantry_door_right_battery_low:
-          value_template: "{{ states('sensor.aqara_kitchen_pantry_door_right_battery') | int < 31 }}"
+          value_template: "{{ states('sensor.aqara_kitchen_pantry_door_right_battery') | int(default=0) < 31 }}"
     - platform: template
       sensors:
         aqara_kitchen_fridge_door_battery_low:
-          value_template: "{{ states('sensor.aqara_kitchen_fridge_door_battery') | int < 31 }}"
+          value_template: "{{ states('sensor.aqara_kitchen_fridge_door_battery') | int(default=0) < 31 }}"
     - platform: template
       sensors:
         aqara_library_data_center_door_battery_low:
-          value_template: "{{ states('sensor.aqara_library_data_center_door_battery') | int < 31}}"
+          value_template: "{{ states('sensor.aqara_library_data_center_door_battery') | int(default=0) < 31}}"
 
   # alert: https://www.home-assistant.io/integrations/alert/
   alert:

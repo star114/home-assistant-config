@@ -62,7 +62,7 @@ google_assistant_package:
         name: 베란다 조명
         expose: true
         room: 베란다
-      light.hej_3gang_library_light_top:
+      light.hej_3gang_library_light_bottom:
         name: 라이브러리 조명
         expose: true
         room: 라이브러리
@@ -122,7 +122,7 @@ google_assistant_package:
         name: 취침모드
         expose: true
         room: 기타
-      switch.hej_3gang_library_light_bottom:
+      switch.hej_3gang_library_light_top:
         name: 외출모드
         expose: true
         room: 기타

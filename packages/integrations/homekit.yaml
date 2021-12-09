@@ -18,7 +18,7 @@ homekit_package:
           - switch.geonjogi
           - switch.hej_3gang_bathroom_light_top
           - switch.hej_3gang_bedroom_bed_light_bottom
-          - switch.hej_3gang_library_light_bottom
+          - switch.hej_3gang_library_light_top
           - switch.jubang_eeokeon
           - switch.bedroom_ac
           - sensor.anbang_gonggiceongjeonggi_fine_dust_level
@@ -68,7 +68,7 @@ homekit_package:
           name: 주방 조리대 조명
         light.hej_3gang_laundryroom_light_top:
           name: 베란다 조명
-        light.hej_3gang_library_light_top:
+        light.hej_3gang_library_light_bottom:
           name: 라이브러리 조명
         light.hej_3gang_library_light_center:
           name: 복도 조명
@@ -106,7 +106,7 @@ homekit_package:
           name: 화장실 환풍기
         switch.hej_3gang_bedroom_bed_light_bottom:
           name: 취침모드
-        switch.hej_3gang_library_light_bottom:
+        switch.hej_3gang_library_light_top:
           name: 외출모드
         switch.jubang_eeokeon:
           name: 주방 에어컨

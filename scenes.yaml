@@ -11,7 +11,7 @@
       state: "off"
     light.lellki_library_multi_outlets_l1:
       state: "off"
-    light.hej_3gang_library_light_top:
+    light.hej_3gang_library_light_bottom:
       state: "off"
     light.hej_3gang_library_light_center:
       state: "off"
@@ -51,7 +51,7 @@
       state: "off"
     light.lellki_library_multi_outlets_l1:
       state: "off"
-    light.hej_3gang_library_light_top:
+    light.hej_3gang_library_light_bottom:
       state: "off"
     light.hej_3gang_library_light_center:
       state: "off"
@@ -78,7 +78,7 @@
 - name: Home
   icon: "mdi:home-account"
   entities:
-    light.hej_3gang_library_light_top:
+    light.hej_3gang_library_light_bottom:
       state: "on"
     light.hej_3gang_library_light_center:
       state: "on"

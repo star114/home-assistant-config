@@ -1,0 +1,11 @@
+korea_workday_package:
+  binary_sensor:
+    - platform: korean_workday
+      add_holidays:
+        - "20220501"
+        - "20221101"
+
+  input_text:
+    holiday:
+      name: Holiday
+      max: 255

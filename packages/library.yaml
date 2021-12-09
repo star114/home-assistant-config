@@ -18,10 +18,21 @@ library_package:
           entity_id: input_boolean.library_light_triggered_by_motion
           state: "on"
       action:
-        - service: light.turn_off
-          entity_id: light.hej_3gang_library_light_top
         - service: input_boolean.turn_off
           entity_id: input_boolean.library_light_triggered_by_motion
+        - condition: or
+          conditions:
+            - condition: time
+              after: "19:00:00"
+              before: "10:00:00"
+            - condition: state
+              entity_id: binary_sensor.korean_workday
+              state: "off"
+        - condition: state
+          entity_id: light.hej_3gang_library_light_bottom
+          state: "on"
+        - service: light.turn_off
+          entity_id: light.hej_3gang_library_light_bottom
 
     - id: "library_light_on_with_motion"
       alias: "library light on with motion"
@@ -31,11 +42,11 @@ library_package:
           to: "on"
       condition:
         - condition: state
-          entity_id: light.hej_3gang_library_light_top
+          entity_id: light.hej_3gang_library_light_bottom
           state: "off"
       action:
         - service: light.turn_on
-          entity_id: light.hej_3gang_library_light_top
+          entity_id: light.hej_3gang_library_light_bottom
         - service: input_boolean.turn_on
           entity_id: input_boolean.library_light_triggered_by_motion
 
@@ -43,7 +54,7 @@ library_package:
       alias: "away scene - switch on"
       trigger:
         platform: state
-        entity_id: switch.hej_3gang_library_light_bottom
+        entity_id: switch.hej_3gang_library_light_top
         from: "off"
         to: "on"
       action:
@@ -69,7 +80,7 @@ library_package:
       alias: "home scene - switch off"
       trigger:
         platform: state
-        entity_id: switch.hej_3gang_library_light_bottom
+        entity_id: switch.hej_3gang_library_light_top
         from: "on"
         to: "off"
       action:
@@ -96,11 +107,11 @@ library_package:
               entity_id: alarm_control_panel.home_monitoring
               state: "disarmed"
             - condition: state
-              entity_id: switch.hej_3gang_library_light_bottom
+              entity_id: switch.hej_3gang_library_light_top
               state: "off"
       action:
         - service: switch.turn_on
-          entity_id: switch.hej_3gang_library_light_bottom
+          entity_id: switch.hej_3gang_library_light_top
 
     - id: "automatic_home"
       alias: "automatic home"
@@ -115,8 +126,8 @@ library_package:
               entity_id: alarm_control_panel.home_monitoring
               state: "armed_away"
             - condition: state
-              entity_id: switch.hej_3gang_library_light_bottom
+              entity_id: switch.hej_3gang_library_light_top
               state: "on"
       action:
         - service: switch.turn_off
-          entity_id: switch.hej_3gang_library_light_bottom
+          entity_id: switch.hej_3gang_library_light_top

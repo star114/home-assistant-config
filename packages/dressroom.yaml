@@ -18,10 +18,21 @@ dressroom_package:
           entity_id: input_boolean.dressroom_light_triggered_by_motion
           state: "on"
       action:
-        - service: light.turn_off
-          entity_id: light.hej_1gang_dressroom_light
         - service: input_boolean.turn_off
           entity_id: input_boolean.dressroom_light_triggered_by_motion
+        - condition: or
+          conditions:
+            - condition: time
+              after: "18:00:00"
+              before: "09:30:00"
+            - condition: state
+              entity_id: binary_sensor.korean_workday
+              state: "off"
+        - condition: state
+          entity_id: light.hej_1gang_dressroom_light
+          state: "on"
+        - service: light.turn_off
+          entity_id: light.hej_1gang_dressroom_light
 
     - id: "dressroom_light_on_with_motion"
       alias: "dressroom light on with motion"

@@ -101,7 +101,7 @@ views:
               - type: state-icon
                 tap_action:
                   action: toggle
-                entity: light.hej_3gang_library_light_top
+                entity: light.hej_3gang_library_light_bottom
                 icon: mdi:lightbulb-on
                 style:
                   "--paper-item-icon-active-color": "RGB(233,130,75)"
@@ -1116,7 +1116,7 @@ views:
               - type: horizontal-stack
                 cards:
                   - type: "custom:button-card"
-                    entity: switch.hej_3gang_library_light_bottom
+                    entity: switch.hej_3gang_library_light_top
                     name: 외출
                     color_type: auto
                     show_icon: true
@@ -2432,37 +2432,17 @@ views:
     icon: "mdi:robot-vacuum"
     badges: []
     cards:
-      - type: "custom:vacuum-card"
-        name: Bbo-bot vacuum
-        entity: vacuum.bbobos
-        stats:
-          default:
-            - attribute: filter_left
-              unit: hours
-              subtitle: Filter
-            - attribute: side_brush_left
-              unit: hours
-              subtitle: Side brush
-            - attribute: main_brush_left
-              unit: hours
-              subtitle: Main brush
-            - attribute: sensor_dirty_left
-              unit: hours
-              subtitle: Sensors
-          cleaning:
-            - attribute: cleaned_area
-              unit: m2
-              subtitle: Cleaning area
-            - attribute: cleaning_time
-              unit: minutes
-              subtitle: Cleaning time
-      - type: "custom:xiaomi-vacuum-map-card"
-        entity: vacuum.bbobos
-        map_camera: camera.xiaomi_cloud_map_extractor
-        camera_calibration: true
-      - type: entity
-        name: Cleaning dustbin gauge
-        entity: input_number.cleaning_dustbin
+      - type: vertical-stack
+        cards:
+          - type: "custom:xiaomi-vacuum-map-card"
+            entity: vacuum.bbobos
+            map_source:
+              camera: camera.xiaomi_cloud_map_extractor
+            calibration_source:
+              camera: true
+          - type: entity
+            name: Cleaning dustbin gauge
+            entity: input_number.cleaning_dustbin
   - title: Media
     icon: "mdi:play-network"
     path: media
@@ -2476,6 +2456,20 @@ views:
             source: icon
           - type: "custom:lg-remote-control"
             entity: media_player.lg_webos_smart_tv
+            colors:
+              buttons: var(--primary-background-color)
+              text: var(--primary-text-color)
+              background: var(--primary-background-color)
+              border: var(--divider-color)
+            sources:
+              - name: Netflix
+                icon: "mdi:netflix"
+              - name: YouTube
+                icon: "mdi:youtube-tv"
+              - name: HDMI 1
+                icon: "mdi:video-input-hdmi"
+              - name: HDMI 2
+                icon: "mdi:video-input-hdmi"
       - type: vertical-stack
         cards:
           - type: custom:mini-media-player
@@ -2766,77 +2760,6 @@ views:
               - entity: sensor.network_throughput_out_eno1
             hours_to_show: 12
             refresh_interval: 60
-  - title: Network Devices
-    path: network
-    icon: "mdi:lan"
-    panel: true
-    badges: []
-    cards:
-      - type: "custom:vertical-stack-in-card"
-        cards:
-          - type: glance
-            title: Routers
-            entities:
-              - entity: binary_sensor.iptime_a3008_mu_library
-                name: Main
-                icon: mdi:router-network
-              - entity: binary_sensor.iptime_a3004ns_m_bedroom
-                name: Bedroom
-                icon: mdi:router-wireless
-              - entity: binary_sensor.iptime_a3004ns_m_kitchen
-                name: Kitchen
-                icon: mdi:router-wireless
-          - type: glance
-            title: Servers
-            entities:
-              - entity: binary_sensor.intel_nuc
-                name: HA Debian
-              - entity: binary_sensor.esxi_host
-                name: ESXi host
-              - entity: binary_sensor.esxi_windows
-                name: ESXi Windows
-              - entity: binary_sensor.esxi_ubuntu
-                name: ESXi Ubuntu
-              - entity: binary_sensor.star114_raspberrypi
-                name: Raspberry-Pi 3B+
-              - entity: binary_sensor.harmony_hub
-                name: Logitech Harmony Hub
-            columns: 6
-          - type: glance
-            title: Speakers
-            entities:
-              - entity: binary_sensor.google_home_mini_library
-                name: Google Library
-                icon: mdi:google-home
-              - entity: binary_sensor.google_home_mini_bedroom
-                name: Google Bedroom
-                icon: mdi:google-home
-              - entity: binary_sensor.google_home_mini_kitchen
-                name: Google Kitchen
-                icon: mdi:google-home
-              - entity: binary_sensor.galaxy_home_mini
-                name: Galaxy
-                icon: mdi:cast-audio
-          - type: glance
-            title: Devices
-            entities:
-              - entity: binary_sensor.air_monitor
-                name: Air Monitor
-              - entity: binary_sensor.air_purifier
-                name: Air Purifier
-              - entity: binary_sensor.water_purifier
-                name: Water Purifier
-              - entity: binary_sensor.dryer
-                name: Dryer
-              - entity: binary_sensor.door_lock
-                name: Doorlock
-              - entity: binary_sensor.lg_webos_tv
-                name: LG TV
-              - entity: binary_sensor.roborock_s5_max
-                name: Roborock
-              - entity: binary_sensor.solar_power_plug
-                name: Solar Power
-            columns: 8
   - title: Zigbee Network
     icon: "mdi:zigbee"
     path: zigbee-network
@@ -2864,8 +2787,15 @@ views:
             show_header_toggle: false
             entities:
               - entity: input_select.themes
+          - type: entity
+            entity: binary_sensor.korean_workday
           - type: custom:transmission-card
             hide_type: false
+          - type: "custom:korean-workday-card"
+            title: Holiday
+            entity: input_text.holiday
+            max_length: 255
+            autosave: false
       - type: "custom:vertical-stack-in-card"
         cards:
           - type: weather-forecast

@@ -1,4 +1,20 @@
 xiaomi_package:
+  sensor:
+    - platform: template
+      sensors:
+        bbobos_main_brush_left_hours:
+          value_template: "{{ ((states('sensor.bbobos_main_brush_left') | float / 3600)) | round(0) }}"
+          unit_of_measurement: "hours"
+        bbobos_side_brush_left_hours:
+          value_template: "{{ ((states('sensor.bbobos_side_brush_left') | float / 3600)) | round(0) }}"
+          unit_of_measurement: "hours"
+        bbobos_filter_left_hours:
+          value_template: "{{ ((states('sensor.bbobos_filter_left') | float / 3600)) | round(0) }}"
+          unit_of_measurement: "hours"
+        bbobos_sensor_dirty_left_hours:
+          value_template: "{{ ((states('sensor.bbobos_sensor_dirty_left') | float / 3600)) | round(0) }}"
+          unit_of_measurement: "hours"
+
   script:
     reset_main_brush_left:
       alias: "Reset hours for main brush replacement"
@@ -174,8 +190,8 @@ xiaomi_package:
             title: "청소가 완료되었습니다."
             message: |
               📈 보고서
-                청소시간: {{ states('sensor.bbobos_last_clean_duration') | int / 60 }} 분 
-                청소구역: {{ states('sensor.bbobos_last_clean_area') }} m^2
+                청소시간: {{ (states('sensor.bbobos_last_clean_duration') | float / 60) | round(0) }} 분 
+                청소구역: {{ (states('sensor.bbobos_last_clean_area') | float) | round(0) }} m^2
         - service: input_boolean.turn_off
           entity_id: input_boolean.roborock_ready_to_clean
         - service: timer.start
@@ -184,10 +200,10 @@ xiaomi_package:
           entity_id: input_number.cleaning_dustbin
         - condition: template
           value_template: |
-            {% if ((states('sensor.bbobos_main_brush_left') | int / 3600) < 2) 
-              or ((states('sensor.bbobos_side_brush_left') | int / 3600) < 2)
-              or ((states('sensor.bbobos_filter_left') | int / 3600) < 2)
-              or ((states('sensor.bbobos_sensor_dirty_left') | int / 3600) < 2)
+            {% if ((states('sensor.bbobos_main_brush_left_hours') | int) < 2) 
+              or ((states('sensor.bbobos_side_brush_left_hours') | int) < 2)
+              or ((states('sensor.bbobos_filter_left_hours') | int) < 2)
+              or ((states('sensor.bbobos_sensor_dirty_left_hours') | int) < 2)
             %}
               true
             {% else %}
@@ -197,7 +213,7 @@ xiaomi_package:
           data:
             title: "🚧 유지보수"
             message: >
-              {% if (states('sensor.bbobos_main_brush_left') | int / 3600) < 2 %} 메인 브러쉬{% endif %}{% if (states('sensor.bbobos_side_brush_left') | int / 3600) < 2 %} 사이드 브러쉬{% endif %}{% if (states('sensor.bbobos_filter_left') | int / 3600) < 2 %} 필터{% endif %}{% if (states('sensor.bbobos_sensor_dirty_left') | int / 3600) < 2 %} 센서{% endif %}
+              {% if (states('sensor.bbobos_main_brush_left_hours') | int) < 2 %} 메인 브러쉬{% endif %}{% if (states('sensor.bbobos_side_brush_left_hours') | int) < 2 %} 사이드 브러쉬{% endif %}{% if (states('sensor.bbobos_filter_left_hours') | int) < 2 %} 필터{% endif %}{% if (states('sensor.bbobos_sensor_dirty_left_hours') | int) < 2 %} 센서{% endif %}
             data:
               inline_keyboard:
                 - "Reset main brush:/reset_main_brush_left, Reset side brush:/reset_side_brush_left"
