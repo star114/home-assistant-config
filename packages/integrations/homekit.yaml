@@ -37,198 +37,200 @@ homekit_package:
           - sensor.smartthings_door_contact_temperature
       entity_config:
         alarm_control_panel.home_monitoring:
-          name: 홈 모니터링
+          name: Home Monitoring
         device_tracker.heesikiphone:
-          name: 희식
+          name: Heesik
         device_tracker.seojiniphone:
-          name: 서진
+          name: Seojin
         vacuum.bbobos:
-          name: 뽀봇 청소기
+          name: Vacuum Cleaner
         light.hej_1gang_dressroom_light:
-          name: 드레스룸 조명
+          name: Dressroom Light
         light.hej_3gang_bathroom_light_center:
-          name: 화장실 간접 조명
+          name: Bathroom Indirect Light
         light.hej_3gang_bathroom_light_bottom:
-          name: 화장실 벽 조명
+          name: Bathroom Wall Light
         light.hej_3gang_bedroom_bed_light_top:
-          name: 안방 침대 조명
+          name: Bedroom Bed Light
         light.hej_3gang_bedroom_light_top:
-          name: 안방 TV 조명
+          name: Bedroom Center Light
         light.hej_3gang_bedroom_light_center:
-          name: 안방 창가 조명
+          name: Bedroom Window Light
         light.hej_3gang_bedroom_light_bottom:
-          name: 안방 보름달 조명
+          name: Bedroom Indirect Light
+        light.gledopto_bedroom_led_strip:
+          name: Bedroom TV Light
         light.hej_3gang_kitchen_light_left_top:
-          name: 주방 식탁 조명
+          name: Kitchen Table Light
         light.hej_3gang_kitchen_light_left_center:
-          name: 주방 간접 조명
+          name: Kitchen Indrect Light
         light.hej_3gang_kitchen_light_right_top:
-          name: 주방 팬트리 조명
+          name: Kitchen Pantry Light
         light.hej_3gang_kitchen_light_right_center:
-          name: 주방 조리대 조명
+          name: Kitchen Counter Light
         light.hej_3gang_laundryroom_light_top:
-          name: 베란다 조명
+          name: Laundryroom Light
         light.hej_3gang_library_light_bottom:
-          name: 라이브러리 조명
+          name: Library Light
         light.hej_3gang_library_light_center:
-          name: 복도 조명
+          name: Hallway Light
         light.lellki_library_multi_outlets_l1:
-          name: 라이브러리 별 조명
+          name: Library Star Light
         switch.anbang_gonggiceongjeonggi:
-          name: 안방 공기청정기
+          name: Bedroom Air Purifier
         switch.dawon_bathroom_plug:
-          name: 화장실 플러그
+          name: Bathroom Plug
           type: outlet
         switch.dawon_bedroom_radiater_plug:
-          name: 안방 라디에이터 플러그
+          name: Bedroom Raidator Plug
           type: outlet
         switch.dawon_bedroom_aircon_plug:
-          name: 안방 에어컨 플러그
+          name: Bedroom Air Conditioner Plug
           type: outlet
         switch.dawon_dressroom_plug:
-          name: 드레스룸 플러그
+          name: Dressroom Plug
           type: outlet
         switch.dawon_kitchen_cooker_plug:
-          name: 주방 밥솥 플러그
+          name: Kitchen Cooker Plug
           type: outlet
         switch.dawon_kitchen_dishwasher_plug:
-          name: 주방 식기세척기 플러그
+          name: Kitchen Dish Washer Plug
           type: outlet
         switch.dawon_kitchen_foodwaste_plug:
-          name: 주방 음식물 처리기 플러그
+          name: Kitchen Food Waste Processor Plug
           type: outlet
         switch.dawon_kitchen_fan_plug:
-          name: 주방 환풍기 플러그
+          name: Kitchen Fan Plug
           type: outlet
         switch.geonjogi:
-          name: 건조기
+          name: Laundryroom Dryer
         switch.hej_3gang_bathroom_light_top:
-          name: 화장실 환풍기
+          name: Bathroom Fan
         switch.hej_3gang_bedroom_bed_light_bottom:
-          name: 취침모드
+          name: Night Mode
         switch.hej_3gang_library_light_top:
-          name: 외출모드
+          name: Away Mode
         switch.jubang_eeokeon:
-          name: 주방 에어컨
+          name: Kitchen Air Conditioner
         switch.bedroom_ac:
-          name: 안방 에어컨
+          name: Bedroom Air Conditioner
         switch.lellki_library_multi_outlets_l2:
-          name: 라이브러리 워머
+          name: Library Warmer
           type: outlet
         switch.lellki_library_multi_outlets_l3:
-          name: 라이브러리 턴테이블
+          name: Library Turntable
           type: outlet
         switch.lellki_library_multi_outlets_l4:
-          name: 라이브러리 멀티탭 4
+          name: Library Outlet 4
           type: outlet
         binary_sensor.hue_bedroom_motion_occupancy:
-          name: 안방 모션
+          name: Bedroom Motion
           linked_battery_sensor: sensor.hue_bedroom_motion_battery
           low_battery_threshold: 31
         binary_sensor.smartthings_bathroom_motion_occupancy:
-          name: 화장실 모션
+          name: Bathroom Motion
           linked_battery_sensor: sensor.smartthings_bathroom_motion_battery
           low_battery_threshold: 31
         binary_sensor.smartthings_dressroom_motion_occupancy:
-          name: 드레스룸 모션
+          name: Dressroom Motion
           linked_battery_sensor: sensor.smartthings_dressroom_motion_battery
           low_battery_threshold: 31
         binary_sensor.smartthings_kitchen_motion_occupancy:
-          name: 주방 모션
+          name: Kitchen Motion
           linked_battery_sensor: sensor.smartthings_kitchen_motion_battery
           low_battery_threshold: 31
         binary_sensor.smartthings_laundryroom_motion_occupancy:
-          name: 베란다 모션
+          name: Laundryroom Motion
           linked_battery_sensor: sensor.smartthings_laundryroom_motion_battery
           low_battery_threshold: 31
         binary_sensor.smartthings_library_motion_occupancy:
-          name: 라이브러리 모션
+          name: Library Motion
           linked_battery_sensor: sensor.smartthings_library_motion_battery
           low_battery_threshold: 31
         binary_sensor.aqara_kitchen_fridge_door_contact:
-          name: 주방 냉장고 문
+          name: Kitchen Refrigerato r Door
           linked_battery_sensor: sensor.aqara_kitchen_fridge_door_battery
           low_battery_threshold: 31
         binary_sensor.aqara_kitchen_pantry_door_left_contact:
-          name: 주방 팬트리 왼쪽 문
+          name: Kitchen Pantry Left Door
           linked_battery_sensor: sensor.aqara_kitchen_pantry_door_left_battery
           low_battery_threshold: 31
         binary_sensor.aqara_kitchen_pantry_door_right_contact:
-          name: 주방 팬트리 오른쪽 문
+          name: Kitchen Pantry Right Door
           linked_battery_sensor: sensor.aqara_kitchen_pantry_door_right_battery
           low_battery_threshold: 31
         binary_sensor.aqara_library_data_center_door_contact:
-          name: 라이브러리 데이터센터 문
+          name: Library Datacenter Door
           linked_battery_sensor: sensor.aqara_library_data_center_door_battery
           low_battery_threshold: 31
         binary_sensor.smartthings_door_contact_contact:
-          name: 현관문
+          name: House Door
           linked_battery_sensor: sensor.smartthings_door_contact_battery
           low_battery_threshold: 31
         binary_sensor.smartthings_library_contact_contact:
-          name: 라이브러리 창문
+          name: Library Window
           linked_battery_sensor: sensor.smartthings_library_contact_battery
           low_battery_threshold: 31
         binary_sensor.smartthings_dressroom_contact_contact:
-          name: 드레스룸 창문
+          name: Dressroom Window
           linked_battery_sensor: sensor.smartthings_dressroom_contact_battery
           low_battery_threshold: 31
         binary_sensor.smartthings_laundryroom_contact_contact:
-          name: 베란다 창문
+          name: Laundryroom Window
           linked_battery_sensor: sensor.smartthings_laundryroom_contact_battery
           low_battery_threshold: 31
         binary_sensor.smartthings_bedroom_contact_contact:
-          name: 안방 창문
+          name: Bedroom Window
           linked_battery_sensor: sensor.smartthings_bedroom_contact_battery
           low_battery_threshold: 31
         binary_sensor.smartthings_bathroom_contact_contact:
-          name: 화장실 문
+          name: Bathroom Door
           linked_battery_sensor: sensor.smartthings_bathroom_contact_battery
           low_battery_threshold: 31
         sensor.anbang_gonggiceongjeonggi_fine_dust_level:
-          name: 안방 PM25
+          name: Bedroom PM25
         sensor.samseong_eeomoniteo_fine_dust_level:
-          name: 주방 PM25
+          name: Kitchen PM25
         sensor.samseong_eeomoniteo_carbon_dioxide_measurement:
-          name: 주방 CO2
+          name: Kitchen CO2
         sensor.samseong_eeomoniteo_temperature_measurement:
-          name: 주방 온도
+          name: Kitchen Temperature
         sensor.samseong_eeomoniteo_relative_humidity_measurement:
-          name: 주방 습도
+          name: Kitchen Humidity
         sensor.hej_bedroom_thsensor_temperature:
-          name: 안방 온도
+          name: Bedroom Temperature
           linked_battery_sensor: sensor.hej_bedroom_thsensor_battery
           low_battery_threshold: 31
         sensor.hej_bedroom_thsensor_humidity:
-          name: 안방 습도
+          name: Bedroom Humidity
           linked_battery_sensor: sensor.hej_bedroom_thsensor_battery
           low_battery_threshold: 31
         sensor.hej_bathroom_thsensor_temperature:
-          name: 화장실 온도
+          name: Bathroom Temperature
           linked_battery_sensor: sensor.hej_bathroom_thsensor_battery
           low_battery_threshold: 31
         sensor.hej_bathroom_thsensor_humidity:
-          name: 화장실 습도
+          name: Bathroom Humidity
           linked_battery_sensor: sensor.hej_bathroom_thsensor_battery
           low_battery_threshold: 31
         sensor.hej_laundryroom_thsensor_temperature:
-          name: 베란다 온도
+          name: Laundryroom Temperature
           linked_battery_sensor: sensor.hej_laundryroom_thsensor_battery
           low_battery_threshold: 31
         sensor.hej_laundryroom_thsensor_humidity:
-          name: 베란다 습도
+          name: Laundryroom Humidity
           linked_battery_sensor: sensor.hej_laundryroom_thsensor_battery
           low_battery_threshold: 31
         sensor.smartthings_library_motion_temperature:
-          name: 라이브러리 온도
+          name: Library Temperature
           linked_battery_sensor: sensor.smartthings_library_motion_battery
           low_battery_threshold: 31
         sensor.smartthings_dressroom_motion_temperature:
-          name: 드레스룸 온도
+          name: Dressroom Temperature
           linked_battery_sensor: sensor.smartthings_dressroom_motion_battery
           low_battery_threshold: 31
         sensor.smartthings_door_contact_temperature:
-          name: 현관문 온도
+          name: House Door Temperature
           linked_battery_sensor: sensor.smartthings_door_contact_battery
           low_battery_threshold: 31
     - name: LG Webos Smart TV
