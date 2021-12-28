@@ -2451,25 +2451,11 @@ views:
       - type: vertical-stack
         cards:
           - type: custom:mini-media-player
-            entity: media_player.lg_webos_smart_tv
+            entity: media_player.bedroom
             artwork: cover
             source: icon
-          - type: "custom:lg-remote-control"
-            entity: media_player.lg_webos_smart_tv
-            colors:
-              buttons: var(--primary-background-color)
-              text: var(--primary-text-color)
-              background: var(--primary-background-color)
-              border: var(--divider-color)
-            sources:
-              - name: Netflix
-                icon: "mdi:netflix"
-              - name: YouTube
-                icon: "mdi:youtube-tv"
-              - name: HDMI 1
-                icon: "mdi:video-input-hdmi"
-              - name: HDMI 2
-                icon: "mdi:video-input-hdmi"
+          - type: entity
+            entity: remote.bedroom
       - type: vertical-stack
         cards:
           - type: custom:mini-media-player
@@ -2565,6 +2551,28 @@ views:
             name: Morning spotify playlist id
           - type: entity
             entity: input_text.morning_ytube_music_playlist_id
+      - type: vertical-stack
+        cards:
+          - type: custom:mini-media-player
+            entity: media_player.lg_webos_smart_tv
+            artwork: cover
+            source: icon
+          - type: "custom:lg-remote-control"
+            entity: media_player.lg_webos_smart_tv
+            colors:
+              buttons: var(--primary-background-color)
+              text: var(--primary-text-color)
+              background: var(--primary-background-color)
+              border: var(--divider-color)
+            sources:
+              - name: Netflix
+                icon: "mdi:netflix"
+              - name: YouTube
+                icon: "mdi:youtube-tv"
+              - name: HDMI 1
+                icon: "mdi:video-input-hdmi"
+              - name: HDMI 2
+                icon: "mdi:video-input-hdmi"
   - title: Tesla
     path: tesla
     badges: []
@@ -2781,6 +2789,8 @@ views:
     path: dev
     badges: []
     cards:
+      - type: light
+        entity: light.gledopto_bedroom_led_strip
       - type: vertical-stack
         cards:
           - type: entities

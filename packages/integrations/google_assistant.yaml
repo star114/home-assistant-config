@@ -42,6 +42,10 @@ google_assistant_package:
         name: 안방 보름달 조명
         expose: true
         room: 안방
+      light.gledopto_bedroom_led_strip:
+        name: 안방 간접 조명
+        expose: true
+        room: 안방
       light.hej_3gang_kitchen_light_left_top:
         name: 주방 식탁 조명
         expose: true
