@@ -1,16 +1,5 @@
 naver_weather_package:
   automation:
-    # too many notifications
-    #- id: "notify_rain_forecast"
-    #  alias: "notify rain forecast"
-    #  trigger:
-    #    - platform: state
-    #      entity_id: sensor.naver_weather_rainystart_1
-    #      from: "비안옴"
-    #  action:
-    #    - service: notify.notify_telegram
-    #      data:
-    #        message: "🌂 오늘 비 예보가 있어요."
     - id: "umbrella_notification"
       alias: "umbrella notification"
       trigger:
@@ -18,11 +7,16 @@ naver_weather_package:
           entity_id: binary_sensor.smartthings_door_contact_contact
           to: "on"
       condition:
-        - condition: not
+        - condition: or
           conditions:
+            - condition: not
+              conditions:
+                - condition: state
+                  entity_id: sensor.naver_weather_rainystart_1
+                  state: "비안옴"
             - condition: state
-              entity_id: sensor.naver_weather_rainystart_1
-              state: "비안옴"
+              entity_id: weather.naver_weather_1
+              state: "rainy"
       action:
         - service: notify.notify_telegram
           data:
@@ -44,3 +38,40 @@ naver_weather_package:
         - service: notify.notify_telegram
           data:
             message: "☔️ 지금 비가 내려요. 안방 창문을 닫아주세요."
+        - service: galaxy_home_mini.speak
+          data:
+            message: "비가 내려요. 안방 창문 확인해주세요."
+    - id: "notify_low_temperature"
+      alias: "notify low temperature"
+      trigger:
+        - platform: time
+          at: "22:30:00"
+      condition:
+        - condition: numeric_state
+          entity_id: sensor.naver_weather_tomorrowmtemp_1
+          below: -3
+      action:
+        - service: notify.notify_telegram
+          data:
+            message: "내일 최저기온이 영하 3도 이하입니다. 수도계량기 동파사고 주의하세요."
+        - service: galaxy_home_mini.speak
+          data:
+            message: "내일 최저기온이 영하 3도 이하입니다. 수도계량기 동파사고 주의하세요."
+    - id: "notify_rain_forecast"
+      alias: "notify rain forecast"
+      trigger:
+        - platform: time
+          at: "08:00:00"
+      condition:
+        - condition: not
+          conditions:
+            - condition: state
+              entity_id: sensor.naver_weather_rainystart_1
+              state: "비안옴"
+      action:
+        - service: notify.notify_telegram
+          data:
+            message: "오늘 비 예보가 있어요."
+        - service: galaxy_home_mini.speak
+          data:
+            message: "오늘 비 예보가 있어요."
