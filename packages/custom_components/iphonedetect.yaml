@@ -35,7 +35,7 @@ iphonedetect_package:
             message: "🏡 희식님께서 집에 도착하셨습니다."
         - service: notify.in_the_library_kakao
           data:
-            message: "희식님께서 집에 도착하셨습니다."
+            message: "희식님, 어서오세요."
     - id: "notify_my_absence"
       alias: "Notify my absence"
       trigger:
@@ -71,7 +71,7 @@ iphonedetect_package:
             message: "🏡 서진님께서 집에 도착하셨습니다."
         - service: notify.in_the_library_kakao
           data:
-            message: "서진님께서 집에 도착하셨습니다."
+            message: "서진님, 어서오세요."
     - id: "notify_seo_absence"
       alias: "Notify seo's absence"
       trigger:

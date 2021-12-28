@@ -75,6 +75,9 @@ kitchen_package:
               entity_id: switch.dawon_kitchen_cooker_plug
               state: "on"
       action:
+        - service: galaxy_home_mini.speak
+          data:
+            message: "밥솥이 켜져 있어요. 팬트리 문을 열어주세요."
         - service: notify.notify_telegram
           data:
             message: "밥솥이 켜져 있습니다. 팬트리 문을 열어주세요."
@@ -131,6 +134,9 @@ kitchen_package:
           entity_id: alarm_control_panel.home_monitoring
           state: "disarmed"
       action:
+        - service: galaxy_home_mini.speak
+          data:
+            message: "영양제 드세요."
         - service: notify.notify_telegram
           data:
-            message: "💊 영양제 알림. 잊지 말고 드세요."
+            message: "💊 영양제 잊지 말고 드세요."

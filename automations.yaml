@@ -36,6 +36,9 @@
       finishing_threshold: 3
       finishing_hysteresis: 5
       starting_actions:
+        - service: galaxy_home_mini.speak
+          data:
+            message: "식기 세척을 시작합니다."
         - service: notify.notify_telegram
           data:
             message: "식기 세척을 시작합니다."
@@ -43,6 +46,9 @@
           target:
             entity_id: input_boolean.dish_washer_state
       ending_actions:
+        - service: galaxy_home_mini.speak
+          data:
+            message: "식기 세척이 완료되었습니다."
         - service: notify.notify_telegram
           data:
             message: "식기 세척이 완료되었습니다."
@@ -61,6 +67,9 @@
       finishing_threshold: 15
       finishing_hysteresis: 10
       starting_actions:
+        - service: galaxy_home_mini.speak
+          data:
+            message: "음식물 쓰레기 처리를 시작합니다."
         - service: notify.notify_telegram
           data:
             message: "음식물 쓰레기 처리를 시작합니다."
@@ -71,6 +80,9 @@
           target:
             entity_id: switch.dawon_kitchen_fan_plug
       ending_actions:
+        - service: galaxy_home_mini.speak
+          data:
+            message: "음식물 쓰레기 처리가 완료되었습니다."
         - service: notify.notify_telegram
           data:
             message: "음식물 쓰레기 처리가 완료되었습니다."

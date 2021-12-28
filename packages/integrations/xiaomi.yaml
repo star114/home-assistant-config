@@ -134,6 +134,9 @@ xiaomi_package:
           entity_id: vacuum.bbobos
           to: "cleaning"
       action:
+        - service: galaxy_home_mini.speak
+          data:
+            message: "청소를 시작합니다."
         - service: notify.notify_telegram
           data:
             message: "🧹 청소를 시작합니다."
@@ -145,6 +148,9 @@ xiaomi_package:
           from: "returning"
           to: "docked"
       action:
+        - service: galaxy_home_mini.speak
+          data:
+            message: "청소를 마무리했습니다."
         - service: notify.notify_telegram
           data:
             message: "🪑 뽀봇이 제 자리로 돌아왔어요."

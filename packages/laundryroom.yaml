@@ -44,6 +44,9 @@ laundryroom_package:
           entity_id: sensor.geonjogi_dryer_machine_state
           to: "stop"
       action:
+        - service: galaxy_home_mini.speak
+          data:
+            message: "건조가 완료되었습니다."
         - service: notify.notify_telegram
           data:
             message: "건조가 완료되었습니다."
@@ -54,6 +57,9 @@ laundryroom_package:
           entity_id: sensor.geonjogi_dryer_machine_state
           to: "run"
       action:
+        - service: galaxy_home_mini.speak
+          data:
+            message: "건조를 시작합니다."
         - service: notify.notify_telegram
           data:
             message: "건조를 시작합니다."
