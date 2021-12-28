@@ -49,3 +49,24 @@ dressroom_package:
           entity_id: light.hej_1gang_dressroom_light
         - service: input_boolean.turn_on
           entity_id: input_boolean.dressroom_light_triggered_by_motion
+
+    - id: "dressroom_motion_light_trigger_after_work"
+      alias: "dressroom motion light trigger after work"
+      trigger:
+        - platform: time
+          at: "18:00:00"
+      condition:
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: binary_sensor.korean_workday
+              state: "on"
+            - condition: state
+              entity_id: light.hej_1gang_dressroom_light
+              state: "on"
+            - condition: state
+              entity_id: input_boolean.dressroom_light_triggered_by_motion
+              state: "off"
+      action:
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.dressroom_light_triggered_by_motion
