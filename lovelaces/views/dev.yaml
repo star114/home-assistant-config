@@ -1,0 +1,101 @@
+title: Dev
+icon: "mdi:castle"
+path: dev
+cards:
+  - type: light
+    entity: light.gledopto_bedroom_led_strip
+  - type: vertical-stack
+    cards:
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - entity: input_select.themes
+      - type: entity
+        entity: binary_sensor.korean_workday
+      - type: custom:transmission-card
+        hide_type: false
+      - type: "custom:korean-workday-card"
+        title: Holiday
+        entity: input_text.holiday
+        max_length: 255
+        autosave: false
+  - type: "custom:vertical-stack-in-card"
+    cards:
+      - type: weather-forecast
+        entity: weather.naver_weather_1
+        show_forecast: true
+      - type: glance
+        entities:
+          - sensor.naver_weather_rainpercent_1
+          - sensor.naver_weather_rainfall_1
+          - sensor.naver_weather_rainystarttmr_1
+          - sensor.naver_weather_rainystart_1
+      - type: glance
+        entities:
+          - sensor.naver_weather_finedust_1
+          - sensor.naver_weather_finedustgrade_1
+          - sensor.naver_weather_ultrafinedust_1
+          - sensor.naver_weather_ultrafinedustgrade_1
+      - type: glance
+        entities:
+          - sensor.naver_weather_ozon_1
+          - sensor.naver_weather_ozongrade_1
+          - sensor.naver_weather_windspeed_1
+          - sensor.naver_weather_windbearing_1
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: >
+          ### 음식물 쓰레기
+      - type: glance
+        entities:
+          - entity: sensor.citywaste_total_count
+            name: Total count
+          - entity: sensor.citywaste_total_kg
+            name: Total kg
+          - entity: sensor.citywaste_last_kg
+            name: Last kg
+      - type: markdown
+        content: >
+          ### 전력
+      - type: horizontal-stack
+        cards:
+          - type: entity
+            entity: sensor.kwh2won
+          - type: entity
+            entity: sensor.kwh2won_last_month
+      - type: horizontal-stack
+        cards:
+          - type: entity
+            entity: sensor.shellyem_c45bbe5ff616_channel_1_monthly_energy
+            name: 이번달 소비전력
+          - type: entity
+            entity: sensor.shellyem_c45bbe5ff616_channel_1_monthly_energy_last_month
+            name: 지난달 소비전력
+      - type: horizontal-stack
+        cards:
+          - type: entity
+            entity: sensor.shellyem_c45bbe5ff616_channel_1_voltage
+            name: 전압
+          - type: entity
+            entity: sensor.shellyem_c45bbe5ff616_channel_1_power
+            name: 전력
+      - type: markdown
+        content: >
+          #### 인덕션
+      - type: horizontal-stack
+        cards:
+          - type: entity
+            entity: sensor.shellyem_c45bbe5ff616_channel_2_monthly_energy_induction
+            name: 이번달 소비전력
+          - type: entity
+            entity: sensor.shellyem_c45bbe5ff616_channel_2_monthly_energy_induction_last_month
+            name: 지난달 소비전력
+      - type: horizontal-stack
+        cards:
+          - type: entity
+            entity: sensor.shellyem_c45bbe5ff616_channel_2_voltage
+            name: 전압
+          - type: entity
+            entity: sensor.shellyem_c45bbe5ff616_channel_2_power
+            name: 전력

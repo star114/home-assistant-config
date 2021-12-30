@@ -1,0 +1,2567 @@
+title: Home
+path: home
+icon: "mdi:home"
+cards:
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: conditional
+            conditions:
+              - entity: device_tracker.seojiniphone
+                state: home
+            card:
+              type: "custom:button-card"
+              show_state: false
+              show_name: false
+              show_entity_picture: true
+              entity_picture: /local/sj_home.png
+              styles:
+                card:
+                  - height: 100px
+                icon:
+                  - width: 50%
+          - type: conditional
+            conditions:
+              - entity: device_tracker.seojiniphone
+                state: not_home
+            card:
+              type: "custom:button-card"
+              show_state: false
+              show_name: false
+              show_entity_picture: true
+              entity_picture: /local/sj_away.png
+              styles:
+                card:
+                  - height: 100px
+                icon:
+                  - width: 50%
+          - type: "custom:button-card"
+            entity: sensor.love_dday
+            name: Seo & Heesik
+            show_state: true
+            show_name: true
+            show_icon: false
+            styles:
+              card:
+                - height: 100px
+              name:
+                - font-size: 11px
+                - justify-self: center
+                - align-self: center
+                - color: "RGB(119,198,212)"
+              state:
+                - font-size: 15px
+                - justify-self: center
+                - align-self: center
+                - color: grey
+                - font-weight: bold
+          - type: conditional
+            conditions:
+              - entity: device_tracker.heesikiphone
+                state: home
+            card:
+              type: "custom:button-card"
+              show_state: false
+              show_name: false
+              show_entity_picture: true
+              entity_picture: /local/hs_home.png
+              styles:
+                card:
+                  - height: 100px
+                icon:
+                  - width: 50%
+                img_cell:
+          - type: conditional
+            conditions:
+              - entity: device_tracker.heesikiphone
+                state: not_home
+            card:
+              type: "custom:button-card"
+              show_state: false
+              show_name: false
+              show_entity_picture: true
+              entity_picture: /local/hs_away.png
+              styles:
+                card:
+                  - height: 100px
+                icon:
+                  - width: 50%
+      - type: picture-elements
+        image: /local/homeassistant_floorplan.png
+        elements:
+          - type: state-icon
+            entity: binary_sensor.smartthings_door_contact_contact
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 7%
+              left: 50%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.hej_3gang_library_light_bottom
+            icon: mdi:lightbulb-on
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 17%
+              left: 21%
+              transform: scale(1.4,1.4)
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.hej_3gang_library_light_center
+            icon: mdi:lightbulb-on
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 35%
+              left: 41%
+              transform: scale(1.4,1.4)
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.lellki_library_multi_outlets_l1
+            icon: mdi:wall-sconce-flat-variant
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 22%
+              left: 9%
+              transform: scale(1.0,1.0)
+          - type: state-icon
+            entity: binary_sensor.smartthings_library_motion_occupancy
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 28%
+              left: 26%
+          - type: state-icon
+            entity: binary_sensor.smartthings_library_contact_contact
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 7%
+              left: 25%
+          - type: state-icon
+            entity: binary_sensor.aqara_library_data_center_door_contact
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 12%
+              left: 15%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.hej_1gang_dressroom_light
+            icon: mdi:lightbulb-on
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 17%
+              left: 68%
+              transform: scale(1.4,1.4)
+          - type: state-icon
+            entity: binary_sensor.smartthings_dressroom_motion_occupancy
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 28%
+              left: 73%
+          - type: state-icon
+            entity: binary_sensor.smartthings_dressroom_contact_contact
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 7%
+              left: 73%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.hej_3gang_bedroom_light_top
+            icon: mdi:lightbulb-on
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 60%
+              left: 41%
+              transform: scale(1.4,1.4)
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.hej_3gang_bedroom_light_center
+            icon: mdi:lightbulb-on
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 86%
+              left: 25%
+              transform: scale(1.4,1.4)
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.hej_3gang_bedroom_light_bottom
+            icon: mdi:wall-sconce-round-variant
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 77%
+              left: 43%
+              transform: scale(1.5,1.5)
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.hej_3gang_bedroom_bed_light_top
+            icon: mdi:track-light
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 52%
+              left: 10%
+              transform: scale(1.2,1.2)
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: switch.bedroom_ac
+            icon: mdi:air-conditioner
+            style:
+              "--paper-item-icon-active-color": "RGB(81,156,202)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 85%
+              left: 10%
+              transform: scale(1.0,1.0)
+          - type: state-icon
+            entity: binary_sensor.hue_bedroom_motion_occupancy
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 57%
+              left: 40%
+          - type: state-icon
+            entity: binary_sensor.smartthings_bedroom_contact_contact
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 93%
+              left: 35%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.hej_3gang_kitchen_light_right_top
+            icon: mdi:lightbulb-on
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 36%
+              left: 68%
+              transform: scale(1.4,1.4)
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.hej_3gang_kitchen_light_right_center
+            icon: mdi:lightbulb-on
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 50%
+              left: 74%
+              transform: scale(1.4,1.4)
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.hej_3gang_kitchen_light_left_top
+            icon: mdi:lightbulb-on
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 60%
+              left: 55%
+              transform: scale(1.4,1.4)
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.hej_3gang_kitchen_light_left_center
+            icon: mdi:wall-sconce-flat-variant
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 76%
+              left: 64%
+              transform: scale(1.5,1.5)
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: switch.dawon_kitchen_fan_plug
+            icon: mdi:fan
+            style:
+              "--paper-item-icon-active-color": "RGB(81,156,202)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 32%
+              left: 81%
+              transform: scale(1.2,1.2)
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: switch.jubang_eeokeon
+            icon: mdi:air-conditioner
+            style:
+              "--paper-item-icon-active-color": "RGB(81,156,202)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 75%
+              left: 52%
+              transform: scale(1.0,1.0)
+          - type: state-icon
+            entity: binary_sensor.smartthings_kitchen_motion_occupancy
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 45%
+              left: 80%
+          - type: state-icon
+            entity: binary_sensor.aqara_kitchen_pantry_door_left_contact
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 35%
+              left: 66%
+          - type: state-icon
+            entity: binary_sensor.aqara_kitchen_pantry_door_right_contact
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 35%
+              left: 76%
+          - type: state-icon
+            entity: binary_sensor.aqara_kitchen_fridge_door_contact
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 76%
+              left: 80%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: switch.hej_3gang_bathroom_light_top
+            icon: mdi:fan
+            style:
+              "--paper-item-icon-active-color": "RGB(81,156,202)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 37%
+              left: 9%
+              transform: scale(1.2,1.2)
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.hej_3gang_bathroom_light_center
+            icon: mdi:wall-sconce-flat-variant
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 46%
+              left: 23.5%
+              transform: scale(1.5,1.5)
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.hej_3gang_bathroom_light_bottom
+            icon: mdi:wall-sconce-round
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 38%
+              left: 30%
+              transform: scale(1.5,1.5)
+          - type: state-icon
+            entity: binary_sensor.smartthings_bathroom_motion_occupancy
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 46%
+              left: 15%
+          - type: state-icon
+            entity: binary_sensor.smartthings_bathroom_contact_contact
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 47%
+              left: 40%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.hej_3gang_laundryroom_light_top
+            icon: mdi:track-light
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 82%
+              left: 76%
+              transform: scale(1.2,1.2)
+          - type: state-icon
+            entity: binary_sensor.smartthings_laundryroom_motion_occupancy
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 88%
+              left: 55%
+          - type: state-icon
+            entity: binary_sensor.smartthings_laundryroom_contact_contact
+            style:
+              "--paper-item-icon-active-color": "RGB(233,130,75)"
+              "--paper-item-icon-color": "#B9A9C0"
+              top: 93%
+              left: 65%
+  - type: vertical-stack
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: "custom:button-card"
+            show_state: false
+            show_name: false
+            show_entity_picture: true
+            entity_picture: /local/house.png
+            name: House
+            styles:
+              card:
+                - height: 60px
+              name:
+                - font-size: 12px
+                - font-weight: bold
+              icon:
+                - width: 5%
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                entity: alarm_control_panel.home_monitoring
+                name: 홈 모니터링
+                color_type: auto
+                show_icon: true
+                show_state: true
+                show_name: true
+                icon: mdi:alarm-light
+                styles:
+                  card:
+                    - height: 60px
+                  grid:
+                    - grid-template-areas: '"i" "n" "s"'
+                  icon:
+                    - width: 30%
+                    - margin-top: "-5%"
+                    - margin-left: "-30%"
+                  name:
+                    - justify-self: end
+                    - padding-right: 12px
+                    - font-size: 11px
+                  state:
+                    - justify-self: end
+                    - font-size: 15px
+                    - font-weight: bold
+                    - padding-right: 2px
+                state:
+                  - value: "arming"
+                    icon: mdi:alert
+                    styles:
+                      name:
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      state:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: red
+                        - animation: blink 2s ease infinite
+                  - value: "pending"
+                    icon: mdi:pause-circle
+                    styles:
+                      name:
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      state:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: red
+                        - animation: blink 2s ease infinite
+                  - value: "triggered"
+                    icon: mdi:alert-decagram
+                    styles:
+                      name:
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      state:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: red
+                        - animation: blink 2s ease infinite
+                  - value: "armed_away"
+                    icon: mdi:home-lock
+                    styles:
+                      name:
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      state:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "armed_night"
+                    icon: mdi:home-lock
+                    styles:
+                      name:
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      state:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "armed_home"
+                    icon: mdi:home-lock
+                    styles:
+                      name:
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      state:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "disarmed"
+                    styles:
+                      icon:
+                        - color: grey
+                      name:
+                        - color: grey
+                      state:
+                        - color: grey
+              - type: "custom:button-card"
+                entity: input_boolean.food_waste_machine_state
+                name: 스마트카라
+                color_type: auto
+                show_icon: true
+                show_state: true
+                show_name: true
+                icon: mdi:food-variant
+                styles:
+                  card:
+                    - height: 60px
+                  grid:
+                    - grid-template-areas: '"i" "n" "s"'
+                  icon:
+                    - width: 30%
+                    - margin-top: "-5%"
+                    - margin-left: "-30%"
+                  name:
+                    - justify-self: end
+                    - padding-right: 12px
+                    - font-size: 11px
+                  state:
+                    - justify-self: end
+                    - font-size: 15px
+                    - font-weight: bold
+                    - padding-right: 12px
+                state:
+                  - value: "on"
+                    styles:
+                      name:
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      state:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                      name:
+                        - color: grey
+                      state:
+                        - color: grey
+              - type: "custom:button-card"
+                entity: input_boolean.dish_washer_state
+                name: 식세기
+                color_type: auto
+                show_icon: true
+                show_state: true
+                show_name: true
+                icon: mdi:dishwasher
+                styles:
+                  card:
+                    - height: 60px
+                  grid:
+                    - grid-template-areas: '"i" "n" "s"'
+                  icon:
+                    - width: 30%
+                    - margin-top: "-5%"
+                    - margin-left: "-30%"
+                  name:
+                    - justify-self: end
+                    - padding-right: 12px
+                    - font-size: 11px
+                  state:
+                    - justify-self: end
+                    - font-size: 15px
+                    - font-weight: bold
+                    - padding-right: 12px
+                state:
+                  - value: "on"
+                    styles:
+                      name:
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      state:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                      name:
+                        - color: grey
+                      state:
+                        - color: grey
+              - type: "custom:button-card"
+                entity: switch.geonjogi
+                name: 건조기
+                color_type: auto
+                show_icon: true
+                show_state: true
+                show_name: true
+                icon: mdi:tumble-dryer
+                styles:
+                  card:
+                    - height: 60px
+                  grid:
+                    - grid-template-areas: '"i" "n" "s"'
+                  icon:
+                    - width: 30%
+                    - margin-top: "-5%"
+                    - margin-left: "-30%"
+                  name:
+                    - justify-self: end
+                    - padding-right: 12px
+                    - font-size: 11px
+                  state:
+                    - justify-self: end
+                    - font-size: 15px
+                    - font-weight: bold
+                    - padding-right: 12px
+                state:
+                  - value: "on"
+                    styles:
+                      name:
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      state:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                      name:
+                        - color: grey
+                      state:
+                        - color: grey
+                tap_action:
+                  action: more-info
+              - type: "custom:button-card"
+                entity: input_boolean.bathroom_in_use
+                name: 사용중
+                color_type: auto
+                show_icon: true
+                show_state: true
+                show_name: true
+                icon: mdi:paper-roll
+                styles:
+                  card:
+                    - height: 60px
+                  grid:
+                    - grid-template-areas: '"i" "n" "s"'
+                  icon:
+                    - width: 30%
+                    - margin-top: "-5%"
+                    - margin-left: "-30%"
+                  name:
+                    - justify-self: end
+                    - padding-right: 12px
+                    - font-size: 11px
+                  state:
+                    - justify-self: end
+                    - font-size: 15px
+                    - font-weight: bold
+                    - padding-right: 12px
+                state:
+                  - value: "on"
+                    styles:
+                      name:
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      state:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                      name:
+                        - color: grey
+                      state:
+                        - color: grey
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                show_state: true
+                show_name: true
+                show_icon: false
+                show_units: true
+                units: CAQI
+                entity: sensor.samseong_eeomoniteo_air_quality
+                name: 공기질
+                styles:
+                  card:
+                    - height: 60px
+                  name:
+                    - font-size: 11px
+                  state:
+                    - font-size: 15px
+                    - font-weight: bold
+                state:
+                  - value: 4
+                    operator: ">="
+                    styles:
+                      name:
+                        - font-weight: bold
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: red
+                        - animation: blink 2s ease infinite
+              - type: "custom:button-card"
+                show_state: true
+                show_name: true
+                show_icon: false
+                show_units: true
+                entity: sensor.samseong_eeomoniteo_odor_sensor
+                name: TVOC
+                styles:
+                  card:
+                    - height: 60px
+                  name:
+                    - font-size: 11px
+                  state:
+                    - font-size: 15px
+                    - font-weight: bold
+                state:
+                  - value: 3
+                    operator: ">="
+                    styles:
+                      name:
+                        - font-weight: bold
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: red
+                        - animation: blink 2s ease infinite
+              - type: "custom:button-card"
+                show_state: true
+                show_name: true
+                show_icon: false
+                show_units: true
+                entity: sensor.samseong_eeomoniteo_dust_level
+                name: PM 10
+                styles:
+                  card:
+                    - height: 60px
+                  name:
+                    - font-size: 11px
+                  state:
+                    - font-size: 15px
+                    - font-weight: bold
+                state:
+                  - value: 81
+                    operator: ">="
+                    styles:
+                      name:
+                        - font-weight: bold
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: red
+                        - animation: blink 2s ease infinite
+              - type: "custom:button-card"
+                show_state: true
+                show_name: true
+                show_icon: false
+                show_units: true
+                entity: sensor.samseong_eeomoniteo_fine_dust_level
+                name: PM 2.5
+                styles:
+                  card:
+                    - height: 60px
+                  name:
+                    - font-size: 11px
+                  state:
+                    - font-size: 15px
+                    - font-weight: bold
+                state:
+                  - value: 36
+                    operator: ">="
+                    styles:
+                      name:
+                        - font-weight: bold
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: red
+                        - animation: blink 2s ease infinite
+              - type: "custom:button-card"
+                show_state: true
+                show_name: true
+                show_icon: false
+                show_units: true
+                entity: sensor.samseong_eeomoniteo_carbon_dioxide_measurement
+                name: CO2
+                styles:
+                  card:
+                    - height: 60px
+                  name:
+                    - font-size: 11px
+                  state:
+                    - font-size: 15px
+                    - font-weight: bold
+                state:
+                  - value: 1500
+                    operator: ">="
+                    styles:
+                      name:
+                        - font-weight: bold
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: red
+                        - animation: blink 2s ease infinite
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                entity: binary_sensor.blitzwolf_kitchen_boiler_waterleak_water_leak
+                name: 보일러분배기
+                color_type: auto
+                show_icon: true
+                show_state: true
+                show_name: true
+                icon: mdi:water-alert
+                styles:
+                  card:
+                    - height: 60px
+                  grid:
+                    - grid-template-areas: '"i" "n" "s"'
+                  icon:
+                    - width: 30%
+                    - margin-top: "-5%"
+                    - margin-left: "-30%"
+                  name:
+                    - justify-self: end
+                    - padding-right: 12px
+                    - font-size: 11px
+                  state:
+                    - justify-self: end
+                    - font-size: 15px
+                    - font-weight: bold
+                    - padding-right: 12px
+                state:
+                  - value: "on"
+                    icon: mdi:alert
+                    styles:
+                      name:
+                        - font-weight: bold
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: red
+                        - animation: blink 2s ease infinite
+                  - value: "off"
+                    styles:
+                      icon:
+                        - filter: grayscale(100%)
+                        - color: grey
+                      name:
+                        - color: grey
+              - type: "custom:button-card"
+                entity: binary_sensor.blitzwolf_kitchen_sink_waterleak_water_leak
+                name: 주방 싱크대
+                color_type: auto
+                show_icon: true
+                show_state: true
+                show_name: true
+                icon: mdi:water-alert
+                styles:
+                  card:
+                    - height: 60px
+                  grid:
+                    - grid-template-areas: '"i" "n" "s"'
+                  icon:
+                    - width: 30%
+                    - margin-top: "-5%"
+                    - margin-left: "-30%"
+                  name:
+                    - justify-self: end
+                    - padding-right: 12px
+                    - font-size: 11px
+                  state:
+                    - justify-self: end
+                    - font-size: 15px
+                    - font-weight: bold
+                    - padding-right: 12px
+                state:
+                  - value: "on"
+                    icon: mdi:alert
+                    styles:
+                      name:
+                        - font-weight: bold
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: red
+                        - animation: blink 2s ease infinite
+                  - value: "off"
+                    styles:
+                      icon:
+                        - filter: grayscale(100%)
+                        - color: grey
+                      name:
+                        - color: grey
+              - type: "custom:button-card"
+                entity: binary_sensor.blitzwolf_bathroom_sink_waterleak_water_leak
+                name: 화장실 세면대
+                color_type: auto
+                show_icon: true
+                show_state: true
+                show_name: true
+                icon: mdi:water-alert
+                styles:
+                  card:
+                    - height: 60px
+                  grid:
+                    - grid-template-areas: '"i" "n" "s"'
+                  icon:
+                    - width: 30%
+                    - margin-top: "-5%"
+                    - margin-left: "-30%"
+                  name:
+                    - justify-self: end
+                    - padding-right: 12px
+                    - font-size: 11px
+                  state:
+                    - justify-self: end
+                    - font-size: 15px
+                    - font-weight: bold
+                    - padding-right: 12px
+                state:
+                  - value: "on"
+                    icon: mdi:alert
+                    styles:
+                      name:
+                        - font-weight: bold
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: red
+                        - animation: blink 2s ease infinite
+                  - value: "off"
+                    styles:
+                      icon:
+                        - filter: grayscale(100%)
+                        - color: grey
+                      name:
+                        - color: grey
+              - type: "custom:button-card"
+                entity: binary_sensor.blitzwolf_bathroom_ceiling_waterleak_water_leak
+                name: 화장실 천장
+                color_type: auto
+                show_icon: true
+                show_state: true
+                show_name: true
+                icon: mdi:water-alert
+                styles:
+                  card:
+                    - height: 60px
+                  grid:
+                    - grid-template-areas: '"i" "n" "s"'
+                  icon:
+                    - width: 30%
+                    - margin-top: "-5%"
+                    - margin-left: "-30%"
+                  name:
+                    - justify-self: end
+                    - padding-right: 12px
+                    - font-size: 11px
+                  state:
+                    - justify-self: end
+                    - font-size: 15px
+                    - font-weight: bold
+                    - padding-right: 12px
+                state:
+                  - value: "on"
+                    icon: mdi:alert
+                    styles:
+                      name:
+                        - font-weight: bold
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: red
+                        - animation: blink 2s ease infinite
+                  - value: "off"
+                    styles:
+                      icon:
+                        - filter: grayscale(100%)
+                        - color: grey
+                      name:
+                        - color: grey
+              - type: "custom:button-card"
+                entity: binary_sensor.blitzwolf_laundryroom_waterleak_water_leak
+                name: 베란다
+                color_type: auto
+                show_icon: true
+                show_state: true
+                show_name: true
+                icon: mdi:water-alert
+                styles:
+                  card:
+                    - height: 60px
+                  grid:
+                    - grid-template-areas: '"i" "n" "s"'
+                  icon:
+                    - width: 30%
+                    - margin-top: "-5%"
+                    - margin-left: "-30%"
+                  name:
+                    - justify-self: end
+                    - padding-right: 12px
+                    - font-size: 11px
+                  state:
+                    - justify-self: end
+                    - font-size: 15px
+                    - font-weight: bold
+                    - padding-right: 12px
+                state:
+                  - value: "on"
+                    icon: mdi:alert
+                    styles:
+                      name:
+                        - font-weight: bold
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: red
+                        - animation: blink 2s ease infinite
+                  - value: "off"
+                    styles:
+                      icon:
+                        - filter: grayscale(100%)
+                        - color: grey
+                      name:
+                        - color: grey
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                entity: switch.hej_3gang_library_light_top
+                name: 외출
+                color_type: auto
+                show_icon: true
+                show_state: true
+                show_name: true
+                icon: mdi:home-export-outline
+                styles:
+                  card:
+                    - height: 90px
+                  grid:
+                    - grid-template-areas: '"i" "n" "s"'
+                  icon:
+                    - width: 20%
+                    - margin-top: "-5%"
+                    - margin-left: "-20%"
+                  name:
+                    - justify-self: end
+                    - padding-right: 12px
+                    - font-size: 14px
+                  state:
+                    - justify-self: end
+                    - font-size: 12px
+                    - padding-right: 12px
+                state:
+                  - value: "on"
+                    styles:
+                      name:
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      state:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                      name:
+                        - color: grey
+                      state:
+                        - color: grey
+              - type: "custom:button-card"
+                entity: switch.hej_3gang_bedroom_bed_light_bottom
+                name: 취침
+                color_type: auto
+                show_icon: true
+                show_state: true
+                show_name: true
+                icon: mdi:weather-night
+                styles:
+                  card:
+                    - height: 90px
+                  grid:
+                    - grid-template-areas: '"i" "n" "s"'
+                  icon:
+                    - width: 20%
+                    - margin-top: "-5%"
+                    - margin-left: "-20%"
+                  name:
+                    - justify-self: end
+                    - padding-right: 12px
+                    - font-size: 14px
+                  state:
+                    - justify-self: end
+                    - font-size: 12px
+                    - padding-right: 12px
+                state:
+                  - value: "on"
+                    styles:
+                      name:
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      state:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                      name:
+                        - color: grey
+                      state:
+                        - color: grey
+              - type: "custom:button-card"
+                entity: switch.anbang_gonggiceongjeonggi
+                name: 공기청정기
+                color_type: auto
+                show_icon: true
+                show_state: true
+                show_name: true
+                icon: mdi:air-purifier
+                styles:
+                  card:
+                    - height: 90px
+                  grid:
+                    - grid-template-areas: '"i" "n" "s"'
+                  icon:
+                    - width: 20%
+                    - margin-top: "-5%"
+                    - margin-left: "-20%"
+                  name:
+                    - justify-self: end
+                    - padding-right: 12px
+                    - font-size: 14px
+                  state:
+                    - justify-self: end
+                    - font-size: 12px
+                    - padding-right: 12px
+                state:
+                  - value: "on"
+                    styles:
+                      name:
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      state:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                      name:
+                        - color: grey
+                      state:
+                        - color: grey
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                entity: switch.lellki_library_multi_outlets_l2
+                name: 캔들워머
+                color_type: auto
+                show_icon: true
+                show_state: true
+                show_name: true
+                icon: mdi:candle
+                styles:
+                  card:
+                    - height: 90px
+                  grid:
+                    - grid-template-areas: '"i" "n" "s"'
+                  icon:
+                    - width: 20%
+                    - margin-top: "-5%"
+                    - margin-left: "-20%"
+                  name:
+                    - justify-self: end
+                    - padding-right: 12px
+                    - font-size: 14px
+                  state:
+                    - justify-self: end
+                    - font-size: 12px
+                    - padding-right: 12px
+                state:
+                  - value: "on"
+                    styles:
+                      name:
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      state:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                      name:
+                        - color: grey
+                      state:
+                        - color: grey
+              - type: "custom:button-card"
+                entity: switch.lellki_library_multi_outlets_l3
+                name: 턴테이블
+                color_type: auto
+                show_icon: true
+                show_state: true
+                show_name: true
+                icon: mdi:album
+                styles:
+                  card:
+                    - height: 90px
+                  grid:
+                    - grid-template-areas: '"i" "n" "s"'
+                  icon:
+                    - width: 20%
+                    - margin-top: "-5%"
+                    - margin-left: "-20%"
+                  name:
+                    - justify-self: end
+                    - padding-right: 12px
+                    - font-size: 14px
+                  state:
+                    - justify-self: end
+                    - font-size: 12px
+                    - padding-right: 12px
+                state:
+                  - value: "on"
+                    styles:
+                      name:
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      state:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                      name:
+                        - color: grey
+                      state:
+                        - color: grey
+              - type: "custom:button-card"
+                entity: switch.lellki_library_multi_outlets_l4
+                name: 모니터
+                color_type: auto
+                show_icon: true
+                show_state: true
+                show_name: true
+                icon: mdi:monitor-multiple
+                styles:
+                  card:
+                    - height: 90px
+                  grid:
+                    - grid-template-areas: '"i" "n" "s"'
+                  icon:
+                    - width: 20%
+                    - margin-top: "-5%"
+                    - margin-left: "-20%"
+                  name:
+                    - justify-self: end
+                    - padding-right: 12px
+                    - font-size: 14px
+                  state:
+                    - justify-self: end
+                    - font-size: 12px
+                    - padding-right: 12px
+                state:
+                  - value: "on"
+                    styles:
+                      name:
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      state:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                      name:
+                        - color: grey
+                      state:
+                        - color: grey
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                name: 전체 전력
+                color_type: auto
+                show_state: true
+                show_name: true
+                show_label: true
+                show_icon: false
+                styles:
+                  card:
+                    - height: 30px
+                    - border-radius: 8px
+                  grid:
+                    - grid-template-areas: '"n l"'
+                    - grid-template-columns: 2fr 1fr
+                    - grid-template-rows: 8px
+                  name:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                  label:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                label: |
+                  [[[
+                    return states['sensor.shellyem_c45bbe5ff616_channel_1_power'].state + "w";
+                  ]]]
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                name: 인덕션
+                color_type: auto
+                show_state: true
+                show_name: true
+                show_label: true
+                show_icon: false
+                styles:
+                  card:
+                    - height: 30px
+                    - border-radius: 8px
+                  grid:
+                    - grid-template-areas: '"n l"'
+                    - grid-template-columns: 2fr 1fr
+                    - grid-template-rows: 8px
+                  name:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                  label:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                label: |
+                  [[[
+                    return states['sensor.shellyem_c45bbe5ff616_channel_2_power'].state + "w";
+                  ]]]
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                name: 태양광 발전
+                color_type: auto
+                show_state: true
+                show_name: true
+                show_label: true
+                show_icon: false
+                styles:
+                  card:
+                    - height: 30px
+                    - border-radius: 8px
+                  grid:
+                    - grid-template-areas: '"n l"'
+                    - grid-template-columns: 2fr 1fr
+                    - grid-template-rows: 8px
+                  name:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                  label:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                label: |
+                  [[[
+                    return states['sensor.827d3a23f8b7_power'].state + "w";
+                  ]]]
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                show_state: false
+                show_name: true
+                show_entity_picture: true
+                entity_picture: /local/bedroom.png
+                name: Bedroom
+                styles:
+                  card:
+                    - width: 130px
+                    - height: 60px
+                  name:
+                    - font-size: 12px
+                    - font-weight: bold
+                  icon:
+                    - width: 35%
+              - type: "custom:button-card"
+                show_state: true
+                show_name: true
+                show_icon: false
+                show_units: true
+                units: ℃
+                entity: sensor.hej_bedroom_thsensor_temperature
+                name: 온도
+                styles:
+                  card:
+                    - height: 60px
+                  name:
+                    - font-size: 11px
+                  state:
+                    - font-size: 15px
+                    - font-weight: bold
+              - type: "custom:button-card"
+                show_state: true
+                show_name: true
+                show_icon: false
+                show_units: true
+                units: "%"
+                entity: sensor.hej_bedroom_thsensor_humidity
+                name: 습도
+                styles:
+                  card:
+                    - height: 60px
+                  name:
+                    - font-size: 11px
+                  state:
+                    - font-size: 15px
+                    - font-weight: bold
+              - type: "custom:button-card"
+                show_state: true
+                show_name: true
+                show_icon: false
+                show_units: true
+                units: AQI
+                entity: sensor.anbang_gonggiceongjeonggi_air_quality
+                name: 공기질
+                styles:
+                  card:
+                    - height: 60px
+                  name:
+                    - font-size: 11px
+                  state:
+                    - font-size: 15px
+                    - font-weight: bold
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: false
+                styles:
+                  card:
+                    - width: 130px
+                    - height: 30px
+              - type: "custom:button-card"
+                name: 에어컨
+                color_type: auto
+                show_state: true
+                show_name: true
+                show_label: true
+                show_icon: false
+                styles:
+                  card:
+                    - height: 30px
+                    - border-radius: 8px
+                  grid:
+                    - grid-template-areas: '"n l"'
+                    - grid-template-columns: 2fr 1fr
+                    - grid-template-rows: 8px
+                  name:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                  label:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                label: |
+                  [[[
+                    return states['sensor.dawon_bedroom_aircon_plug_power'].state + "w";
+                  ]]]
+              - type: "custom:button-card"
+                entity: switch.dawon_bedroom_aircon_plug
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: true
+                icon: "mdi:power"
+                styles:
+                  card:
+                    - height: 30px
+                    - width: 40px
+                    - border-radius: 8px
+                    - justify-self: center
+                    - align-self: center
+                  icon:
+                    - width: 40%
+                state:
+                  - value: "on"
+                    styles:
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                        - filter: grayscale(100%)
+                tap_action:
+                  action: toggle
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: false
+                styles:
+                  card:
+                    - width: 130px
+                    - height: 30px
+              - type: "custom:button-card"
+                name: 라디에이터
+                color_type: auto
+                show_state: true
+                show_name: true
+                show_label: true
+                show_icon: false
+                styles:
+                  card:
+                    - height: 30px
+                    - border-radius: 8px
+                  grid:
+                    - grid-template-areas: '"n l"'
+                    - grid-template-columns: 2fr 1fr
+                    - grid-template-rows: 8px
+                  name:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                  label:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                label: |
+                  [[[
+                    return states['sensor.dawon_bedroom_radiater_plug_power'].state + "w";
+                  ]]]
+              - type: "custom:button-card"
+                entity: switch.dawon_bedroom_radiater_plug
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: true
+                icon: "mdi:power"
+                styles:
+                  card:
+                    - height: 30px
+                    - width: 40px
+                    - border-radius: 8px
+                    - justify-self: center
+                    - align-self: center
+                  icon:
+                    - width: 40%
+                state:
+                  - value: "on"
+                    styles:
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                        - filter: grayscale(100%)
+                tap_action:
+                  action: toggle
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: false
+                styles:
+                  card:
+                    - width: 130px
+                    - height: 30px
+              - type: "custom:button-card"
+                name: 공 조명
+                color_type: auto
+                show_state: true
+                show_name: true
+                show_label: true
+                show_icon: false
+                styles:
+                  card:
+                    - height: 30px
+                    - border-radius: 8px
+                  grid:
+                    - grid-template-areas: '"n l"'
+                    - grid-template-columns: 2fr 1fr
+                    - grid-template-rows: 8px
+                  name:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                  label:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                label: |
+                  [[[
+                    return states['sensor.dawon_bedroom_light_plug_power'].state + "w";
+                  ]]]
+              - type: "custom:button-card"
+                entity: switch.dawon_bedroom_light_plug
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: true
+                icon: "mdi:power"
+                styles:
+                  card:
+                    - height: 30px
+                    - width: 40px
+                    - border-radius: 8px
+                    - justify-self: center
+                    - align-self: center
+                  icon:
+                    - width: 40%
+                state:
+                  - value: "on"
+                    styles:
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                        - filter: grayscale(100%)
+                tap_action:
+                  action: toggle
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                show_state: false
+                show_name: true
+                show_entity_picture: true
+                entity_picture: /local/kitchen.png
+                name: Kitchen
+                styles:
+                  card:
+                    - width: 130px
+                    - height: 60px
+                  name:
+                    - font-size: 12px
+                    - font-weight: bold
+                  icon:
+                    - width: 35%
+              - type: "custom:button-card"
+                show_state: true
+                show_name: true
+                show_icon: false
+                show_units: true
+                units: ℃
+                entity: sensor.samseong_eeomoniteo_temperature_measurement
+                name: 온도
+                styles:
+                  card:
+                    - height: 60px
+                  name:
+                    - font-size: 11px
+                  state:
+                    - font-size: 15px
+                    - font-weight: bold
+              - type: "custom:button-card"
+                show_state: true
+                show_name: true
+                show_icon: false
+                show_units: true
+                units: "%"
+                entity: sensor.samseong_eeomoniteo_relative_humidity_measurement
+                name: 습도
+                styles:
+                  card:
+                    - height: 60px
+                  name:
+                    - font-size: 11px
+                  state:
+                    - font-size: 15px
+                    - font-weight: bold
+              - type: "custom:button-card"
+                show_state: true
+                show_name: true
+                show_icon: false
+                show_units: true
+                units: AQI
+                entity: sensor.samseong_eeomoniteo_air_quality
+                name: 공기질
+                styles:
+                  card:
+                    - height: 60px
+                  name:
+                    - font-size: 11px
+                  state:
+                    - font-size: 15px
+                    - font-weight: bold
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: false
+                styles:
+                  card:
+                    - width: 130px
+                    - height: 30px
+              - type: "custom:button-card"
+                name: 식기세척기
+                color_type: auto
+                show_state: true
+                show_name: true
+                show_label: true
+                show_icon: false
+                styles:
+                  card:
+                    - height: 30px
+                    - border-radius: 8px
+                  grid:
+                    - grid-template-areas: '"n l"'
+                    - grid-template-columns: 2fr 1fr
+                    - grid-template-rows: 8px
+                  name:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                  label:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                label: |
+                  [[[
+                    return states['sensor.dawon_kitchen_dishwasher_plug_power'].state + "w";
+                  ]]]
+              - type: "custom:button-card"
+                entity: switch.dawon_kitchen_dishwasher_plug
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: true
+                icon: "mdi:power"
+                styles:
+                  card:
+                    - height: 30px
+                    - width: 40px
+                    - border-radius: 8px
+                    - justify-self: center
+                    - align-self: center
+                  icon:
+                    - width: 40%
+                state:
+                  - value: "on"
+                    styles:
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                        - filter: grayscale(100%)
+                tap_action:
+                  action: toggle
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: false
+                styles:
+                  card:
+                    - width: 130px
+                    - height: 30px
+              - type: "custom:button-card"
+                name: 음식물 처리기
+                color_type: auto
+                show_state: true
+                show_name: true
+                show_label: true
+                show_icon: false
+                styles:
+                  card:
+                    - height: 30px
+                    - border-radius: 8px
+                  grid:
+                    - grid-template-areas: '"n l"'
+                    - grid-template-columns: 2fr 1fr
+                    - grid-template-rows: 8px
+                  name:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                  label:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                label: |
+                  [[[
+                    return states['sensor.dawon_kitchen_foodwaste_plug_power'].state + "w";
+                  ]]]
+              - type: "custom:button-card"
+                entity: switch.dawon_kitchen_foodwaste_plug
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: true
+                icon: "mdi:power"
+                styles:
+                  card:
+                    - height: 30px
+                    - width: 40px
+                    - border-radius: 8px
+                    - justify-self: center
+                    - align-self: center
+                  icon:
+                    - width: 40%
+                state:
+                  - value: "on"
+                    styles:
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                        - filter: grayscale(100%)
+                tap_action:
+                  action: toggle
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: false
+                styles:
+                  card:
+                    - width: 130px
+                    - height: 30px
+              - type: "custom:button-card"
+                name: 환기용 팬
+                color_type: auto
+                show_state: true
+                show_name: true
+                show_label: true
+                show_icon: false
+                styles:
+                  card:
+                    - height: 30px
+                    - border-radius: 8px
+                  grid:
+                    - grid-template-areas: '"n l"'
+                    - grid-template-columns: 2fr 1fr
+                    - grid-template-rows: 8px
+                  name:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                  label:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                label: |
+                  [[[
+                    return states['sensor.dawon_kitchen_fan_plug_power'].state + "w";
+                  ]]]
+              - type: "custom:button-card"
+                entity: switch.dawon_kitchen_fan_plug
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: true
+                icon: "mdi:power"
+                styles:
+                  card:
+                    - height: 30px
+                    - width: 40px
+                    - border-radius: 8px
+                    - justify-self: center
+                    - align-self: center
+                  icon:
+                    - width: 40%
+                state:
+                  - value: "on"
+                    styles:
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                        - filter: grayscale(100%)
+                tap_action:
+                  action: toggle
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: false
+                styles:
+                  card:
+                    - width: 130px
+                    - height: 30px
+              - type: "custom:button-card"
+                name: 밥솥
+                color_type: auto
+                show_state: true
+                show_name: true
+                show_label: true
+                show_icon: false
+                styles:
+                  card:
+                    - height: 30px
+                    - border-radius: 8px
+                  grid:
+                    - grid-template-areas: '"n l"'
+                    - grid-template-columns: 2fr 1fr
+                    - grid-template-rows: 8px
+                  name:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                  label:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                label: |
+                  [[[
+                    return states['sensor.dawon_kitchen_cooker_plug_power'].state + "w";
+                  ]]]
+              - type: "custom:button-card"
+                entity: switch.dawon_kitchen_cooker_plug
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: true
+                icon: "mdi:power"
+                styles:
+                  card:
+                    - height: 30px
+                    - width: 40px
+                    - border-radius: 8px
+                    - justify-self: center
+                    - align-self: center
+                  icon:
+                    - width: 40%
+                state:
+                  - value: "on"
+                    styles:
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                        - filter: grayscale(100%)
+                tap_action:
+                  action: toggle
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                show_state: false
+                show_name: true
+                show_entity_picture: true
+                entity_picture: /local/bathroom.png
+                name: Bathroom
+                styles:
+                  card:
+                    - width: 130px
+                    - height: 60px
+                  name:
+                    - font-size: 12px
+                    - font-weight: bold
+                  icon:
+                    - width: 35%
+              - type: "custom:button-card"
+                show_state: true
+                show_name: true
+                show_icon: false
+                show_units: true
+                units: ℃
+                entity: sensor.hej_bathroom_thsensor_temperature
+                name: 온도
+                styles:
+                  card:
+                    - height: 60px
+                  name:
+                    - font-size: 11px
+                  state:
+                    - font-size: 15px
+                    - font-weight: bold
+              - type: "custom:button-card"
+                show_state: true
+                show_name: true
+                show_icon: false
+                show_units: true
+                units: "%"
+                entity: sensor.hej_bathroom_thsensor_humidity
+                name: 습도
+                styles:
+                  card:
+                    - height: 60px
+                  name:
+                    - font-size: 11px
+                  state:
+                    - font-size: 15px
+                    - font-weight: bold
+              - type: "custom:button-card"
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: false
+                styles:
+                  card:
+                    - height: 60px
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: false
+                styles:
+                  card:
+                    - width: 130px
+                    - height: 30px
+              - type: "custom:button-card"
+                name: 비데
+                color_type: auto
+                show_state: true
+                show_name: true
+                show_label: true
+                show_icon: false
+                styles:
+                  card:
+                    - height: 30px
+                    - border-radius: 8px
+                  grid:
+                    - grid-template-areas: '"n l"'
+                    - grid-template-columns: 2fr 1fr
+                    - grid-template-rows: 8px
+                  name:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                  label:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                label: |
+                  [[[
+                    return states['sensor.dawon_bathroom_plug_power'].state + "w";
+                  ]]]
+              - type: "custom:button-card"
+                entity: switch.dawon_bathroom_plug
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: true
+                icon: "mdi:power"
+                styles:
+                  card:
+                    - height: 30px
+                    - width: 40px
+                    - border-radius: 8px
+                    - justify-self: center
+                    - align-self: center
+                  icon:
+                    - width: 40%
+                state:
+                  - value: "on"
+                    styles:
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                        - filter: grayscale(100%)
+                tap_action:
+                  action: toggle
+
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                show_state: false
+                show_name: true
+                show_entity_picture: true
+                entity_picture: /local/dressroom.png
+                name: Dressroom
+                styles:
+                  card:
+                    - width: 130px
+                    - height: 60px
+                  name:
+                    - font-size: 12px
+                    - font-weight: bold
+                  icon:
+                    - width: 35%
+              - type: "custom:button-card"
+                show_state: true
+                show_name: true
+                show_icon: false
+                show_units: true
+                units: ℃
+                entity: sensor.smartthings_dressroom_motion_temperature
+                name: 온도
+                styles:
+                  card:
+                    - height: 60px
+                  name:
+                    - font-size: 11px
+                  state:
+                    - font-size: 15px
+                    - font-weight: bold
+              - type: "custom:button-card"
+                entity: input_boolean.dressroom_light_triggered_by_motion
+                name: 모션조명
+                color_type: auto
+                show_icon: true
+                show_state: true
+                show_name: true
+                icon: mdi:ceiling-light
+                styles:
+                  card:
+                    - height: 60px
+                  grid:
+                    - grid-template-areas: '"i" "n" "s"'
+                  icon:
+                    - width: 30%
+                    - margin-top: "-5%"
+                    - margin-left: "-20%"
+                  name:
+                    - justify-self: end
+                    - padding-right: 12px
+                    - font-size: 11px
+                  state:
+                    - justify-self: end
+                    - font-size: 15px
+                    - font-weight: bold
+                    - padding-right: 12px
+                state:
+                  - value: "on"
+                    styles:
+                      name:
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      state:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                      name:
+                        - color: grey
+                      state:
+                        - color: grey
+              - type: "custom:button-card"
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: false
+                styles:
+                  card:
+                    - height: 60px
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: false
+                styles:
+                  card:
+                    - width: 130px
+                    - height: 30px
+              - type: "custom:button-card"
+                name: 공기청정기
+                color_type: auto
+                show_state: true
+                show_name: true
+                show_label: true
+                show_icon: false
+                styles:
+                  card:
+                    - height: 30px
+                    - border-radius: 8px
+                  grid:
+                    - grid-template-areas: '"n l"'
+                    - grid-template-columns: 2fr 1fr
+                    - grid-template-rows: 8px
+                  name:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                  label:
+                    - text-align: start
+                    - justify-self: center
+                    - align-self: center
+                    - font-size: 11px
+                label: |
+                  [[[
+                    return states['sensor.dawon_dressroom_plug_power'].state + "w";
+                  ]]]
+              - type: "custom:button-card"
+                entity: switch.dawon_dressroom_plug
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: true
+                icon: "mdi:power"
+                styles:
+                  card:
+                    - height: 30px
+                    - width: 40px
+                    - border-radius: 8px
+                    - justify-self: center
+                    - align-self: center
+                  icon:
+                    - width: 40%
+                state:
+                  - value: "on"
+                    styles:
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                        - filter: grayscale(100%)
+                tap_action:
+                  action: toggle
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                show_state: false
+                show_name: true
+                show_entity_picture: true
+                entity_picture: /local/laundryroom.png
+                name: Laundryroom
+                styles:
+                  card:
+                    - width: 130px
+                    - height: 60px
+                  name:
+                    - font-size: 12px
+                    - font-weight: bold
+                  icon:
+                    - width: 35%
+              - type: "custom:button-card"
+                show_state: true
+                show_name: true
+                show_icon: false
+                show_units: true
+                units: ℃
+                entity: sensor.hej_laundryroom_thsensor_temperature
+                name: 온도
+                styles:
+                  card:
+                    - height: 60px
+                  name:
+                    - font-size: 11px
+                  state:
+                    - font-size: 15px
+                    - font-weight: bold
+              - type: "custom:button-card"
+                show_state: true
+                show_name: true
+                show_icon: false
+                show_units: true
+                units: "%"
+                entity: sensor.hej_laundryroom_thsensor_humidity
+                name: 습도
+                styles:
+                  card:
+                    - height: 60px
+                  name:
+                    - font-size: 11px
+                  state:
+                    - font-size: 15px
+                    - font-weight: bold
+              - type: "custom:button-card"
+                color_type: auto
+                show_state: false
+                show_name: false
+                show_icon: false
+                styles:
+                  card:
+                    - height: 60px
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                show_state: false
+                show_name: true
+                show_entity_picture: true
+                entity_picture: /local/library.png
+                name: Library
+                styles:
+                  card:
+                    - width: 130px
+                    - height: 60px
+                  name:
+                    - font-size: 12px
+                    - font-weight: bold
+                  icon:
+                    - width: 35%
+              - type: "custom:button-card"
+                show_state: true
+                show_name: true
+                show_icon: false
+                show_units: true
+                units: ℃
+                entity: sensor.smartthings_library_motion_temperature
+                name: 온도
+                styles:
+                  card:
+                    - height: 60px
+                  name:
+                    - font-size: 11px
+                  state:
+                    - font-size: 15px
+                    - font-weight: bold
+              - type: "custom:button-card"
+                show_state: true
+                show_name: true
+                show_icon: false
+                show_units: true
+                units: ℃
+                entity: sensor.smartthings_door_contact_temperature
+                name: 현관온도
+                styles:
+                  card:
+                    - height: 60px
+                  name:
+                    - font-size: 11px
+                  state:
+                    - font-size: 15px
+                    - font-weight: bold
+              - type: "custom:button-card"
+                entity: input_boolean.library_light_triggered_by_motion
+                name: 모션조명
+                color_type: auto
+                show_icon: true
+                show_state: true
+                show_name: true
+                icon: mdi:ceiling-light
+                styles:
+                  card:
+                    - height: 60px
+                  grid:
+                    - grid-template-areas: '"i" "n" "s"'
+                  icon:
+                    - width: 30%
+                    - margin-top: "-5%"
+                    - margin-left: "-20%"
+                  name:
+                    - justify-self: end
+                    - padding-right: 12px
+                    - font-size: 11px
+                  state:
+                    - justify-self: end
+                    - font-size: 15px
+                    - font-weight: bold
+                    - padding-right: 12px
+                state:
+                  - value: "on"
+                    styles:
+                      name:
+                        - color: white
+                      icon:
+                        - font-weight: bold
+                        - color: white
+                      state:
+                        - font-weight: bold
+                        - color: white
+                      card:
+                        - background-color: "RGB(233,130,75)"
+                  - value: "off"
+                    styles:
+                      icon:
+                        - color: grey
+                      name:
+                        - color: grey
+                      state:
+                        - color: grey

@@ -1,0 +1,129 @@
+title: Media
+icon: "mdi:play-network"
+path: media
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:mini-media-player
+        entity: media_player.bedroom
+        artwork: cover
+        source: icon
+      - type: entity
+        entity: remote.bedroom
+  - type: vertical-stack
+    cards:
+      - type: custom:mini-media-player
+        entity: media_player.geurubseupikeo
+        artwork: cover
+        source: icon
+      - type: custom:mini-media-player
+        entity: media_player.anbang_seupikeo
+        artwork: cover
+        source: icon
+      - type: custom:mini-media-player
+        entity: media_player.jubang_seupikeo
+        artwork: cover
+        source: icon
+      - type: custom:mini-media-player
+        entity: media_player.raibeureori_seupikeo
+        artwork: cover
+        source: icon
+      - type: custom:mini-media-player
+        entity: media_player.galaxy_home_mini
+        artwork: cover
+        source: icon
+  - type: vertical-stack
+    cards:
+      - type: custom:mini-media-player
+        entity: media_player.spotify_heesik_shin
+        name: Heesik's Spotify
+        artwork: cover
+        source: icon
+        shortcuts:
+          columns: 4 # Max buttons per row
+          buttons:
+            - name: Family Mix
+              type: service
+              id: spotcast.start
+              data:
+                entity_id: media_player.geurubseupikeo
+                uri: spotify:playlist:37i9dQZF1EgvNx9M6j10YE
+                random_song: true
+                shuffle: true
+                start_volume: 30
+            - name: Coffee House
+              type: service
+              id: spotcast.start
+              data:
+                entity_id: media_player.geurubseupikeo
+                uri: spotify:playlist:37i9dQZF1DX6ziVCJnEm59
+                random_song: true
+                shuffle: true
+                start_volume: 30
+            - name: Peaceful Piano
+              type: service
+              id: spotcast.start
+              data:
+                entity_id: media_player.geurubseupikeo
+                uri: spotify:playlist:37i9dQZF1DX4sWSpwq3LiO
+                random_song: true
+                shuffle: true
+                start_volume: 30
+      - type: custom:mini-media-player
+        entity: media_player.spotify_seojin12
+        name: Seo Jin's Spotify
+        artwork: cover
+        source: icon
+      - type: "custom:mini-media-player"
+        entity: media_player.ytube_music_player
+        name: Heesik's Youtube Music Player
+        artwork: cover
+        source: icon
+        shortcuts:
+          columns: 4
+          buttons:
+            - name: 그룹
+              type: source
+              id: media_player.geurubseupikeo
+            - name: 안방
+              type: source
+              id: media_player.anbang_seupikeo
+            - name: 주방
+              type: source
+              id: media_player.jubang_seupikeo
+            - name: 라이브러리
+              type: source
+              id: media_player.raibeureori_seupikeo
+            - name: Tropical
+              type: playlist
+              id: PLVCtLXKko6G21PKfNkeeZI2p0WhuxB538
+            - name: Piano
+              type: playlist
+              id: PLt_47Imx98wqc2_lOAg53v8Op-oks9KB5
+      - type: entity
+        entity: input_text.morning_spotify_playlist_id
+        name: Morning spotify playlist id
+      - type: entity
+        entity: input_text.morning_ytube_music_playlist_id
+  - type: vertical-stack
+    cards:
+      - type: custom:mini-media-player
+        entity: media_player.lg_webos_smart_tv
+        artwork: cover
+        source: icon
+      - type: "custom:lg-remote-control"
+        entity: media_player.lg_webos_smart_tv
+        colors:
+          buttons: var(--primary-background-color)
+          text: var(--primary-text-color)
+          background: var(--primary-background-color)
+          border: var(--divider-color)
+        sources:
+          - name: Netflix
+            icon: "mdi:netflix"
+          - name: YouTube
+            icon: "mdi:youtube-tv"
+          - name: HDMI 1
+            icon: "mdi:video-input-hdmi"
+          - name: HDMI 2
+            icon: "mdi:video-input-hdmi"

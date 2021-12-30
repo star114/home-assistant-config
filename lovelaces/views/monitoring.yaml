@@ -1,0 +1,70 @@
+title: Monitoring
+path: monitoring
+icon: "mdi:home-assistant"
+cards:
+  - type: "custom:vertical-stack-in-card"
+    title: System
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            entity: sensor.processor_use_percent
+            min: 0
+            max: 100
+            severity:
+              green: 0
+              yellow: 50
+              red: 80
+          - type: gauge
+            entity: sensor.disk_use_percent
+            min: 0
+            max: 100
+            severity:
+              green: 0
+              yellow: 50
+              red: 80
+          - type: gauge
+            entity: sensor.memory_use_percent
+            min: 0
+            max: 100
+            severity:
+              green: 0
+              yellow: 50
+              red: 80
+      - type: glance
+        entities:
+          - entity: sensor.last_boot
+          - entity: sensor.processor_temperature
+          - entity: sensor.memory_free
+          - entity: sensor.disk_free
+        show_name: false
+        columns: 4
+      - type: history-graph
+        entities:
+          - entity: sensor.processor_use_percent
+          - entity: sensor.processor_temperature
+          - entity: sensor.memory_use
+          - entity: sensor.swap_use
+  - type: "custom:vertical-stack-in-card"
+    title: Network
+    cards:
+      - type: glance
+        entities:
+          - entity: sensor.speedtest_ping
+          - entity: sensor.speedtest_download
+          - entity: sensor.speedtest_upload
+      - type: history-graph
+        entities:
+          - entity: sensor.speedtest_download
+          - entity: sensor.speedtest_upload
+          - entity: sensor.network_throughput_in_eno1
+          - entity: sensor.network_throughput_out_eno1
+        hours_to_show: 12
+        refresh_interval: 
+  - type: entities
+    title: Zigbee2MQTT
+    show_header_toggle: false
+    entities:
+      - entity: sensor.zigbee2mqtt_bridge_state
+      - entity: sensor.zigbee2mqtt_version
+      - entity: sensor.coordinator_version

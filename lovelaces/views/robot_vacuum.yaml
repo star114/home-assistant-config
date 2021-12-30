@@ -1,0 +1,15 @@
+title: Robot Vacuum
+path: robot_vacuum
+icon: "mdi:robot-vacuum"
+cards:
+  - type: vertical-stack
+    cards:
+      - type: "custom:xiaomi-vacuum-map-card"
+        entity: vacuum.bbobos
+        map_source:
+          camera: camera.xiaomi_cloud_map_extractor
+        calibration_source:
+          camera: true
+      - type: entity
+        name: Cleaning dustbin gauge
+        entity: input_number.cleaning_dustbin

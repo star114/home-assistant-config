@@ -1,0 +1,132 @@
+title: Tesla
+path: tesla
+icon: "mdi:car-connected"
+cards:
+  - type: "custom:vertical-stack-in-card"
+    title: 기본 정보
+    cards:
+      - type: glance
+        columns: 4
+        entities:
+          - entity: sensor.tesla_display_name
+            name: 이름
+          - entity: sensor.tesla_model
+            name: 모델
+          - entity: sensor.tesla_trim_badging
+            name: 트림
+          - entity: sensor.tesla_exterior_color
+            name: 외장
+          - entity: sensor.tesla_wheel_type
+            name: 휠
+          - entity: sensor.tesla_spoiler_type
+            name: 스포일러
+          - entity: sensor.tesla_odometer
+            name: 주행거리
+          - entity: sensor.tesla_version
+            name: 현재 버전
+          - entity: binary_sensor.tesla_update_available
+            name: 업데이트
+          - entity: sensor.tesla_update_version
+            name: 업데이트 버전
+          - entity: binary_sensor.tesla_healthy
+            name: 테슬라메이트 상태
+  - type: "custom:vertical-stack-in-card"
+    title: 상태
+    cards:
+      - type: glance
+        columns: 4
+        entities:
+          - entity: sensor.tesla_state
+            name: 상태
+          - entity: sensor.tesla_since
+            name: 상태 변화
+          - entity: binary_sensor.tesla_is_user_present
+            name: 운전자
+          - entity: binary_sensor.tesla_locked
+            name: 잠금장치
+          - entity: binary_sensor.tesla_is_climate_on
+            name: 에어컨
+          - entity: binary_sensor.tesla_sentry_mode
+            name: 감시모드
+          - entity: binary_sensor.tesla_doors_open
+            name: 문
+          - entity: binary_sensor.tesla_frunk_open
+            name: 프렁크
+          - entity: binary_sensor.tesla_trunk_open
+            name: 트렁크
+          - entity: binary_sensor.tesla_charge_port_door_open
+            name: 충전구
+          - entity: binary_sensor.tesla_windows_open
+            name: 창문
+          - entity: binary_sensor.tesla_park_brake
+            name: 주차 브레이크
+          - entity: sensor.tesla_inside_temp
+            name: 실내온도
+          - entity: sensor.tesla_outside_temp
+            name: 실외온도
+      - type: history-graph
+        entities:
+          - entity: sensor.tesla_inside_temp
+            name: 실내
+          - entity: sensor.tesla_outside_temp
+            name: 실외
+        hours_to_show: 24
+        refresh_interval: 60
+  - type: "custom:vertical-stack-in-card"
+    title: 주행
+    cards:
+      - type: map
+        default_zoom: 12
+        entities:
+          - device_tracker.tesla_location
+      - type: glance
+        columns: 4
+        entities:
+          - entity: sensor.tesla_speed
+            name: 속도
+          - entity: sensor.tesla_geofence
+            name: 지오펜스
+          - entity: proximity.home_tesla
+            name: 집까지 거리
+          - entity: sensor.tesla_battery_level
+            name: 배터리
+          - entity: sensor.tesla_est_battery_range_km
+            name: 거리
+          - entity: sensor.tesla_rated_battery_range_km
+            name: 추정 거리
+          - entity: sensor.tesla_ideal_battery_range_km
+            name: 이상 거리
+          - entity: sensor.tesla_latitude
+            name: 위도
+          - entity: sensor.tesla_longitude
+            name: 경도
+          - entity: sensor.tesla_heading
+            name: 방향
+          - entity: sensor.tesla_elevation
+            name: 높이
+  - type: "custom:vertical-stack-in-card"
+    cards:
+      - type: glance
+        title: 충전
+        columns: 4
+        entities:
+          - entity: binary_sensor.tesla_plugged_in
+            name: 충전중
+          - entity: sensor.tesla_charger_phases
+            name: 충전 상태
+          - entity: binary_sensor.tesla_is_preconditioning
+            name: 프리컨디셔닝
+          - entity: sensor.tesla_charge_limit_soc
+            name: 충전 제한
+          - entity: sensor.tesla_scheduled_charging_start_time
+            name: 예약된 충전시작시간
+          - entity: sensor.tesla_time_to_full_charge
+            name: 충전완료 예정시간
+          - entity: sensor.tesla_charger_power
+            name: 충전 속도
+          - entity: sensor.tesla_charger_actual_current
+            name: 충전 전류
+          - entity: sensor.tesla_charger_voltage
+            name: 충전 전압
+          - entity: sensor.tesla_charge_energy_added
+            name: 충전된 에너지
