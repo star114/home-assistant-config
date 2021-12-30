@@ -150,3 +150,7 @@ google_assistant_package:
         name: 라이브러리 멀티탭 4
         expose: true
         room: 라이브러리
+      switch.dawon_bedroom_light_plug:
+        name: 안방 볼 조명
+        expose: true
+        room: 안방

@@ -123,7 +123,6 @@ bedroom_package:
 
     - id: "enable_radiater_automation_trigger"
       alias: "enable radiater automation trigger"
-      initial_state: true
       trigger:
         - platform: state
           entity_id: switch.hej_3gang_bedroom_bed_light_bottom
@@ -151,7 +150,6 @@ bedroom_package:
 
     - id: "diable_radiater_automation_trigger"
       alias: "disable radiater automation trigger"
-      initial_state: true
       trigger:
         - platform: state
           entity_id: switch.hej_3gang_bedroom_bed_light_bottom
@@ -168,3 +166,18 @@ bedroom_package:
         - service: notify.notify_telegram
           data:
             message: "라디에이터 자동화 끝"
+
+    - id: "when_tv_turned_on_at_night_theater_mode"
+      alias: "when tv turned on at night, theater mode"
+      trigger:
+        - platform: state
+          entity_id: media_player.lg_webos_smart_tv
+          from: "off"
+          to: "on"
+      condition:
+        - condition: state
+          entity_id: sun.sun
+          state: "below_horizon"
+      action:
+        - service: scene.turn_on
+          entity_id: scene.theater

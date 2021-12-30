@@ -87,6 +87,9 @@ homekit_package:
         switch.dawon_bedroom_aircon_plug:
           name: Bedroom Air Conditioner Plug
           type: outlet
+        switch.dawon_bedroom_light_plug:
+          name: Bedroom Light Plug
+          type: outlet
         switch.dawon_dressroom_plug:
           name: Dressroom Plug
           type: outlet
