@@ -129,6 +129,10 @@ kitchen_package:
       trigger:
         - platform: time
           at: "12:40:00"
+        - platform: time
+          at: "09:20:30"
+        - platform: time
+          at: "15:59:30"
       condition:
         - condition: state
           entity_id: alarm_control_panel.home_monitoring
