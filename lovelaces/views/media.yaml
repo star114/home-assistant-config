@@ -107,6 +107,10 @@ cards:
         entity: input_text.morning_ytube_music_playlist_id
   - type: vertical-stack
     cards:
+      - type: entities
+        entities:
+          - sensor.tv_on_today
+          - sensor.tv_on_this_week
       - type: custom:mini-media-player
         entity: media_player.lg_webos_smart_tv
         artwork: cover

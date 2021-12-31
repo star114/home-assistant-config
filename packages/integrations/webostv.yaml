@@ -11,3 +11,32 @@ webostv_package:
           - PowerOn
         device: LG TV
         delay_secs: 0.6
+
+  sensor:
+    - platform: history_stats
+      name: TV ON today
+      entity_id: media_player.lg_webos_smart_tv
+      state: "on"
+      type: time
+      start: "{{ now().replace(hour=0, minute=0, second=0) }}"
+      end: "{{ now() }}"
+    - platform: history_stats
+      name: TV ON this week
+      entity_id: media_player.lg_webos_smart_tv
+      state: "on"
+      type: time
+      start: "{{ as_timestamp( now().replace(hour=0, minute=0, second=0) ) - now().weekday() * 86400 }}"
+      end: "{{ now() }}"
+
+  automation:
+    - id: "notification_tv_hours_today"
+      alias: "notification tv hours today"
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.tv_on_today
+          above: 7
+      action:
+        - service: notify.notify_telegram
+          data:
+            message: |
+              오늘 TV 시청을 시작한지 {{ (states('sensor.tv_on_today') | float) | round(0) }} 시간이 지났습니다.
