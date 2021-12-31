@@ -5,3 +5,8 @@ panel: true
 cards:
   - type: custom:zigbee2mqtt-networkmap
     entity: sensor.zigbee2mqtt_networkmap
+    force: 1500 # decrease it to get smaller map if you have many devices
+    node_size: 10
+    font_size: 10
+    link_width: 1
+    height: 600
