@@ -2,10 +2,74 @@ korea_workday_package:
   binary_sensor:
     - platform: korean_workday
       add_holidays:
-        - "20220501"
-        - "20221101"
+        - "0501"
+        - "1101"
 
   input_text:
     holiday:
       name: Holiday
       max: 255
+
+  sensor:
+    - platform: history_stats
+      name: Working time today
+      entity_id: switch.lellki_library_multi_outlets_l4
+      state: "on"
+      type: time
+      start: "{{ now().replace(hour=0, minute=0, second=0) }}"
+      end: "{{ now() }}"
+    - platform: history_stats
+      name: Working time this week
+      entity_id: switch.lellki_library_multi_outlets_l4
+      state: "on"
+      type: time
+      start: "{{ as_timestamp( now().replace(hour=0, minute=0, second=0) ) - now().weekday() * 86400 }}"
+      end: "{{ now() }}"
+
+  automation:
+    - id: "notification_finishing_work"
+      alias: "notification finishing work"
+      trigger:
+        - platform: time
+          at: "19:00:00"
+      condition:
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: switch.lellki_library_multi_outlets_l4
+              state: "on"
+            - condition: state
+              entity_id: binary_sensor.korean_workday
+              state: "on"
+      action:
+        - service: notify.in_the_library_kakao
+          data:
+            message: "희식님, 퇴근시간입니다."
+        - service: notify.notify_telegram
+          data:
+            message: "희식님, 퇴근시간입니다."
+
+    - id: "notification_working_hours"
+      alias: "notification working hours"
+      trigger:
+        - platform: state
+          entity_id: switch.lellki_library_multi_outlets_l4
+          from: "on"
+          to: "off"
+      condition:
+        - condition: state
+          entity_id: binary_sensor.korean_workday
+          state: "on"
+      action:
+        - service: notify.in_the_library_kakao
+          data:
+            message: |
+              오늘 근무시간은 {{ (states('sensor.working_time_today') | float) | round(0) }}시간 {{ (((states('sensor.working_time_today') | float) - ((states('sensor.working_time_today') | float) | round(0)) ) * 60) | round(0) }}분입니다.
+              이번주 누적 근무시간은 {{ (states('sensor.working_time_this_week') | float) | round(0) }}시간 {{ (((states('sensor.working_time_this_week') | float) - ((states('sensor.working_time_this_week') | float) | round(0)) ) * 60) | round(0) }}분입니다.
+              오늘도 고생 많으셨어요.
+        - service: notify.notify_telegram
+          data:
+            title: "재택근무일지"
+            message: |
+              오늘 근무시간: {{ (states('sensor.working_time_today') | float) | round(0) }}시간 {{ (((states('sensor.working_time_today') | float) - ((states('sensor.working_time_today') | float) | round(0)) ) * 60) | round(0) }}분
+              이번주 누적 근무시간: {{ (states('sensor.working_time_this_week') | float) | round(0) }}시간 {{ (((states('sensor.working_time_this_week') | float) - ((states('sensor.working_time_this_week') | float) | round(0)) ) * 60) | round(0) }}분

@@ -10,10 +10,17 @@ cards:
         show_header_toggle: false
         entities:
           - entity: input_select.themes
+      - type: custom:transmission-card
+        hide_header: true
+        hide_type: false
+  - type: vertical-stack
+    cards:
+      - type: entities
+        entities:
+          - sensor.working_time_today
+          - sensor.working_time_this_week
       - type: entity
         entity: binary_sensor.korean_workday
-      - type: custom:transmission-card
-        hide_type: false
       - type: "custom:korean-workday-card"
         title: Holiday
         entity: input_text.holiday
