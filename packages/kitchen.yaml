@@ -15,6 +15,21 @@ kitchen_package:
       calibration_factor: 1
 
   automation:
+    - id: "kitchen_mold_indicator_alert"
+      alias: "kitchen mold indicator alert"
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.kitchen_mold_indicator
+          above: 80
+          for: 01:00:00
+      action:
+        - service: galaxy_home_mini.speak
+          data:
+            message: "환기가 필요합니다."
+        - service: notify.notify_telegram
+          data:
+            message: "주방 곰팡이 척도 80% 이상입니다. 환기해주세요."
+
     - id: "kitchen_light_off_with_no_motion"
       alias: "kitchen light off with no motion"
       trigger:

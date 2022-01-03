@@ -18,6 +18,21 @@ bedroom_package:
       calibration_factor: 1.13
 
   automation:
+    - id: "bedroom_mold_indicator_alert"
+      alias: "bedroom mold indicator alert"
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.bedroom_mold_indicator
+          above: 80
+          for: 01:00:00
+      action:
+        - service: galaxy_home_mini.speak
+          data:
+            message: "환기가 필요합니다."
+        - service: notify.notify_telegram
+          data:
+            message: "안방 곰팡이 척도 80% 이상입니다. 환기해주세요."
+
     - id: "morning_scene_switch_off"
       alias: "morning scene - switch off"
       trigger:

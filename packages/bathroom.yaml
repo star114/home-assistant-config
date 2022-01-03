@@ -17,6 +17,21 @@ bathroom_package:
       calibration_factor: 1
 
   automation:
+    - id: "bathroom_mold_indicator_alert"
+      alias: "bathroom mold indicator alert"
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.bathroom_mold_indicator
+          above: 80
+          for: 01:00:00
+      action:
+        - service: galaxy_home_mini.speak
+          data:
+            message: "환기가 필요합니다."
+        - service: notify.notify_telegram
+          data:
+            message: "화장실 곰팡이 척도 80% 이상입니다. 환기해주세요."
+
     - id: "turn_on_bathroom_in_use_for_x_minutes_when_bathroom_dorr_is_closed"
       alias: "Turn on bathroom in use for x minutes when bathroom door is closed"
       trigger:

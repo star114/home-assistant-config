@@ -9,6 +9,21 @@ laundryroom_package:
       calibration_factor: 1
 
   automation:
+    - id: "laundryroom_mold_indicator_alert"
+      alias: "laundryroom mold indicator alert"
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.laundryroom_mold_indicator
+          above: 80
+          for: 01:00:00
+      action:
+        - service: galaxy_home_mini.speak
+          data:
+            message: "환기가 필요합니다."
+        - service: notify.notify_telegram
+          data:
+            message: "베란다 곰팡이 척도 80% 이상입니다. 환기해주세요."
+
     - id: "laundry_room_light_off_with_no_motion"
       alias: "laundry room light off with no motion"
       trigger:
