@@ -6,6 +6,14 @@ kitchen_package:
     dish_washer_state:
       name: Dish washer state
 
+  sensor:
+    - platform: mold_indicator
+      name: kitchen_mold_indicator
+      indoor_temp_sensor: sensor.samseong_eeomoniteo_temperature_measurement
+      indoor_humidity_sensor: sensor.samseong_eeomoniteo_relative_humidity_measurement
+      outdoor_temp_sensor: sensor.naver_weather_nowtemp_1
+      calibration_factor: 1
+
   automation:
     - id: "kitchen_light_off_with_no_motion"
       alias: "kitchen light off with no motion"

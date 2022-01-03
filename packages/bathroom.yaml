@@ -8,6 +8,14 @@ bathroom_package:
     bathroom_fan_off_in: # fan timer
       duration: "00:20:00"
 
+  sensor:
+    - platform: mold_indicator
+      name: bathroom_mold_indicator
+      indoor_temp_sensor: sensor.hej_bathroom_thsensor_temperature
+      indoor_humidity_sensor: sensor.hej_bathroom_thsensor_humidity
+      outdoor_temp_sensor: sensor.naver_weather_nowtemp_1
+      calibration_factor: 1
+
   automation:
     - id: "turn_on_bathroom_in_use_for_x_minutes_when_bathroom_dorr_is_closed"
       alias: "Turn on bathroom in use for x minutes when bathroom door is closed"

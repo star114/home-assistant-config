@@ -1541,9 +1541,9 @@ cards:
                 show_name: true
                 show_icon: false
                 show_units: true
-                units: AQI
-                entity: sensor.anbang_gonggiceongjeonggi_air_quality
-                name: 공기질
+                units: "%"
+                entity: sensor.bedroom_mold_indicator
+                name: 곰팡이척도
                 styles:
                   card:
                     - height: 60px
@@ -1821,9 +1821,9 @@ cards:
                 show_name: true
                 show_icon: false
                 show_units: true
-                units: AQI
-                entity: sensor.samseong_eeomoniteo_air_quality
-                name: 공기질
+                units: "%"
+                entity: sensor.kitchen_mold_indicator
+                name: 곰팡이척도
                 styles:
                   card:
                     - height: 60px
@@ -2168,13 +2168,21 @@ cards:
                     - font-size: 15px
                     - font-weight: bold
               - type: "custom:button-card"
-                color_type: auto
-                show_state: false
-                show_name: false
+                show_state: true
+                show_name: true
                 show_icon: false
+                show_units: true
+                units: "%"
+                entity: sensor.bathroom_mold_indicator
+                name: 곰팡이척도
                 styles:
                   card:
                     - height: 60px
+                  name:
+                    - font-size: 11px
+                  state:
+                    - font-size: 15px
+                    - font-weight: bold
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
@@ -2460,13 +2468,21 @@ cards:
                     - font-size: 15px
                     - font-weight: bold
               - type: "custom:button-card"
-                color_type: auto
-                show_state: false
-                show_name: false
+                show_state: true
+                show_name: true
                 show_icon: false
+                show_units: true
+                units: "%"
+                entity: sensor.laundryroom_mold_indicator
+                name: 곰팡이척도
                 styles:
                   card:
                     - height: 60px
+                  name:
+                    - font-size: 11px
+                  state:
+                    - font-size: 15px
+                    - font-weight: bold
       - type: vertical-stack
         cards:
           - type: horizontal-stack

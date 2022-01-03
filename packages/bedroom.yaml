@@ -9,6 +9,14 @@ bedroom_package:
     radiater_automation_trigger:
       name: radiater automation trigger
 
+  sensor:
+    - platform: mold_indicator
+      name: bedroom_mold_indicator
+      indoor_temp_sensor: sensor.hej_bedroom_thsensor_temperature
+      indoor_humidity_sensor: sensor.hej_bedroom_thsensor_humidity
+      outdoor_temp_sensor: sensor.naver_weather_nowtemp_1
+      calibration_factor: 1.13
+
   automation:
     - id: "morning_scene_switch_off"
       alias: "morning scene - switch off"

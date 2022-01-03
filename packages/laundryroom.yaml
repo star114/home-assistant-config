@@ -1,5 +1,13 @@
 # laundry room
 laundryroom_package:
+  sensor:
+    - platform: mold_indicator
+      name: laundryroom_mold_indicator
+      indoor_temp_sensor: sensor.hej_laundryroom_thsensor_temperature
+      indoor_humidity_sensor: sensor.hej_laundryroom_thsensor_humidity
+      outdoor_temp_sensor: sensor.naver_weather_nowtemp_1
+      calibration_factor: 1
+
   automation:
     - id: "laundry_room_light_off_with_no_motion"
       alias: "laundry room light off with no motion"
