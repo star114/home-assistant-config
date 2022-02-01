@@ -4,6 +4,10 @@ dressroom_package:
     dressroom_light_triggered_by_motion:
       name: Dressroom Light triggered by motion
 
+  timer:
+    dressroom_dryer_off_in: # fan timer
+      duration: "00:30:00"
+
   automation:
     - id: "dressroom_light_off_with_no_motion"
       alias: "dressroom light off with no motion"
@@ -70,3 +74,35 @@ dressroom_package:
       action:
         - service: input_boolean.turn_on
           entity_id: input_boolean.dressroom_light_triggered_by_motion
+
+    - id: "turn_on_dressroom_hair_dryer"
+      alias: "turn on dressroom hair dryer"
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.hej_bathroom_thsensor_humidity
+          above: 80
+      action:
+        - service: switch.turn_on
+          entity_id: switch.dawon_dressroom_plug
+        - service: timer.start
+          entity_id:
+            - timer.dressroom_dryer_off_in
+
+    - id: "turn_off_dressroom_hair_dryer"
+      alias: "turn off dressroom hair dryer"
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.dawon_dressroom_plug_power
+          below: 5
+          for: "00:15:00"
+        - platform: event
+          event_type: timer.finished
+          event_data:
+            entity_id: timer.dressroom_dryer_off_in
+      condition:
+        - condition: numeric_state
+          entity_id: sensor.dawon_dressroom_plug_power
+          below: 5
+      action:
+        - service: switch.turn_off
+          entity_id: switch.dawon_dressroom_plug
