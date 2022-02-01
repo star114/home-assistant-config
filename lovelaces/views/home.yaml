@@ -1348,12 +1348,12 @@ cards:
                         - color: grey
               - type: "custom:button-card"
                 entity: switch.lellki_library_multi_outlets_l4
-                name: 모니터
+                name: 소켓4
                 color_type: auto
                 show_icon: true
                 show_state: true
                 show_name: true
-                icon: mdi:monitor-multiple
+                icon: mdi:power-socket-eu
                 styles:
                   card:
                     - height: 90px
@@ -1423,6 +1423,9 @@ cards:
                   [[[
                     return states['sensor.shellyem_c45bbe5ff616_channel_1_power'].state + "w";
                   ]]]
+                tap_action:
+                  entity: sensor.shellyem_c45bbe5ff616_channel_1_power
+                  action: more-info
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
@@ -1454,6 +1457,9 @@ cards:
                   [[[
                     return states['sensor.shellyem_c45bbe5ff616_channel_2_power'].state + "w";
                   ]]]
+                tap_action:
+                  entity: sensor.shellyem_c45bbe5ff616_channel_2_power
+                  action: more-info
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
@@ -1485,6 +1491,9 @@ cards:
                   [[[
                     return states['sensor.827d3a23f8b7_power'].state + "w";
                   ]]]
+                tap_action:
+                  entity: sensor.827d3a23f8b7_power
+                  action: more-info
       - type: vertical-stack
         cards:
           - type: horizontal-stack
@@ -1592,6 +1601,9 @@ cards:
                   [[[
                     return states['sensor.dawon_bedroom_aircon_plug_power'].state + "w";
                   ]]]
+                tap_action:
+                  entity: sensor.dawon_bedroom_aircon_plug_power
+                  action: more-info
               - type: "custom:button-card"
                 entity: switch.dawon_bedroom_aircon_plug
                 color_type: auto
@@ -1663,6 +1675,9 @@ cards:
                   [[[
                     return states['sensor.dawon_bedroom_radiater_plug_power'].state + "w";
                   ]]]
+                tap_action:
+                  entity: sensor.dawon_bedroom_radiater_plug_power
+                  action: more-info
               - type: "custom:button-card"
                 entity: switch.dawon_bedroom_radiater_plug
                 color_type: auto
@@ -1734,6 +1749,9 @@ cards:
                   [[[
                     return states['sensor.dawon_bedroom_light_plug_power'].state + "w";
                   ]]]
+                tap_action:
+                  entity: sensor.dawon_bedroom_light_plug_power
+                  action: more-info
               - type: "custom:button-card"
                 entity: switch.dawon_bedroom_light_plug
                 color_type: auto
@@ -1872,6 +1890,9 @@ cards:
                   [[[
                     return states['sensor.dawon_kitchen_dishwasher_plug_power'].state + "w";
                   ]]]
+                tap_action:
+                  entity: sensor.dawon_kitchen_dishwasher_plug_power
+                  action: more-info
               - type: "custom:button-card"
                 entity: switch.dawon_kitchen_dishwasher_plug
                 color_type: auto
@@ -1943,6 +1964,9 @@ cards:
                   [[[
                     return states['sensor.dawon_kitchen_foodwaste_plug_power'].state + "w";
                   ]]]
+                tap_action:
+                  entity: sensor.dawon_kitchen_foodwaste_plug_power
+                  action: more-info
               - type: "custom:button-card"
                 entity: switch.dawon_kitchen_foodwaste_plug
                 color_type: auto
@@ -2014,6 +2038,9 @@ cards:
                   [[[
                     return states['sensor.dawon_kitchen_fan_plug_power'].state + "w";
                   ]]]
+                tap_action:
+                  entity: sensor.dawon_kitchen_fan_plug_power
+                  action: more-info
               - type: "custom:button-card"
                 entity: switch.dawon_kitchen_fan_plug
                 color_type: auto
@@ -2085,6 +2112,9 @@ cards:
                   [[[
                     return states['sensor.dawon_kitchen_cooker_plug_power'].state + "w";
                   ]]]
+                tap_action:
+                  entity: sensor.dawon_kitchen_cooker_plug_power
+                  action: more-info
               - type: "custom:button-card"
                 entity: switch.dawon_kitchen_cooker_plug
                 color_type: auto
@@ -2223,6 +2253,9 @@ cards:
                   [[[
                     return states['sensor.dawon_bathroom_plug_power'].state + "w";
                   ]]]
+                tap_action:
+                  entity: sensor.dawon_bathroom_plug_power
+                  action: more-info
               - type: "custom:button-card"
                 entity: switch.dawon_bathroom_plug
                 color_type: auto
@@ -2357,7 +2390,7 @@ cards:
                     - width: 130px
                     - height: 30px
               - type: "custom:button-card"
-                name: 공기청정기
+                name: 헤어드라이어
                 color_type: auto
                 show_state: true
                 show_name: true
@@ -2385,6 +2418,9 @@ cards:
                   [[[
                     return states['sensor.dawon_dressroom_plug_power'].state + "w";
                   ]]]
+                tap_action:
+                  entity: sensor.dawon_dressroom_plug_power
+                  action: more-info
               - type: "custom:button-card"
                 entity: switch.dawon_dressroom_plug
                 color_type: auto
