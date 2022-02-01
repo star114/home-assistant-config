@@ -17,6 +17,7 @@ cards:
     cards:
       - type: entities
         entities:
+          - input_boolean.working
           - sensor.working_time_today
           - sensor.working_time_this_week
       - type: entity

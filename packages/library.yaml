@@ -22,9 +22,9 @@ library_package:
           entity_id: input_boolean.library_light_triggered_by_motion
         - condition: or
           conditions:
-            - condition: time
-              after: "19:00:00"
-              before: "10:00:00"
+            - condition: state
+              entity_id: input_boolean.working
+              state: "off"
             - condition: state
               entity_id: binary_sensor.korean_workday
               state: "off"
@@ -47,6 +47,29 @@ library_package:
       action:
         - service: light.turn_on
           entity_id: light.hej_3gang_library_light_bottom
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.library_light_triggered_by_motion
+
+    - id: "library_motion_light_trigger_after_work"
+      alias: "library motion light trigger after work"
+      trigger:
+        - platform: state
+          entity_id: input_boolean.working
+          from: "on"
+          to: "off"
+      condition:
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: binary_sensor.korean_workday
+              state: "on"
+            - condition: state
+              entity_id: light.hej_3gang_library_light_bottom
+              state: "on"
+            - condition: state
+              entity_id: input_boolean.library_light_triggered_by_motion
+              state: "off"
+      action:
         - service: input_boolean.turn_on
           entity_id: input_boolean.library_light_triggered_by_motion
 
