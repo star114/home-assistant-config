@@ -1185,20 +1185,9 @@ cards:
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
-                show_state: false
-                show_name: true
-                show_entity_picture: true
                 entity_picture: /local/bedroom.png
                 name: Bedroom
-                styles:
-                  card:
-                    - width: 130px
-                    - height: 60px
-                  name:
-                    - font-size: 12px
-                    - font-weight: bold
-                  icon:
-                    - width: 35%
+                template: room_entity_picture
               - type: "custom:button-card"
                 entity: sensor.hej_bedroom_thsensor_temperature
                 template: small_state
@@ -1444,20 +1433,9 @@ cards:
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
-                show_state: false
-                show_name: true
-                show_entity_picture: true
                 entity_picture: /local/kitchen.png
                 name: Kitchen
-                styles:
-                  card:
-                    - width: 130px
-                    - height: 60px
-                  name:
-                    - font-size: 12px
-                    - font-weight: bold
-                  icon:
-                    - width: 35%
+                template: room_entity_picture
               - type: "custom:button-card"
                 entity: sensor.samseong_eeomoniteo_temperature_measurement
                 template: small_state
@@ -1777,20 +1755,9 @@ cards:
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
-                show_state: false
-                show_name: true
-                show_entity_picture: true
                 entity_picture: /local/bathroom.png
                 name: Bathroom
-                styles:
-                  card:
-                    - width: 130px
-                    - height: 60px
-                  name:
-                    - font-size: 12px
-                    - font-weight: bold
-                  icon:
-                    - width: 35%
+                template: room_entity_picture
               - type: "custom:button-card"
                 entity: sensor.hej_bathroom_thsensor_temperature
                 template: small_state
@@ -1889,20 +1856,9 @@ cards:
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
-                show_state: false
-                show_name: true
-                show_entity_picture: true
                 entity_picture: /local/dressroom.png
                 name: Dressroom
-                styles:
-                  card:
-                    - width: 130px
-                    - height: 60px
-                  name:
-                    - font-size: 12px
-                    - font-weight: bold
-                  icon:
-                    - width: 35%
+                template: room_entity_picture
               - type: "custom:button-card"
                 entity: sensor.smartthings_dressroom_motion_temperature
                 template: small_state
@@ -2043,20 +1999,9 @@ cards:
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
-                show_state: false
-                show_name: true
-                show_entity_picture: true
                 entity_picture: /local/laundryroom.png
                 name: Laundryroom
-                styles:
-                  card:
-                    - width: 130px
-                    - height: 60px
-                  name:
-                    - font-size: 12px
-                    - font-weight: bold
-                  icon:
-                    - width: 35%
+                template: room_entity_picture
               - type: "custom:button-card"
                 entity: sensor.hej_laundryroom_thsensor_temperature
                 template: small_state
@@ -2080,20 +2025,9 @@ cards:
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
-                show_state: false
-                show_name: true
-                show_entity_picture: true
                 entity_picture: /local/library.png
                 name: Library
-                styles:
-                  card:
-                    - width: 130px
-                    - height: 60px
-                  name:
-                    - font-size: 12px
-                    - font-weight: bold
-                  icon:
-                    - width: 35%
+                template: room_entity_picture
               - type: "custom:button-card"
                 entity: sensor.smartthings_library_motion_temperature
                 template: small_state
