@@ -28,3 +28,49 @@ small_state:
         card:
           - background-color: red
           - animation: blink 2s ease infinite
+
+waterleak_sensor:
+  show_icon: true
+  show_state: true
+  show_name: true
+  show_units: false
+  icon: mdi:water-alert
+  variables:
+    var_name: "var_value"
+  name: "[[[ return variables.var_name ]]]"
+  styles:
+    card:
+      - height: 60px
+    grid:
+      - grid-template-areas: '"i" "n" "s"'
+    icon:
+      - width: 30%
+      - margin-top: "-5%"
+      - margin-left: "-30%"
+    name:
+      - font-size: 11px
+    state:
+      - justify-self: end
+      - font-size: 15px
+      - font-weight: bold
+      - padding-right: 12px
+  state:
+    - value: "on"
+      icon: mdi:alert
+      styles:
+        name:
+          - font-weight: bold
+          - color: white
+        icon:
+          - font-weight: bold
+          - color: white
+        card:
+          - background-color: red
+          - animation: blink 2s ease infinite
+    - value: "off"
+      styles:
+        icon:
+          - filter: grayscale(100%)
+          - color: grey
+        name:
+          - color: grey
