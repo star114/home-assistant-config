@@ -8,3 +8,5 @@ views:
   - !include lovelaces/views/monitoring.yaml
   - !include lovelaces/views/zigbee_network_map.yaml
   - !include lovelaces/views/dev.yaml
+
+button_card_templates: !include lovelaces/templates/button_card.yaml

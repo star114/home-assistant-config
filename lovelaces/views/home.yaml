@@ -740,146 +740,37 @@ cards:
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
-                show_state: true
-                show_name: true
-                show_icon: false
-                show_units: true
                 units: CAQI
                 entity: sensor.samseong_eeomoniteo_air_quality
-                name: 공기질
-                styles:
-                  card:
-                    - height: 60px
-                  name:
-                    - font-size: 11px
-                  state:
-                    - font-size: 15px
-                    - font-weight: bold
-                state:
-                  - value: 4
-                    operator: ">="
-                    styles:
-                      name:
-                        - font-weight: bold
-                        - color: white
-                      icon:
-                        - font-weight: bold
-                        - color: white
-                      card:
-                        - background-color: red
-                        - animation: blink 2s ease infinite
+                template: small_state
+                variables:
+                  var_name: "공기질"
+                  var_value_boundary: "4"
               - type: "custom:button-card"
-                show_state: true
-                show_name: true
-                show_icon: false
-                show_units: true
                 entity: sensor.samseong_eeomoniteo_odor_sensor
-                name: TVOC
-                styles:
-                  card:
-                    - height: 60px
-                  name:
-                    - font-size: 11px
-                  state:
-                    - font-size: 15px
-                    - font-weight: bold
-                state:
-                  - value: 3
-                    operator: ">="
-                    styles:
-                      name:
-                        - font-weight: bold
-                        - color: white
-                      icon:
-                        - font-weight: bold
-                        - color: white
-                      card:
-                        - background-color: red
-                        - animation: blink 2s ease infinite
+                template: small_state
+                variables:
+                  var_name: "TVOC"
+                  var_value_boundary: "3"
               - type: "custom:button-card"
-                show_state: true
-                show_name: true
-                show_icon: false
-                show_units: true
                 entity: sensor.samseong_eeomoniteo_dust_level
-                name: PM 10
-                styles:
-                  card:
-                    - height: 60px
-                  name:
-                    - font-size: 11px
-                  state:
-                    - font-size: 15px
-                    - font-weight: bold
-                state:
-                  - value: 81
-                    operator: ">="
-                    styles:
-                      name:
-                        - font-weight: bold
-                        - color: white
-                      icon:
-                        - font-weight: bold
-                        - color: white
-                      card:
-                        - background-color: red
-                        - animation: blink 2s ease infinite
+                template: small_state
+                variables:
+                  var_name: "PM 10"
+                  var_value_boundary: "81"
               - type: "custom:button-card"
-                show_state: true
-                show_name: true
-                show_icon: false
-                show_units: true
                 entity: sensor.samseong_eeomoniteo_fine_dust_level
                 name: PM 2.5
-                styles:
-                  card:
-                    - height: 60px
-                  name:
-                    - font-size: 11px
-                  state:
-                    - font-size: 15px
-                    - font-weight: bold
-                state:
-                  - value: 36
-                    operator: ">="
-                    styles:
-                      name:
-                        - font-weight: bold
-                        - color: white
-                      icon:
-                        - font-weight: bold
-                        - color: white
-                      card:
-                        - background-color: red
-                        - animation: blink 2s ease infinite
+                template: small_state
+                variables:
+                  var_name: "PM 2.5"
+                  var_value_boundary: "36"
               - type: "custom:button-card"
-                show_state: true
-                show_name: true
-                show_icon: false
-                show_units: true
                 entity: sensor.samseong_eeomoniteo_carbon_dioxide_measurement
-                name: CO2
-                styles:
-                  card:
-                    - height: 60px
-                  name:
-                    - font-size: 11px
-                  state:
-                    - font-size: 15px
-                    - font-weight: bold
-                state:
-                  - value: 1500
-                    operator: ">="
-                    styles:
-                      name:
-                        - font-weight: bold
-                        - color: white
-                      icon:
-                        - font-weight: bold
-                        - color: white
-                      card:
-                        - background-color: red
-                        - animation: blink 2s ease infinite
+                template: small_state
+                variables:
+                  var_name: "CO2"
+                  var_value_boundary: "1500"
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
@@ -1514,53 +1405,23 @@ cards:
                   icon:
                     - width: 35%
               - type: "custom:button-card"
-                show_state: true
-                show_name: true
-                show_icon: false
-                show_units: true
-                units: ℃
                 entity: sensor.hej_bedroom_thsensor_temperature
-                name: 온도
-                styles:
-                  card:
-                    - height: 60px
-                  name:
-                    - font-size: 11px
-                  state:
-                    - font-size: 15px
-                    - font-weight: bold
+                template: small_state
+                variables:
+                  var_name: "온도"
+                  var_value_boundary: "30"
               - type: "custom:button-card"
-                show_state: true
-                show_name: true
-                show_icon: false
-                show_units: true
-                units: "%"
                 entity: sensor.hej_bedroom_thsensor_humidity
-                name: 습도
-                styles:
-                  card:
-                    - height: 60px
-                  name:
-                    - font-size: 11px
-                  state:
-                    - font-size: 15px
-                    - font-weight: bold
+                template: small_state
+                variables:
+                  var_name: "습도"
+                  var_value_boundary: "80"
               - type: "custom:button-card"
-                show_state: true
-                show_name: true
-                show_icon: false
-                show_units: true
-                units: "%"
                 entity: sensor.bedroom_mold_indicator
-                name: 곰팡이척도
-                styles:
-                  card:
-                    - height: 60px
-                  name:
-                    - font-size: 11px
-                  state:
-                    - font-size: 15px
-                    - font-weight: bold
+                template: small_state
+                variables:
+                  var_name: "곰팡이척도"
+                  var_value_boundary: "80"
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
@@ -1803,53 +1664,23 @@ cards:
                   icon:
                     - width: 35%
               - type: "custom:button-card"
-                show_state: true
-                show_name: true
-                show_icon: false
-                show_units: true
-                units: ℃
                 entity: sensor.samseong_eeomoniteo_temperature_measurement
-                name: 온도
-                styles:
-                  card:
-                    - height: 60px
-                  name:
-                    - font-size: 11px
-                  state:
-                    - font-size: 15px
-                    - font-weight: bold
+                template: small_state
+                variables:
+                  var_name: "온도"
+                  var_value_boundary: "30"
               - type: "custom:button-card"
-                show_state: true
-                show_name: true
-                show_icon: false
-                show_units: true
-                units: "%"
                 entity: sensor.samseong_eeomoniteo_relative_humidity_measurement
-                name: 습도
-                styles:
-                  card:
-                    - height: 60px
-                  name:
-                    - font-size: 11px
-                  state:
-                    - font-size: 15px
-                    - font-weight: bold
+                template: small_state
+                variables:
+                  var_name: "습도"
+                  var_value_boundary: "80"
               - type: "custom:button-card"
-                show_state: true
-                show_name: true
-                show_icon: false
-                show_units: true
-                units: "%"
                 entity: sensor.kitchen_mold_indicator
-                name: 곰팡이척도
-                styles:
-                  card:
-                    - height: 60px
-                  name:
-                    - font-size: 11px
-                  state:
-                    - font-size: 15px
-                    - font-weight: bold
+                template: small_state
+                variables:
+                  var_name: "곰팡이척도"
+                  var_value_boundary: "80"
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
@@ -2166,53 +1997,23 @@ cards:
                   icon:
                     - width: 35%
               - type: "custom:button-card"
-                show_state: true
-                show_name: true
-                show_icon: false
-                show_units: true
-                units: ℃
                 entity: sensor.hej_bathroom_thsensor_temperature
-                name: 온도
-                styles:
-                  card:
-                    - height: 60px
-                  name:
-                    - font-size: 11px
-                  state:
-                    - font-size: 15px
-                    - font-weight: bold
+                template: small_state
+                variables:
+                  var_name: "온도"
+                  var_value_boundary: "30"
               - type: "custom:button-card"
-                show_state: true
-                show_name: true
-                show_icon: false
-                show_units: true
-                units: "%"
                 entity: sensor.hej_bathroom_thsensor_humidity
-                name: 습도
-                styles:
-                  card:
-                    - height: 60px
-                  name:
-                    - font-size: 11px
-                  state:
-                    - font-size: 15px
-                    - font-weight: bold
+                template: small_state
+                variables:
+                  var_name: "습도"
+                  var_value_boundary: "80"
               - type: "custom:button-card"
-                show_state: true
-                show_name: true
-                show_icon: false
-                show_units: true
-                units: "%"
                 entity: sensor.bathroom_mold_indicator
-                name: 곰팡이척도
-                styles:
-                  card:
-                    - height: 60px
-                  name:
-                    - font-size: 11px
-                  state:
-                    - font-size: 15px
-                    - font-weight: bold
+                template: small_state
+                variables:
+                  var_name: "곰팡이척도"
+                  var_value_boundary: "80"
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
@@ -2308,21 +2109,11 @@ cards:
                   icon:
                     - width: 35%
               - type: "custom:button-card"
-                show_state: true
-                show_name: true
-                show_icon: false
-                show_units: true
-                units: ℃
                 entity: sensor.smartthings_dressroom_motion_temperature
-                name: 온도
-                styles:
-                  card:
-                    - height: 60px
-                  name:
-                    - font-size: 11px
-                  state:
-                    - font-size: 15px
-                    - font-weight: bold
+                template: small_state
+                variables:
+                  var_name: "온도"
+                  var_value_boundary: "30"
               - type: "custom:button-card"
                 entity: input_boolean.dressroom_light_triggered_by_motion
                 name: 모션조명
@@ -2472,53 +2263,23 @@ cards:
                   icon:
                     - width: 35%
               - type: "custom:button-card"
-                show_state: true
-                show_name: true
-                show_icon: false
-                show_units: true
-                units: ℃
                 entity: sensor.hej_laundryroom_thsensor_temperature
-                name: 온도
-                styles:
-                  card:
-                    - height: 60px
-                  name:
-                    - font-size: 11px
-                  state:
-                    - font-size: 15px
-                    - font-weight: bold
+                template: small_state
+                variables:
+                  var_name: "온도"
+                  var_value_boundary: "30"
               - type: "custom:button-card"
-                show_state: true
-                show_name: true
-                show_icon: false
-                show_units: true
-                units: "%"
                 entity: sensor.hej_laundryroom_thsensor_humidity
-                name: 습도
-                styles:
-                  card:
-                    - height: 60px
-                  name:
-                    - font-size: 11px
-                  state:
-                    - font-size: 15px
-                    - font-weight: bold
+                template: small_state
+                variables:
+                  var_name: "습도"
+                  var_value_boundary: "80"
               - type: "custom:button-card"
-                show_state: true
-                show_name: true
-                show_icon: false
-                show_units: true
-                units: "%"
                 entity: sensor.laundryroom_mold_indicator
-                name: 곰팡이척도
-                styles:
-                  card:
-                    - height: 60px
-                  name:
-                    - font-size: 11px
-                  state:
-                    - font-size: 15px
-                    - font-weight: bold
+                template: small_state
+                variables:
+                  var_name: "곰팡이척도"
+                  var_value_boundary: "80"
       - type: vertical-stack
         cards:
           - type: horizontal-stack
@@ -2539,37 +2300,17 @@ cards:
                   icon:
                     - width: 35%
               - type: "custom:button-card"
-                show_state: true
-                show_name: true
-                show_icon: false
-                show_units: true
-                units: ℃
                 entity: sensor.smartthings_library_motion_temperature
-                name: 온도
-                styles:
-                  card:
-                    - height: 60px
-                  name:
-                    - font-size: 11px
-                  state:
-                    - font-size: 15px
-                    - font-weight: bold
+                template: small_state
+                variables:
+                  var_name: "온도"
+                  var_value_boundary: "30"
               - type: "custom:button-card"
-                show_state: true
-                show_name: true
-                show_icon: false
-                show_units: true
-                units: ℃
                 entity: sensor.smartthings_door_contact_temperature
-                name: 현관온도
-                styles:
-                  card:
-                    - height: 60px
-                  name:
-                    - font-size: 11px
-                  state:
-                    - font-size: 15px
-                    - font-weight: bold
+                template: small_state
+                variables:
+                  var_name: "현관온도"
+                  var_value_boundary: "30"
               - type: "custom:button-card"
                 entity: input_boolean.library_light_triggered_by_motion
                 name: 모션조명

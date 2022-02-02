@@ -1,0 +1,30 @@
+small_state:
+  show_state: true
+  show_name: true
+  show_icon: false
+  show_units: true
+  styles:
+    card:
+      - height: 60px
+    name:
+      - font-size: 11px
+    state:
+      - font-size: 15px
+      - font-weight: bold
+  variables:
+    var_name: "var_value"
+    var_value_boundary: "var_value2"
+  name: "[[[ return variables.var_name ]]]"
+  state:
+    - value: "[[[ return variables.var_value_boundary ]]] | int"
+      operator: ">="
+      styles:
+        name:
+          - font-weight: bold
+          - color: white
+        icon:
+          - font-weight: bold
+          - color: white
+        card:
+          - background-color: red
+          - animation: blink 2s ease infinite
