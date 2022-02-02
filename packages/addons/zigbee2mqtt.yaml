@@ -38,6 +38,10 @@ zigbee2mqtt_package:
           friendly_name: "라디에이터 전력 전월 사용량"
           unit_of_measurement: kWh
           value_template: "{{ state_attr('sensor.dawon_bedroom_radiater_plug_monthly_energy','last_period')|float }}"
+        dawon_bedroom_light_plug_monthly_energy_last_month:
+          friendly_name: "공 조명 전력 전월 사용량"
+          unit_of_measurement: kWh
+          value_template: "{{ state_attr('sensor.dawon_bedroom_light_plug_monthly_energy','last_period')|float }}"
         dawon_kitchen_foodwaste_plug_monthly_energy_last_month:
           friendly_name: "스마트카라 전력 전월 사용량"
           unit_of_measurement: kWh
@@ -69,6 +73,9 @@ zigbee2mqtt_package:
       cycle: monthly
     dawon_bedroom_radiater_plug_monthly_energy:
       source: sensor.dawon_bedroom_radiater_plug_energy
+      cycle: monthly
+    dawon_bedroom_light_plug_monthly_energy:
+      source: sensor.dawon_bedroom_light_plug_energy
       cycle: monthly
     dawon_kitchen_foodwaste_plug_monthly_energy:
       source: sensor.dawon_kitchen_foodwaste_plug_energy
