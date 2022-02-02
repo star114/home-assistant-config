@@ -1209,39 +1209,12 @@ cards:
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
-                color_type: auto
-                show_state: false
-                show_name: false
-                show_icon: false
                 styles:
                   card:
                     - width: 130px
                     - height: 30px
               - type: "custom:button-card"
                 name: 에어컨
-                color_type: auto
-                show_state: true
-                show_name: true
-                show_label: true
-                show_icon: false
-                styles:
-                  card:
-                    - height: 30px
-                    - border-radius: 8px
-                  grid:
-                    - grid-template-areas: '"n l"'
-                    - grid-template-columns: 2fr 1fr
-                    - grid-template-rows: 8px
-                  name:
-                    - text-align: start
-                    - justify-self: center
-                    - align-self: center
-                    - font-size: 11px
-                  label:
-                    - text-align: start
-                    - justify-self: center
-                    - align-self: center
-                    - font-size: 11px
                 label: |
                   [[[
                     return states['sensor.dawon_bedroom_aircon_plug_power'].state + "w";
@@ -1249,45 +1222,19 @@ cards:
                 tap_action:
                   entity: sensor.dawon_bedroom_aircon_plug_power
                   action: more-info
+                template: plug_power_state
               - type: "custom:button-card"
                 entity: switch.dawon_bedroom_aircon_plug
                 template: plug_switch_button
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
-                color_type: auto
-                show_state: false
-                show_name: false
-                show_icon: false
                 styles:
                   card:
                     - width: 130px
                     - height: 30px
               - type: "custom:button-card"
                 name: 라디에이터
-                color_type: auto
-                show_state: true
-                show_name: true
-                show_label: true
-                show_icon: false
-                styles:
-                  card:
-                    - height: 30px
-                    - border-radius: 8px
-                  grid:
-                    - grid-template-areas: '"n l"'
-                    - grid-template-columns: 2fr 1fr
-                    - grid-template-rows: 8px
-                  name:
-                    - text-align: start
-                    - justify-self: center
-                    - align-self: center
-                    - font-size: 11px
-                  label:
-                    - text-align: start
-                    - justify-self: center
-                    - align-self: center
-                    - font-size: 11px
                 label: |
                   [[[
                     return states['sensor.dawon_bedroom_radiater_plug_power'].state + "w";
@@ -1295,45 +1242,19 @@ cards:
                 tap_action:
                   entity: sensor.dawon_bedroom_radiater_plug_power
                   action: more-info
+                template: plug_power_state
               - type: "custom:button-card"
                 entity: switch.dawon_bedroom_radiater_plug
                 template: plug_switch_button
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
-                color_type: auto
-                show_state: false
-                show_name: false
-                show_icon: false
                 styles:
                   card:
                     - width: 130px
                     - height: 30px
               - type: "custom:button-card"
                 name: 공 조명
-                color_type: auto
-                show_state: true
-                show_name: true
-                show_label: true
-                show_icon: false
-                styles:
-                  card:
-                    - height: 30px
-                    - border-radius: 8px
-                  grid:
-                    - grid-template-areas: '"n l"'
-                    - grid-template-columns: 2fr 1fr
-                    - grid-template-rows: 8px
-                  name:
-                    - text-align: start
-                    - justify-self: center
-                    - align-self: center
-                    - font-size: 11px
-                  label:
-                    - text-align: start
-                    - justify-self: center
-                    - align-self: center
-                    - font-size: 11px
                 label: |
                   [[[
                     return states['sensor.dawon_bedroom_light_plug_power'].state + "w";
@@ -1341,6 +1262,7 @@ cards:
                 tap_action:
                   entity: sensor.dawon_bedroom_light_plug_power
                   action: more-info
+                template: plug_power_state
               - type: "custom:button-card"
                 entity: switch.dawon_bedroom_light_plug
                 template: plug_switch_button
@@ -1373,39 +1295,12 @@ cards:
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
-                color_type: auto
-                show_state: false
-                show_name: false
-                show_icon: false
                 styles:
                   card:
                     - width: 130px
                     - height: 30px
               - type: "custom:button-card"
                 name: 식기세척기
-                color_type: auto
-                show_state: true
-                show_name: true
-                show_label: true
-                show_icon: false
-                styles:
-                  card:
-                    - height: 30px
-                    - border-radius: 8px
-                  grid:
-                    - grid-template-areas: '"n l"'
-                    - grid-template-columns: 2fr 1fr
-                    - grid-template-rows: 8px
-                  name:
-                    - text-align: start
-                    - justify-self: center
-                    - align-self: center
-                    - font-size: 11px
-                  label:
-                    - text-align: start
-                    - justify-self: center
-                    - align-self: center
-                    - font-size: 11px
                 label: |
                   [[[
                     return states['sensor.dawon_kitchen_dishwasher_plug_power'].state + "w";
@@ -1413,45 +1308,19 @@ cards:
                 tap_action:
                   entity: sensor.dawon_kitchen_dishwasher_plug_power
                   action: more-info
+                template: plug_power_state
               - type: "custom:button-card"
                 entity: switch.dawon_kitchen_dishwasher_plug
                 template: plug_switch_button
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
-                color_type: auto
-                show_state: false
-                show_name: false
-                show_icon: false
                 styles:
                   card:
                     - width: 130px
                     - height: 30px
               - type: "custom:button-card"
                 name: 음식물 처리기
-                color_type: auto
-                show_state: true
-                show_name: true
-                show_label: true
-                show_icon: false
-                styles:
-                  card:
-                    - height: 30px
-                    - border-radius: 8px
-                  grid:
-                    - grid-template-areas: '"n l"'
-                    - grid-template-columns: 2fr 1fr
-                    - grid-template-rows: 8px
-                  name:
-                    - text-align: start
-                    - justify-self: center
-                    - align-self: center
-                    - font-size: 11px
-                  label:
-                    - text-align: start
-                    - justify-self: center
-                    - align-self: center
-                    - font-size: 11px
                 label: |
                   [[[
                     return states['sensor.dawon_kitchen_foodwaste_plug_power'].state + "w";
@@ -1459,45 +1328,19 @@ cards:
                 tap_action:
                   entity: sensor.dawon_kitchen_foodwaste_plug_power
                   action: more-info
+                template: plug_power_state
               - type: "custom:button-card"
                 entity: switch.dawon_kitchen_foodwaste_plug
                 template: plug_switch_button
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
-                color_type: auto
-                show_state: false
-                show_name: false
-                show_icon: false
                 styles:
                   card:
                     - width: 130px
                     - height: 30px
               - type: "custom:button-card"
                 name: 환기용 팬
-                color_type: auto
-                show_state: true
-                show_name: true
-                show_label: true
-                show_icon: false
-                styles:
-                  card:
-                    - height: 30px
-                    - border-radius: 8px
-                  grid:
-                    - grid-template-areas: '"n l"'
-                    - grid-template-columns: 2fr 1fr
-                    - grid-template-rows: 8px
-                  name:
-                    - text-align: start
-                    - justify-self: center
-                    - align-self: center
-                    - font-size: 11px
-                  label:
-                    - text-align: start
-                    - justify-self: center
-                    - align-self: center
-                    - font-size: 11px
                 label: |
                   [[[
                     return states['sensor.dawon_kitchen_fan_plug_power'].state + "w";
@@ -1505,45 +1348,19 @@ cards:
                 tap_action:
                   entity: sensor.dawon_kitchen_fan_plug_power
                   action: more-info
+                template: plug_power_state
               - type: "custom:button-card"
                 entity: switch.dawon_kitchen_fan_plug
                 template: plug_switch_button
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
-                color_type: auto
-                show_state: false
-                show_name: false
-                show_icon: false
                 styles:
                   card:
                     - width: 130px
                     - height: 30px
               - type: "custom:button-card"
                 name: 밥솥
-                color_type: auto
-                show_state: true
-                show_name: true
-                show_label: true
-                show_icon: false
-                styles:
-                  card:
-                    - height: 30px
-                    - border-radius: 8px
-                  grid:
-                    - grid-template-areas: '"n l"'
-                    - grid-template-columns: 2fr 1fr
-                    - grid-template-rows: 8px
-                  name:
-                    - text-align: start
-                    - justify-self: center
-                    - align-self: center
-                    - font-size: 11px
-                  label:
-                    - text-align: start
-                    - justify-self: center
-                    - align-self: center
-                    - font-size: 11px
                 label: |
                   [[[
                     return states['sensor.dawon_kitchen_cooker_plug_power'].state + "w";
@@ -1551,6 +1368,7 @@ cards:
                 tap_action:
                   entity: sensor.dawon_kitchen_cooker_plug_power
                   action: more-info
+                template: plug_power_state
               - type: "custom:button-card"
                 entity: switch.dawon_kitchen_cooker_plug
                 template: plug_switch_button
@@ -1583,39 +1401,12 @@ cards:
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
-                color_type: auto
-                show_state: false
-                show_name: false
-                show_icon: false
                 styles:
                   card:
                     - width: 130px
                     - height: 30px
               - type: "custom:button-card"
                 name: 비데
-                color_type: auto
-                show_state: true
-                show_name: true
-                show_label: true
-                show_icon: false
-                styles:
-                  card:
-                    - height: 30px
-                    - border-radius: 8px
-                  grid:
-                    - grid-template-areas: '"n l"'
-                    - grid-template-columns: 2fr 1fr
-                    - grid-template-rows: 8px
-                  name:
-                    - text-align: start
-                    - justify-self: center
-                    - align-self: center
-                    - font-size: 11px
-                  label:
-                    - text-align: start
-                    - justify-self: center
-                    - align-self: center
-                    - font-size: 11px
                 label: |
                   [[[
                     return states['sensor.dawon_bathroom_plug_power'].state + "w";
@@ -1623,6 +1414,7 @@ cards:
                 tap_action:
                   entity: sensor.dawon_bathroom_plug_power
                   action: more-info
+                template: plug_power_state
               - type: "custom:button-card"
                 entity: switch.dawon_bathroom_plug
                 template: plug_switch_button
@@ -1650,39 +1442,12 @@ cards:
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
-                color_type: auto
-                show_state: false
-                show_name: false
-                show_icon: false
                 styles:
                   card:
                     - width: 130px
                     - height: 30px
               - type: "custom:button-card"
                 name: 헤어드라이어
-                color_type: auto
-                show_state: true
-                show_name: true
-                show_label: true
-                show_icon: false
-                styles:
-                  card:
-                    - height: 30px
-                    - border-radius: 8px
-                  grid:
-                    - grid-template-areas: '"n l"'
-                    - grid-template-columns: 2fr 1fr
-                    - grid-template-rows: 8px
-                  name:
-                    - text-align: start
-                    - justify-self: center
-                    - align-self: center
-                    - font-size: 11px
-                  label:
-                    - text-align: start
-                    - justify-self: center
-                    - align-self: center
-                    - font-size: 11px
                 label: |
                   [[[
                     return states['sensor.dawon_dressroom_plug_power'].state + "w";
@@ -1690,6 +1455,7 @@ cards:
                 tap_action:
                   entity: sensor.dawon_dressroom_plug_power
                   action: more-info
+                template: plug_power_state
               - type: "custom:button-card"
                 entity: switch.dawon_dressroom_plug
                 template: plug_switch_button

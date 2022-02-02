@@ -1,4 +1,5 @@
 small_state:
+  color_type: auto
   show_state: true
   show_name: true
   show_icon: false
@@ -30,6 +31,7 @@ small_state:
           - animation: blink 2s ease infinite
 
 waterleak_sensor:
+  color_type: auto
   show_icon: true
   show_state: true
   show_name: true
@@ -76,6 +78,7 @@ waterleak_sensor:
           - color: grey
 
 room_entity_picture:
+  color_type: auto
   show_state: false
   show_name: true
   show_entity_picture: true
@@ -135,6 +138,7 @@ light_triggered_by_motion:
           - color: grey
 
 plug_switch_button:
+  color_type: auto
   show_state: false
   show_name: false
   show_icon: true
@@ -163,3 +167,28 @@ plug_switch_button:
           - filter: grayscale(100%)
   tap_action:
     action: toggle
+
+plug_power_state:
+  color_type: auto
+  show_state: true
+  show_name: true
+  show_label: true
+  show_icon: false
+  styles:
+    card:
+      - height: 30px
+      - border-radius: 8px
+    grid:
+      - grid-template-areas: '"n l"'
+      - grid-template-columns: 2fr 1fr
+      - grid-template-rows: 8px
+    name:
+      - text-align: start
+      - justify-self: center
+      - align-self: center
+      - font-size: 11px
+    label:
+      - text-align: start
+      - justify-self: center
+      - align-self: center
+      - font-size: 11px
