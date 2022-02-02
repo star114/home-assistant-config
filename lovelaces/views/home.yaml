@@ -1251,35 +1251,7 @@ cards:
                   action: more-info
               - type: "custom:button-card"
                 entity: switch.dawon_bedroom_aircon_plug
-                color_type: auto
-                show_state: false
-                show_name: false
-                show_icon: true
-                icon: "mdi:power"
-                styles:
-                  card:
-                    - height: 30px
-                    - width: 40px
-                    - border-radius: 8px
-                    - justify-self: center
-                    - align-self: center
-                  icon:
-                    - width: 40%
-                state:
-                  - value: "on"
-                    styles:
-                      icon:
-                        - font-weight: bold
-                        - color: white
-                      card:
-                        - background-color: "RGB(233,130,75)"
-                  - value: "off"
-                    styles:
-                      icon:
-                        - color: grey
-                        - filter: grayscale(100%)
-                tap_action:
-                  action: toggle
+                template: plug_switch_button
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
@@ -1325,35 +1297,7 @@ cards:
                   action: more-info
               - type: "custom:button-card"
                 entity: switch.dawon_bedroom_radiater_plug
-                color_type: auto
-                show_state: false
-                show_name: false
-                show_icon: true
-                icon: "mdi:power"
-                styles:
-                  card:
-                    - height: 30px
-                    - width: 40px
-                    - border-radius: 8px
-                    - justify-self: center
-                    - align-self: center
-                  icon:
-                    - width: 40%
-                state:
-                  - value: "on"
-                    styles:
-                      icon:
-                        - font-weight: bold
-                        - color: white
-                      card:
-                        - background-color: "RGB(233,130,75)"
-                  - value: "off"
-                    styles:
-                      icon:
-                        - color: grey
-                        - filter: grayscale(100%)
-                tap_action:
-                  action: toggle
+                template: plug_switch_button
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
@@ -1399,35 +1343,7 @@ cards:
                   action: more-info
               - type: "custom:button-card"
                 entity: switch.dawon_bedroom_light_plug
-                color_type: auto
-                show_state: false
-                show_name: false
-                show_icon: true
-                icon: "mdi:power"
-                styles:
-                  card:
-                    - height: 30px
-                    - width: 40px
-                    - border-radius: 8px
-                    - justify-self: center
-                    - align-self: center
-                  icon:
-                    - width: 40%
-                state:
-                  - value: "on"
-                    styles:
-                      icon:
-                        - font-weight: bold
-                        - color: white
-                      card:
-                        - background-color: "RGB(233,130,75)"
-                  - value: "off"
-                    styles:
-                      icon:
-                        - color: grey
-                        - filter: grayscale(100%)
-                tap_action:
-                  action: toggle
+                template: plug_switch_button
       - type: vertical-stack
         cards:
           - type: horizontal-stack
@@ -1499,35 +1415,7 @@ cards:
                   action: more-info
               - type: "custom:button-card"
                 entity: switch.dawon_kitchen_dishwasher_plug
-                color_type: auto
-                show_state: false
-                show_name: false
-                show_icon: true
-                icon: "mdi:power"
-                styles:
-                  card:
-                    - height: 30px
-                    - width: 40px
-                    - border-radius: 8px
-                    - justify-self: center
-                    - align-self: center
-                  icon:
-                    - width: 40%
-                state:
-                  - value: "on"
-                    styles:
-                      icon:
-                        - font-weight: bold
-                        - color: white
-                      card:
-                        - background-color: "RGB(233,130,75)"
-                  - value: "off"
-                    styles:
-                      icon:
-                        - color: grey
-                        - filter: grayscale(100%)
-                tap_action:
-                  action: toggle
+                template: plug_switch_button
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
@@ -1573,35 +1461,7 @@ cards:
                   action: more-info
               - type: "custom:button-card"
                 entity: switch.dawon_kitchen_foodwaste_plug
-                color_type: auto
-                show_state: false
-                show_name: false
-                show_icon: true
-                icon: "mdi:power"
-                styles:
-                  card:
-                    - height: 30px
-                    - width: 40px
-                    - border-radius: 8px
-                    - justify-self: center
-                    - align-self: center
-                  icon:
-                    - width: 40%
-                state:
-                  - value: "on"
-                    styles:
-                      icon:
-                        - font-weight: bold
-                        - color: white
-                      card:
-                        - background-color: "RGB(233,130,75)"
-                  - value: "off"
-                    styles:
-                      icon:
-                        - color: grey
-                        - filter: grayscale(100%)
-                tap_action:
-                  action: toggle
+                template: plug_switch_button
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
@@ -1647,35 +1507,7 @@ cards:
                   action: more-info
               - type: "custom:button-card"
                 entity: switch.dawon_kitchen_fan_plug
-                color_type: auto
-                show_state: false
-                show_name: false
-                show_icon: true
-                icon: "mdi:power"
-                styles:
-                  card:
-                    - height: 30px
-                    - width: 40px
-                    - border-radius: 8px
-                    - justify-self: center
-                    - align-self: center
-                  icon:
-                    - width: 40%
-                state:
-                  - value: "on"
-                    styles:
-                      icon:
-                        - font-weight: bold
-                        - color: white
-                      card:
-                        - background-color: "RGB(233,130,75)"
-                  - value: "off"
-                    styles:
-                      icon:
-                        - color: grey
-                        - filter: grayscale(100%)
-                tap_action:
-                  action: toggle
+                template: plug_switch_button
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
@@ -1721,35 +1553,7 @@ cards:
                   action: more-info
               - type: "custom:button-card"
                 entity: switch.dawon_kitchen_cooker_plug
-                color_type: auto
-                show_state: false
-                show_name: false
-                show_icon: true
-                icon: "mdi:power"
-                styles:
-                  card:
-                    - height: 30px
-                    - width: 40px
-                    - border-radius: 8px
-                    - justify-self: center
-                    - align-self: center
-                  icon:
-                    - width: 40%
-                state:
-                  - value: "on"
-                    styles:
-                      icon:
-                        - font-weight: bold
-                        - color: white
-                      card:
-                        - background-color: "RGB(233,130,75)"
-                  - value: "off"
-                    styles:
-                      icon:
-                        - color: grey
-                        - filter: grayscale(100%)
-                tap_action:
-                  action: toggle
+                template: plug_switch_button
       - type: vertical-stack
         cards:
           - type: horizontal-stack
@@ -1821,36 +1625,7 @@ cards:
                   action: more-info
               - type: "custom:button-card"
                 entity: switch.dawon_bathroom_plug
-                color_type: auto
-                show_state: false
-                show_name: false
-                show_icon: true
-                icon: "mdi:power"
-                styles:
-                  card:
-                    - height: 30px
-                    - width: 40px
-                    - border-radius: 8px
-                    - justify-self: center
-                    - align-self: center
-                  icon:
-                    - width: 40%
-                state:
-                  - value: "on"
-                    styles:
-                      icon:
-                        - font-weight: bold
-                        - color: white
-                      card:
-                        - background-color: "RGB(233,130,75)"
-                  - value: "off"
-                    styles:
-                      icon:
-                        - color: grey
-                        - filter: grayscale(100%)
-                tap_action:
-                  action: toggle
-
+                template: plug_switch_button
       - type: vertical-stack
         cards:
           - type: horizontal-stack
@@ -1917,35 +1692,7 @@ cards:
                   action: more-info
               - type: "custom:button-card"
                 entity: switch.dawon_dressroom_plug
-                color_type: auto
-                show_state: false
-                show_name: false
-                show_icon: true
-                icon: "mdi:power"
-                styles:
-                  card:
-                    - height: 30px
-                    - width: 40px
-                    - border-radius: 8px
-                    - justify-self: center
-                    - align-self: center
-                  icon:
-                    - width: 40%
-                state:
-                  - value: "on"
-                    styles:
-                      icon:
-                        - font-weight: bold
-                        - color: white
-                      card:
-                        - background-color: "RGB(233,130,75)"
-                  - value: "off"
-                    styles:
-                      icon:
-                        - color: grey
-                        - filter: grayscale(100%)
-                tap_action:
-                  action: toggle
+                template: plug_switch_button
       - type: vertical-stack
         cards:
           - type: horizontal-stack

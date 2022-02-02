@@ -133,3 +133,33 @@ light_triggered_by_motion:
           - color: grey
         state:
           - color: grey
+
+plug_switch_button:
+  show_state: false
+  show_name: false
+  show_icon: true
+  icon: "mdi:power"
+  styles:
+    card:
+      - height: 30px
+      - width: 40px
+      - border-radius: 8px
+      - justify-self: center
+      - align-self: center
+    icon:
+      - width: 40%
+  state:
+    - value: "on"
+      styles:
+        icon:
+          - font-weight: bold
+          - color: white
+        card:
+          - background-color: "RGB(233,130,75)"
+    - value: "off"
+      styles:
+        icon:
+          - color: grey
+          - filter: grayscale(100%)
+  tap_action:
+    action: toggle
