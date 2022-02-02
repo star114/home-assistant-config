@@ -192,3 +192,28 @@ plug_power_state:
       - justify-self: center
       - align-self: center
       - font-size: 11px
+
+power_state:
+  color_type: auto
+  show_state: true
+  show_name: true
+  show_label: true
+  show_icon: false
+  styles:
+    card:
+      - height: 30px
+      - border-radius: 8px
+    grid:
+      - grid-template-areas: '"n l"'
+      - grid-template-columns: 2fr 1fr
+      - grid-template-rows: 8px
+    name:
+      - text-align: start
+      - justify-self: center
+      - align-self: center
+      - font-size: 11px
+    label:
+      - text-align: start
+      - justify-self: center
+      - align-self: center
+      - font-size: 11px
