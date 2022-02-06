@@ -7,6 +7,7 @@ homeassistant:
   longitude: !secret longitude
   elevation: !secret elevation
   unit_system: !secret unit_system
+  currency: !secret currency
   time_zone: !secret time_zone
   external_url: !secret external_url
   internal_url: !secret internal_url
