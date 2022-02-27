@@ -10,7 +10,7 @@ small_state:
     name:
       - font-size: 11px
     state:
-      - font-size: 15px
+      - font-size: 13px
       - font-weight: bold
   variables:
     var_name: "var_value"
@@ -33,13 +33,13 @@ small_state:
 boolean_state_with_icon:
   color_type: auto
   show_icon: true
-  show_state: true
+  show_state: false
   show_name: true
   styles:
     card:
       - height: 60px
     grid:
-      - grid-template-areas: '"i" "n" "s"'
+      - grid-template-areas: '"i" "n"'
     icon:
       - width: 30%
       - margin-top: "-5%"
@@ -47,21 +47,13 @@ boolean_state_with_icon:
     name:
       - justify-self: end
       - padding-right: 12px
-      - font-size: 11px
-    state:
-      - justify-self: end
-      - font-size: 15px
-      - font-weight: bold
-      - padding-right: 12px
+      - font-size: 12px
   state:
     - value: "on"
       styles:
         name:
           - color: white
         icon:
-          - font-weight: bold
-          - color: white
-        state:
           - font-weight: bold
           - color: white
         card:
@@ -71,14 +63,12 @@ boolean_state_with_icon:
         icon:
           - color: grey
         name:
-          - color: grey
-        state:
-          - color: grey
+          - color: grey.
 
 waterleak_sensor:
   color_type: auto
   show_icon: true
-  show_state: true
+  show_state: false
   show_name: true
   show_units: false
   icon: mdi:water-alert
@@ -87,20 +77,15 @@ waterleak_sensor:
   name: "[[[ return variables.var_name ]]]"
   styles:
     card:
-      - height: 60px
+      - height: 40px
     grid:
-      - grid-template-areas: '"i" "n" "s"'
+      - grid-template-areas: '"i" "n"'
     icon:
       - width: 30%
       - margin-top: "-5%"
       - margin-left: "-30%"
     name:
-      - font-size: 11px
-    state:
-      - justify-self: end
-      - font-size: 15px
-      - font-weight: bold
-      - padding-right: 12px
+      - font-size: 12px
   state:
     - value: "on"
       icon: mdi:alert
@@ -122,50 +107,6 @@ waterleak_sensor:
         name:
           - color: grey
 
-simple_button_with_icon:
-  color_type: auto
-  show_icon: true
-  show_state: true
-  show_name: true
-  styles:
-    card:
-      - height: 90px
-    grid:
-      - grid-template-areas: '"i" "n" "s"'
-    icon:
-      - width: 20%
-      - margin-top: "-5%"
-      - margin-left: "-20%"
-    name:
-      - justify-self: end
-      - padding-right: 12px
-      - font-size: 14px
-    state:
-      - justify-self: end
-      - font-size: 12px
-      - padding-right: 12px
-  state:
-    - value: "on"
-      styles:
-        name:
-          - color: white
-        icon:
-          - font-weight: bold
-          - color: white
-        state:
-          - font-weight: bold
-          - color: white
-        card:
-          - background-color: "RGB(233,130,75)"
-    - value: "off"
-      styles:
-        icon:
-          - color: grey
-        name:
-          - color: grey
-        state:
-          - color: grey
-
 room_entity_picture:
   color_type: auto
   show_state: false
@@ -180,51 +121,6 @@ room_entity_picture:
       - font-weight: bold
     icon:
       - width: 35%
-
-light_triggered_by_motion:
-  name: 모션조명
-  color_type: auto
-  show_icon: true
-  show_state: true
-  show_name: true
-  icon: mdi:ceiling-light
-  styles:
-    card:
-      - height: 60px
-    grid:
-      - grid-template-areas: '"i" "n" "s"'
-    icon:
-      - width: 30%
-      - margin-top: "-5%"
-      - margin-left: "-20%"
-    name:
-      - font-size: 11px
-    state:
-      - justify-self: end
-      - font-size: 15px
-      - font-weight: bold
-      - padding-right: 12px
-  state:
-    - value: "on"
-      styles:
-        name:
-          - color: white
-        icon:
-          - font-weight: bold
-          - color: white
-        state:
-          - font-weight: bold
-          - color: white
-        card:
-          - background-color: "RGB(233,130,75)"
-    - value: "off"
-      styles:
-        icon:
-          - color: grey
-        name:
-          - color: grey
-        state:
-          - color: grey
 
 plug_switch_button:
   color_type: auto
@@ -270,7 +166,7 @@ plug_power_state:
     grid:
       - grid-template-areas: '"n l"'
       - grid-template-columns: 2fr 1fr
-      - grid-template-rows: 8px
+      - grid-template-rows: 1fr
     name:
       - text-align: start
       - justify-self: center
@@ -294,8 +190,8 @@ power_state:
       - border-radius: 8px
     grid:
       - grid-template-areas: '"n l"'
-      - grid-template-columns: 2fr 1fr
-      - grid-template-rows: 8px
+      - grid-template-columns: 1fr 1fr
+      - grid-template-rows: 1fr
     name:
       - text-align: start
       - justify-self: center
@@ -306,3 +202,118 @@ power_state:
       - justify-self: center
       - align-self: center
       - font-size: 11px
+
+home_monitoring:
+  color_type: auto
+  show_icon: true
+  show_state: true
+  show_name: true
+  icon: mdi:alarm-light
+  styles:
+    card:
+      - height: 60px
+    grid:
+      - grid-template-areas: '"i" "n" "s"'
+    icon:
+      - width: 30%
+      - margin-top: "-5%"
+      - margin-left: "-30%"
+    name:
+      - justify-self: end
+      - padding-right: 12px
+      - font-size: 11px
+    state:
+      - justify-self: end
+      - font-size: 15px
+      - font-weight: bold
+      - padding-right: 2px
+  state:
+    - value: "arming"
+      icon: mdi:alert
+      styles:
+        name:
+          - color: white
+        icon:
+          - font-weight: bold
+          - color: white
+        state:
+          - font-weight: bold
+          - color: white
+        card:
+          - background-color: red
+          - animation: blink 2s ease infinite
+    - value: "pending"
+      icon: mdi:pause-circle
+      styles:
+        name:
+          - color: white
+        icon:
+          - font-weight: bold
+          - color: white
+        state:
+          - font-weight: bold
+          - color: white
+        card:
+          - background-color: red
+          - animation: blink 2s ease infinite
+    - value: "triggered"
+      icon: mdi:alert-decagram
+      styles:
+        name:
+          - color: white
+        icon:
+          - font-weight: bold
+          - color: white
+        state:
+          - font-weight: bold
+          - color: white
+        card:
+          - background-color: red
+          - animation: blink 2s ease infinite
+    - value: "armed_away"
+      icon: mdi:home-lock
+      styles:
+        name:
+          - color: white
+        icon:
+          - font-weight: bold
+          - color: white
+        state:
+          - font-weight: bold
+          - color: white
+        card:
+          - background-color: "RGB(233,130,75)"
+    - value: "armed_night"
+      icon: mdi:home-lock
+      styles:
+        name:
+          - color: white
+        icon:
+          - font-weight: bold
+          - color: white
+        state:
+          - font-weight: bold
+          - color: white
+        card:
+          - background-color: "RGB(233,130,75)"
+    - value: "armed_home"
+      icon: mdi:home-lock
+      styles:
+        name:
+          - color: white
+        icon:
+          - font-weight: bold
+          - color: white
+        state:
+          - font-weight: bold
+          - color: white
+        card:
+          - background-color: "RGB(233,130,75)"
+    - value: "disarmed"
+      styles:
+        icon:
+          - color: grey
+        name:
+          - color: grey
+        state:
+          - color: grey

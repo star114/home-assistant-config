@@ -1,6 +1,7 @@
 title: Maison Seonyu
 views:
   - !include lovelaces/views/home.yaml
+  - !include lovelaces/views/state.yaml
   - !include lovelaces/views/air_conditioner.yaml
   - !include lovelaces/views/robot_vacuum.yaml
   - !include lovelaces/views/media.yaml
