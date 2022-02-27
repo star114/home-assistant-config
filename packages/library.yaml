@@ -51,7 +51,7 @@ library_package:
           conditions:
             - condition: time
               after: "06:30:00"
-              before: "08:00:00"
+              before: "07:40:00"
         - service: input_boolean.turn_on
           entity_id: input_boolean.library_light_triggered_by_motion
 
@@ -77,6 +77,36 @@ library_package:
       action:
         - service: input_boolean.turn_on
           entity_id: input_boolean.library_light_triggered_by_motion
+
+    - id: "library_motion_light_trigger_after_morning_routine"
+      alias: "library motion light trigger after morning routine"
+      trigger:
+        - platform: time
+          at: "07:40:00"
+      condition:
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: light.hej_3gang_library_light_bottom
+              state: "on"
+            - condition: state
+              entity_id: input_boolean.library_light_triggered_by_motion
+              state: "off"
+      action:
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.library_light_triggered_by_motion
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: light.lellki_library_multi_outlets_l1
+              state: "on"
+            - condition: state
+              entity_id: switch.lellki_library_multi_outlets_l2
+              state: "on"
+        - service: light.turn_off
+          entity_id: light.lellki_library_multi_outlets_l1
+        - service: switch.turn_off
+          entity_id: switch.lellki_library_multi_outlets_l2
 
     - id: "away_scene_switch_on"
       alias: "away scene - switch on"
