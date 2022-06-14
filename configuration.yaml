@@ -33,6 +33,8 @@ recorder: !include recorder.yaml
 history: !include history.yaml
 logbook: !include logbook.yaml
 
+media_source:
+
 # manual home alarm: https://www.home-assistant.io/integrations/manual
 alarm_control_panel:
   - platform: manual

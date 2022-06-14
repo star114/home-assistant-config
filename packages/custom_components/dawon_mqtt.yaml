@@ -1,39 +1,39 @@
 # dawon wifi to mqtt
 # Thanks to stkang90, https://cafe.naver.com/koreassistant/1977
 dawon_mqtt_package:
-  switch:
-    - platform: mqtt
-      name: "827d3a23f8b7_switch"
-      command_topic: "dwd.v1/iot-server/DAWONDNS-B400_SW-827d3a23f8b7/execute/json"
-      state_topic: "dwd.v1/DAWONDNS-B400_SW-827d3a23f8b7/iot-server/notify/json"
-      payload_on: '{"sid":"2","msg":{"o":"e","e":[{"n":"/100/0/31","sv":"true","r":"","ti":"1593516756"}]}}'
-      payload_off: '{"sid":"2","msg":{"o":"e","e":[{"n":"/100/0/31","sv":"false","r":"","ti":"1593516756"}]}}'
-      state_on: 'on'
-      state_off: 'off'
-      value_template: >-
-        {% if value_json.sid == '2' %}
-          {% if value_json.msg.e[0].sv == 'true' %}
-            on
+  mqtt:
+    switch:
+      - name: "827d3a23f8b7_switch"
+        command_topic: "dwd.v1/iot-server/DAWONDNS-B400_SW-827d3a23f8b7/execute/json"
+        state_topic: "dwd.v1/DAWONDNS-B400_SW-827d3a23f8b7/iot-server/notify/json"
+        payload_on: '{"sid":"2","msg":{"o":"e","e":[{"n":"/100/0/31","sv":"true","r":"","ti":"1593516756"}]}}'
+        payload_off: '{"sid":"2","msg":{"o":"e","e":[{"n":"/100/0/31","sv":"false","r":"","ti":"1593516756"}]}}'
+        state_on: "on"
+        state_off: "off"
+        value_template: >-
+          {% if value_json.sid == '2' %}
+            {% if value_json.msg.e[0].sv == 'true' %}
+              on
+            {% else %}
+              off
+            {% endif %}
           {% else %}
-            off
           {% endif %}
-        {% else %}
-        {% endif %}
+    sensor:
+      # 실시간 파워 센서 설정
+      - name: "827d3a23f8b7_power"
+        unit_of_measurement: "W"
+        state_topic: "dwd.v1/DAWONDNS-B400_SW-827d3a23f8b7/iot-server/notify/json"
+        value_template: >-
+          {% if value_json.sid == '2' %}
+            {{ value_json.msg.e[1].sv | float | round(2) }}
+          {% elif value_json.sid == '1' %}
+            {{ value_json.msg.e[3].sv | float | round(2) }}
+          {% else %}
+            {{ states('sensor.827d3a23f8b7_power') }}
+          {% endif %}
 
   sensor:
-    # 실시간 파워 센서 설정
-    - platform: mqtt
-      name: "827d3a23f8b7_power"
-      unit_of_measurement: "W"
-      state_topic: "dwd.v1/DAWONDNS-B400_SW-827d3a23f8b7/iot-server/notify/json"
-      value_template: >-
-        {% if value_json.sid == '2' %}
-          {{ value_json.msg.e[1].sv | float | round(2) }}
-        {% elif value_json.sid == '1' %}
-          {{ value_json.msg.e[3].sv | float | round(2) }}
-        {% else %}
-          {{ states('sensor.827d3a23f8b7_power') }}
-        {% endif %}
     # 에너지 센서 설정
     - platform: integration
       name: "827d3a23f8b7_energy"
@@ -52,10 +52,10 @@ dawon_mqtt_package:
   # 실시간 파워를 가져오기 위한 자동화 설정 (30초 마다 센서 값을 갱신하기 위한 메시지 발행)
   automation:
     - id: "dawon_mqtt_power_refresh"
-      alias: 'dawon mqtt power refresh'
+      alias: "dawon mqtt power refresh"
       trigger:
         platform: time_pattern
-        seconds: '/30'
+        seconds: "/30"
       action:
         - service: mqtt.publish
           data_template:
