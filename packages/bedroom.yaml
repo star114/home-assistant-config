@@ -45,17 +45,17 @@ bedroom_package:
           entity_id: scene.morning
         - service: alarm_control_panel.alarm_disarm
           entity_id: alarm_control_panel.home_monitoring
-        - service: notify.in_the_bedroom_kakao
-          data:
-            message: "좋은 아침입니다."
+        #- service: notify.in_the_bedroom_kakao
+        #  data:
+        #    message: "좋은 아침입니다."
         # tts will stop the music
         # pause the alarm music from speaker
-        #- condition: state
-        #  entity_id: media_player.anbang_seupikeo
-        #  state: "playing"
-        #- service: media_player.media_pause
-        #  target:
-        #    entity_id: media_player.anbang_seupikeo
+        - condition: state
+          entity_id: media_player.anbang_seupikeo
+          state: "playing"
+        - service: media_player.media_pause
+          target:
+            entity_id: media_player.anbang_seupikeo
 
     - id: "night_scene_switch_on"
       alias: "night scene - switch on"
@@ -69,16 +69,23 @@ bedroom_package:
           entity_id: scene.night
         - service: alarm_control_panel.alarm_arm_night
           entity_id: alarm_control_panel.home_monitoring
-        - service: notify.in_the_bedroom_kakao
-          data:
-            message: "안녕히 주무세요."
+        #- service: notify.in_the_bedroom_kakao
+        #  data:
+        #    message: "안녕히 주무세요."
 
     - id: "good_morning_songs"
       alias: "good morning songs"
       trigger:
         - platform: time
-          at: "06:00:00"
+          at: "06:30:00"
       condition:
+        - condition: time
+          weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
         - condition: state
           entity_id: input_boolean.trigger_first_morning
           state: "on"
@@ -95,8 +102,15 @@ bedroom_package:
       alias: "good morning songs from ytube_music_player"
       trigger:
         - platform: time
-          at: "06:00:00"
+          at: "06:30:00"
       condition:
+        - condition: time
+          weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
         - condition: state
           entity_id: input_boolean.trigger_first_morning
           state: "on"

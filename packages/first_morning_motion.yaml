@@ -11,7 +11,7 @@ first_morning_motion_package:
       alias: "Enable First Morning Trigger"
       trigger:
         - platform: time
-          at: "05:30:00"
+          at: "05:50:00"
       condition:
         - condition: state
           entity_id: alarm_control_panel.home_monitoring
@@ -49,9 +49,9 @@ first_morning_motion_package:
         - platform: state
           entity_id: binary_sensor.smartthings_dressroom_motion_occupancy
           to: "on"
-        - platform: state
-          entity_id: binary_sensor.hue_bedroom_motion_occupancy
-          to: "on"
+        #- platform: state
+        #  entity_id: binary_sensor.hue_bedroom_motion_occupancy
+        #  to: "on"
       # only complete the automation if we're still waiting for the first motion
       condition:
         condition: state

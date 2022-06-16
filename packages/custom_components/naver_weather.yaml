@@ -1,29 +1,29 @@
 naver_weather_package:
   automation:
-    - id: "umbrella_notification"
-      alias: "umbrella notification"
-      trigger:
-        - platform: state
-          entity_id: binary_sensor.smartthings_door_contact_contact
-          to: "on"
-      condition:
-        - condition: or
-          conditions:
-            - condition: not
-              conditions:
-                - condition: state
-                  entity_id: sensor.naver_weather_rainystart_1
-                  state: "비안옴"
-            - condition: state
-              entity_id: weather.naver_weather_1
-              state: "rainy"
-      action:
-        - service: notify.notify_telegram
-          data:
-            message: "🌂 비 예보가 있으니 우산을 챙기세요."
-        - service: notify.in_the_library_kakao
-          data:
-            message: "비 예보가 있으니 우산을 챙기세요."
+    #- id: "umbrella_notification"
+    #  alias: "umbrella notification"
+    #  trigger:
+    #    - platform: state
+    #      entity_id: binary_sensor.smartthings_door_contact_contact
+    #      to: "on"
+    #  condition:
+    #    - condition: or
+    #      conditions:
+    #        - condition: not
+    #          conditions:
+    #            - condition: state
+    #              entity_id: sensor.naver_weather_rainystart_1
+    #              state: "비안옴"
+    #        - condition: state
+    #          entity_id: weather.naver_weather_1
+    #          state: "rainy"
+    #  action:
+    #    - service: notify.notify_telegram
+    #      data:
+    #        message: "🌂 비 예보가 있으니 우산을 챙기세요."
+    #    - service: notify.in_the_library_kakao
+    #      data:
+    #        message: "비 예보가 있으니 우산을 챙기세요."
     - id: "notify_rain"
       alias: "notify rain"
       trigger:
