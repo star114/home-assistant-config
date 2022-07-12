@@ -1,0 +1,13 @@
+tesla_package:
+  automation:
+    - id: "notify_tesla_update_available"
+      alias: Notify tesla update available
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.tesla_update_available
+          to: "on"
+      action:
+        - service: notify.notify_telegram
+          data:
+            title: "🆕 새로운 테슬라 소프트웨어 업데이트 알림"
+            message: "현재 사용중인 버전은 {{ states('sensor.tesla_version') }} 입니다. {{ states('sensor.tesla_update_version') }} 으로 업데이트 하세요."

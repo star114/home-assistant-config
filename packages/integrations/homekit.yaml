@@ -35,6 +35,21 @@ homekit_package:
           - sensor.smartthings_library_motion_temperature
           - sensor.smartthings_dressroom_motion_temperature
           - sensor.smartthings_door_contact_temperature
+          - sensor.tesla_inside_temp
+          - sensor.tesla_outside_temp
+          - binary_sensor.tesla_is_user_present
+          - binary_sensor.tesla_locked
+          - binary_sensor.tesla_is_climate_on
+          - binary_sensor.tesla_sentry_mode
+          - binary_sensor.tesla_doors_open
+          - binary_sensor.tesla_frunk_open
+          - binary_sensor.tesla_trunk_open
+          - binary_sensor.tesla_charge_port_door_open
+          - binary_sensor.tesla_windows_open
+          - binary_sensor.tesla_park_brake
+          - binary_sensor.tesla_plugged_in
+          - binary_sensor.tesla_is_preconditioning
+          - binary_sensor.tesla_update_available
       entity_config:
         alarm_control_panel.home_monitoring:
           name: Home Monitoring
@@ -151,7 +166,7 @@ homekit_package:
           linked_battery_sensor: sensor.smartthings_library_motion_battery
           low_battery_threshold: 31
         binary_sensor.aqara_kitchen_fridge_door_contact:
-          name: Kitchen Refrigerato r Door
+          name: Kitchen Refrigerator Door
           linked_battery_sensor: sensor.aqara_kitchen_fridge_door_battery
           low_battery_threshold: 31
         binary_sensor.aqara_kitchen_pantry_door_left_contact:
@@ -236,6 +251,38 @@ homekit_package:
           name: House Door Temperature
           linked_battery_sensor: sensor.smartthings_door_contact_battery
           low_battery_threshold: 31
+        device_tracker.tesla_location:
+          name: Tesla Model Y
+        sensor.tesla_inside_temp:
+          name: Tesla Inside Temporature
+        sensor.tesla_outside_temp:
+          name: Tesla Outside Temporature
+        binary_sensor.tesla_is_user_present:
+          name: Tesla User present
+        binary_sensor.tesla_locked:
+          name: Tesla Unlocked
+        binary_sensor.tesla_is_climate_on:
+          name: Tesla Climate on
+        binary_sensor.tesla_sentry_mode:
+          name: Tesla Sentry mode
+        binary_sensor.tesla_doors_open:
+          name: Tesla Doors open
+        binary_sensor.tesla_frunk_open:
+          name: Tesla Frunk open
+        binary_sensor.tesla_trunk_open:
+          name: Tesla Trunk open
+        binary_sensor.tesla_charge_port_door_open:
+          name: Tesla Charge port open
+        binary_sensor.tesla_windows_open:
+          name: Tesla Windows open
+        binary_sensor.tesla_park_brake:
+          name: Tesla Park break
+        binary_sensor.tesla_plugged_in:
+          name: Tesla Plugged in
+        binary_sensor.tesla_is_preconditioning:
+          name: Tesla Preconditioning
+        binary_sensor.tesla_update_available:
+          name: Tesla Software Update Available
     - name: LG Webos Smart TV
       port: 21065
       mode: accessory
