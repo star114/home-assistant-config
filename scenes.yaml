@@ -2,7 +2,7 @@
   icon: "mdi:weather-night"
   entities:
     light.hej_3gang_bedroom_bed_light_top:
-      state: "on"
+      state: "off"
     light.hej_3gang_bedroom_light_bottom:
       state: "off"
     light.hej_3gang_bedroom_light_top:
@@ -43,8 +43,6 @@
     light.hej_3gang_library_light_center:
       state: "on"
     light.hej_3gang_kitchen_light_left_center:
-      state: "on"
-    switch.dawon_bedroom_light_plug:
       state: "on"
 - name: Away
   icon: "mdi:home-export-outline"
@@ -102,8 +100,6 @@
     light.hej_3gang_bedroom_bed_light_top:
       state: "on"
     light.hej_3gang_bedroom_light_bottom:
-      state: "on"
-    switch.dawon_bedroom_light_plug:
       state: "on"
     light.hej_3gang_bedroom_light_top:
       state: "off"
