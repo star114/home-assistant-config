@@ -59,6 +59,93 @@ cards:
       - type: horizontal-stack
         cards:
           - type: "custom:button-card"
+            name: 이번달
+            styles:
+              card:
+                - width: 40px
+                - height: 30px
+              name:
+                - text-align: start
+                - justify-self: center
+                - align-self: center
+                - font-size: 11px
+          - type: "custom:button-card"
+            name: 요금
+            label: |
+              [[[
+                return states['sensor.kwh2won'].state + " 원";
+              ]]]
+            tap_action:
+              entity: sensor.kwh2won
+              action: more-info
+            template: power_state
+          - type: "custom:button-card"
+            name: 전체
+            label: |
+              [[[
+                return states['sensor.shellyem_c45bbe5ff616_channel_1_monthly_energy'].state + " kWh";
+              ]]]
+            tap_action:
+              entity: sensor.shellyem_c45bbe5ff616_channel_1_monthly_energy
+              action: more-info
+            template: power_state
+          - type: "custom:button-card"
+            name: 인덕션
+            label: |
+              [[[
+                return states['sensor.shellyem_c45bbe5ff616_channel_2_monthly_energy_induction'].state + " kWh";
+              ]]]
+            tap_action:
+              entity: sensor.shellyem_c45bbe5ff616_channel_2_monthly_energy_induction
+              action: more-info
+            template: power_state
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            name: 지난달
+            styles:
+              card:
+                - width: 40px
+                - height: 30px
+              name:
+                - text-align: start
+                - justify-self: center
+                - align-self: center
+                - font-size: 11px
+          - type: "custom:button-card"
+            name: 요금
+            label: |
+              [[[
+                return states['sensor.kwh2won_last_month'].state + " 원";
+              ]]]
+            tap_action:
+              entity: sensor.kwh2won_last_month
+              action: more-info
+            template: power_state
+          - type: "custom:button-card"
+            name: 전체
+            label: |
+              [[[
+                return states['sensor.shellyem_c45bbe5ff616_channel_1_monthly_energy_last_month'].state + " kWh";
+              ]]]
+            tap_action:
+              entity: sensor.shellyem_c45bbe5ff616_channel_1_monthly_energy_last_month
+              action: more-info
+            template: power_state
+          - type: "custom:button-card"
+            name: 인덕션
+            label: |
+              [[[
+                return states['sensor.shellyem_c45bbe5ff616_channel_2_monthly_energy_induction_last_month'].state + " kWh";
+              ]]]
+            tap_action:
+              entity: sensor.shellyem_c45bbe5ff616_channel_2_monthly_energy_induction_last_month
+              action: more-info
+            template: power_state
+
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
             entity: binary_sensor.blitzwolf_kitchen_boiler_waterleak_water_leak
             template: waterleak_sensor
             variables:
