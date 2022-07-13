@@ -163,6 +163,97 @@ cards:
             name: 소켓4
             icon: mdi:power-socket-eu
             template: boolean_state_with_icon
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            entity_picture: /local/air-conditioner.png
+            name: Air conditioner
+            template: room_entity_picture
+            show_name: false
+            styles:
+              card:
+                - height: 40px
+          - type: "custom:button-card"
+            name: 에어컨
+            label: |
+              [[[
+                return states['sensor.dawon_bedroom_aircon_plug_power'].state + "w";
+              ]]]
+            tap_action:
+              entity: sensor.dawon_bedroom_aircon_plug_power
+              action: more-info
+            template: plug_power_state
+            styles:
+              card:
+                - height: 40px
+          - type: "custom:button-card"
+            entity: switch.dawon_bedroom_aircon_plug
+            template: plug_switch_button
+            styles:
+              card:
+                - height: 40px
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            entity: switch.jubang_eeokeon
+            name: 주방
+            icon: mdi:air-conditioner
+            template: boolean_state_with_icon
+          - type: "custom:button-card"
+            entity: switch.bedroom_ac
+            name: 안방
+            icon: mdi:air-conditioner
+            template: boolean_state_with_icon
+          - type: "custom:button-card"
+            entity: script.ac_mode
+            tap_action:
+              action: call-service
+              service: script.ac_mode
+            name: 모드
+            icon: mdi:radar
+            template: boolean_state_with_icon
+          - type: "custom:button-card"
+            entity: script.ac_temp_hotter
+            tap_action:
+              action: call-service
+              service: script.ac_temp_hotter
+            name: "+1"
+            icon: mdi:thermometer-chevron-up
+            template: boolean_state_with_icon
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            entity: script.ac_timer
+            tap_action:
+              action: call-service
+              service: script.ac_timer
+            name: 타이머
+            icon: mdi:timer
+            template: boolean_state_with_icon
+          - type: "custom:button-card"
+            entity: script.ac_fan_speed
+            tap_action:
+              action: call-service
+              service: script.ac_fan_speed
+            name: 바람세기
+            icon: mdi:fan
+            template: boolean_state_with_icon
+          - type: "custom:button-card"
+            entity: script.ac_cool_power
+            tap_action:
+              action: call-service
+              service: script.ac_cool_power
+            name: 쿨파워
+            icon: mdi:hydro-power
+            template: boolean_state_with_icon
+          - type: "custom:button-card"
+            entity: script.ac_temp_cooler
+            tap_action:
+              action: call-service
+              service: script.ac_temp_cooler
+            name: "-1"
+            icon: mdi:thermometer-chevron-down
+            template: boolean_state_with_icon
   - type: vertical-stack
     cards:
       - type: horizontal-stack
@@ -197,27 +288,7 @@ cards:
                 - width: 130px
                 - height: 30px
           - type: "custom:button-card"
-            name: 에어컨
-            label: |
-              [[[
-                return states['sensor.dawon_bedroom_aircon_plug_power'].state + "w";
-              ]]]
-            tap_action:
-              entity: sensor.dawon_bedroom_aircon_plug_power
-              action: more-info
-            template: plug_power_state
-          - type: "custom:button-card"
-            entity: switch.dawon_bedroom_aircon_plug
-            template: plug_switch_button
-      - type: horizontal-stack
-        cards:
-          - type: "custom:button-card"
-            styles:
-              card:
-                - width: 130px
-                - height: 30px
-          - type: "custom:button-card"
-            name: 라디에이터
+            name: 라디에이터/써큘레이터
             label: |
               [[[
                 return states['sensor.dawon_bedroom_radiater_plug_power'].state + "w";
