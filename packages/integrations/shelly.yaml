@@ -17,16 +17,16 @@ shelly_package:
         shellyem_c45bbe5ff616_channel_1_monthly_energy_last_month:
           friendly_name: "전력 전월 사용량"
           unit_of_measurement: kWh
-          value_template: "{{ state_attr('sensor.shellyem_c45bbe5ff616_channel_1_monthly_energy','last_period')|float }}"
+          value_template: "{{ state_attr('sensor.shellyem_c45bbe5ff616_channel_1_monthly_energy','last_period')|float(0) }}"
         shellyem_c45bbe5ff616_channel_2_monthly_energy_induction_last_month:
           friendly_name: "인덕션 전력 전월 사용량"
           unit_of_measurement: kWh
-          value_template: "{{ state_attr('sensor.shellyem_c45bbe5ff616_channel_2_monthly_energy_induction','last_period')|float }}"
+          value_template: "{{ state_attr('sensor.shellyem_c45bbe5ff616_channel_2_monthly_energy_induction','last_period')|float(0) }}"
         kwh2won:
           friendly_name: "현재 요금"
           icon_template: "mdi:cash-usd"
           unit_of_measurement: "won"
-          # {% set energy = states('sensor.pzemac_energy_monthly') |float %} # 사용전력량 (kWh)
+          # {% set energy = states('sensor.pzemac_energy_monthly') |float(0) %} # 사용전력량 (kWh)
           # {% set checkday = 11 %} # 검침일
           # {% set basicprice = [910, 1600, 7300] %} # 기본요금(원/호)
           # {% set kwhprice = [88.3, 182.9, 275.6] %} # 전력량 요금(원/kWh)
@@ -34,7 +34,7 @@ shelly_package:
           # {% set kwhsectionDown = [0, 300, 450] %} # 구간(kWh - 하계)
           # {% set adjustment = [-5, 5.3, -3] %} # 환경비용차감 + 기후환경요금 + 연료비조정액
           value_template: >
-            {% set energy = states('sensor.shellyem_c45bbe5ff616_channel_1_monthly_energy') |float %}
+            {% set energy = states('sensor.shellyem_c45bbe5ff616_channel_1_monthly_energy') |float(0) %}
             {% set checkday = 1 %}
             {% set basicprice = [910, 1600, 7300] %}
             {% set kwhprice = [88.3, 182.9, 275.6] %}
@@ -82,7 +82,7 @@ shelly_package:
           friendly_name: "전월 요금"
           icon_template: "mdi:cash-usd"
           unit_of_measurement: "won"
-          # {% set energy = states('sensor.pzemac_energy_monthly') |float %} # 사용전력량 (kWh)
+          # {% set energy = states('sensor.pzemac_energy_monthly') |float(0) %} # 사용전력량 (kWh)
           # {% set checkday = 11 %} # 검침일
           # {% set basicprice = [910, 1600, 7300] %} # 기본요금(원/호)
           # {% set kwhprice = [88.3, 182.9, 275.6] %} # 전력량 요금(원/kWh)
@@ -90,7 +90,7 @@ shelly_package:
           # {% set kwhsectionDown = [0, 300, 450] %} # 구간(kWh - 하계)
           # {% set adjustment = [-5, 5.3, -3] %} # 환경비용차감 + 기후환경요금 + 연료비조정액
           value_template: >
-            {% set energy = states('sensor.shellyem_c45bbe5ff616_channel_1_monthly_energy_last_month') |float %}
+            {% set energy = states('sensor.shellyem_c45bbe5ff616_channel_1_monthly_energy_last_month') |float(0) %}
             {% set checkday = 1 %}
             {% set basicprice = [910, 1600, 7300] %}
             {% set kwhprice = [88.3, 182.9, 275.6] %}
@@ -140,7 +140,7 @@ shelly_package:
       sensors:
         shellyem_c45bbe5ff616_channel_2_induction_in_use:
           friendly_name: "인덕션 사용중"
-          value_template: "{{ (states('sensor.shellyem_c45bbe5ff616_channel_2_power')|float) > 3 }}"
+          value_template: "{{ (states('sensor.shellyem_c45bbe5ff616_channel_2_power')|float(0)) > 3 }}"
 
   automation:
     - id: "send_notification_when_alarm_is_armed_away_and_induction_is_on"

@@ -97,7 +97,7 @@ homekit_package:
           name: Bathroom Plug
           type: outlet
         switch.dawon_bedroom_radiater_plug:
-          name: Bedroom Raidator Plug
+          name: Bedroom Radiator Plug
           type: outlet
         switch.dawon_bedroom_aircon_plug:
           name: Bedroom Air Conditioner Plug
