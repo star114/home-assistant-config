@@ -10,6 +10,15 @@ cards:
         show_header_toggle: false
         entities:
           - entity: input_select.themes
+      - type: entity
+        entity: input_text.morning_spotify_playlist_id
+        name: Morning spotify playlist id
+      - type: entity
+        entity: input_text.morning_ytube_music_playlist_id
+      - type: entities
+        entities:
+          - sensor.tv_on_today
+          - sensor.tv_on_this_week
       - type: custom:transmission-card
         hide_header: true
         hide_type: false

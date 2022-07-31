@@ -5,80 +5,59 @@ cards:
   - type: vertical-stack
     cards:
       - type: custom:mini-media-player
-        entity: media_player.bedroom
+        entity: media_player.spotify_seojin12
+        name: Seo Jin's Spotify
         artwork: cover
-        source: icon
-      - type: entity
-        entity: remote.bedroom
-  - type: vertical-stack
-    cards:
-      - type: custom:mini-media-player
-        entity: media_player.geurubseupikeo
-        artwork: cover
-        source: icon
-      - type: custom:mini-media-player
-        entity: media_player.anbang_seupikeo
-        artwork: cover
-        source: icon
-      - type: custom:mini-media-player
-        entity: media_player.jubang_seupikeo
-        artwork: cover
-        source: icon
-      - type: custom:mini-media-player
-        entity: media_player.raibeureori_seupikeo
-        artwork: cover
-        source: icon
-      - type: custom:mini-media-player
-        entity: media_player.galaxy_home_mini
-        artwork: cover
-        source: icon
-  - type: vertical-stack
-    cards:
+        hide:
+          volume: true
+          source: true
+          power_state: false
       - type: custom:mini-media-player
         entity: media_player.spotify_heesik_shin
         name: Heesik's Spotify
         artwork: cover
-        source: icon
-        shortcuts:
-          columns: 4 # Max buttons per row
-          buttons:
-            - name: Family Mix
-              type: service
-              id: spotcast.start
-              data:
-                entity_id: media_player.geurubseupikeo
-                uri: spotify:playlist:37i9dQZF1EgvNx9M6j10YE
-                random_song: true
-                shuffle: true
-                start_volume: 30
-            - name: Coffee House
-              type: service
-              id: spotcast.start
-              data:
-                entity_id: media_player.geurubseupikeo
-                uri: spotify:playlist:37i9dQZF1DX6ziVCJnEm59
-                random_song: true
-                shuffle: true
-                start_volume: 30
-            - name: Peaceful Piano
-              type: service
-              id: spotcast.start
-              data:
-                entity_id: media_player.geurubseupikeo
-                uri: spotify:playlist:37i9dQZF1DX4sWSpwq3LiO
-                random_song: true
-                shuffle: true
-                start_volume: 30
-      - type: custom:mini-media-player
-        entity: media_player.spotify_seojin12
-        name: Seo Jin's Spotify
-        artwork: cover
-        source: icon
+        hide:
+          volume: true
+          source: true
+          power_state: false
+        #shortcuts:
+        #  columns: 4 # Max buttons per row
+        #  buttons:
+        #    - name: Family Mix
+        #      type: service
+        #      id: spotcast.start
+        #      data:
+        #        entity_id: media_player.geurubseupikeo
+        #        uri: spotify:playlist:37i9dQZF1EgvNx9M6j10YE
+        #        random_song: true
+        #        shuffle: true
+        #        start_volume: 30
+        #    - name: Coffee House
+        #      type: service
+        #      id: spotcast.start
+        #      data:
+        #        entity_id: media_player.geurubseupikeo
+        #        uri: spotify:playlist:37i9dQZF1DX6ziVCJnEm59
+        #        random_song: true
+        #        shuffle: true
+        #        start_volume: 30
+        #    - name: Peaceful Piano
+        #      type: service
+        #      id: spotcast.start
+        #      data:
+        #        entity_id: media_player.geurubseupikeo
+        #        uri: spotify:playlist:37i9dQZF1DX4sWSpwq3LiO
+        #        random_song: true
+        #        shuffle: true
+        #        start_volume: 30
       - type: "custom:mini-media-player"
         entity: media_player.ytube_music_player
         name: Heesik's Youtube Music Player
         artwork: cover
-        source: icon
+        hide:
+          volume: true
+          source: true
+          power_state: false
         shortcuts:
           columns: 4
           buttons:
@@ -100,17 +79,190 @@ cards:
             - name: Piano
               type: playlist
               id: PLt_47Imx98wqc2_lOAg53v8Op-oks9KB5
-      - type: entity
-        entity: input_text.morning_spotify_playlist_id
-        name: Morning spotify playlist id
-      - type: entity
-        entity: input_text.morning_ytube_music_playlist_id
-  - type: vertical-stack
-    cards:
       - type: entities
         entities:
-          - sensor.tv_on_today
-          - sensor.tv_on_this_week
+          - type: custom:mini-media-player
+            entity: media_player.geurubseupikeo
+            group: true
+            source: icon
+            info: short
+            hide:
+              volume: true
+              power: true
+          - type: custom:mini-media-player
+            entity: media_player.anbang_seupikeo
+            group: true
+            hide:
+              controls: true
+          - type: custom:mini-media-player
+            entity: media_player.jubang_seupikeo
+            group: true
+            hide:
+              controls: true
+          - type: custom:mini-media-player
+            entity: media_player.raibeureori_seupikeo
+            group: true
+            hide:
+              controls: true
+      - type: custom:mini-media-player
+        entity: media_player.galaxy_home_mini
+        artwork: cover
+        source: icon
+        hide:
+          volume: true
+          source: true
+  - type: vertical-stack
+    cards:
+      - type: custom:mini-media-player
+        entity: media_player.bedroom
+        artwork: cover
+        source: icon
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: button
+                entity: remote.bedroom
+                icon: "mdi:menu-open"
+                name: Top Menu
+                show_icon: true
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    command: top_menu
+                    entity_id: remote.bedroom
+                hold_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    command: menu
+                    entity_id: remote.bedroom
+              - type: button
+                entity: remote.bedroom
+                hold_action:
+                  action: none
+                icon: "mdi:arrow-up"
+                name: Up arrow
+                show_icon: true
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    command: up
+                    entity_id: remote.bedroom
+              - type: button
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    command: volume_up
+                    entity_id: remote.bedroom
+                hold_action:
+                  action: none
+                show_icon: true
+                show_name: false
+                entity: remote.bedroom
+                name: Volume up
+                icon: "mdi:volume-plus"
+          - type: horizontal-stack
+            cards:
+              - type: button
+                entity: remote.bedroom
+                hold_action:
+                  action: none
+                icon: "mdi:arrow-left"
+                name: Left arrow
+                show_icon: true
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    command: left
+                    entity_id: remote.bedroom
+              - type: button
+                entity: remote.bedroom
+                icon: "mdi:apple"
+                name: Select
+                show_icon: true
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    command: select
+                    entity_id: remote.bedroom
+                hold_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    command: wakeup
+                    entity_id: remote.bedroom
+              - type: button
+                entity: remote.bedroom
+                hold_action:
+                  action: none
+                icon: "mdi:arrow-right"
+                name: Right arrow
+                show_icon: true
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    command: right
+                    entity_id: remote.bedroom
+          - type: horizontal-stack
+            cards:
+              - type: button
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    command: home
+                    entity_id: remote.bedroom
+                hold_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    command: home_hold
+                    entity_id: remote.bedroom
+                show_icon: true
+                show_name: false
+                entity: remote.bedroom
+                icon: "mdi:home"
+                name: Home
+              - type: button
+                entity: remote.bedroom
+                hold_action:
+                  action: none
+                icon: "mdi:arrow-down"
+                name: Down arrow
+                show_icon: true
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    command: down
+                    entity_id: remote.bedroom
+              - type: button
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    command: volume_down
+                    entity_id: remote.bedroom
+                hold_action:
+                  action: none
+                show_icon: true
+                show_name: false
+                entity: remote.bedroom
+                name: Volume down
+                icon: "mdi:volume-minus"
       - type: custom:mini-media-player
         entity: media_player.lg_webos_smart_tv
         artwork: cover
