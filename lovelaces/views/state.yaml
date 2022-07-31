@@ -27,7 +27,18 @@ cards:
       - type: horizontal-stack
         cards:
           - type: "custom:button-card"
-            name: 전체 전력
+            name: 현재
+            styles:
+              card:
+                - width: 40px
+                - height: 30px
+              name:
+                - text-align: start
+                - justify-self: center
+                - align-self: center
+                - font-size: 11px
+          - type: "custom:button-card"
+            name: 전력
             label: |
               [[[
                 return states['sensor.shellyem_c45bbe5ff616_channel_1_power'].state + "w";
@@ -142,68 +153,118 @@ cards:
               entity: sensor.shellyem_c45bbe5ff616_channel_2_monthly_energy_induction_last_month
               action: more-info
             template: power_state
-
       - type: horizontal-stack
         cards:
           - type: "custom:button-card"
-            entity: binary_sensor.blitzwolf_kitchen_boiler_waterleak_water_leak
-            template: waterleak_sensor
-            variables:
-              var_name: "보일러분배기"
+            name: 라디에이터/써큘레이터
+            label: |
+              [[[
+                return states['sensor.dawon_bedroom_radiater_plug_power'].state + "w";
+              ]]]
+            tap_action:
+              entity: sensor.dawon_bedroom_radiater_plug_power
+              action: more-info
+            template: plug_power_state
           - type: "custom:button-card"
-            entity: binary_sensor.blitzwolf_kitchen_sink_waterleak_water_leak
-            template: waterleak_sensor
-            variables:
-              var_name: "주방 싱크대"
+            entity: switch.dawon_bedroom_radiater_plug
+            template: plug_switch_button
           - type: "custom:button-card"
-            entity: binary_sensor.blitzwolf_bathroom_sink_waterleak_water_leak
-            template: waterleak_sensor
-            variables:
-              var_name: "화장실 세면대"
+            name: 공 조명
+            label: |
+              [[[
+                return states['sensor.dawon_bedroom_light_plug_power'].state + "w";
+              ]]]
+            tap_action:
+              entity: sensor.dawon_bedroom_light_plug_power
+              action: more-info
+            template: plug_power_state
           - type: "custom:button-card"
-            entity: binary_sensor.blitzwolf_bathroom_ceiling_waterleak_water_leak
-            template: waterleak_sensor
-            variables:
-              var_name: "화장실 천장"
-          - type: "custom:button-card"
-            entity: binary_sensor.blitzwolf_laundryroom_waterleak_water_leak
-            template: waterleak_sensor
-            variables:
-              var_name: "베란다"
+            entity: switch.dawon_bedroom_light_plug
+            template: plug_switch_button
       - type: horizontal-stack
         cards:
           - type: "custom:button-card"
-            units: CAQI
-            entity: sensor.samseong_eeomoniteo_air_quality
-            template: small_state
-            variables:
-              var_name: "공기질"
-              var_value_boundary: "4"
+            name: 식기세척기
+            label: |
+              [[[
+                return states['sensor.dawon_kitchen_dishwasher_plug_power'].state + "w";
+              ]]]
+            tap_action:
+              entity: sensor.dawon_kitchen_dishwasher_plug_power
+              action: more-info
+            template: plug_power_state
           - type: "custom:button-card"
-            entity: sensor.samseong_eeomoniteo_odor_sensor
-            template: small_state
-            variables:
-              var_name: "TVOC"
-              var_value_boundary: "3"
+            entity: switch.dawon_kitchen_dishwasher_plug
+            template: plug_switch_button
           - type: "custom:button-card"
-            entity: sensor.samseong_eeomoniteo_dust_level
-            template: small_state
-            variables:
-              var_name: "PM 10"
-              var_value_boundary: "81"
+            name: 음식물 처리기
+            label: |
+              [[[
+                return states['sensor.dawon_kitchen_foodwaste_plug_power'].state + "w";
+              ]]]
+            tap_action:
+              entity: sensor.dawon_kitchen_foodwaste_plug_power
+              action: more-info
+            template: plug_power_state
           - type: "custom:button-card"
-            entity: sensor.samseong_eeomoniteo_fine_dust_level
-            name: PM 2.5
-            template: small_state
-            variables:
-              var_name: "PM 2.5"
-              var_value_boundary: "36"
+            entity: switch.dawon_kitchen_foodwaste_plug
+            template: plug_switch_button
+      - type: horizontal-stack
+        cards:
           - type: "custom:button-card"
-            entity: sensor.samseong_eeomoniteo_carbon_dioxide_measurement
-            template: small_state
-            variables:
-              var_name: "CO2"
-              var_value_boundary: "1500"
+            name: 환기용 팬
+            label: |
+              [[[
+                return states['sensor.dawon_kitchen_fan_plug_power'].state + "w";
+              ]]]
+            tap_action:
+              entity: sensor.dawon_kitchen_fan_plug_power
+              action: more-info
+            template: plug_power_state
+          - type: "custom:button-card"
+            entity: switch.dawon_kitchen_fan_plug
+            template: plug_switch_button
+          - type: "custom:button-card"
+            name: 밥솥
+            label: |
+              [[[
+                return states['sensor.dawon_kitchen_cooker_plug_power'].state + "w";
+              ]]]
+            tap_action:
+              entity: sensor.dawon_kitchen_cooker_plug_power
+              action: more-info
+            template: plug_power_state
+          - type: "custom:button-card"
+            entity: switch.dawon_kitchen_cooker_plug
+            template: plug_switch_button
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            name: 비데
+            label: |
+              [[[
+                return states['sensor.dawon_bathroom_plug_power'].state + "w";
+              ]]]
+            tap_action:
+              entity: sensor.dawon_bathroom_plug_power
+              action: more-info
+            template: plug_power_state
+          - type: "custom:button-card"
+            entity: switch.dawon_bathroom_plug
+            template: plug_switch_button
+          - type: "custom:button-card"
+            name: 헤어드라이어
+            label: |
+              [[[
+                return states['sensor.dawon_dressroom_plug_power'].state + "w";
+              ]]]
+            tap_action:
+              entity: sensor.dawon_dressroom_plug_power
+              action: more-info
+            template: plug_power_state
+          - type: "custom:button-card"
+            entity: switch.dawon_dressroom_plug
+            template: plug_switch_button
       - type: horizontal-stack
         cards:
           - type: "custom:button-card"
@@ -346,6 +407,67 @@ cards:
       - type: horizontal-stack
         cards:
           - type: "custom:button-card"
+            units: CAQI
+            entity: sensor.samseong_eeomoniteo_air_quality
+            template: small_state
+            variables:
+              var_name: "공기질"
+              var_value_boundary: "4"
+          - type: "custom:button-card"
+            entity: sensor.samseong_eeomoniteo_odor_sensor
+            template: small_state
+            variables:
+              var_name: "TVOC"
+              var_value_boundary: "3"
+          - type: "custom:button-card"
+            entity: sensor.samseong_eeomoniteo_dust_level
+            template: small_state
+            variables:
+              var_name: "PM 10"
+              var_value_boundary: "81"
+          - type: "custom:button-card"
+            entity: sensor.samseong_eeomoniteo_fine_dust_level
+            name: PM 2.5
+            template: small_state
+            variables:
+              var_name: "PM 2.5"
+              var_value_boundary: "36"
+          - type: "custom:button-card"
+            entity: sensor.samseong_eeomoniteo_carbon_dioxide_measurement
+            template: small_state
+            variables:
+              var_name: "CO2"
+              var_value_boundary: "1500"
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            entity: binary_sensor.blitzwolf_kitchen_boiler_waterleak_water_leak
+            template: waterleak_sensor
+            variables:
+              var_name: "보일러분배기"
+          - type: "custom:button-card"
+            entity: binary_sensor.blitzwolf_kitchen_sink_waterleak_water_leak
+            template: waterleak_sensor
+            variables:
+              var_name: "주방 싱크대"
+          - type: "custom:button-card"
+            entity: binary_sensor.blitzwolf_bathroom_sink_waterleak_water_leak
+            template: waterleak_sensor
+            variables:
+              var_name: "화장실 세면대"
+          - type: "custom:button-card"
+            entity: binary_sensor.blitzwolf_bathroom_ceiling_waterleak_water_leak
+            template: waterleak_sensor
+            variables:
+              var_name: "화장실 천장"
+          - type: "custom:button-card"
+            entity: binary_sensor.blitzwolf_laundryroom_waterleak_water_leak
+            template: waterleak_sensor
+            variables:
+              var_name: "베란다"
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
             entity_picture: /local/bedroom.png
             name: Bedroom
             template: room_entity_picture
@@ -367,46 +489,6 @@ cards:
             variables:
               var_name: "곰팡이척도"
               var_value_boundary: "80"
-      - type: horizontal-stack
-        cards:
-          - type: "custom:button-card"
-            styles:
-              card:
-                - width: 130px
-                - height: 30px
-          - type: "custom:button-card"
-            name: 라디에이터/써큘레이터
-            label: |
-              [[[
-                return states['sensor.dawon_bedroom_radiater_plug_power'].state + "w";
-              ]]]
-            tap_action:
-              entity: sensor.dawon_bedroom_radiater_plug_power
-              action: more-info
-            template: plug_power_state
-          - type: "custom:button-card"
-            entity: switch.dawon_bedroom_radiater_plug
-            template: plug_switch_button
-      - type: horizontal-stack
-        cards:
-          - type: "custom:button-card"
-            styles:
-              card:
-                - width: 130px
-                - height: 30px
-          - type: "custom:button-card"
-            name: 공 조명
-            label: |
-              [[[
-                return states['sensor.dawon_bedroom_light_plug_power'].state + "w";
-              ]]]
-            tap_action:
-              entity: sensor.dawon_bedroom_light_plug_power
-              action: more-info
-            template: plug_power_state
-          - type: "custom:button-card"
-            entity: switch.dawon_bedroom_light_plug
-            template: plug_switch_button
       - type: horizontal-stack
         cards:
           - type: "custom:button-card"
@@ -434,86 +516,6 @@ cards:
       - type: horizontal-stack
         cards:
           - type: "custom:button-card"
-            styles:
-              card:
-                - width: 130px
-                - height: 30px
-          - type: "custom:button-card"
-            name: 식기세척기
-            label: |
-              [[[
-                return states['sensor.dawon_kitchen_dishwasher_plug_power'].state + "w";
-              ]]]
-            tap_action:
-              entity: sensor.dawon_kitchen_dishwasher_plug_power
-              action: more-info
-            template: plug_power_state
-          - type: "custom:button-card"
-            entity: switch.dawon_kitchen_dishwasher_plug
-            template: plug_switch_button
-      - type: horizontal-stack
-        cards:
-          - type: "custom:button-card"
-            styles:
-              card:
-                - width: 130px
-                - height: 30px
-          - type: "custom:button-card"
-            name: 음식물 처리기
-            label: |
-              [[[
-                return states['sensor.dawon_kitchen_foodwaste_plug_power'].state + "w";
-              ]]]
-            tap_action:
-              entity: sensor.dawon_kitchen_foodwaste_plug_power
-              action: more-info
-            template: plug_power_state
-          - type: "custom:button-card"
-            entity: switch.dawon_kitchen_foodwaste_plug
-            template: plug_switch_button
-      - type: horizontal-stack
-        cards:
-          - type: "custom:button-card"
-            styles:
-              card:
-                - width: 130px
-                - height: 30px
-          - type: "custom:button-card"
-            name: 환기용 팬
-            label: |
-              [[[
-                return states['sensor.dawon_kitchen_fan_plug_power'].state + "w";
-              ]]]
-            tap_action:
-              entity: sensor.dawon_kitchen_fan_plug_power
-              action: more-info
-            template: plug_power_state
-          - type: "custom:button-card"
-            entity: switch.dawon_kitchen_fan_plug
-            template: plug_switch_button
-      - type: horizontal-stack
-        cards:
-          - type: "custom:button-card"
-            styles:
-              card:
-                - width: 130px
-                - height: 30px
-          - type: "custom:button-card"
-            name: 밥솥
-            label: |
-              [[[
-                return states['sensor.dawon_kitchen_cooker_plug_power'].state + "w";
-              ]]]
-            tap_action:
-              entity: sensor.dawon_kitchen_cooker_plug_power
-              action: more-info
-            template: plug_power_state
-          - type: "custom:button-card"
-            entity: switch.dawon_kitchen_cooker_plug
-            template: plug_switch_button
-      - type: horizontal-stack
-        cards:
-          - type: "custom:button-card"
             entity_picture: /local/bathroom.png
             name: Bathroom
             template: room_entity_picture
@@ -538,26 +540,6 @@ cards:
       - type: horizontal-stack
         cards:
           - type: "custom:button-card"
-            styles:
-              card:
-                - width: 130px
-                - height: 30px
-          - type: "custom:button-card"
-            name: 비데
-            label: |
-              [[[
-                return states['sensor.dawon_bathroom_plug_power'].state + "w";
-              ]]]
-            tap_action:
-              entity: sensor.dawon_bathroom_plug_power
-              action: more-info
-            template: plug_power_state
-          - type: "custom:button-card"
-            entity: switch.dawon_bathroom_plug
-            template: plug_switch_button
-      - type: horizontal-stack
-        cards:
-          - type: "custom:button-card"
             entity_picture: /local/dressroom.png
             name: Dressroom
             template: room_entity_picture
@@ -576,26 +558,6 @@ cards:
             styles:
               card:
                 - height: 60px
-      - type: horizontal-stack
-        cards:
-          - type: "custom:button-card"
-            styles:
-              card:
-                - width: 130px
-                - height: 30px
-          - type: "custom:button-card"
-            name: 헤어드라이어
-            label: |
-              [[[
-                return states['sensor.dawon_dressroom_plug_power'].state + "w";
-              ]]]
-            tap_action:
-              entity: sensor.dawon_dressroom_plug_power
-              action: more-info
-            template: plug_power_state
-          - type: "custom:button-card"
-            entity: switch.dawon_dressroom_plug
-            template: plug_switch_button
       - type: horizontal-stack
         cards:
           - type: "custom:button-card"
