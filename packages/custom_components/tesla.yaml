@@ -11,3 +11,51 @@ tesla_package:
           data:
             title: "🆕 새로운 테슬라 소프트웨어 업데이트 알림"
             message: "현재 사용중인 버전은 {{ states('sensor.tesla_version') }} 입니다. {{ states('sensor.tesla_update_version') }} 으로 업데이트 하세요."
+
+    - id: "notify_tesla_geofence_home"
+      alias: Notify tesla geofence home
+      trigger:
+        - platform: state
+          entity_id: sensor.tesla_geofence
+          to: "Home"
+      action:
+        - service: notify.notify_telegram
+          data:
+            title: "🚘 드림이 집 도착"
+            message: "드림이의 위치가 집 근처로 확인됩니다."
+
+    - id: "notify_tesla_geofence_away"
+      alias: Notify tesla geofence away
+      trigger:
+        - platform: state
+          entity_id: sensor.tesla_geofence
+          from: "Home"
+      action:
+        - service: notify.notify_telegram
+          data:
+            title: "🚘 드림이 집 출발"
+            message: "드림이의 위치가 집에서 벗어났습니다."
+
+    - id: "notify_tesla_charge_cable_on"
+      alias: Notify tesla charge cable on
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.tesla_plugged_in
+          to: "On"
+      action:
+        - service: notify.notify_telegram
+          data:
+            title: "🚘 드림이 충전 알림"
+            message: "충전구에 케이블이 연결되었습니다."
+
+    - id: "notify_tesla_charge_cable_off"
+      alias: Notify tesla charge cable off
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.tesla_plugged_in
+          to: "Off"
+      action:
+        - service: notify.notify_telegram
+          data:
+            title: "🚘 드림이 충전 알림"
+            message: "충전구에 케이블이 분리되었습니다."

@@ -62,3 +62,9 @@ lovelace:
       type: module
     - url: /local/community/korean-workday-card/korean-workday-card.js
       type: module
+    - url: /local/community/mini-graph-card/mini-graph-card-bundle.js
+      type: module
+    - url: /local/community/simple-thermostat/simple-thermostat.js
+      type: module
+    - url: /local/community/bar-card/bar-card.js
+      type: module

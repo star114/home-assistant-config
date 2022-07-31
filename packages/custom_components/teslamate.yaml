@@ -192,6 +192,26 @@ teslamate_package:
         unit_of_measurement: h
         icon: mdi:clock-outline
 
+      - name: tesla_tpms_pressure_fl
+        state_topic: "teslamate/cars/1/tpms_pressure_fl"
+        unit_of_measurement: bar
+        icon: mdi:tire
+
+      - name: tesla_tpms_pressure_fr
+        state_topic: "teslamate/cars/1/tpms_pressure_fr"
+        unit_of_measurement: bar
+        icon: mdi:tire
+
+      - name: tesla_tpms_pressure_rl
+        state_topic: "teslamate/cars/1/tpms_pressure_rl"
+        unit_of_measurement: bar
+        icon: mdi:tire
+
+      - name: tesla_tpms_pressure_rr
+        state_topic: "teslamate/cars/1/tpms_pressure_rr"
+        unit_of_measurement: bar
+        icon: mdi:tire
+
     binary_sensor:
       - name: tesla_healthy
         state_topic: "teslamate/cars/1/healthy"
