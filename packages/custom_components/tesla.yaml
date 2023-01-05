@@ -41,11 +41,11 @@ tesla_package:
       trigger:
         - platform: state
           entity_id: binary_sensor.tesla_plugged_in
-          to: "On"
+          to: "on"
       action:
         - service: notify.notify_telegram
           data:
-            title: "🚘 드림이 충전 알림"
+            title: "🚘 드림이 충전 케이블 알림"
             message: "충전구에 케이블이 연결되었습니다."
 
     - id: "notify_tesla_charge_cable_off"
@@ -53,9 +53,41 @@ tesla_package:
       trigger:
         - platform: state
           entity_id: binary_sensor.tesla_plugged_in
-          to: "Off"
+          to: "off"
       action:
         - service: notify.notify_telegram
           data:
-            title: "🚘 드림이 충전 알림"
+            title: "🚘 드림이 충전 케이블 알림"
             message: "충전구에 케이블이 분리되었습니다."
+
+    - id: "notify_tesla_charge_start"
+      alias: Notify tesla charge start
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.tesla_time_to_full_charge
+          above: 0.2
+      condition:
+        - condition: state
+          entity_id: binary_sensor.tesla_plugged_in
+          state: "on"
+      action:
+        - service: notify.notify_telegram
+          data:
+            title: "🚘 드림이 충전 시작 알림"
+            message: "충전이 시작되었습니다. 충전 한도는 {{ states('sensor.tesla_charge_limit_soc') }} % 이고 완료까지 {{ states('sensor.tesla_time_to_full_charge') }} 시간 남았습니다."
+
+    - id: "notify_tesla_charge_end"
+      alias: Notify tesla charge end
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.tesla_time_to_full_charge
+          below: 0.1
+      condition:
+        - condition: state
+          entity_id: binary_sensor.tesla_plugged_in
+          state: "on"
+      action:
+        - service: notify.notify_telegram
+          data:
+            title: "🚘 드림이 충전 종료 알림"
+            message: "충전이 완료되었습니다. 총 충전된 양은 {{ states('sensor.tesla_charge_energy_added') }} kWh 입니다."
