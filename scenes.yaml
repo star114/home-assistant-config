@@ -35,8 +35,8 @@
       state: "off"
     switch.lellki_library_multi_outlets_l3:
       state: "off"
-    switch.dawon_bedroom_light_plug:
-      state: "off"
+    #switch.dawon_bedroom_light_plug:
+    #  state: "off"
 - name: Morning
   icon: "mdi:weather-sunny"
   entities:
@@ -81,8 +81,8 @@
       state: "off"
     switch.lellki_library_multi_outlets_l3:
       state: "off"
-    switch.dawon_bedroom_light_plug:
-      state: "off"
+    #switch.dawon_bedroom_light_plug:
+    #  state: "off"
     switch.dawon_bedroom_radiater_plug:
       state: "off"
 - name: Home

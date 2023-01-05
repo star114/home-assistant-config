@@ -8,6 +8,7 @@ homeassistant:
   elevation: !secret elevation
   unit_system: !secret unit_system
   currency: !secret currency
+  country: !secret country
   time_zone: !secret time_zone
   external_url: !secret external_url
   internal_url: !secret internal_url
