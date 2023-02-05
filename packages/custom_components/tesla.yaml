@@ -10,7 +10,7 @@ tesla_package:
         - service: notify.notify_telegram
           data:
             title: "🆕 새로운 테슬라 소프트웨어 업데이트 알림"
-            message: "현재 사용중인 버전은 {{ states('sensor.tesla_version') }} 입니다. {{ states('sensor.tesla_update_version') }} 으로 업데이트 하세요."
+            message: "현재 사용중인 버전은 {{ states('sensor.tesla_version') }} 입니다. 새로운 버전으로 업데이트 하세요."
 
     - id: "notify_tesla_geofence_home"
       alias: Notify tesla geofence home
@@ -66,10 +66,6 @@ tesla_package:
         - platform: numeric_state
           entity_id: sensor.tesla_time_to_full_charge
           above: 0.2
-      condition:
-        - condition: state
-          entity_id: binary_sensor.tesla_plugged_in
-          state: "on"
       action:
         - service: notify.notify_telegram
           data:
@@ -82,10 +78,6 @@ tesla_package:
         - platform: numeric_state
           entity_id: sensor.tesla_time_to_full_charge
           below: 0.1
-      condition:
-        - condition: state
-          entity_id: binary_sensor.tesla_plugged_in
-          state: "on"
       action:
         - service: notify.notify_telegram
           data:

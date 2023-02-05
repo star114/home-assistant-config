@@ -444,13 +444,13 @@ cards:
             name: Rear Left
           - entity: sensor.tesla_tpms_pressure_rr
             name: Rear Right
+
+  - type: vertical-stack
+    cards:
       - type: map
         default_zoom: 12
         entities:
           - device_tracker.tesla_location
-
-  - type: vertical-stack
-    cards:
       - type: picture-elements
         image: /local/tesla-supercharger-image.png
         elements:
@@ -657,103 +657,3 @@ cards:
               transform: initial
               font-size: 1em
               line-height: 2em
-
-      - type: entities
-        title: Battery & Range
-        entities:
-          - entity: sensor.deurim_battery_sensor
-            name: Battery
-          - entity: binary_sensor.deurim_charger_sensor
-            name: Charger
-          - entity: sensor.deurim_charging_rate_sensor
-            name: Charging Rate
-      - type: "custom:bar-card"
-        width: 70%
-        entities:
-          - name: Battery
-            entity: sensor.deurim_battery_sensor
-          - name: Range
-            entity: sensor.deurim_range_sensor
-            max: 600
-        positions:
-          icon: "off"
-          indicator: inside
-          name: outside
-      - type: custom:mini-graph-card
-        name: Battery & Range
-        points_per_hour: 2
-        icon: "mdi:battery"
-        entities:
-          - entity: sensor.deurim_battery_sensor
-            name: Battery
-          - entity: sensor.deurim_range_sensor
-            name: Range
-      - type: "custom:simple-thermostat"
-        entity: climate.deurim_hvac_climate_system
-        name: Climate
-        header: false
-        control:
-          hvac:
-            "heat_cool":
-              name: "Heat/Cool"
-          preset:
-            "normal":
-              name: "Normal"
-            "defrost":
-              name: "Defrost"
-      - type: custom:mini-graph-card
-        name: Temperature
-        points_per_hour: 2
-        icon: "mdi:battery"
-        entities:
-          - entity: sensor.deurim_temperature_sensor_inside
-            name: Inside
-          - entity: sensor.deurim_temperature_sensor_outside
-            name: Outside
-        line_color: blue
-  - type: vertical-stack
-    cards:
-      - type: entities
-        title: Locks
-        entities:
-          - entity: lock.deurim_door_lock
-            name: Doors
-          - entity: lock.deurim_charger_door_lock
-            name: Charger Door
-          - entity: lock.deurim_frunk_lock
-            name: Frunk
-          - entity: lock.deurim_trunk_lock
-            name: Trunk
-      - type: entities
-        title: Heated Seats
-        entities:
-          - entity: select.deurim_heated_seat_left
-            name: Left
-          - entity: select.deurim_heated_seat_right
-            name: Right
-          - entity: select.deurim_heated_seat_rear_left
-            name: Rear Left
-          - entity: select.deurim_heated_seat_rear_center
-            name: Reat Center
-          - entity: select.deurim_heated_seat_rear_right
-            name: Reat Right
-      - type: entities
-        title: Switches
-        entities:
-          - entity: switch.deurim_heated_steering_switch
-            name: Heated Steering
-          - entity: switch.deurim_charger_switch
-            name: Charger
-          - entity: switch.deurim_maxrange_switch
-            name: Max Range
-          - entity: switch.deurim_sentry_mode_switch
-            name: Sentry Mode
-          - entity: switch.deurim_polling_switch
-            name: Data Polling
-      - type: entities
-        title: Buttons
-        entities:
-          - entity: button.deurim_horn
-            name: Horn
-          - entity: button.deurim_flash_lights
-            name: Flash lights
