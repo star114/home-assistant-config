@@ -60,7 +60,141 @@ cards:
           - entity: sensor.network_throughput_in_eno1
           - entity: sensor.network_throughput_out_eno1
         hours_to_show: 12
-        refresh_interval: 
+        refresh_interval: 60
+  - type: vertical-stack
+    title: ESXi
+    cards:
+      ## button card for a host. Uses esxi_stats_general and esxi_stats_hosts templates above
+      - type: custom:button-card
+        entity: sensor.esxi_vmhost_localhost_localdomain
+        name: ESXi host
+        template: esxi_stats_hosts
+        custom_fields:
+          uptime: >
+            [[[
+              return `<ha-icon
+                icon="mdi:server"
+                style="width: 12px; height: 12px; color: deepskyblue;">
+                </ha-icon><span><span style="color: var(--text-color-sensor);">
+                ${ states['sensor.esxi_vmhost_localhost_localdomain'].attributes.uptime_hours } hours
+                </span></span>`
+            ]]]
+          version: >
+            [[[
+              return `<ha-icon
+                icon="mdi:server"
+                style="width: 12px; height: 12px; color: deepskyblue;">
+                </ha-icon><span> Version: <span style="color: var(--text-color-sensor);">
+                  ${ states['sensor.esxi_vmhost_localhost_localdomain'].attributes.version }
+                </span></span>`
+            ]]]                 
+          cpu_total: >
+            [[[
+              return `<ha-icon
+                icon="mdi:server"
+                style="width: 12px; height: 12px; color: deepskyblue;">
+                </ha-icon><span> CPU Cap: <span style="color: var(--text-color-sensor);">
+                ${ states['sensor.esxi_vmhost_localhost_localdomain'].attributes.cpuusage_ghz } / 
+                ${ states['sensor.esxi_vmhost_localhost_localdomain'].attributes.cputotal_ghz } GHz</span></span>`
+            ]]]
+          mem_total: >
+            [[[
+              return `<ha-icon
+                icon="mdi:server"
+                style="width: 12px; height: 12px; color: deepskyblue;">
+                </ha-icon><span> Memory: <span style="color: var(--text-color-sensor);">
+                ${ states['sensor.esxi_vmhost_localhost_localdomain'].attributes.memusage_gb } / 
+                ${ states['sensor.esxi_vmhost_localhost_localdomain'].attributes.memtotal_gb } GB</span></span>`
+            ]]]
+      - type: horizontal-stack
+        cards:
+          ## button card for a datastore. Uses esxi_stats_general and esxi_stats_datastore templates above
+          - type: custom:button-card
+            entity: sensor.esxi_datastore_datastore1
+            name: ESXi datastore
+            template: esxi_stats_datastores
+            custom_fields:
+              free: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:server"
+                    style="width: 12px; height: 12px; color: deepskyblue;">
+                    </ha-icon><span><span style="color: var(--text-color-sensor);">
+                    ${states['sensor.esxi_datastore_datastore1'].attributes.free_space_gb}</span></span>`
+                ]]]
+              capacity: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:server"
+                    style="width: 12px; height: 12px; color: deepskyblue;">
+                    </ha-icon><span> Capacity: <span style="color: var(--text-color-sensor);">
+                    ${states['sensor.esxi_datastore_datastore1'].attributes.total_space_gb}</span></span>`
+                ]]]                 
+              hosts: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:server"
+                    style="width: 12px; height: 12px; color: deepskyblue;">
+                    </ha-icon><span> Hosts: <span style="color: var(--text-color-sensor);">
+                    ${states['sensor.esxi_datastore_datastore1'].attributes.connected_hosts}</span></span>`
+                ]]]
+              vms: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:server"
+                    style="width: 12px; height: 12px; color: deepskyblue;">
+                    </ha-icon><span> VMs: <span style="color: var(--text-color-sensor);">
+                    ${states['sensor.esxi_datastore_datastore1'].attributes.virtual_machines}</span></span>`
+                ]]]
+
+          ## button card for a virtual machine. Uses esxi_stats_general and esxi_stats_vm templates above
+          - type: custom:button-card
+            entity: sensor.esxi_vm_ubuntu
+            name: VM Ubuntu
+            template: esxi_stats_vm
+            styles:
+              icon:
+                - color: >
+                    [[[
+                      if ( states['sensor.esxi_vm_ubuntu'].attributes.status == "green")
+                        return "green";
+                      if ( states['sensor.esxi_vm_ubuntu'].attributes.status == "warning" )
+                        return "yellow";
+                      return "red";
+                    ]]]
+            custom_fields:
+              uptime: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:arrow-up"
+                    style="width: 12px; height: 12px; color: deepskyblue;">
+                    </ha-icon><span><span style="color: var(--text-color-sensor);">
+                    ${states['sensor.esxi_vm_ubuntu'].attributes.uptime_hours}</span></span>`
+                ]]]
+              cpu: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:server"
+                    style="width: 12px; height: 12px; color: deepskyblue;">
+                    </ha-icon><span>CPU: <span style="color: var(--text-color-sensor);">
+                    ${states['sensor.esxi_vm_ubuntu'].attributes.cpu_count}</span></span>`
+                ]]]
+              ram: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:memory"
+                    style="width: 12px; height: 12px; color: deepskyblue;">
+                    </ha-icon><span>Mem: <span style="color: var(--text-color-sensor);">
+                    ${states['sensor.esxi_vm_ubuntu'].attributes.memory_allocated_mb} MB</span></span>`
+                ]]]
+              state: >
+                [[[
+                  return `<ha-icon
+                    icon="mdi:harddisk"
+                    style="width: 12px; height: 12px; color: deepskyblue;">
+                    </ha-icon><span>State: <span style="color: var(--text-color-sensor);">
+                    ${states['sensor.esxi_vm_ubuntu'].attributes.state}</span></span>`
+                ]]]
   - type: entities
     title: Zigbee2MQTT
     show_header_toggle: false
