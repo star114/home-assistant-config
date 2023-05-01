@@ -10,7 +10,7 @@ cards:
         elements:
           #Left Top
           - type: state-icon
-            entity: binary_sensor.tesla_charge_port_door_open
+            entity: switch.deurim_charger
             style:
               top: 0px
               left: 0px
@@ -19,7 +19,7 @@ cards:
               font-size: 1em
               line-height: 2em
           - type: state-label
-            entity: binary_sensor.tesla_charge_port_door_open
+            entity: switch.deurim_charger
             prefix: "Charge Port : "
             style:
               top: 0px
@@ -30,7 +30,7 @@ cards:
               line-height: 2em
 
           - type: state-icon
-            entity: binary_sensor.tesla_windows_open
+            entity: cover.deurim_windows
             style:
               top: 23px
               left: 0
@@ -39,7 +39,7 @@ cards:
               font-size: 1em
               line-height: 2em
           - type: state-label
-            entity: binary_sensor.tesla_windows_open
+            entity: cover.deurim_windows
             prefix: "Windows : "
             style:
               top: 23px
@@ -50,7 +50,7 @@ cards:
               line-height: 2em
 
           - type: state-icon
-            entity: binary_sensor.tesla_doors_open
+            entity: binary_sensor.deurim_doors
             style:
               top: 46px
               left: 0
@@ -59,7 +59,7 @@ cards:
               font-size: 1em
               line-height: 2em
           - type: state-label
-            entity: binary_sensor.tesla_doors_open
+            entity: binary_sensor.deurim_doors
             prefix: "Doors : "
             style:
               top: 46px
@@ -70,7 +70,7 @@ cards:
               line-height: 2em
 
           - type: state-icon
-            entity: binary_sensor.tesla_frunk_open
+            entity: cover.deurim_frunk
             style:
               top: 69px
               left: 0px
@@ -79,7 +79,7 @@ cards:
               font-size: 1em
               line-height: 2em
           - type: state-label
-            entity: binary_sensor.tesla_frunk_open
+            entity: cover.deurim_frunk
             prefix: "Frunk : "
             style:
               top: 69px
@@ -90,7 +90,7 @@ cards:
               line-height: 2em
 
           - type: state-icon
-            entity: binary_sensor.tesla_trunk_open
+            entity: cover.deurim_trunk
             style:
               top: 92px
               left: 0px
@@ -99,7 +99,7 @@ cards:
               font-size: 1em
               line-height: 2em
           - type: state-label
-            entity: binary_sensor.tesla_trunk_open
+            entity: cover.deurim_trunk
             prefix: "Trunk : "
             style:
               top: 92px
@@ -111,7 +111,7 @@ cards:
 
           #Left Bottom
           - type: state-icon
-            entity: sensor.tesla_charge_limit_soc
+            entity: number.deurim_charge_limit
             style:
               bottom: 0px
               left: 0px
@@ -120,7 +120,7 @@ cards:
               font-size: 1em
               line-height: 2em
           - type: state-label
-            entity: sensor.tesla_charge_limit_soc
+            entity: number.deurim_charge_limit
             prefix: "Charge Limit : "
             style:
               bottom: -4px
@@ -131,7 +131,7 @@ cards:
               line-height: 2em
 
           - type: state-icon
-            entity: sensor.tesla_est_battery_range_km
+            entity: sensor.deurim_range
             style:
               bottom: 23px
               left: 0px
@@ -140,7 +140,7 @@ cards:
               font-size: 1em
               line-height: 2em
           - type: state-label
-            entity: sensor.tesla_est_battery_range_km
+            entity: sensor.deurim_range
             prefix: "Range : "
             style:
               bottom: 19px
@@ -151,7 +151,7 @@ cards:
               line-height: 2em
 
           - type: state-icon
-            entity: sensor.tesla_battery_level
+            entity: sensor.deurim_battery
             style:
               bottom: 46px
               left: 0px
@@ -160,7 +160,7 @@ cards:
               font-size: 1em
               line-height: 2em
           - type: state-label
-            entity: sensor.tesla_battery_level
+            entity: sensor.deurim_battery
             prefix: "Battery : "
             style:
               bottom: 42px
@@ -171,7 +171,7 @@ cards:
               line-height: 2em
 
           - type: state-icon
-            entity: sensor.tesla_odometer
+            entity: sensor.deurim_odometer
             style:
               bottom: 69px
               left: 0px
@@ -180,7 +180,7 @@ cards:
               font-size: 1em
               line-height: 2em
           - type: state-label
-            entity: sensor.tesla_odometer
+            entity: sensor.deurim_odometer
             prefix: "Odo : "
             style:
               bottom: 65px
@@ -192,7 +192,7 @@ cards:
 
           #Right Top
           - type: state-icon
-            entity: binary_sensor.tesla_locked
+            entity: lock.deurim_doors
             style:
               top: 0px
               right: 0px
@@ -201,7 +201,7 @@ cards:
               font-size: 1em
               line-height: 2em
           - type: state-label
-            entity: binary_sensor.tesla_locked
+            entity: lock.deurim_doors
             prefix: "Security : "
             style:
               top: 0px
@@ -212,7 +212,7 @@ cards:
               line-height: 2em
 
           - type: state-icon
-            entity: sensor.tesla_state
+            entity: binary_sensor.deurim_asleep
             style:
               top: 23px
               right: 0px
@@ -221,8 +221,8 @@ cards:
               font-size: 1em
               line-height: 2em
           - type: state-label
-            entity: sensor.tesla_state
-            prefix: "Status : "
+            entity: binary_sensor.deurim_asleep
+            prefix: "Asleep : "
             style:
               top: 23px
               right: 30px
@@ -232,7 +232,7 @@ cards:
               line-height: 2em
 
           - type: state-icon
-            entity: binary_sensor.tesla_is_user_present
+            entity: binary_sensor.deurim_user_present
             style:
               top: 46px
               right: 0px
@@ -241,7 +241,7 @@ cards:
               font-size: 1em
               line-height: 2em
           - type: state-label
-            entity: binary_sensor.tesla_is_user_present
+            entity: binary_sensor.deurim_user_present
             prefix: "Presence : "
             style:
               top: 46px
@@ -252,7 +252,7 @@ cards:
               line-height: 2em
 
           - type: state-icon
-            entity: binary_sensor.tesla_plugged_in
+            entity: binary_sensor.deurim_charger
             style:
               top: 69px
               right: 0px
@@ -261,7 +261,7 @@ cards:
               font-size: 1em
               line-height: 2em
           - type: state-label
-            entity: binary_sensor.tesla_plugged_in
+            entity: binary_sensor.deurim_charger
             prefix: "Charge Cable : "
             style:
               top: 69px
@@ -272,7 +272,7 @@ cards:
               line-height: 2em
 
           - type: state-icon
-            entity: binary_sensor.tesla_sentry_mode
+            entity: switch.deurim_sentry_mode
             style:
               top: 92px
               right: 0px
@@ -281,7 +281,7 @@ cards:
               font-size: 1em
               line-height: 2em
           - type: state-label
-            entity: binary_sensor.tesla_sentry_mode
+            entity: switch.deurim_sentry_mode
             prefix: "Sentry Mode : "
             style:
               top: 92px
@@ -293,7 +293,7 @@ cards:
 
           #Right Bottom
           - type: state-icon
-            entity: binary_sensor.tesla_is_climate_on
+            entity: climate.deurim_hvac_climate_system
             style:
               bottom: 0px
               right: 0px
@@ -302,7 +302,7 @@ cards:
               font-size: 1em
               line-height: 2em
           - type: state-label
-            entity: binary_sensor.tesla_is_climate_on
+            entity: climate.deurim_hvac_climate_system
             prefix: "AC : "
             style:
               bottom: -4px
@@ -313,7 +313,7 @@ cards:
               line-height: 2em
 
           - type: state-icon
-            entity: sensor.tesla_outside_temp
+            entity: sensor.deurim_temperature_outside
             style:
               bottom: 23px
               right: 0px
@@ -322,7 +322,7 @@ cards:
               font-size: 1em
               line-height: 2em
           - type: state-label
-            entity: sensor.tesla_outside_temp
+            entity: sensor.deurim_temperature_outside
             prefix: "Out Temp : "
             style:
               bottom: 19px
@@ -333,7 +333,7 @@ cards:
               line-height: 2em
 
           - type: state-icon
-            entity: sensor.tesla_inside_temp
+            entity: sensor.deurim_temperature_inside
             style:
               bottom: 46px
               right: 0px
@@ -342,7 +342,7 @@ cards:
               font-size: 1em
               line-height: 2em
           - type: state-label
-            entity: sensor.tesla_inside_temp
+            entity: sensor.deurim_temperature_inside
             prefix: "In Temp : "
             style:
               bottom: 42px
@@ -353,7 +353,7 @@ cards:
               line-height: 2em
 
           - type: state-icon
-            entity: binary_sensor.tesla_is_preconditioning
+            entity: binary_sensor.deurim_online
             style:
               bottom: 69px
               right: 0px
@@ -362,8 +362,8 @@ cards:
               font-size: 1em
               line-height: 2em
           - type: state-label
-            entity: binary_sensor.tesla_is_preconditioning
-            prefix: "Precondition : "
+            entity: binary_sensor.deurim_online
+            prefix: "Online : "
             style:
               bottom: 65px
               right: 30px
@@ -374,7 +374,7 @@ cards:
 
           # center
           - type: state-label
-            entity: sensor.tesla_geofence
+            entity: device_tracker.deurim_location_tracker
             prefix: "Geofence : "
             style:
               top: 115px
@@ -384,18 +384,8 @@ cards:
               font-size: 0.7em
               line-height: 2em
           - type: state-label
-            entity: proximity.home_tesla
-            prefix: "Distance from home : "
-            style:
-              top: 128px
-              left: 0px
-              margin-top: 0px
-              transform: initial
-              font-size: 0.7em
-              line-height: 2em
-          - type: state-label
-            entity: sensor.tesla_speed
-            prefix: "Speed "
+            entity: switch.deurim_polling
+            prefix: "Polling: "
             style:
               top: 115px
               right: 0px
@@ -404,18 +394,8 @@ cards:
               font-size: 0.7em
               line-height: 2em
           - type: state-label
-            entity: binary_sensor.tesla_healthy
-            prefix: "Tesla Healty "
-            style:
-              top: 128px
-              right: 0px
-              margin-top: 0px
-              transform: initial
-              font-size: 0.7em
-              line-height: 2em
-          - type: state-label
-            entity: binary_sensor.tesla_update_available
-            prefix: "Software Update "
+            entity: update.deurim_software_update
+            prefix: "Software: "
             style:
               bottom: 88px
               left: 0px
@@ -424,7 +404,7 @@ cards:
               font-size: 0.7em
               line-height: 2em
           - type: state-label
-            entity: sensor.tesla_since
+            entity: sensor.deurim_data_last_update_time
             prefix: "Update at "
             style:
               bottom: 88px
@@ -436,224 +416,36 @@ cards:
       - type: glance
         title: Tpms Pressure
         entities:
-          - entity: sensor.tesla_tpms_pressure_fl
+          - entity: sensor.deurim_tpms_front_left
             name: Front Left
-          - entity: sensor.tesla_tpms_pressure_fr
+          - entity: sensor.deurim_tpms_front_right
             name: Front Right
-          - entity: sensor.tesla_tpms_pressure_rl
+          - entity: sensor.deurim_tpms_rear_left
             name: Rear Left
-          - entity: sensor.tesla_tpms_pressure_rr
-            name: Rear Right
+          - entity: sensor.deurim_tpms_rear_right
+            name: Rear Right       
 
   - type: vertical-stack
     cards:
+      - type: thermostat
+        entity: climate.deurim_hvac_climate_system     
+      - type: glance
+        title: Heat
+        columns: 6
+        entities:
+          - entity: select.deurim_heated_seat_left
+            name: Front Left
+          - entity: select.deurim_heated_seat_right
+            name: Front Right
+          - entity: select.deurim_heated_seat_rear_left
+            name: Rear Left
+          - entity: select.deurim_heated_seat_rear_center
+            name: Rear Center
+          - entity: select.deurim_heated_seat_rear_right
+            name: Rear Right
+          - entity: switch.deurim_heated_steering
+            name: Steering
       - type: map
         default_zoom: 12
         entities:
           - device_tracker.tesla_location
-      - type: picture-elements
-        image: /local/tesla-supercharger-image.png
-        elements:
-          #Left Top
-          - type: state-icon
-            entity: sensor.tesla_charger_power
-            style:
-              top: 0px
-              left: 0px
-              margin-top: 0px
-              transform: initial
-              font-size: 1em
-              line-height: 2em
-          - type: state-label
-            entity: sensor.tesla_charger_power
-            prefix: "Power : "
-            style:
-              top: 0px
-              left: 30px
-              margin-top: 0px
-              transform: initial
-              font-size: 1em
-              line-height: 2em
-
-          - type: state-icon
-            entity: sensor.tesla_charger_actual_current
-            style:
-              top: 23px
-              left: 0
-              margin-top: 0px
-              transform: initial
-              font-size: 1em
-              line-height: 2em
-          - type: state-label
-            entity: sensor.tesla_charger_actual_current
-            prefix: "Current : "
-            style:
-              top: 23px
-              left: 30px
-              margin-top: 0px
-              transform: initial
-              font-size: 1em
-              line-height: 2em
-
-          - type: state-icon
-            entity: sensor.tesla_charger_voltage
-            style:
-              top: 46px
-              left: 0
-              margin-top: 0px
-              transform: initial
-              font-size: 1em
-              line-height: 2em
-          - type: state-label
-            entity: sensor.tesla_charger_voltage
-            prefix: "Voltage : "
-            style:
-              top: 46px
-              left: 30px
-              margin-top: 0px
-              transform: initial
-              font-size: 1em
-              line-height: 2em
-
-          #Left Bottom
-          - type: state-icon
-            entity: sensor.tesla_charge_limit_soc
-            style:
-              bottom: 0px
-              left: 0px
-              margin-bottom: 0px
-              transform: initial
-              font-size: 1em
-              line-height: 2em
-          - type: state-label
-            entity: sensor.tesla_charge_limit_soc
-            prefix: "Charge Limit : "
-            style:
-              bottom: -4px
-              left: 30px
-              margin-bottom: 0px
-              transform: initial
-              font-size: 1em
-              line-height: 2em
-
-          - type: state-icon
-            entity: sensor.tesla_charge_energy_added
-            style:
-              bottom: 23px
-              left: 0px
-              margin-bottom: 0px
-              transform: initial
-              font-size: 1em
-              line-height: 2em
-          - type: state-label
-            entity: sensor.tesla_charge_energy_added
-            prefix: "Added : "
-            style:
-              bottom: 19px
-              left: 30px
-              margin-bottom: 0px
-              transform: initial
-              font-size: 1em
-              line-height: 2em
-
-          #Right Top
-          - type: state-icon
-            entity: sensor.tesla_charger_phases
-            style:
-              top: 0px
-              right: 0px
-              margin-top: 0px
-              transform: initial
-              font-size: 1em
-              line-height: 2em
-          - type: state-label
-            entity: sensor.tesla_charger_phases
-            prefix: "Phases : "
-            style:
-              top: 0px
-              right: 30px
-              margin-top: 0px
-              transform: initial
-              font-size: 1em
-              line-height: 2em
-
-          - type: state-icon
-            entity: binary_sensor.tesla_plugged_in
-            style:
-              top: 23px
-              right: 0px
-              margin-top: 0px
-              transform: initial
-              font-size: 1em
-              line-height: 2em
-          - type: state-label
-            entity: binary_sensor.tesla_plugged_in
-            prefix: "Charge Cable : "
-            style:
-              top: 23px
-              right: 30px
-              margin-top: 0px
-              transform: initial
-              font-size: 1em
-              line-height: 2em
-
-          - type: state-icon
-            entity: binary_sensor.tesla_is_preconditioning
-            style:
-              top: 46px
-              right: 0px
-              margin-top: 0px
-              transform: initial
-              font-size: 1em
-              line-height: 2em
-          - type: state-label
-            entity: binary_sensor.tesla_is_preconditioning
-            prefix: "Precondition : "
-            style:
-              top: 46px
-              right: 30px
-              margin-top: 0px
-              transform: initial
-              font-size: 1em
-              line-height: 2em
-
-          #Right Bottom
-          - type: state-icon
-            entity: sensor.tesla_time_to_full_charge
-            style:
-              bottom: 0px
-              right: 0px
-              margin-bottom: 0px
-              transform: initial
-              font-size: 1em
-              line-height: 2em
-          - type: state-label
-            entity: sensor.tesla_time_to_full_charge
-            prefix: "Time to full charge : "
-            style:
-              bottom: -4px
-              right: 30px
-              margin-bottom: 0px
-              transform: initial
-              font-size: 1em
-              line-height: 2em
-
-          - type: state-icon
-            entity: sensor.tesla_scheduled_charging_start_time
-            style:
-              bottom: 23px
-              right: 0px
-              margin-bottom: 0px
-              transform: initial
-              font-size: 1em
-              line-height: 2em
-          - type: state-label
-            entity: sensor.tesla_scheduled_charging_start_time
-            prefix: "Scheduled time : "
-            style:
-              bottom: 19px
-              right: 30px
-              margin-bottom: 0px
-              transform: initial
-              font-size: 1em
-              line-height: 2em

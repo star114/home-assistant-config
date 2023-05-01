@@ -4,19 +4,19 @@ tesla_package:
       alias: Notify tesla update available
       trigger:
         - platform: state
-          entity_id: binary_sensor.tesla_update_available
+          entity_id: update.deurim_software_update
           to: "on"
       action:
         - service: notify.notify_telegram
           data:
             title: "🆕 새로운 테슬라 소프트웨어 업데이트 알림"
-            message: "현재 사용중인 버전은 {{ states('sensor.tesla_version') }} 입니다. 새로운 버전으로 업데이트 하세요."
+            message: "새로운 테슬라 소프트웨어 버전으로 업데이트 하세요."
 
     - id: "notify_tesla_geofence_home"
       alias: Notify tesla geofence home
       trigger:
         - platform: state
-          entity_id: sensor.tesla_geofence
+          entity_id: device_tracker.deurim_location_tracker
           to: "Home"
       action:
         - service: notify.notify_telegram
@@ -28,7 +28,7 @@ tesla_package:
       alias: Notify tesla geofence away
       trigger:
         - platform: state
-          entity_id: sensor.tesla_geofence
+          entity_id: device_tracker.deurim_location_tracker
           from: "Home"
       action:
         - service: notify.notify_telegram
@@ -40,46 +40,22 @@ tesla_package:
       alias: Notify tesla charge cable on
       trigger:
         - platform: state
-          entity_id: binary_sensor.tesla_plugged_in
+          entity_id: binary_sensor.deurim_charging
           to: "on"
       action:
         - service: notify.notify_telegram
           data:
-            title: "🚘 드림이 충전 케이블 알림"
-            message: "충전구에 케이블이 연결되었습니다."
+            title: "🚘 드림이 충전 알림"
+            message: "충전이 시작되었습니다. 충전 한도는 {{ states('number.deurim_charge_limit') }} % 이고 완료까지 {{ states('sensor.deurim_time_charge_complete') }} 시간 남았습니다."
 
     - id: "notify_tesla_charge_cable_off"
       alias: Notify tesla charge cable off
       trigger:
         - platform: state
-          entity_id: binary_sensor.tesla_plugged_in
+          entity_id: binary_sensor.deurim_charging
           to: "off"
       action:
         - service: notify.notify_telegram
           data:
-            title: "🚘 드림이 충전 케이블 알림"
-            message: "충전구에 케이블이 분리되었습니다."
-
-    - id: "notify_tesla_charge_start"
-      alias: Notify tesla charge start
-      trigger:
-        - platform: numeric_state
-          entity_id: sensor.tesla_time_to_full_charge
-          above: 0.2
-      action:
-        - service: notify.notify_telegram
-          data:
-            title: "🚘 드림이 충전 시작 알림"
-            message: "충전이 시작되었습니다. 충전 한도는 {{ states('sensor.tesla_charge_limit_soc') }} % 이고 완료까지 {{ states('sensor.tesla_time_to_full_charge') }} 시간 남았습니다."
-
-    - id: "notify_tesla_charge_end"
-      alias: Notify tesla charge end
-      trigger:
-        - platform: numeric_state
-          entity_id: sensor.tesla_time_to_full_charge
-          below: 0.1
-      action:
-        - service: notify.notify_telegram
-          data:
-            title: "🚘 드림이 충전 종료 알림"
-            message: "충전이 완료되었습니다. 총 충전된 양은 {{ states('sensor.tesla_charge_energy_added') }} kWh 입니다."
+            title: "🚘 드림이 충전 알림"
+            message: "충전이 완료되었습니다. 총 충전된 양은 {{ states('sensor.deurim_energy_added') }} kWh 입니다."
