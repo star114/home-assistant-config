@@ -1,16 +1,108 @@
 tesla_package:
   automation:
+    # dynamic polling frequency
+    - alias: Tesla set polling time short on startup if charger is connected
+      description: When HA starts up. We adjust the Polling Interval down from the configured value if we are connected to a charger
+      trigger:
+        - platform: homeassistant
+          event: start
+      condition:
+        - condition: state
+          entity_id: binary_sensor.deurim_charging
+          state: "on"
+      action:
+        - delay: '00:01:00'
+        - service: tesla_custom.polling_interval
+          data:
+            vin: "{{ state_attr('binary_sensor.deurim_online','vin') }}"
+            scan_interval: 30
+
+    - alias: Tesla set polling time short on startup if car is driving
+      description: When HA starts up. We adjust the Polling Interval down from the configured value if we are driving
+      trigger:
+        - platform: homeassistant
+          event: start
+      condition:
+        - condition: state
+          entity_id: binary_sensor.deurim_parking_brake
+          state: "off"
+      action:
+        - delay: '00:01:00'
+        - service: tesla_custom.polling_interval
+          data:
+            vin: "{{ state_attr('binary_sensor.deurim_online','vin') }}"
+            scan_interval: 30
+
+    - alias: Tesla set polling time short when charger is connected
+      description: We adjust the Polling Interval down from the configured value if we are connecting to a charger
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.deurim_charging
+          to: "on"
+      action:
+        - service: tesla_custom.polling_interval
+          data:
+            vin: "{{ state_attr('binary_sensor.deurim_online','vin') }}"
+            scan_interval: 30
+
+    - alias: Tesla set polling time long when charger is disconnected
+      description: We adjust the Polling Interval up to the configured value if we are disconnecting from the charger
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.deurim_charging
+          to: "off"
+          for: "00:15:00"
+      condition:
+        - condition: state
+          entity_id: binary_sensor.deurim_parking_brake
+          state: "on"
+      action:
+        - service: tesla_custom.polling_interval
+          data:
+            vin: "{{ state_attr('binary_sensor.deurim_online','vin') }}"
+            scan_interval: 660
+
+    - alias: Tesla set polling time short when car is driving
+      description: We adjust the Polling Interval down from the configured value if we are driving
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.deurim_parking_brake
+          to: "off"
+      action:
+        - service: tesla_custom.polling_interval
+          data:
+            vin: "{{ state_attr('binary_sensor.deurim_online','vin') }}"
+            scan_interval: 30
+
+    - alias: Tesla set polling time long when car is parked
+      description: We adjust the Polling Interval up to the configured value when we are parked if the charger is not connected
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.deurim_parking_brake
+          to: "on"
+          for: "00:15:00"
+      condition:
+        - condition: state
+          entity_id: binary_sensor.deurim_charging
+          state: "off"
+      action:
+        - service: tesla_custom.polling_interval
+          data:
+            vin: "{{ state_attr('binary_sensor.deurim_online','vin') }}"
+            scan_interval: 660
+
     - id: "notify_tesla_update_available"
       alias: Notify tesla update available
       trigger:
         - platform: state
-          entity_id: update.deurim_software_update
-          to: "on"
+          entity_id:
+            - update.deurim_software_update
+          attribute: latest_version
       action:
         - service: notify.notify_telegram
           data:
             title: "🆕 새로운 테슬라 소프트웨어 업데이트 알림"
-            message: "새로운 테슬라 소프트웨어 버전으로 업데이트 하세요."
+            message: "현재 버전은 {{state_attr('update.deurim_software_update','installed_version')}} 입니다. 새로운 버전 {{state_attr('update.deurim_software_update','latest_version')}} 으로 업데이트 하세요."
 
     - id: "notify_tesla_geofence_home"
       alias: Notify tesla geofence home
