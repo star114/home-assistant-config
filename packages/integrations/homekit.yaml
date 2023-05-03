@@ -13,7 +13,6 @@ homekit_package:
         include_entities:
           - device_tracker.heesikiphone
           - device_tracker.seojiniphone
-          - device_tracker.tesla_location
           - switch.anbang_gonggiceongjeonggi
           - switch.geonjogi
           - switch.hej_3gang_bathroom_light_top
@@ -35,21 +34,6 @@ homekit_package:
           - sensor.smartthings_library_motion_temperature
           - sensor.smartthings_dressroom_motion_temperature
           - sensor.smartthings_door_contact_temperature
-          - sensor.tesla_inside_temp
-          - sensor.tesla_outside_temp
-          - binary_sensor.tesla_is_user_present
-          - binary_sensor.tesla_locked
-          - binary_sensor.tesla_is_climate_on
-          - binary_sensor.tesla_sentry_mode
-          - binary_sensor.tesla_doors_open
-          - binary_sensor.tesla_frunk_open
-          - binary_sensor.tesla_trunk_open
-          - binary_sensor.tesla_charge_port_door_open
-          - binary_sensor.tesla_windows_open
-          - binary_sensor.tesla_park_brake
-          - binary_sensor.tesla_plugged_in
-          - binary_sensor.tesla_is_preconditioning
-          - binary_sensor.tesla_update_available
       entity_config:
         alarm_control_panel.home_monitoring:
           name: Home Monitoring
@@ -251,38 +235,81 @@ homekit_package:
           name: House Door Temperature
           linked_battery_sensor: sensor.smartthings_door_contact_battery
           low_battery_threshold: 31
-        device_tracker.tesla_location:
-          name: Tesla Model Y
-        sensor.tesla_inside_temp:
+    - name: Tesla
+      port: 21064
+      mode: bridge
+      filter:
+        include_entities:
+          - device_tracker.deurim_location_tracker
+          - sensor.deurim_temperature_inside
+          - sensor.deurim_temperature_outside
+          - binary_sensor.deurim_asleep
+          - binary_sensor.deurim_charger
+          - binary_sensor.deurim_charging
+          - binary_sensor.deurim_user_present
+          - binary_sensor.deurim_doors
+          - climate.deurim_hvac_climate_system
+          - switch.deurim_charger
+          - switch.deurim_sentry_mode
+          - switch.deurim_valet_mode
+          - switch.deurim_heated_steering
+          #- select.deurim_heated_seat_left
+          #- select.deurim_heated_seat_right
+          #- select.deurim_heated_seat_rear_left
+          #- select.deurim_heated_seat_rear_center
+          #- select.deurim_heated_seat_rear_right
+          #- select.deurim_cabin_overheat_protection
+          - cover.deurim_charger_door
+          - cover.deurim_frunk
+          - cover.deurim_trunk
+          - cover.deurim_windows
+      entity_config:
+        device_tracker.deurim_location_tracker:
+          name: Tesla Model Y Dream
+        sensor.deurim_temperature_inside:
           name: Tesla Inside Temporature
-        sensor.tesla_outside_temp:
+        sensor.deurim_temperature_outside:
           name: Tesla Outside Temporature
-        binary_sensor.tesla_is_user_present:
+        binary_sensor.deurim_asleep:
+          name: Tesla Asleep
+        binary_sensor.deurim_charger:
+          name: Tesla Charger Plugged in
+        binary_sensor.deurim_charging:
+          name: Tesla Charging
+        binary_sensor.deurim_user_present:
           name: Tesla User present
-        binary_sensor.tesla_locked:
-          name: Tesla Unlocked
-        binary_sensor.tesla_is_climate_on:
-          name: Tesla Climate on
-        binary_sensor.tesla_sentry_mode:
-          name: Tesla Sentry mode
-        binary_sensor.tesla_doors_open:
-          name: Tesla Doors open
-        binary_sensor.tesla_frunk_open:
-          name: Tesla Frunk open
-        binary_sensor.tesla_trunk_open:
-          name: Tesla Trunk open
-        binary_sensor.tesla_charge_port_door_open:
-          name: Tesla Charge port open
-        binary_sensor.tesla_windows_open:
-          name: Tesla Windows open
-        binary_sensor.tesla_park_brake:
-          name: Tesla Park break
-        binary_sensor.tesla_plugged_in:
-          name: Tesla Plugged in
-        binary_sensor.tesla_is_preconditioning:
-          name: Tesla Preconditioning
-        binary_sensor.tesla_update_available:
-          name: Tesla Software Update Available
+        binary_sensor.deurim_doors:
+          name: Tesla Doors
+        climate.deurim_hvac_climate_system:
+          name: Tesla Thermostat
+        switch.deurim_charger:
+          name: Telsa Charger
+        switch.deurim_sentry_mode:
+          name: Tesla Sentry Mode
+        switch.deurim_valet_mode:
+          name: Tesla Valet Mode
+        switch.deurim_heated_steering:
+          name: Tesla Heated Steering
+        #select.deurim_heated_seat_left:
+        #  name: Tesla Heated Seat Left
+        #select.deurim_heated_seat_right:
+        #  name: Tesla Heated Seat Right
+        #select.deurim_heated_seat_rear_left:
+        #  name: Tesla Heated Seat Rear Left
+        #select.deurim_heated_seat_rear_center:
+        #  name: Tesla Heated Seat Rear Center
+        #select.deurim_heated_seat_rear_right:
+        #  name: Tesla Heated Seat Rear Right
+        #select.deurim_cabin_overheat_protection:
+        #  name: Tesla Cabin Overheat Protection
+        cover.deurim_charger_door:
+          name: Tesla Charger Door
+        cover.deurim_frunk:
+          name: Tesla Frunk
+        cover.deurim_trunk:
+          name: Tesla Trunk
+        cover.deurim_windows:
+          name: Tesla Windows
     - name: LG Webos Smart TV
       port: 21065
       mode: accessory
@@ -297,3 +324,12 @@ homekit_package:
             - feature: play_pause
             - feature: play_stop
             - feature: toggle_mute
+    - name: Tesla Door Lock
+      port: 21066
+      mode: accessory
+      filter:
+        include_entities:
+          - lock.deurim_doors
+      entity_config:
+        lock.deurim_doors:
+          name: Tesla Door Lock
