@@ -98,6 +98,8 @@ tesla_package:
           entity_id:
             - update.deurim_software_update
           attribute: latest_version
+      condition:
+        - "{{ state_attr('update.deurim_software_update','installed_version') != state_attr('update.deurim_software_update','latest_version') }}"
       action:
         - service: notify.notify_telegram
           data:
@@ -133,6 +135,7 @@ tesla_package:
       trigger:
         - platform: state
           entity_id: binary_sensor.deurim_charging
+          from: "off"
           to: "on"
       action:
         - service: notify.notify_telegram
@@ -145,6 +148,7 @@ tesla_package:
       trigger:
         - platform: state
           entity_id: binary_sensor.deurim_charging
+          from: "on"
           to: "off"
       action:
         - service: notify.notify_telegram
