@@ -5,9 +5,12 @@ exclude:
     - weather
   entity_globs:
     - sensor.nw_* # naver weather
+    - sensor.naver_weather_* # naver weather
+    - sensor.*_last_update_trigger # mobile app
+    - sensor.*_activity # mobile app
+    - sensor.*_frontmost_app # mobile app (desktop)
   entities:
     - sun.sun
-    - sensor.naver_weather # naver weather
     - sensor.last_boot
     - sensor.time
     - sensor.date
