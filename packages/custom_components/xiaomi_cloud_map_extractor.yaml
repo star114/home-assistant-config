@@ -8,3 +8,4 @@ xiaomi_cloud_map_extractor_package:
       draw: ["all"]
       attributes:
         - calibration_points
+      scan_interval: 60
