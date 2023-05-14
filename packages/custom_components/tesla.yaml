@@ -141,7 +141,7 @@ tesla_package:
         - service: notify.notify_telegram
           data:
             title: "🚘 드림이 충전 알림"
-            message: "충전이 시작되었습니다. 충전 한도는 {{ states('number.deurim_charge_limit') }} % 이고 완료까지 {{ states('sensor.deurim_time_charge_complete') }} 시간 남았습니다."
+            message: "충전이 시작되었습니다. 충전 한도는 {{ states('number.deurim_charge_limit') }} % 이고 완료까지 {{ (state_attr('sensor.deurim_time_charge_complete','minutes_to_full_charge') / 60) | int }} 시간 {{ state_attr('sensor.deurim_time_charge_complete','minutes_to_full_charge') % 60 }} 분 남았습니다."
 
     - id: "notify_tesla_charge_cable_off"
       alias: Notify tesla charge cable off
