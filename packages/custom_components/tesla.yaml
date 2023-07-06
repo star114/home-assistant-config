@@ -11,7 +11,7 @@ tesla_package:
           entity_id: binary_sensor.deurim_charging
           state: "on"
       action:
-        - delay: '00:01:00'
+        - delay: "00:01:00"
         - service: tesla_custom.polling_interval
           data:
             vin: "{{ state_attr('binary_sensor.deurim_online','vin') }}"
@@ -27,7 +27,7 @@ tesla_package:
           entity_id: binary_sensor.deurim_parking_brake
           state: "off"
       action:
-        - delay: '00:01:00'
+        - delay: "00:01:00"
         - service: tesla_custom.polling_interval
           data:
             vin: "{{ state_attr('binary_sensor.deurim_online','vin') }}"
@@ -111,7 +111,7 @@ tesla_package:
       trigger:
         - platform: state
           entity_id: device_tracker.deurim_location_tracker
-          to: "Home"
+          to: "home"
       action:
         - service: notify.notify_telegram
           data:
@@ -123,7 +123,7 @@ tesla_package:
       trigger:
         - platform: state
           entity_id: device_tracker.deurim_location_tracker
-          from: "Home"
+          from: "home"
       action:
         - service: notify.notify_telegram
           data:

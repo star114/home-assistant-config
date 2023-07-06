@@ -10,7 +10,7 @@ cards:
         elements:
           #Left Top
           - type: state-icon
-            entity: switch.deurim_charger
+            entity: binary_sensor.deurim_charger
             style:
               top: 0px
               left: 0px
@@ -19,7 +19,7 @@ cards:
               font-size: 1em
               line-height: 2em
           - type: state-label
-            entity: switch.deurim_charger
+            entity: binary_sensor.deurim_charger
             prefix: "Charge Port : "
             style:
               top: 0px
@@ -30,7 +30,7 @@ cards:
               line-height: 2em
 
           - type: state-icon
-            entity: cover.deurim_windows
+            entity: binary_sensor.deurim_windows
             style:
               top: 23px
               left: 0
@@ -39,7 +39,7 @@ cards:
               font-size: 1em
               line-height: 2em
           - type: state-label
-            entity: cover.deurim_windows
+            entity: binary_sensor.deurim_windows
             prefix: "Windows : "
             style:
               top: 23px
@@ -423,12 +423,12 @@ cards:
           - entity: sensor.deurim_tpms_rear_left
             name: Rear Left
           - entity: sensor.deurim_tpms_rear_right
-            name: Rear Right       
+            name: Rear Right
 
   - type: vertical-stack
     cards:
       - type: thermostat
-        entity: climate.deurim_hvac_climate_system     
+        entity: climate.deurim_hvac_climate_system
       - type: glance
         title: Heat
         columns: 6
