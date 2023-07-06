@@ -156,7 +156,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: "custom:button-card"
-            name: 라디에이터/써큘레이터
+            name: 라디에이터
             label: |
               [[[
                 return states['sensor.dawon_bedroom_radiater_plug_power'].state + "w";

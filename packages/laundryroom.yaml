@@ -55,6 +55,11 @@ laundryroom_package:
             - condition: state
               entity_id: light.hej_3gang_laundryroom_light_top
               state: "off"
+            - condition: not
+              conditions:
+                - condition: state
+                  entity_id: alarm_control_panel.home_monitoring
+                  state: armed_night
       action:
         - service: light.turn_on
           entity_id: light.hej_3gang_laundryroom_light_top
