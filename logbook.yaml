@@ -19,3 +19,8 @@ exclude:
     - sensor.time_date
     - sensor.time_utc
     - sensor.internet_time
+    # exceeed maximum size (can affect db performance)
+    - sensor.zigbee2mqtt_bridge_permit_join_timeout
+    - sensor.zigbee2mqtt_bridge_version
+    - select.zigbee2mqtt_bridge_log_level
+    - switch.zigbee2mqtt_bridge_permit_join
