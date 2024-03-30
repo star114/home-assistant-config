@@ -21,19 +21,14 @@ certificate_expiry_package:
         - platform: numeric_state
           entity_id: sensor.s_cert_exiry_d
           below: 7
+      condition:
+        - condition: not
+          conditions:
+            - condition: state
+              entity_id: sensor.cert_expiry_timestamp_ha_star114_duckdns_org
+              state: "unavailable"
       action:
         - service: notify.notify_telegram
           data:
             title: "⚠️ 인증서 만료 알림 ⚠️"
-            message: "Nginx Proxy Manager 웹을 방문하여 인증서를 갱신하세요."
-    - id: "warning_certificate_expiry"
-      alias: "Warning certificate expiry"
-      trigger:
-        - platform: numeric_state
-          entity_id: sensor.s_cert_exiry_d
-          below: 2
-      action:
-        - service: notify.notify_telegram
-          data:
-            title: "⛔️ 인증서 만료 경고 ⛔️"
             message: "Nginx Proxy Manager 웹을 방문하여 인증서를 갱신하세요."

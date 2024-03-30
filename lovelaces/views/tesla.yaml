@@ -448,4 +448,4 @@ cards:
       - type: map
         default_zoom: 12
         entities:
-          - device_tracker.tesla_location
+          - device_tracker.deurim_location_tracker

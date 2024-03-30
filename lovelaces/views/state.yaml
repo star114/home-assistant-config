@@ -292,7 +292,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: "custom:button-card"
-            entity: switch.anbang_gonggiceongjeonggi
+            entity: fan.anbang_gonggiceongjeonggi
             name: 공기청정기
             icon: mdi:air-purifier
             template: boolean_state_with_icon
@@ -343,7 +343,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: "custom:button-card"
-            entity: switch.jubang_eeokeon
+            entity: fan.jubang_eeokeon
             name: 주방
             icon: mdi:air-conditioner
             template: boolean_state_with_icon

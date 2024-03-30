@@ -13,12 +13,12 @@ homekit_package:
         include_entities:
           - device_tracker.heesikiphone
           - device_tracker.seojiniphone
-          - switch.anbang_gonggiceongjeonggi
+          - fan.anbang_gonggiceongjeonggi
           - switch.geonjogi
           - switch.hej_3gang_bathroom_light_top
           - switch.hej_3gang_bedroom_bed_light_bottom
           - switch.hej_3gang_library_light_top
-          - switch.jubang_eeokeon
+          - fan.jubang_eeokeon
           - switch.bedroom_ac
           - sensor.anbang_gonggiceongjeonggi_fine_dust_level
           - sensor.samseong_eeomoniteo_fine_dust_level
@@ -75,7 +75,7 @@ homekit_package:
           name: Hallway Light
         light.lellki_library_multi_outlets_l1:
           name: Library Star Light
-        switch.anbang_gonggiceongjeonggi:
+        fan.anbang_gonggiceongjeonggi:
           name: Bedroom Air Purifier
         switch.dawon_bathroom_plug:
           name: Bathroom Plug
@@ -112,7 +112,7 @@ homekit_package:
           name: Night Mode
         switch.hej_3gang_library_light_top:
           name: Away Mode
-        switch.jubang_eeokeon:
+        fan.jubang_eeokeon:
           name: Kitchen Air Conditioner
         switch.bedroom_ac:
           name: Bedroom Air Conditioner

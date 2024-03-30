@@ -12,7 +12,7 @@ library_package:
           entity_id: binary_sensor.smartthings_library_motion_occupancy
           to: "off"
           for:
-            minutes: 2
+            minutes: 30
       condition:
         - condition: state
           entity_id: input_boolean.library_light_triggered_by_motion
@@ -44,14 +44,17 @@ library_package:
         - condition: state
           entity_id: light.hej_3gang_library_light_bottom
           state: "off"
-      action:
-        - service: light.turn_on
-          entity_id: light.hej_3gang_library_light_bottom
+        - condition: state
+          entity_id: alarm_control_panel.home_monitoring
+          state: "disarmed"
         - condition: not
           conditions:
             - condition: time
-              after: "06:30:00"
-              before: "07:40:00"
+              after: "05:30:00"
+              before: "06:40:00"
+      action:
+        - service: light.turn_on
+          entity_id: light.hej_3gang_library_light_bottom
         - service: input_boolean.turn_on
           entity_id: input_boolean.library_light_triggered_by_motion
 
@@ -78,36 +81,6 @@ library_package:
         - service: input_boolean.turn_on
           entity_id: input_boolean.library_light_triggered_by_motion
 
-    - id: "library_motion_light_trigger_after_morning_routine"
-      alias: "library motion light trigger after morning routine"
-      trigger:
-        - platform: time
-          at: "07:40:00"
-      condition:
-        - condition: and
-          conditions:
-            - condition: state
-              entity_id: light.hej_3gang_library_light_bottom
-              state: "on"
-            - condition: state
-              entity_id: input_boolean.library_light_triggered_by_motion
-              state: "off"
-      action:
-        - service: input_boolean.turn_on
-          entity_id: input_boolean.library_light_triggered_by_motion
-        - condition: or
-          conditions:
-            - condition: state
-              entity_id: light.lellki_library_multi_outlets_l1
-              state: "on"
-            - condition: state
-              entity_id: switch.lellki_library_multi_outlets_l2
-              state: "on"
-        - service: light.turn_off
-          entity_id: light.lellki_library_multi_outlets_l1
-        - service: switch.turn_off
-          entity_id: switch.lellki_library_multi_outlets_l2
-
     - id: "away_scene_switch_on"
       alias: "away scene - switch on"
       trigger:
@@ -130,7 +103,7 @@ library_package:
               state: "on"
             - condition: time
               after: "07:00:00"
-              before: "22:00:00"
+              before: "20:00:00"
         - service: vacuum.start
           entity_id: vacuum.bbobos
 

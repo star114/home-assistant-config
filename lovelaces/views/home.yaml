@@ -303,7 +303,7 @@ cards:
           - type: state-icon
             tap_action:
               action: toggle
-            entity: switch.jubang_eeokeon
+            entity: fan.jubang_eeokeon
             icon: mdi:air-conditioner
             style:
               "--paper-item-icon-active-color": "RGB(81,156,202)"
