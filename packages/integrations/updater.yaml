@@ -2,26 +2,27 @@
 # https://www.home-assistant.io/cookbook/notify_if__new_ha_release/
 updater_package:
   automation:
-    - id: "ha_update_notification"
-      alias: "HA Update notification"
+    - id: "ha_core_update_notification"
+      alias: "HA Core Update notification"
       trigger:
         - platform: state
-          entity_id: binary_sensor.updater
+          entity_id: update.home_assistant_core_update
           from: "off"
           to: "on"
       action:
-        - service: notify.notify_telegram
+        - service: telegram_bot.send_message
           data:
-            title: "🆕 새로운 Home Assistant 업데이트 알림"
-            message: "Home Assistant {{ state_attr('binary_sensor.updater', 'newest_version') }} 으로 업데이트 하세요."
+            title: "🆕 새로운 Home Assistant Core 업데이트 알림"
+            message: "Home Assistant Core {{ state_attr('update.home_assistant_core_update', 'latest_version') }} 으로 업데이트 하세요"
     - id: "hacs_update_notification"
       alias: "HACS Update notification"
       trigger:
-        - platform: numeric_state
-          entity_id: sensor.hacs
-          above: 0
+        - platform: state
+          entity_id: update.hacs_update
+          from: "off"
+          to: "on"
       action:
-        - service: notify.notify_telegram
+        - service: telegram_bot.send_message
           data:
             title: "🆕 새로운 HACS 업데이트 알림"
-            message: "HACS 에 업데이트가 {{ states('sensor.hacs') | int }} 개 있습니다."
+            message: "HACS 업데이트가 있습니다"

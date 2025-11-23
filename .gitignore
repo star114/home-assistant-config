@@ -3,8 +3,10 @@
 .vscode/
 blueprints/automation/homeassistant/*
 blueprints/script/homeassistant/*
+blueprints/template/homeassistant/*
 custom_components/*
 deps/*
+nest/*
 themes/*
 tts/*
 www/*
@@ -20,5 +22,7 @@ service_account.json
 home-assistant_v2.db*
 known_devices.yaml
 harmony_*.conf
+tesla_fleet.key
 webostv.conf
 .HA_VERSION
+.ha_run.lock

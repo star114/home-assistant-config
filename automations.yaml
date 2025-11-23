@@ -1,94 +1,207 @@
-- id: "1617007136486"
-  alias: Dressroom window, air purifier plug
+- id: nutritional_supplements_reminder
+  alias: Nutritional supplements reminder
   description: ""
-  use_blueprint:
-    path: custom/contact_switch.yaml
-    input:
-      window_entity: binary_sensor.smartthings_dressroom_contact_contact
-      switch_target: switch.dawon_dressroom_plug
-      minimum_open_time: 12
-- id: "1617276803759"
-  alias: Bedroom window, air purifier
-  description: ""
-  use_blueprint:
-    path: custom/contact_switch.yaml
-    input:
-      window_entity: binary_sensor.smartthings_laundryroom_contact_contact
-      minimum_open_time: 12
-      switch_target: fan.anbang_gonggiceongjeonggi
-- id: "1617276883183"
-  alias: Bedroom window, humidifier
-  description: ""
-  use_blueprint:
-    path: custom/contact_switch.yaml
-    input:
-      window_entity: binary_sensor.smartthings_bedroom_contact_contact
-      switch_target: switch.dawon_bedroom_plug
+  triggers:
+    - trigger: time
+      at: 09:00:30
+  actions:
+    - action: telegram_bot.send_message
+      data:
+        message: "\U0001F48A 영양제 잊지 말고 드세요"
 - id: "1617443911976"
   alias: Dish washer monitor
   description: ""
   use_blueprint:
     path: custom/power_monitor.yaml
     input:
-      power_sensor: sensor.dawon_kitchen_dishwasher_plug_power
+      power_sensor: sensor.0x00158d0004f66a8b_power
       starting_threshold: 2
       starting_hysteresis: 0.25
       finishing_threshold: 3
       finishing_hysteresis: 5
       starting_actions:
-        - service: galaxy_home_mini.speak
-          data:
-            message: "식기 세척을 시작합니다."
-        - service: notify.notify_telegram
-          data:
-            message: "식기 세척을 시작합니다."
-        - service: input_boolean.turn_on
-          target:
+        - data:
+            message: 식기 세척을 시작합니다
+          action: telegram_bot.send_message
+        - target:
             entity_id: input_boolean.dish_washer_state
+          action: input_boolean.turn_on
+          data: {}
       ending_actions:
-        - service: galaxy_home_mini.speak
-          data:
-            message: "식기 세척이 완료되었습니다."
-        - service: notify.notify_telegram
-          data:
-            message: "식기 세척이 완료되었습니다."
-        - service: input_boolean.turn_off
-          target:
+        - data:
+            message: 식기 세척이 완료되었습니다
+          action: telegram_bot.send_message
+        - target:
             entity_id: input_boolean.dish_washer_state
+          action: input_boolean.turn_off
+          data: {}
 - id: "1617444167235"
   alias: Food waste processor monitor
   description: ""
   use_blueprint:
     path: custom/power_monitor.yaml
     input:
-      power_sensor: sensor.dawon_kitchen_foodwaste_plug_power
+      power_sensor: sensor.0x00158d0004f66c2c_power
       starting_threshold: 30
       starting_hysteresis: 1
       finishing_threshold: 15
       finishing_hysteresis: 10
       starting_actions:
-        - service: galaxy_home_mini.speak
-          data:
-            message: "음식물 쓰레기 처리를 시작합니다."
-        - service: notify.notify_telegram
-          data:
-            message: "음식물 쓰레기 처리를 시작합니다."
-        - service: input_boolean.turn_on
-          target:
+        - data:
+            message: 음식물 쓰레기 처리를 시작합니다
+          action: telegram_bot.send_message
+        - target:
             entity_id: input_boolean.food_waste_machine_state
-        - service: switch.turn_on
-          target:
-            entity_id: switch.dawon_kitchen_fan_plug
+          action: input_boolean.turn_on
+          data: {}
       ending_actions:
-        - service: galaxy_home_mini.speak
-          data:
-            message: "음식물 쓰레기 처리가 완료되었습니다."
-        - service: notify.notify_telegram
-          data:
-            message: "음식물 쓰레기 처리가 완료되었습니다."
-        - service: input_boolean.turn_off
-          target:
+        - data:
+            message: 음식물 쓰레기 처리가 완료되었습니다
+          action: telegram_bot.send_message
+        - target:
             entity_id: input_boolean.food_waste_machine_state
-        - service: switch.turn_off
-          target:
-            entity_id: switch.dawon_kitchen_fan_plug
+          action: input_boolean.turn_off
+          data: {}
+- id: "1736561402197"
+  alias: Dryer turned on
+  description: ""
+  triggers:
+    - entity_id:
+        - sensor.geonjogi_machine_state
+      to: run
+      trigger: state
+  conditions: []
+  actions:
+    - data:
+        message: 건조를 시작합니다
+      action: telegram_bot.send_message
+    - action: input_boolean.turn_on
+      metadata: {}
+      data: {}
+      target:
+        entity_id: input_boolean.dryer_machine_state
+    - wait_for_trigger:
+        - entity_id:
+            - sensor.geonjogi_completion_time
+          trigger: state
+    - data:
+        message:
+          약 {{ ((as_timestamp(states('sensor.geonjogi_completion_time')) - as_timestamp(now()))
+          / 60) | int }} 분 뒤에 종료됩니다
+      action: telegram_bot.send_message
+  mode: single
+- id: "1736561416751"
+  alias: Dryer turned off
+  description: ""
+  triggers:
+    - entity_id:
+        - sensor.geonjogi_machine_state
+      to: stop
+      trigger: state
+  conditions: []
+  actions:
+    - data:
+        message: 건조가 완료되었습니다
+      action: telegram_bot.send_message
+    - action: input_boolean.turn_off
+      metadata: {}
+      data: {}
+      target:
+        entity_id: input_boolean.dryer_machine_state
+  mode: single
+- id: "1736562339947"
+  alias: Washer machine turned off
+  description: ""
+  triggers:
+    - entity_id:
+        - sensor.setaggi_machine_state
+      to: stop
+      trigger: state
+  conditions: []
+  actions:
+    - data:
+        message: 세탁이 완료되었습니다
+      action: telegram_bot.send_message
+    - action: input_boolean.turn_off
+      metadata: {}
+      data: {}
+      target:
+        entity_id: input_boolean.washer_machine_state
+  mode: single
+- id: "1736562501071"
+  alias: Washer machine turned on
+  description: ""
+  triggers:
+    - entity_id:
+        - sensor.setaggi_machine_state
+      to: run
+      trigger: state
+  conditions: []
+  actions:
+    - data:
+        message: 세탁을 시작합니다
+      action: telegram_bot.send_message
+    - action: input_boolean.turn_on
+      metadata: {}
+      data: {}
+      target:
+        entity_id: input_boolean.washer_machine_state
+    - wait_for_trigger:
+        - entity_id:
+            - sensor.setaggi_completion_time
+          trigger: state
+    - data:
+        message:
+          약 {{ ((as_timestamp(states('sensor.setaggi_completion_time')) - as_timestamp(now()))
+          / 60) | int }} 분 뒤에 종료됩니다
+      action: telegram_bot.send_message
+  mode: single
+- id: "1743643973550"
+  alias: air dresser turned on
+  description: ""
+  triggers:
+    - entity_id:
+        - sensor.eeodeureseo_machine_state
+      to: run
+      trigger: state
+  conditions: []
+  actions:
+    - data:
+        message: 의류 관리를 시작합니다
+      action: telegram_bot.send_message
+    - action: input_boolean.turn_on
+      metadata: {}
+      data: {}
+      target:
+        entity_id:
+          - input_boolean.air_dresser_state
+    - wait_for_trigger:
+        - entity_id:
+            - sensor.eeodeureseo_completion_time
+          trigger: state
+    - data:
+        message:
+          약 {{ ((as_timestamp(states('sensor.eeodeureseo_completion_time')) -
+          as_timestamp(now())) / 60) | int }} 분 뒤에 종료됩니다
+      action: telegram_bot.send_message
+  mode: single
+- id: "1743644072894"
+  alias: air dresser turned off
+  description: ""
+  triggers:
+    - entity_id:
+        - sensor.eeodeureseo_machine_state
+      to: stop
+      trigger: state
+  conditions: []
+  actions:
+    - data:
+        message: 의류 관리가 완료되었습니다
+      action: telegram_bot.send_message
+    - action: input_boolean.turn_off
+      metadata: {}
+      data: {}
+      target:
+        entity_id:
+          - input_boolean.air_dresser_state
+  mode: single

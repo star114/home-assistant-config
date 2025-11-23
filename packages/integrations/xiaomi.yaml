@@ -2,21 +2,21 @@ xiaomi_package:
   sensor:
     - platform: template
       sensors:
-        bbobos_main_brush_left_hours:
-          value_template: "{{ ((states('sensor.bbobos_main_brush_left') | float / 3600)) | round(0) }}"
+        bbobos_main_brush_remaining_hours:
+          value_template: "{{ ((states('sensor.bbobos_main_brush_remaining') | float / 3600)) | round(0) }}"
           unit_of_measurement: "hours"
-        bbobos_side_brush_left_hours:
-          value_template: "{{ ((states('sensor.bbobos_side_brush_left') | float / 3600)) | round(0) }}"
+        bbobos_side_brush_remaining_hours:
+          value_template: "{{ ((states('sensor.bbobos_side_brush_remaining') | float / 3600)) | round(0) }}"
           unit_of_measurement: "hours"
-        bbobos_filter_left_hours:
-          value_template: "{{ ((states('sensor.bbobos_filter_left') | float / 3600)) | round(0) }}"
+        bbobos_filter_remaining_hours:
+          value_template: "{{ ((states('sensor.bbobos_filter_remaining') | float / 3600)) | round(0) }}"
           unit_of_measurement: "hours"
-        bbobos_sensor_dirty_left_hours:
-          value_template: "{{ ((states('sensor.bbobos_sensor_dirty_left') | float / 3600)) | round(0) }}"
+        bbobos_sensor_dirty_remaining_hours:
+          value_template: "{{ ((states('sensor.bbobos_sensor_dirty_remaining') | float / 3600)) | round(0) }}"
           unit_of_measurement: "hours"
 
   script:
-    reset_main_brush_left:
+    reset_main_brush_remaining:
       alias: "Reset hours for main brush replacement"
       sequence:
         - service: vacuum.send_command
@@ -25,7 +25,7 @@ xiaomi_package:
           data:
             command: reset_consumable
             params: ["main_brush_work_time"]
-    reset_side_brush_left:
+    reset_side_brush_remaining:
       alias: "Reset hours for side brush replacement"
       sequence:
         - service: vacuum.send_command
@@ -34,7 +34,7 @@ xiaomi_package:
           data:
             command: reset_consumable
             params: ["side_brush_work_time"]
-    reset_filter_left:
+    reset_filter_remaining:
       alias: "Reset hours for filter replacement"
       sequence:
         - service: vacuum.send_command
@@ -43,7 +43,7 @@ xiaomi_package:
           data:
             command: reset_consumable
             params: ["filter_work_time"]
-    reset_sensor_dirty_left:
+    reset_sensor_dirty_remaining:
       alias: "Reset hours for sensor cleaning time"
       sequence:
         - service: vacuum.send_command
@@ -83,16 +83,6 @@ xiaomi_package:
       action:
         - service: input_boolean.turn_on
           entity_id: input_boolean.roborock_ready_to_clean
-        - condition: and
-          conditions:
-            - condition: time
-              after: "07:00:00"
-              before: "20:00:00"
-            - condition: state
-              entity_id: alarm_control_panel.home_monitoring
-              state: "armed_away"
-        - service: vacuum.start
-          entity_id: vacuum.bbobos
     - id: "roborock_s5_max_reserved_time_clean_1"
       alias: "Roborock S5 MAX - reserved time clean (1)"
       trigger:
@@ -104,9 +94,13 @@ xiaomi_package:
             - condition: state
               entity_id: input_boolean.roborock_ready_to_clean
               state: "on"
-            - condition: state
-              entity_id: alarm_control_panel.home_monitoring
-              state: "armed_away"
+            - condition: time
+              weekday:
+                - mon
+                - tue
+                - wed
+                - thu
+                - fri
       action:
         - service: vacuum.start
           entity_id: vacuum.bbobos
@@ -121,9 +115,23 @@ xiaomi_package:
             - condition: state
               entity_id: input_boolean.roborock_ready_to_clean
               state: "on"
-            - condition: state
-              entity_id: alarm_control_panel.home_monitoring
-              state: "armed_away"
+            - condition: time
+              weekday:
+                - mon
+                - tue
+                - wed
+                - thu
+                - fri
+      action:
+        - service: vacuum.start
+          entity_id: vacuum.bbobos
+    - id: "roborock_s5_max_clean_command"
+      alias: "Roborock S5 MAX - clean command"
+      trigger:
+        - platform: state
+          entity_id: input_boolean.bbobos
+          from: "off"
+          to: "on"
       action:
         - service: vacuum.start
           entity_id: vacuum.bbobos
@@ -134,12 +142,9 @@ xiaomi_package:
           entity_id: vacuum.bbobos
           to: "cleaning"
       action:
-        - service: galaxy_home_mini.speak
+        - service: telegram_bot.send_message
           data:
-            message: "청소를 시작합니다."
-        - service: notify.notify_telegram
-          data:
-            message: "🧹 청소를 시작합니다."
+            message: "🧹 청소를 시작합니다"
     - id: "roborock_s5_max_docked"
       alias: "Roborock S5 MAX - Docked"
       trigger:
@@ -148,19 +153,18 @@ xiaomi_package:
           from: "returning"
           to: "docked"
       action:
-        - service: galaxy_home_mini.speak
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.bbobos
+        - service: telegram_bot.send_message
           data:
-            message: "청소를 마무리했습니다."
-        - service: notify.notify_telegram
-          data:
-            message: "🪑 뽀봇이 제 자리로 돌아왔어요."
+            message: "🪑 뽀봇이 제 자리로 돌아왔어요"
         - condition: numeric_state
           entity_id: input_number.cleaning_dustbin
           above: 70
-        - service: notify.notify_telegram
+        - service: telegram_bot.send_message
           data:
             title: "🚧 유지보수 🚧"
-            message: "먼지통을 비우세요."
+            message: "먼지통을 비우세요"
             data:
               inline_keyboard:
                 - "Reset dustbin gauge:/reset_dustbin_gauge"
@@ -171,9 +175,9 @@ xiaomi_package:
           entity_id: vacuum.bbobos
           to: "paused"
       action:
-        - service: notify.notify_telegram
+        - service: telegram_bot.send_message
           data:
-            message: "⏸ 뽀봇이 일시정지되었습니다."
+            message: "⏸ 뽀봇이 일시정지되었습니다"
     - id: "roborock_s5_max_idle"
       alias: "Roborock S5 MAX - Idle"
       trigger:
@@ -181,9 +185,9 @@ xiaomi_package:
           entity_id: vacuum.bbobos
           to: "idle"
       action:
-        - service: notify.notify_telegram
+        - service: telegram_bot.send_message
           data:
-            message: "⏹ 뽀봇이 정지되었습니다."
+            message: "⏹ 뽀봇이 정지되었습니다"
     - id: "roborock_s5_max_returning_to_dock"
       alias: "Roborock S5 MAX - Returning to dock"
       trigger:
@@ -191,9 +195,9 @@ xiaomi_package:
           entity_id: vacuum.bbobos
           to: "returning"
       action:
-        - service: notify.notify_telegram
+        - service: telegram_bot.send_message
           data:
-            title: "청소가 완료되었습니다."
+            title: "청소가 완료되었습니다"
             message: |
               📈 보고서
                 청소시간: {{ (states('sensor.bbobos_last_clean_duration') | float / 60) | round(0) }} 분 
@@ -206,71 +210,71 @@ xiaomi_package:
           entity_id: input_number.cleaning_dustbin
         - condition: template
           value_template: |
-            {% if ((states('sensor.bbobos_main_brush_left_hours') | int) < 2) 
-              or ((states('sensor.bbobos_side_brush_left_hours') | int) < 2)
-              or ((states('sensor.bbobos_filter_left_hours') | int) < 2)
-              or ((states('sensor.bbobos_sensor_dirty_left_hours') | int) < 2)
+            {% if ((states('sensor.bbobos_main_brush_remaining_hours') | int) < 2) 
+              or ((states('sensor.bbobos_side_brush_remaining_hours') | int) < 2)
+              or ((states('sensor.bbobos_filter_remaining_hours') | int) < 2)
+              or ((states('sensor.bbobos_sensor_dirty_remaining_hours') | int) < 2)
             %}
               true
             {% else %}
               false
             {% endif %}
-        - service: notify.notify_telegram
+        - service: telegram_bot.send_message
           data:
             title: "🚧 유지보수"
             message: >
-              {% if (states('sensor.bbobos_main_brush_left_hours') | int) < 2 %} 메인 브러쉬{% endif %}{% if (states('sensor.bbobos_side_brush_left_hours') | int) < 2 %} 사이드 브러쉬{% endif %}{% if (states('sensor.bbobos_filter_left_hours') | int) < 2 %} 필터{% endif %}{% if (states('sensor.bbobos_sensor_dirty_left_hours') | int) < 2 %} 센서{% endif %}
+              {% if (states('sensor.bbobos_main_brush_remaining_hours') | int) < 2 %} 메인 브러쉬{% endif %}{% if (states('sensor.bbobos_side_brush_remaining_hours') | int) < 2 %} 사이드 브러쉬{% endif %}{% if (states('sensor.bbobos_filter_remaining_hours') | int) < 2 %} 필터{% endif %}{% if (states('sensor.bbobos_sensor_dirty_remaining_hours') | int) < 2 %} 센서{% endif %}
             data:
               inline_keyboard:
-                - "Reset main brush:/reset_main_brush_left, Reset side brush:/reset_side_brush_left"
-                - "Reset filter:/reset_filter_left, Reset sensor:/reset_sensor_dirty_left"
+                - "Reset main brush:/reset_main_brush_remaining, Reset side brush:/reset_side_brush_remaining"
+                - "Reset filter:/reset_filter_remaining, Reset sensor:/reset_sensor_dirty_remaining"
     # telegram callbacks
-    - id: "telegram_callback_to_reset_main_brush_left"
-      alias: "Telegram callback to reset main brush left"
+    - id: "telegram_callback_to_reset_main_brush_remaining"
+      alias: "Telegram callback to reset main brush remaining"
       trigger:
         - platform: event
           event_type: telegram_callback
           event_data:
-            data: "/reset_main_brush_left"
+            data: "/reset_main_brush_remaining"
       action:
-        - service: script.reset_main_brush_left
-        - service: notify.notify_telegram
+        - service: script.reset_main_brush_remaining
+        - service: telegram_bot.send_message
           data:
             message: "뽀봇 메인브러쉬 리셋 완료"
-    - id: "telegram_callback_to_reset_side_brush_left"
-      alias: "Telegram callback to reset side brush left"
+    - id: "telegram_callback_to_reset_side_brush_remaining"
+      alias: "Telegram callback to reset side brush remaining"
       trigger:
         - platform: event
           event_type: telegram_callback
           event_data:
-            data: "/reset_side_brush_left"
+            data: "/reset_side_brush_remaining"
       action:
-        - service: script.reset_side_brush_left
-        - service: notify.notify_telegram
+        - service: script.reset_side_brush_remaining
+        - service: telegram_bot.send_message
           data:
             message: "뽀봇 사이드브러쉬 리셋 완료"
-    - id: "telegram_callback_to_reset_filter_left"
-      alias: "Telegram callback to reset filter left"
+    - id: "telegram_callback_to_reset_filter_remaining"
+      alias: "Telegram callback to reset filter remaining"
       trigger:
         - platform: event
           event_type: telegram_callback
           event_data:
-            data: "/reset_filter_left"
+            data: "/reset_filter_remaining"
       action:
-        - service: script.reset_filter_left
-        - service: notify.notify_telegram
+        - service: script.reset_filter_remaining
+        - service: telegram_bot.send_message
           data:
             message: "뽀봇 필터 리셋 완료"
-    - id: "telegram_callback_to_reset_sensor_dirty_left"
-      alias: "Telegram callback to reset sensor dirty left"
+    - id: "telegram_callback_to_reset_sensor_dirty_remaining"
+      alias: "Telegram callback to reset sensor dirty remaining"
       trigger:
         - platform: event
           event_type: telegram_callback
           event_data:
-            data: "/reset_sensor_dirty_left"
+            data: "/reset_sensor_dirty_remaining"
       action:
-        - service: script.reset_sensor_dirty_left
-        - service: notify.notify_telegram
+        - service: script.reset_sensor_dirty_remaining
+        - service: telegram_bot.send_message
           data:
             message: "뽀봇 센서 리셋 완료"
     - id: "telegram_callback_to_reset_dustbin_gauge"
@@ -286,56 +290,56 @@ xiaomi_package:
             entity_id: input_number.cleaning_dustbin
           data:
             value: 0
-        - service: notify.notify_telegram
+        - service: telegram_bot.send_message
           data:
             message: "뽀봇 먼지통 리셋 완료"
     # telegram commands
-    - id: "telegram_command_to_reset_main_brush_left"
-      alias: "Telegram command to reset main brush left"
+    - id: "telegram_command_to_reset_main_brush_remaining"
+      alias: "Telegram command to reset main brush remaining"
       trigger:
         - platform: event
           event_type: telegram_command
           event_data:
-            command: "/reset_main_brush_left"
+            command: "/reset_main_brush_remaining"
       action:
-        - service: script.reset_main_brush_left
-        - service: notify.notify_telegram
+        - service: script.reset_main_brush_remaining
+        - service: telegram_bot.send_message
           data:
             message: "뽀봇 메인브러쉬 리셋 완료"
-    - id: "telegram_command_to_reset_side_brush_left"
-      alias: "Telegram command to reset side brush left"
+    - id: "telegram_command_to_reset_side_brush_remaining"
+      alias: "Telegram command to reset side brush remaining"
       trigger:
         - platform: event
           event_type: telegram_command
           event_data:
-            command: "/reset_side_brush_left"
+            command: "/reset_side_brush_remaining"
       action:
-        - service: script.reset_side_brush_left
-        - service: notify.notify_telegram
+        - service: script.reset_side_brush_remaining
+        - service: telegram_bot.send_message
           data:
             message: "뽀봇 사이드브러쉬 리셋 완료"
-    - id: "telegram_command_to_reset_filter_left"
-      alias: "Telegram command to reset filter left"
+    - id: "telegram_command_to_reset_filter_remaining"
+      alias: "Telegram command to reset filter remaining"
       trigger:
         - platform: event
           event_type: telegram_command
           event_data:
-            command: "/reset_filter_left"
+            command: "/reset_filter_remaining"
       action:
-        - service: script.reset_filter_left
-        - service: notify.notify_telegram
+        - service: script.reset_filter_remaining
+        - service: telegram_bot.send_message
           data:
             message: "뽀봇 필터 리셋 완료"
-    - id: "telegram_command_to_reset_sensor_dirty_left"
-      alias: "Telegram command to reset sensor dirty left"
+    - id: "telegram_command_to_reset_sensor_dirty_remaining"
+      alias: "Telegram command to reset sensor dirty remaining"
       trigger:
         - platform: event
           event_type: telegram_command
           event_data:
-            command: "/reset_sensor_dirty_left"
+            command: "/reset_sensor_dirty_remaining"
       action:
-        - service: script.reset_sensor_dirty_left
-        - service: notify.notify_telegram
+        - service: script.reset_sensor_dirty_remaining
+        - service: telegram_bot.send_message
           data:
             message: "뽀봇 센서 리셋 완료"
     - id: "telegram_command_to_reset_dustbin_gauge"
@@ -351,6 +355,6 @@ xiaomi_package:
             entity_id: input_number.cleaning_dustbin
           data:
             value: 0
-        - service: notify.notify_telegram
+        - service: telegram_bot.send_message
           data:
             message: "뽀봇 먼지통 리셋 완료"

@@ -7,18 +7,18 @@ google_cast_package:
 
   notify:
     - platform: tts
-      name: in_the_kitchen
+      name: in_the_livingroom
       tts_service: tts.google_translate_say
-      media_player: media_player.jubang_seupikeo
+      media_player: media_player.geosil_gugeulhommini
     - platform: tts
       name: in_the_bedroom
       tts_service: tts.google_translate_say
-      media_player: media_player.anbang_seupikeo
+      media_player: media_player.anbang_gugeulhommini
     - platform: tts
       name: in_the_library
       tts_service: tts.google_translate_say
-      media_player: media_player.raibeureori_seupikeo
+      media_player: media_player.seojae_gugeulhommini
     - platform: tts
       name: in_the_house
       tts_service: tts.google_translate_say
-      media_player: media_player.geurubseupikeo
+      media_player: media_player.geosil_gugeulhommini

@@ -6,18 +6,6 @@
 # webhooks is preferred but personal ha instance should be exposed to public network
 
 telegram_package:
-  telegram_bot:
-    - platform: webhooks
-      api_key: !secret telegram_bot_api_key
-      allowed_chat_ids:
-        - !secret telegram_chat_id1
-
-  # notifier
-  notify:
-    - platform: telegram
-      name: notify_telegram
-      chat_id: !secret telegram_chat_id1
-
   automation:
     - id: "start_telegram_commands"
       alias: "Start telegram commands"
@@ -27,7 +15,7 @@ telegram_package:
           event_data:
             command: "/start"
       action:
-        - service: notify.notify_telegram
+        - service: telegram_bot.send_message
           data:
             message: "commands"
             data:
@@ -43,7 +31,7 @@ telegram_package:
           event_data:
             command: "/broadcast"
       action:
-        - service: notify.in_the_house_kakao
+        - service: notify.in_the_house
           data:
             message: |
               {% for state in trigger.event.data["args"] %} {{ state }} {% endfor %}

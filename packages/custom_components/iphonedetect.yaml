@@ -1,12 +1,4 @@
 iphonedetect_package:
-  device_tracker:
-    - platform: iphonedetect
-      consider_home: 60
-      new_device_defaults:
-        track_new_devices: true
-      hosts:
-        HeesikiPhone: !secret HeesikiPhone_ip
-        SeoJiniPhone: !secret SeoJiniPhone_ip
   input_boolean:
     heesik_out_check:
       name: Heesik out check
@@ -17,7 +9,7 @@ iphonedetect_package:
       alias: "Notify my presence"
       trigger:
         - platform: state
-          entity_id: device_tracker.heesikiphone
+          entity_id: device_tracker.heesikiphone_2
           from: "not_home"
           to: "home"
       condition:
@@ -28,17 +20,17 @@ iphonedetect_package:
         - service: input_boolean.turn_off
           target:
             entity_id: input_boolean.heesik_out_check
-        - service: notify.notify_telegram
+        - service: telegram_bot.send_message
           data:
-            message: "🏡 희식님께서 집에 도착하셨습니다."
-        - service: notify.in_the_library_kakao
+            message: "🏡 희식님께서 집에 도착하셨습니다"
+        - service: notify.in_the_library
           data:
             message: "희식님, 어서오세요."
     - id: "notify_my_absence"
       alias: "Notify my absence"
       trigger:
         - platform: state
-          entity_id: device_tracker.heesikiphone
+          entity_id: device_tracker.heesikiphone_2
           from: "home"
           to: "not_home"
           for: "00:05:00"
@@ -46,14 +38,14 @@ iphonedetect_package:
         - service: input_boolean.turn_on
           target:
             entity_id: input_boolean.heesik_out_check
-        - service: notify.notify_telegram
+        - service: telegram_bot.send_message
           data:
-            message: "🏡 희식님께서 외출하셨습니다."
+            message: "🏡 희식님께서 외출하셨습니다"
     - id: "notify_seo_presence"
       alias: "Notify seo's presence"
       trigger:
         - platform: state
-          entity_id: device_tracker.seojiniphone
+          entity_id: device_tracker.seojiniphone_2
           from: "not_home"
           to: "home"
       condition:
@@ -64,17 +56,17 @@ iphonedetect_package:
         - service: input_boolean.turn_off
           target:
             entity_id: input_boolean.seojin_out_check
-        - service: notify.notify_telegram
+        - service: telegram_bot.send_message
           data:
-            message: "🏡 서진님께서 집에 도착하셨습니다."
-        - service: notify.in_the_library_kakao
+            message: "🏡 서진님께서 집에 도착하셨습니다"
+        - service: notify.in_the_library
           data:
             message: "서진님, 어서오세요."
     - id: "notify_seo_absence"
       alias: "Notify seo's absence"
       trigger:
         - platform: state
-          entity_id: device_tracker.seojiniphone
+          entity_id: device_tracker.seojiniphone_2
           from: "home"
           to: "not_home"
           for: "00:05:00"
@@ -82,6 +74,6 @@ iphonedetect_package:
         - service: input_boolean.turn_on
           target:
             entity_id: input_boolean.seojin_out_check
-        - service: notify.notify_telegram
+        - service: telegram_bot.send_message
           data:
-            message: "🏡 서진님께서 외출하셨습니다."
+            message: "🏡 서진님께서 외출하셨습니다"

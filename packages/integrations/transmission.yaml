@@ -6,9 +6,9 @@ transmission_package:
         platform: event
         event_type: transmission_downloaded_torrent
       action:
-        - service: notify.notify_telegram
+        - service: telegram_bot.send_message
           data:
-            title: "🚦 토렌트 다운로드가 완료되었습니다."
+            title: "🚦 토렌트 다운로드가 완료되었습니다"
             message: "{{trigger.event.data.name}}"
         - service: transmission.remove_torrent
           data:
