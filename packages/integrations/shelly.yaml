@@ -10,11 +10,9 @@ shelly_package:
     shellyem_c45bbe5ff616_channel_2_monthly_energy_induction:
       source: sensor.shellyem_c45bbe5ff616_channel_2_energy
       cycle: monthly
-
-  binary_sensor:
-    - platform: template
-      sensors:
-        shellyem_c45bbe5ff616_channel_2_induction_in_use:
-          friendly_name: "인덕션 사용중"
-          value_template: "{{ (states('sensor.shellyem_c45bbe5ff616_channel_2_power')|float(0)) > 3 }}"
+  template:
+    - binary_sensor:
+      - default_entity_id: binary_sensor.shellyem_c45bbe5ff616_channel_2_induction_in_use
+        name: "인덕션 사용중"
+        state: "{{ (states('sensor.shellyem_c45bbe5ff616_channel_2_power')|float(0)) > 3 }}"
 

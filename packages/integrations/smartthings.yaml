@@ -40,43 +40,32 @@ smartthings_package:
       source: sensor.jeonjareinji_energy
       cycle: monthly
 
-  sensor:
-    - platform: template
-      sensors:
-        geonjogi_monthly_energy_last_month:
-          friendly_name: "건조기 전력 전월 사용량"
-          unit_of_measurement: kWh
-          value_template: "{{ state_attr('sensor.geonjogi_monthly_energy','last_period')|float }}"
-    - platform: template
-      sensors:
-        setaggi_monthly_energy_last_month:
-          friendly_name: "세탁기 전력 전월 사용량"
-          unit_of_measurement: kWh
-          value_template: "{{ state_attr('sensor.setaggi_monthly_energy','last_period')|float }}"
-    - platform: template
-      sensors:
-        naengjanggo_monthly_energy_last_month:
-          friendly_name: "냉장고 전력 전월 사용량"
-          unit_of_measurement: kWh
-          value_template: "{{ state_attr('sensor.naengjanggo_monthly_energy','last_period')|float }}"
-    - platform: template
-      sensors:
-        gimcinaengjanggo_monthly_energy_last_month:
-          friendly_name: "김치냉장고 전력 전월 사용량"
-          unit_of_measurement: kWh
-          value_template: "{{ state_attr('sensor.gimcinaengjanggo_monthly_energy','last_period')|float }}"
-    - platform: template
-      sensors:
-        eeodeureseo_monthly_energy_last_month:
-          friendly_name: "에어드레서 전력 전월 사용량"
-          unit_of_measurement: kWh
-          value_template: "{{ state_attr('sensor.eeodeureseo_monthly_energy','last_period')|float }}"
-    - platform: template
-      sensors:
-        jeonjareinji_monthly_energy_last_month:
-          friendly_name: "전자레인지 전력 전월 사용량"
-          unit_of_measurement: kWh
-          value_template: "{{ state_attr('sensor.jeonjareinji_monthly_energy','last_period')|float }}"
+  template:
+    - sensor:
+      - default_entity_id: sensor.geonjogi_monthly_energy_last_month
+        name: "건조기 전력 전월 사용량"
+        unit_of_measurement: kWh
+        state: "{{ state_attr('sensor.geonjogi_monthly_energy','last_period')|float }}"
+      - default_entity_id: sensor.setaggi_monthly_energy_last_month
+        name: "세탁기 전력 전월 사용량"
+        unit_of_measurement: kWh
+        state: "{{ state_attr('sensor.setaggi_monthly_energy','last_period')|float }}"
+      - default_entity_id: sensor.naengjanggo_monthly_energy_last_month
+        name: "냉장고 전력 전월 사용량"
+        unit_of_measurement: kWh
+        state: "{{ state_attr('sensor.naengjanggo_monthly_energy','last_period')|float }}"
+      - default_entity_id: sensor.gimcinaengjanggo_monthly_energy_last_month
+        name: "김치냉장고 전력 전월 사용량"
+        unit_of_measurement: kWh
+        state: "{{ state_attr('sensor.gimcinaengjanggo_monthly_energy','last_period')|float }}"
+      - default_entity_id: sensor.eeodeureseo_monthly_energy_last_month
+        name: "에어드레서 전력 전월 사용량"
+        unit_of_measurement: kWh
+        state: "{{ state_attr('sensor.eeodeureseo_monthly_energy','last_period')|float }}"
+      - default_entity_id: sensor.jeonjareinji_monthly_energy_last_month
+        name: "전자레인지 전력 전월 사용량"
+        unit_of_measurement: kWh
+        state: "{{ state_attr('sensor.jeonjareinji_monthly_energy','last_period')|float }}"
 
   automation:
     # CO2

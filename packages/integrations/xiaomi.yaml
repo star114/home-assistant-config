@@ -1,19 +1,22 @@
 xiaomi_package:
-  sensor:
-    - platform: template
-      sensors:
-        bbobos_main_brush_remaining_hours:
-          value_template: "{{ ((states('sensor.bbobos_main_brush_remaining') | float / 3600)) | round(0) }}"
-          unit_of_measurement: "hours"
-        bbobos_side_brush_remaining_hours:
-          value_template: "{{ ((states('sensor.bbobos_side_brush_remaining') | float / 3600)) | round(0) }}"
-          unit_of_measurement: "hours"
-        bbobos_filter_remaining_hours:
-          value_template: "{{ ((states('sensor.bbobos_filter_remaining') | float / 3600)) | round(0) }}"
-          unit_of_measurement: "hours"
-        bbobos_sensor_dirty_remaining_hours:
-          value_template: "{{ ((states('sensor.bbobos_sensor_dirty_remaining') | float / 3600)) | round(0) }}"
-          unit_of_measurement: "hours"
+  template:
+    - sensor:
+      - default_entity_id: sensor.bbobos_main_brush_remaining_hours
+        state: "{{ ((states('sensor.bbobos_main_brush_remaining') | float / 3600)) | round(0) }}"
+        unit_of_measurement: "hours"
+        name: bbobos_main_brush_remaining_hours
+      - default_entity_id: sensor.bbobos_side_brush_remaining_hours
+        state: "{{ ((states('sensor.bbobos_side_brush_remaining') | float / 3600)) | round(0) }}"
+        unit_of_measurement: "hours"
+        name: bbobos_side_brush_remaining_hours
+      - default_entity_id: sensor.bbobos_filter_remaining_hours
+        state: "{{ ((states('sensor.bbobos_filter_remaining') | float / 3600)) | round(0) }}"
+        unit_of_measurement: "hours"
+        name: bbobos_filter_remaining_hours
+      - default_entity_id: sensor.bbobos_sensor_dirty_remaining_hours
+        state: "{{ ((states('sensor.bbobos_sensor_dirty_remaining') | float / 3600)) | round(0) }}"
+        unit_of_measurement: "hours"
+        name: bbobos_sensor_dirty_remaining_hours
 
   script:
     reset_main_brush_remaining:

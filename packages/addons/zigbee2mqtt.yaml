@@ -28,34 +28,32 @@ zigbee2mqtt_package:
   # Food waste machine: 0x00158d0004f66c2c
   # Fan: 0x5c0272fffea014af
   # Bidet: 0x5c0272fffea01164
-  sensor:
-    # Sensors for Utility meter (last month)
-    - platform: template
-      sensors:
-        rice_cooker_monthly_energy_last_month:
-          friendly_name: "밥솥 전력 전월 사용량"
-          unit_of_measurement: kWh
-          value_template: "{{ state_attr('sensor.rice_cooker_monthly_energy','last_period')|float }}"
-        food_waste_machine_monthly_energy_last_month:
-          friendly_name: "음식물처리기 전력 전월 사용량"
-          unit_of_measurement: kWh
-          value_template: "{{ state_attr('sensor.food_waste_machine_monthly_energy','last_period')|float }}"
-        dishwasher_monthly_energy_last_month:
-          friendly_name: "식기세척기 전력 전월 사용량"
-          unit_of_measurement: kWh
-          value_template: "{{ state_attr('sensor.dishwasher_monthly_energy','last_period')|float }}"
-        bidet_monthly_energy_last_month:
-          friendly_name: "비데 전력 전월 사용량"
-          unit_of_measurement: kWh
-          value_template: "{{ state_attr('sensor.bidet_monthly_energy','last_period')|float }}"
-        fan_monthly_energy_last_month:
-          friendly_name: "써큘레이터 전력 전월 사용량"
-          unit_of_measurement: kWh
-          value_template: "{{ state_attr('sensor.fan_monthly_energy','last_period')|float }}"
-        tree_light_monthly_energy_last_month:
-          friendly_name: "트리 조명 전력 전월 사용량"
-          unit_of_measurement: kWh
-          value_template: "{{ state_attr('sensor.tree_light_monthly_energy','last_period')|float }}"
+  template:
+    - sensor:
+      - default_entity_id: sensor.rice_cooker_monthly_energy_last_month
+        name: "밥솥 전력 전월 사용량"
+        unit_of_measurement: kWh
+        state: "{{ state_attr('sensor.rice_cooker_monthly_energy','last_period')|float }}"
+      - default_entity_id: sensor.food_waste_machine_monthly_energy_last_month
+        name: "음식물처리기 전력 전월 사용량"
+        unit_of_measurement: kWh
+        state: "{{ state_attr('sensor.food_waste_machine_monthly_energy','last_period')|float }}"
+      - default_entity_id: sensor.dishwasher_monthly_energy_last_month
+        name: "식기세척기 전력 전월 사용량"
+        unit_of_measurement: kWh
+        state: "{{ state_attr('sensor.dishwasher_monthly_energy','last_period')|float }}"
+      - default_entity_id: sensor.bidet_monthly_energy_last_month
+        name: "비데 전력 전월 사용량"
+        unit_of_measurement: kWh
+        state: "{{ state_attr('sensor.bidet_monthly_energy','last_period')|float }}"
+      - default_entity_id: sensor.fan_monthly_energy_last_month
+        name: "써큘레이터 전력 전월 사용량"
+        unit_of_measurement: kWh
+        state: "{{ state_attr('sensor.fan_monthly_energy','last_period')|float }}"
+      - default_entity_id: sensor.tree_light_monthly_energy_last_month
+        name: "트리 조명 전력 전월 사용량"
+        unit_of_measurement: kWh
+        state: "{{ state_attr('sensor.tree_light_monthly_energy','last_period')|float }}"
 
   utility_meter:
     rice_cooker_monthly_energy:
