@@ -20,18 +20,7 @@ telegram_package:
             message: "commands"
             data:
               keyboard:
-                - "/broadcast, /reset_dustbin_gauge"
+                - "/reset_dustbin_gauge"
                 - "/reset_main_brush_left, /reset_side_brush_left"
                 - "/reset_filter_left, /reset_sensor_dirty_left"
-    - id: "telegram_command_to_broadcast"
-      alias: "Telegram command to broadcast"
-      trigger:
-        - platform: event
-          event_type: telegram_command
-          event_data:
-            command: "/broadcast"
-      action:
-        - service: notify.in_the_house
-          data:
-            message: |
-              {% for state in trigger.event.data["args"] %} {{ state }} {% endfor %}
+ 
