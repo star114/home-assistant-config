@@ -1,3 +1,4 @@
+.cache/*
 .cloud/*
 .storage/*
 .vscode/
